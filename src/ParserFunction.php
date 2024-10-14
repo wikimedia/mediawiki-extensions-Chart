@@ -190,7 +190,6 @@ class ParserFunction implements MessageLocalizer {
 
 		// @todo register cross-site dependencies using extended GlobalUsage
 		// and allow updates to trigger re-parses of affected pages
-
 		return $this->renderChartForDefinitionContent( $output, $definitionContent, $tabularData, $options );
 	}
 
@@ -253,6 +252,14 @@ class ParserFunction implements MessageLocalizer {
 			return Html::errorBox( $status->getHTML() );
 		}
 		$svg = $status->getValue();
-		return Html::rawElement( 'div', [ 'class' => 'mw-chart' ], $svg );
+		$output->addModuleStyles( [ 'ext.chart.styles' ] );
+
+		// Check that Charts progressive enhancement is enabled. If so, modify output.
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( $config->get( 'ChartProgressiveEnhancement' ) ) {
+			$output->addWrapperDivClass( 'ext-chart-js' );
+			$output->addModules( [ 'ext.chart.bootstrap' ] );
+		}
+		return $svg;
 	}
 }

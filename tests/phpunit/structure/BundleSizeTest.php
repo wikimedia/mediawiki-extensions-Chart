@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Chart\Tests\Structure;
+namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Tests\Structure\BundleSizeTestBase;
 

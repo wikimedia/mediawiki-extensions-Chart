@@ -1,0 +1,11 @@
+echarts:
+  license: Apache-2.0
+  homepage: https://github.com/apache/echarts
+  version: 5.5.1
+  type: tar
+  src: https://registry.npmjs.org/echarts/-/echarts-5.5.1.tgz
+  integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==
+  dest:
+    package/dist/echarts.common.js:
+    package/LICENSE:
+    package/README.md:

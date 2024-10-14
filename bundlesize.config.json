@@ -1,6 +1,10 @@
 [
 	{
-		"resourceModule": "ext.charts.styles",
-		"maxSize": "0.4 kB"
+		"resourceModule": "ext.chart.styles",
+		"maxSize": "0.2 kB"
+	},
+	{
+		"resourceModule": "ext.chart.bootstrap",
+		"maxSize": "0.5 kB"
 	}
 ]

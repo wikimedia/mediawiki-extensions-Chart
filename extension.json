@@ -16,6 +16,10 @@
 		}
 	},
 	"config": {
+		"ChartProgressiveEnhancement": {
+			"value": true,
+			"description": "Loads JavaScript on client."
+		},
 		"ChartServiceUrl": {
 			"value": null,
 			"description": "URL to the chart-renderer service. If both ChartCliPath and this setting are set, this setting is used."
@@ -29,6 +33,7 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Chart\\": "src/"
 	},
+	"ForeignResourcesDir": "lib",
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
@@ -44,7 +49,18 @@
 	"ResourceModules": {
 		"ext.chart.styles": {
 			"styles": [
-				"resources/ext.chart.styles/main.less"
+				"resources/ext.chart/styles.less"
+			]
+		},
+		"ext.chart.bootstrap": {
+			"packageFiles": [
+				"resources/ext.chart/bootstrap.js"
+			]
+		},
+		"ext.chart.render": {
+			"packageFiles": [
+				"resources/ext.chart/render.js",
+				"lib/echarts/echarts.common.js"
 			]
 		}
 	},
@@ -58,7 +74,6 @@
 		}
 	},
 	"Hooks": {
-		"BeforePageDisplay": "main",
 		"ParserFirstCallInit": "main"
 	},
 	"manifest_version": 2

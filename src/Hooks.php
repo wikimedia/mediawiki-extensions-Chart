@@ -3,12 +3,9 @@
 namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Hook\ParserFirstCallInitHook;
-use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
-use Skin;
 
-class Hooks implements ParserFirstCallInitHook, BeforePageDisplayHook {
+class Hooks implements ParserFirstCallInitHook {
 
 	public static function onRegistration() {
 		global $wgChartServiceUrl, $wgChartCliPath;
@@ -16,14 +13,6 @@ class Hooks implements ParserFirstCallInitHook, BeforePageDisplayHook {
 			// Set the default value for $wgChartCliPath
 			$wgChartCliPath = dirname( __DIR__ ) . '/chart-renderer/cli.js';
 		}
-	}
-
-	/**
-	 * @param OutputPage $out
-	 * @param Skin $skin
-	 */
-	public function onBeforePageDisplay( $out, $skin ): void {
-		$out->addModuleStyles( [ 'ext.chart.styles' ] );
 	}
 
 	/**
