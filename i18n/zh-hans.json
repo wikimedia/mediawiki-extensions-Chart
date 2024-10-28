@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"沈澄心"
+		]
+	},
+	"chart-desc": "添加用于显示图表的解析器函数<nowiki><code>{{#chart:}}</code></nowiki>",
+	"chart-error-chart-definition-not-found": "找不到图表定义页面。",
+	"chart-error-data-source-page-not-found": "找不到图表表格数据源页面。",
+	"chart-error-default-source-not-specified": "图表定义页面未指定默认数据源。",
+	"chart-error-incompatible-chart-definition": "定义页面与图表不兼容。",
+	"chart-error-incompatible-data-source": "表格数据源页面与图表不兼容。",
+	"chart-error-invalid-height": "高度必须是大于或等于100的整数。",
+	"chart-error-invalid-width": "宽度必须是大于或等于100的整数。",
+	"chart-error-shell-disabled": "由于已禁用shell执行，无法呈现图表。",
+	"chart-error-rendering-error": "呈现图表时出错。",
+	"chart-error-unexpected": "呈现图表时发生意外错误。"
+}
