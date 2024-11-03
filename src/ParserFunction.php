@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Chart;
 use JsonConfig\JCContent;
 use JsonConfig\JCSingleton;
 use JsonConfig\JCTabularContent;
+use JsonConfig\JCTitle;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
@@ -13,10 +14,8 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Title\Title;
 use MessageLocalizer;
 use Psr\Log\LoggerInterface;
-use WikiPage;
 
 class ParserFunction implements MessageLocalizer {
 
@@ -170,26 +169,20 @@ class ParserFunction implements MessageLocalizer {
 			return $this->renderError( 'chart-error-chart-definition-not-found' );
 		}
 
-		$definitionPage = new WikiPage( $chartDefinitionPageTitle );
-		$definitionContent = JCSingleton::getContent( $chartDefinitionPageTitle->getTitleValue() );
+		$definitionTitleValue = $chartDefinitionPageTitle;
+		$definitionContent = JCSingleton::getContent( $definitionTitleValue );
 		if ( !$definitionContent ) {
 			return $this->renderError( 'chart-error-chart-definition-not-found' );
 		}
 		if ( !( $definitionContent instanceof JCChartContent ) ) {
 			return $this->renderError( 'chart-error-incompatible-chart-definition' );
 		}
-		if ( $definitionPage->exists() ) {
-			// Record a dependency on the chart page, so that the page embedding the chart
-			// is reparsed when the chart page is edited
-			$output->addTemplate(
-				$definitionPage->getTitle(),
-				$definitionPage->getId(),
-				$definitionPage->getRevisionRecord()->getId()
-			);
-		}
 
-		// @todo register cross-site dependencies using extended GlobalUsage
-		// and allow updates to trigger re-parses of affected pages
+		JCSingleton::recordJsonLink(
+			$output,
+			$definitionTitleValue
+		);
+
 		return $this->renderChartForDefinitionContent( $output, $definitionContent, $tabularData, $options );
 	}
 
@@ -199,7 +192,7 @@ class ParserFunction implements MessageLocalizer {
 	 * @param ParserOutput $output ParserOutput the chart is being rendered into. Used to record
 	 *    dependencies on the chart and data pages.
 	 * @param JCContent $definitionContent The chart definition content object.
-	 * @param ?Title $tabularData Optional tabular data page title. If not provided, the default
+	 * @param ?JCTitle $tabularData Optional tabular data page title. If not provided, the default
 	 *        data source specified in the chart definition will be used.
 	 * @param array $options Rendering options (e.g., 'width' and 'height').
 	 * @return string HTML string containing the rendered chart or an error message.
@@ -207,7 +200,7 @@ class ParserFunction implements MessageLocalizer {
 	public function renderChartForDefinitionContent(
 		ParserOutput $output,
 		JCContent $definitionContent,
-		?Title $tabularData = null,
+		?JCTitle $tabularData = null,
 		array $options = []
 	): string {
 		if ( !$definitionContent instanceof JCChartContent ) {
@@ -220,31 +213,28 @@ class ParserFunction implements MessageLocalizer {
 			if ( !isset( $definitionObj->source ) ) {
 				return $this->renderError( 'chart-error-default-source-not-specified' );
 			}
-			$tabularData = $this->dataPageResolver->resolvePageInDataNamespace( $definitionObj->source );
-			if ( !$tabularData ) {
-				return $this->renderError( 'chart-error-data-source-page-not-found' );
-			}
+			$tabularDataTitleValue = $this->dataPageResolver->resolvePageInDataNamespace(
+				$definitionObj->source
+			);
+		} else {
+			$tabularDataTitleValue = $tabularData;
 		}
-		$dataPage = new WikiPage( $tabularData );
-		$dataContent = JCSingleton::getContent( $tabularData->getTitleValue() );
+		if ( !$tabularDataTitleValue ) {
+			return $this->renderError( 'chart-error-data-source-page-not-found' );
+		}
+
+		$dataContent = JCSingleton::getContent( $tabularDataTitleValue );
 		if ( !$dataContent ) {
 			return $this->renderError( 'chart-error-data-source-page-not-found' );
 		}
 		if ( !( $dataContent instanceof JCTabularContent ) ) {
 			return $this->renderError( 'chart-error-incompatible-data-source' );
 		}
-		if ( $dataPage->exists() ) {
-			// Record a dependency on the data page, so that the page embedding the chart
-			// is reparsed when the data page is edited
-			$output->addTemplate(
-				$dataPage->getTitle(),
-				$dataPage->getId(),
-				$dataPage->getRevisionRecord()->getId()
-			);
-		} else {
-			// @todo register cross-site dependencies using extended GlobalUsage
-			// and allow updates to trigger re-parses of affected pages
-		}
+		JCSingleton::recordJsonLink(
+			$output,
+			$tabularDataTitleValue
+		);
+
 		$dataObj = $dataContent->getLocalizedData( $this->language );
 
 		$status = $this->chartRenderer->renderSVG( $definitionObj, $dataObj, $options );

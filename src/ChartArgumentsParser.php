@@ -34,19 +34,21 @@ class ChartArgumentsParser {
 			}
 		}
 
-		if ( !$definition ) {
+		$definitionTitle = null;
+		if ( $definition === null ) {
 			$errors[] = [
 				'key' => 'chart-error-chart-definition-not-found',
 				'params' => []
 			];
-		}
+		} else {
+			$definitionTitle = $this->dataPageResolver->resolvePageInDataNamespace( $definition );
 
-		$definitionTitle = $this->dataPageResolver->resolvePageInDataNamespace( $definition );
-		if ( !$definitionTitle ) {
-			$errors[] = [
-				'key' => 'chart-error-chart-definition-not-found',
-				'params' => []
-			];
+			if ( !$definitionTitle ) {
+				$errors = [
+					'key' => 'chart-error-chart-definition-not-found',
+					'params' => []
+				];
+			}
 		}
 
 		$dataTitle = null;
@@ -54,7 +56,7 @@ class ChartArgumentsParser {
 			$dataTitle = $this->dataPageResolver->resolvePageInDataNamespace( $dataSource );
 			if ( !$dataTitle ) {
 				$errors = [
-					'key' => 'chart-error-chart-definition-not-found',
+					'key' => 'chart-error-data-source-page-not-found',
 					'params' => []
 				];
 			}

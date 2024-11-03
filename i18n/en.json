@@ -9,6 +9,7 @@
 	},
 	"chart-desc": "Adds the <code><nowiki>{{#chart:}}</nowiki></code> parser function for displaying charts",
 	"chart-error-chart-definition-not-found": "Chart definition page not found.",
+	"chart-error-data-source-invalid": "Invalid tabular data source provided.",
 	"chart-error-data-source-page-not-found": "Chart tabular data source page not found.",
 	"chart-error-default-source-not-specified": "Chart definition page does not specify a default data source.",
 	"chart-error-incompatible-chart-definition": "Definition page is incompatible with charts.",
