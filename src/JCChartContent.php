@@ -60,6 +60,10 @@ class JCChartContent extends JCDataContent {
 			$result->type = $data->type;
 		}
 
+		if ( isset( $data->title ) ) {
+			$result->title = $localize( $data->title );
+		}
+
 		$axis = static function ( $src ) use ( $localize ) {
 			$dst = (object)[];
 			if ( isset( $src->title ) ) {
