@@ -1,5 +1,13 @@
 const echarts = require( '../../lib/echarts/echarts.common.js' );
 
+const adjustTitleWidth = ( chart ) => {
+	const option = chart.getOption();
+	if (option.title && option.title[0].textStyle) {
+		option.title[0].textStyle.width = chart.getWidth();
+		chart.setOption(option);
+	}
+};
+
 const renderInNode = ( wikiChartElement, spec, theme ) => {
 	const language = mw.config.get( 'wgUserLanguage' );
 	const height = wikiChartElement.clientHeight;
@@ -23,6 +31,11 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 		valueFormatter: ( value ) => formatter.format(value),
 		trigger: 'axis'
 	};
+
+	if ( spec.title?.textStyle ) {
+		spec.title.textStyle.width = chart.getWidth();
+	}
+
 	if ( spec.yAxis ) {
 		spec.yAxis.axisLabel = {
 			formatter: ( value ) => formatter.format( value )
@@ -37,7 +50,10 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 	}
 	chart.setOption( spec );
 	originalSVG.parentNode.removeChild( originalSVG );
-	window.addEventListener( 'resize', chart.resize );
+	window.addEventListener( 'resize', function () {
+		chart.resize();
+		adjustTitleWidth( chart );
+	} );
 };
 
 const render = ( wikiChartElement ) => {
