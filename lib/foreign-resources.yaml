@@ -5,6 +5,7 @@ echarts:
   type: tar
   src: https://registry.npmjs.org/echarts/-/echarts-5.5.1.tgz
   integrity: sha512-Fce8upazaAXUVUVsjgV6mBnGuqgO+JNDlcgF79Dksy4+wgGpQB2lmYoO4TSweFg/mZITdpGHomw/cNBJZj1icA==
+  purl: pkg:npm/echarts@5.5.1
   dest:
     package/dist/echarts.common.js:
     package/LICENSE:
