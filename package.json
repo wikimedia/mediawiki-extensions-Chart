@@ -5,9 +5,13 @@
 	"scripts": {
 		"test": "npm run lint",
 		"lint:i18n": "banana-checker --requireLowerCase=0 i18n/",
-		"lint": "npm -s run lint:i18n"
+		"lint": "npm -s run lint:js && npm -s run lint:styles && npm -s run lint:i18n",
+		"lint:js": "eslint --cache .",
+		"lint:styles": "stylelint \"**/*.{less,css}\""
 	},
 	"devDependencies": {
-		"grunt-banana-checker": "0.13.0"
+		"eslint-config-wikimedia": "0.28.2",
+		"grunt-banana-checker": "0.13.0",
+		"stylelint-config-wikimedia": "0.17.2"
 	}
 }

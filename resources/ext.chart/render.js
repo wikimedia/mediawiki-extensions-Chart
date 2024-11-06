@@ -2,9 +2,9 @@ const echarts = require( '../../lib/echarts/echarts.common.js' );
 
 const adjustTitleWidth = ( chart ) => {
 	const option = chart.getOption();
-	if (option.title && option.title[0].textStyle) {
-		option.title[0].textStyle.width = chart.getWidth();
-		chart.setOption(option);
+	if ( option.title && option.title[ 0 ].textStyle ) {
+		option.title[ 0 ].textStyle.width = chart.getWidth();
+		chart.setOption( option );
 	}
 };
 
@@ -24,15 +24,15 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 		style: 'decimal',
 		minimumFractionDigits: 2,
 		maximumFractionDigits: 2
-	});
+	} );
 	// https://github.com/apache/echarts/blob/release/src/i18n/langAR.ts
 	// update spec
 	spec.tooltip = {
-		valueFormatter: ( value ) => formatter.format(value),
+		valueFormatter: ( value ) => formatter.format( value ),
 		trigger: 'axis'
 	};
 
-	if ( spec.title?.textStyle ) {
+	if ( spec.title && spec.title.textStyle ) {
 		spec.title.textStyle.width = chart.getWidth();
 	}
 
@@ -43,14 +43,14 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 	}
 	if ( spec.legend ) {
 		Object.assign( spec.legend, {
-			[isRTL ? 'right' : 'left']: 0,
+			[ isRTL ? 'right' : 'left' ]: 0,
 			type: 'scroll',
 			align: isRTL ? 'right' : 'left'
 		} );
 	}
 	chart.setOption( spec );
 	originalSVG.parentNode.removeChild( originalSVG );
-	window.addEventListener( 'resize', function () {
+	window.addEventListener( 'resize', () => {
 		chart.resize();
 		adjustTitleWidth( chart );
 	} );
