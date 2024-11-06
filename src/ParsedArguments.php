@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use MediaWiki\Title\Title;
+use JsonConfig\JCTitle;
 
 class ParsedArguments {
-	private ?Title $definitionPageTitle;
+	private ?JCTitle $definitionPageTitle;
 
-	private ?Title $dataPageTitle;
+	private ?JCTitle $dataPageTitle;
 
 	private array $options;
 
@@ -17,16 +17,16 @@ class ParsedArguments {
 	private array $errors;
 
 	/**
-	 * @param ?Title $definitionPageTitle Chart definition page title.
-	 * @param ?Title $dataPageTitle Tabular data page.
+	 * @param ?JCTitle $definitionPageTitle Chart definition page title.
+	 * @param ?JCTitle $dataPageTitle Tabular data page.
 	 * @param array{width?:string,height?:string} $options Additional rendering options:
 	 *    'width': Width of the chart, in pixels. Overrides width specified in the chart definition
 	 *    'height': Height of the chart, in pixels. Overrides height specified in the chart definition.
 	 * @param array<array{key:string, params:array}> $errors An array of errors with key and params
 	 */
 	public function __construct(
-		?Title $definitionPageTitle,
-		?Title $dataPageTitle,
+		?JCTitle $definitionPageTitle,
+		?JCTitle $dataPageTitle,
 		array $options,
 		array $errors
 	) {
@@ -36,11 +36,11 @@ class ParsedArguments {
 		$this->errors = $errors;
 	}
 
-	public function getDefinitionPageTitle(): ?Title {
+	public function getDefinitionPageTitle(): ?JCTitle {
 		return $this->definitionPageTitle;
 	}
 
-	public function getDataPageTitle(): ?Title {
+	public function getDataPageTitle(): ?JCTitle {
 		return $this->dataPageTitle;
 	}
 

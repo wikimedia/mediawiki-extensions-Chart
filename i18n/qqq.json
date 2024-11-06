@@ -8,6 +8,7 @@
 	},
 	"chart-desc": "{{desc|name=Chart|url=https://www.mediawiki.org/wiki/Extension:Chart}}",
 	"chart-error-chart-definition-not-found": "Error message when the chart definition page is not found. Shown to user in Codex message box.",
+	"chart-error-data-source-invalid": "Error message when the chart tabular data source is invalid. Shown to user in Codex message box.",
 	"chart-error-data-source-page-not-found": "Error message when the chart tabular data source is not found. Shown to user in Codex message box.",
 	"chart-error-default-source-not-specified": "Error message when the chart definition page does not specify a default data source page. Shown to user in Codex message box.",
 	"chart-error-incompatible-chart-definition": "Error message when the chart definition page is incompatible with charts. Shown to user in Codex message box.",
