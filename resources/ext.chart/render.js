@@ -1,3 +1,4 @@
+// @ts-ignore
 const echarts = require( '../../lib/echarts/echarts.common.js' );
 
 const adjustTitleWidth = ( chart ) => {
@@ -8,6 +9,28 @@ const adjustTitleWidth = ( chart ) => {
 	}
 };
 
+/**
+ * Check if the date series looks like a series of dates.
+ * Returns false if one of the series cannot be interpreted as a date.
+ *
+ * @param {string[]} dataSeries
+ * @return {boolean}
+ */
+const isDateSeries = ( dataSeries ) => dataSeries.filter( ( item ) => {
+	// If it's not a string and it's not 10 characters long do not interpret.
+	// e.g. 2024-02-20 is a date.
+	if ( typeof item !== 'string' || item.length !== 10 ) {
+		return true;
+	}
+	const d = new Date( item[ 0 ] );
+	return isNaN( d );
+} ).length === 0;
+
+/**
+ * @param {HTMLElement} wikiChartElement
+ * @param {Object} spec for rendering the chart
+ * @param {Object} theme the theme to use.
+ */
 const renderInNode = ( wikiChartElement, spec, theme ) => {
 	const language = mw.config.get( 'wgUserLanguage' );
 	const height = wikiChartElement.clientHeight;
@@ -36,9 +59,20 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 		spec.title.textStyle.width = chart.getWidth();
 	}
 
+	const dateFormatter = new Intl.DateTimeFormat( language );
+	const formatAsDate = ( value ) => dateFormatter.format( new Date( value ) );
+	const formatAsStringOrNumber = ( value ) => typeof value === 'string' ? value : formatter.format( value );
+
 	if ( spec.yAxis ) {
 		spec.yAxis.axisLabel = {
-			formatter: ( value ) => formatter.format( value )
+			formatter: formatAsStringOrNumber
+		};
+	}
+
+	if ( spec.xAxis ) {
+		spec.xAxis.axisLabel = {
+			formatter: isDateSeries( spec.xAxis.data || [] ) ?
+				formatAsDate : formatAsStringOrNumber
 		};
 	}
 	if ( spec.legend ) {
@@ -56,6 +90,9 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 	} );
 };
 
+/**
+ * @param {HTMLElement} wikiChartElement
+ */
 const render = ( wikiChartElement ) => {
 	const theme = wikiChartElement.dataset.theme;
 	const spec = wikiChartElement.dataset.spec;
@@ -70,5 +107,6 @@ const render = ( wikiChartElement ) => {
 };
 
 module.exports = {
+	isDateSeries,
 	render
 };
