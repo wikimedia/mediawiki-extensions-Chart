@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Fügt die <code><nowiki>{{#chart:}}</nowiki></code>-Parserfunktion für die Anzeige von Diagrammen hinzu",
 	"chart-error-chart-definition-not-found": "Diagrammdefinitionsseite nicht gefunden.",
+	"chart-error-data-source-invalid": "Ungültige tabellarische Datenquelle angegeben.",
 	"chart-error-data-source-page-not-found": "Die Seite mit der tabellarischen Datenquelle wurde nicht gefunden.",
 	"chart-error-default-source-not-specified": "Die Diagrammdefinitionsseite gibt keine Standarddatenquelle an.",
 	"chart-error-incompatible-chart-definition": "Die Definitionsseite ist nicht kompatibel mit Diagrammen.",
