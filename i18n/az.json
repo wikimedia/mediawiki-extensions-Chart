@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Qrafiklərin göstərilməsi üçün <code><nowiki>{{#chart:}}</nowiki></code> funksiyasını əlavə edir",
 	"chart-error-chart-definition-not-found": "Qrafik tərifi səhifəsi tapılmadı.",
+	"chart-error-data-source-invalid": "Yanlış cədvəl məlumat mənbəyi göstərilib.",
 	"chart-error-data-source-page-not-found": "Qrafik cədvəl məlumat mənbəyi səhifəsi tapılmadı.",
 	"chart-error-default-source-not-specified": "Qrafik tərifi səhifəsi defolt məlumat mənbəyini göstərmir.",
 	"chart-error-incompatible-chart-definition": "Tərif səhifəsi qrafiklərlə uyğun gəlmir.",

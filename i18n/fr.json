@@ -1,16 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mahabarata",
 			"Méthodes Bulebe Hangi",
 			"Terio legale"
 		]
 	},
 	"chart-desc": "Ajoute la fonction d'analyseur <code><nowiki>{{#chart:}}</nowiki></code> pour l'affichage des graphiques",
 	"chart-error-chart-definition-not-found": "La page de définition du graphique n'a pas été trouvée.",
-	"chart-error-data-source-page-not-found": "la page de source de données du tableau n'a pas été trouvée.",
+	"chart-error-data-source-invalid": "Source spécifiée pour les données du tableau invalide.",
+	"chart-error-data-source-page-not-found": "La page de la source des données du tableau graphique n'a pas été trouvée.",
 	"chart-error-default-source-not-specified": "La page définition du graphique ne spécifie pas une source de données par défaut.",
 	"chart-error-incompatible-chart-definition": "La page définition est incompatible avec les graphiques.",
-	"chart-error-incompatible-data-source": "La page de source de données tabulaire est incompatible avec les graphiques.",
+	"chart-error-incompatible-data-source": "La page de la source des données du tableau est incompatible avec les graphiques.",
 	"chart-error-invalid-height": "La hauteur doit être un entier supérieur ou égal à 100.",
 	"chart-error-invalid-width": "La largeur doit être un entier supérieur ou égal à 100.",
 	"chart-error-shell-disabled": "Les graphiques ne peuvent pas être rendus parce que l'exécution de la coquille est désactivée.",

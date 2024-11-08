@@ -7,6 +7,7 @@
 	},
 	"chart-desc": "Voegt de parserfunctie <code><nowiki>{{#chart:}}</nowiki></code> toe voor het weergeven van diagrammen",
 	"chart-error-chart-definition-not-found": "Diagramdefinitiepagina niet gevonden.",
+	"chart-error-data-source-invalid": "Ongeldige tabelgegevensbron opgegeven.",
 	"chart-error-data-source-page-not-found": "De bronpagina voor de tabelgegevens van het diagram is niet gevonden.",
 	"chart-error-default-source-not-specified": "Op de pagina met de diagramdefinitie wordt geen standaardgegevensbron opgegeven.",
 	"chart-error-incompatible-chart-definition": "Definitiepagina is niet compatibel met diagrammen.",

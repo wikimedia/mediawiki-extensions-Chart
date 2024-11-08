@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Ја додава расчленувачката функција <code><nowiki>{{#chart:}}</nowiki></code> за прикажување на графикони",
 	"chart-error-chart-definition-not-found": "Не ја најдов страницата со одредби за графикон.",
+	"chart-error-data-source-invalid": "Укажан е неважечки извор на табеларни податоци.",
 	"chart-error-data-source-page-not-found": "Не ја најдов изворната страница со табеларни податоци за графиконот.",
 	"chart-error-default-source-not-specified": "Страницата со одредби за графикон не укажува стандарден извор на податоци.",
 	"chart-error-incompatible-chart-definition": "Страницата со одердби е нескладна со графиконите.",

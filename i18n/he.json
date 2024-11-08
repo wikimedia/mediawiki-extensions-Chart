@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "הוספת פונקציית המפענח <code><nowiki>{{#chart:}}</nowiki></code> להצגת תרשימים.",
 	"chart-error-chart-definition-not-found": "דף הגדרת התשים לא נמצא.",
+	"chart-error-data-source-invalid": "סופק מקור נתונים טבלאי בלתי־תקין.",
 	"chart-error-data-source-page-not-found": "דף המקור לנתונים הטבלאיים של התרשים לא נמצא.",
 	"chart-error-default-source-not-specified": "דף הגדרת התרשים לא מציין מקור נתונים התחלתי.",
 	"chart-error-incompatible-chart-definition": "דף ההגדרה אינו תואם לתרשימים.",
