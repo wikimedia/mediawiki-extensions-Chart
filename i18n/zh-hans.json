@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "添加用于显示图表的解析器函数<nowiki><code>{{#chart:}}</code></nowiki>",
 	"chart-error-chart-definition-not-found": "找不到图表定义页面。",
+	"chart-error-data-source-invalid": "提供的表格数据源无效。",
 	"chart-error-data-source-page-not-found": "找不到图表表格数据源页面。",
 	"chart-error-default-source-not-specified": "图表定义页面未指定默认数据源。",
 	"chart-error-incompatible-chart-definition": "定义页面与图表不兼容。",
