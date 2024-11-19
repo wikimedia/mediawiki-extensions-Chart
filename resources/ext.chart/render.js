@@ -92,16 +92,16 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 
 /**
  * @param {HTMLElement} wikiChartElement
+ * @param {Object} spec
  */
-const render = ( wikiChartElement ) => {
+const render = ( wikiChartElement, spec ) => {
 	const theme = wikiChartElement.dataset.theme;
-	const spec = wikiChartElement.dataset.spec;
-	if ( !spec || !theme ) {
+	if ( !theme ) {
 		return;
 	}
 	renderInNode(
 		wikiChartElement,
-		JSON.parse( decodeURIComponent( spec ) ),
+		spec,
 		JSON.parse( decodeURIComponent( theme ) )
 	);
 };
