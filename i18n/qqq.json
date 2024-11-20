@@ -17,5 +17,7 @@
 	"chart-error-invalid-width": "Error message when the width parser function parameter is not an integer or is too small. Show to the user in Codex message box.",
 	"chart-error-shell-disabled": "Error message when shell execution is disabled. Shown to user in Codex message box.",
 	"chart-error-rendering-error": "Error message when executing the service or shell script returned an error.",
-	"chart-error-unexpected": "Error message when an unexpected technical error happened when rendering a chart. Shown to the user in a Codex message box."
+	"chart-error-unexpected": "Error message when an unexpected technical error happened when rendering a chart. Shown to the user in a Codex message box.",
+	"chart-error-category": "Name of tracking category that pages are placed into when a chart fails to render.",
+	"chart-render-category": "Name of tracking category that pages are placed into when a chart is used on them."
 }

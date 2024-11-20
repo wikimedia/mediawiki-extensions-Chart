@@ -6,6 +6,7 @@ use JsonConfig\JCContent;
 use JsonConfig\JCSingleton;
 use JsonConfig\JCTabularContent;
 use JsonConfig\JCTitle;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
@@ -14,6 +15,8 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Status\Status;
+use MediaWiki\Status\StatusFormatter;
 use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 
@@ -32,12 +35,15 @@ class ParserFunction implements MessageLocalizer {
 
 	private LoggerInterface $logger;
 
+	private StatusFormatter $statusFormatter;
+
 	public function __construct(
 		ChartRenderer $chartRenderer,
 		Language $language,
 		ChartArgumentsParser $chartArgumentsParser,
 		DataPageResolver $dataPageResolver,
 		LoggerInterface $logger,
+		StatusFormatter $statusFormatter,
 		?PageReference $page
 	) {
 		$this->chartRenderer = $chartRenderer;
@@ -45,6 +51,7 @@ class ParserFunction implements MessageLocalizer {
 		$this->argumentsParser = $chartArgumentsParser;
 		$this->dataPageResolver = $dataPageResolver;
 		$this->logger = $logger;
+		$this->statusFormatter = $statusFormatter;
 		$this->page = $page;
 	}
 
@@ -70,13 +77,17 @@ class ParserFunction implements MessageLocalizer {
 		$chartRenderer = MediaWikiServices::getInstance()->getService( 'Chart.ChartRenderer' );
 		$chartArgumentsParser = MediaWikiServices::getInstance()->getService( 'Chart.ChartArgumentsParser' );
 		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
-
+		$context = new RequestContext();
+		$context->setLanguage( MediaWikiServices::getInstance()->getContentLanguage() );
+		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
+			->getStatusFormatter( $context );
 		$instance = new static(
 			$chartRenderer,
 			$parser->getTargetLanguage(),
 			$chartArgumentsParser,
 			$dataPageResolver,
 			$logger,
+			$statusFormatter,
 			$parser->getPage()
 		);
 		return $instance->render( $parser, ...$args );
@@ -90,6 +101,9 @@ class ParserFunction implements MessageLocalizer {
 	 * @return array
 	 */
 	public function render( Parser $parser, ...$args ) {
+		$parser->addTrackingCategory( 'chart-render-category' );
+
+		$status = Status::newGood();
 		try {
 			// @todo incrementExpensiveFunctionCount
 
@@ -97,17 +111,17 @@ class ParserFunction implements MessageLocalizer {
 			$errors = $parsedArguments->getErrors();
 
 			if ( $errors !== [] ) {
-				return $this->renderErrors( $errors );
+				foreach ( $errors as $error ) {
+					$status->fatal( $error['key'], ...$error['params'] );
+				}
 			}
 
-			$html = $this->renderChart(
-				$parser->getOutput(),
-				$parsedArguments
-			);
-
-			// HACK work around a parser bug that inserts <p> tags even though we said not to parse
-			$html = str_replace( ">\n", '>', $html );
-			return [ $html, 'noparse' => true, 'isHTML' => true ];
+			if ( $status->isOK() ) {
+				$status = $this->renderChart(
+					$parser->getOutput(),
+					$parsedArguments
+				);
+			}
 		} catch ( \Exception $e ) {
 			$this->logger->error(
 				'Exception in {method}: {message}',
@@ -117,73 +131,75 @@ class ParserFunction implements MessageLocalizer {
 				]
 			);
 
-			return $this->renderErrors( [ 'chart-error-unexpected', [] ] );
-
+			$status->fatal( 'chart-error-unexpected' );
 		}
-	}
 
-	private function renderErrors( array $errors ): array {
-		$errorHtml = '';
-		foreach ( $errors as $error ) {
-			$errorHtml .= $this->renderError( $error['key'], $error['params'] );
+		if ( $status->isOK() ) {
+			$html = $status->getValue();
+
+			// HACK work around a parser bug that inserts <p> tags even though we said not to parse
+			$html = str_replace( ">\n", '>', $html );
+		} else {
+			$parser->addTrackingCategory( 'chart-error-category' );
+			$html = $this->renderStatus( $status );
 		}
-		return [ $errorHtml, 'noparse' => true, 'isHTML' => true ];
+
+		return [ $html, 'noparse' => true, 'isHTML' => true ];
 	}
 
 	/**
-	 * @param string $key
-	 * @param array $params
 	 * @return string
 	 */
-	private function renderError( string $key, array $params = [] ): string {
-		$errorMsg = $this->msg( $key, ...$params )->escaped();
-		return Html::errorBox( $errorMsg );
+	public function renderStatus( Status $status ) {
+		return Html::errorBox( $this->statusFormatter->getHTML( $status ) );
 	}
 
 	/**
 	 * Render a chart from a definition page and a tabular data page.
 	 *
-	 * @param ParserOutput $output ParserOutput the chart is being rendered into. Used to record
+	 * @param ParserOutput $output Parser the chart is being rendered into. Used to record
 	 *   dependencies on the chart and data pages.
 	 * @param ParsedArguments $parsedArguments
-	 * @return string HTML
+	 * @return Status wrapped HTML
 	 */
 	public function renderChart(
 		ParserOutput $output,
 		ParsedArguments $parsedArguments
-	): string {
+	): Status {
 		$chartDefinitionPageTitle = $parsedArguments->getDefinitionPageTitle();
 		$tabularData = $parsedArguments->getDataPageTitle();
 		$options = $parsedArguments->getOptions();
 		$errors = $parsedArguments->getErrors();
+		$status = Status::newGood();
 
 		if ( $errors !== [] ) {
-			$errorHtml = '';
 			foreach ( $errors as $error ) {
-				$errorHtml .= $this->renderError( $error['key'], $error['params'] );
-				return $errorHtml;
+				$status->fatal( $error['key'], ...$error['params'] );
 			}
+			return $status;
 		}
 
 		if ( !$chartDefinitionPageTitle ) {
-			return $this->renderError( 'chart-error-chart-definition-not-found' );
+			$status->fatal( 'chart-error-chart-definition-not-found' );
+			return $status;
 		}
 
 		$definitionTitleValue = $chartDefinitionPageTitle;
 		$definitionContent = JCSingleton::getContent( $definitionTitleValue );
 		if ( !$definitionContent ) {
-			return $this->renderError( 'chart-error-chart-definition-not-found' );
-		}
-		if ( !( $definitionContent instanceof JCChartContent ) ) {
-			return $this->renderError( 'chart-error-incompatible-chart-definition' );
+			$status->fatal( 'chart-error-chart-definition-not-found' );
+		} elseif ( !( $definitionContent instanceof JCChartContent ) ) {
+			$status->fatal( 'chart-error-incompatible-chart-definition' );
+		} else {
+			$status = $this->renderChartForDefinitionContent(
+				$output,
+				$definitionContent,
+				$tabularData,
+				$options
+			);
 		}
 
-		JCSingleton::recordJsonLink(
-			$output,
-			$definitionTitleValue
-		);
-
-		return $this->renderChartForDefinitionContent( $output, $definitionContent, $tabularData, $options );
+		return $status;
 	}
 
 	/**
@@ -195,23 +211,27 @@ class ParserFunction implements MessageLocalizer {
 	 * @param ?JCTitle $tabularData Optional tabular data page title. If not provided, the default
 	 *        data source specified in the chart definition will be used.
 	 * @param array $options Rendering options (e.g., 'width' and 'height').
-	 * @return string HTML string containing the rendered chart or an error message.
+	 * @return Status wrapped HTML string containing the rendered chart or an error message.
 	 */
 	public function renderChartForDefinitionContent(
 		ParserOutput $output,
 		JCContent $definitionContent,
 		?JCTitle $tabularData = null,
 		array $options = []
-	): string {
+	): Status {
 		if ( !$definitionContent instanceof JCChartContent ) {
+			// @fixme should this be an exception or a status?
 			throw new \UnexpectedValueException( 'Expected JCChartContent' );
 		}
 
 		$definitionObj = $definitionContent->getLocalizedData( $this->language );
 
+		$status = Status::newGood();
+
 		if ( !$tabularData ) {
 			if ( !isset( $definitionObj->source ) ) {
-				return $this->renderError( 'chart-error-default-source-not-specified' );
+				$status->fatal( 'chart-error-default-source-not-specified' );
+				return $status;
 			}
 			$tabularDataTitleValue = $this->dataPageResolver->resolvePageInDataNamespace(
 				$definitionObj->source
@@ -220,36 +240,38 @@ class ParserFunction implements MessageLocalizer {
 			$tabularDataTitleValue = $tabularData;
 		}
 		if ( !$tabularDataTitleValue ) {
-			return $this->renderError( 'chart-error-data-source-page-not-found' );
+			$status->fatal( 'chart-error-data-source-page-not-found' );
+			return $status;
 		}
 
 		$dataContent = JCSingleton::getContent( $tabularDataTitleValue );
 		if ( !$dataContent ) {
-			return $this->renderError( 'chart-error-data-source-page-not-found' );
+			$status->fatal( 'chart-error-data-source-page-not-found' );
+			return $status;
+		} elseif ( !( $dataContent instanceof JCTabularContent ) ) {
+			$status->fatal( 'chart-error-incompatible-data-source' );
+			return $status;
 		}
-		if ( !( $dataContent instanceof JCTabularContent ) ) {
-			return $this->renderError( 'chart-error-incompatible-data-source' );
-		}
-		JCSingleton::recordJsonLink(
-			$output,
-			$tabularDataTitleValue
-		);
 
 		$dataObj = $dataContent->getLocalizedData( $this->language );
 
-		$status = $this->chartRenderer->renderSVG( $definitionObj, $dataObj, $options );
-		if ( !$status->isGood() ) {
-			return Html::errorBox( $status->getHTML() );
-		}
-		$svg = $status->getValue();
-		$output->addModuleStyles( [ 'ext.chart.styles' ] );
+		$status = $this->chartRenderer->renderSVG(
+			$definitionObj,
+			$dataObj,
+			$options
+		);
 
-		// Check that Charts progressive enhancement is enabled. If so, modify output.
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		if ( $config->get( 'ChartProgressiveEnhancement' ) ) {
-			$output->addWrapperDivClass( 'ext-chart-js' );
-			$output->addModules( [ 'ext.chart.bootstrap' ] );
+		if ( $status->isOK() ) {
+			$output->addModuleStyles( [ 'ext.chart.styles' ] );
+
+			// Check that Charts progressive enhancement is enabled. If so, modify output.
+			$config = MediaWikiServices::getInstance()->getMainConfig();
+			if ( $config->get( 'ChartProgressiveEnhancement' ) ) {
+				$output->addWrapperDivClass( 'ext-chart-js' );
+				$output->addModules( [ 'ext.chart.bootstrap' ] );
+			}
 		}
-		return $svg;
+
+		return $status;
 	}
 }
