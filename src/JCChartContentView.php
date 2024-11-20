@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\Chart;
 
 use JsonConfig\JCContent;
 use JsonConfig\JCContentView;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -48,6 +49,10 @@ class JCChartContentView extends JCContentView {
 		$lang = $this->languageFactory->getLanguage( $output->getLanguage() ??
 			Title::newFromPageReference( $page )->getPageLanguage()
 		);
+		$context = new RequestContext();
+		$context->setLanguage( $lang );
+		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
+			->getStatusFormatter( $context );
 
 		$parserFunction = new ParserFunction(
 			$this->chartRenderer,
@@ -55,10 +60,16 @@ class JCChartContentView extends JCContentView {
 			$chartArgumentsParser,
 			$dataPageResolver,
 			$logger,
+			$statusFormatter,
 			$page
 		);
 
-		return $parserFunction->renderChartForDefinitionContent( $output, $content );
+		$status = $parserFunction->renderChartForDefinitionContent( $output, $content );
+		if ( $status->isOK() ) {
+			return $status->getValue();
+		} else {
+			return $parserFunction->renderStatus( $status );
+		}
 	}
 
 	/**

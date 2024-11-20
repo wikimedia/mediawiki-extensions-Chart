@@ -18,5 +18,7 @@
 	"chart-error-invalid-width": "Width must be an integer greater than or equal to 100.",
 	"chart-error-shell-disabled": "Charts cannot be rendered because shell execution is disabled.",
 	"chart-error-rendering-error": "There was an error rendering the chart.",
-	"chart-error-unexpected": "Unexpected error occurred when rendering the chart."
+	"chart-error-unexpected": "Unexpected error occurred when rendering the chart.",
+	"chart-error-category": "Pages using the Chart extension with rendering errors",
+	"chart-render-category": "Pages using the Chart extension"
 }
