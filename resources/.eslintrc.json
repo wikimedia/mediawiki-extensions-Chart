@@ -1,0 +1,17 @@
+{
+	"root": true,
+	"extends": [
+		"wikimedia/client-es6",
+		"wikimedia/mediawiki"
+	],
+	"globals": {
+		"exports": true
+	},
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"rules": {
+		"compat/compat": "warn",
+		"es-x/no-array-prototype-includes": "warn"
+	}
+}
