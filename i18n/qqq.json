@@ -3,6 +3,7 @@
 		"authors": [
 			"Brooke Vibber",
 			"Katie Filbert",
+			"McDutchie",
 			"Roan Kattouw"
 		]
 	},
@@ -18,6 +19,6 @@
 	"chart-error-shell-disabled": "Error message when shell execution is disabled. Shown to user in Codex message box.",
 	"chart-error-rendering-error": "Error message when executing the service or shell script returned an error.",
 	"chart-error-unexpected": "Error message when an unexpected technical error happened when rendering a chart. Shown to the user in a Codex message box.",
-	"chart-error-category": "Name of tracking category that pages are placed into when a chart fails to render.",
-	"chart-render-category": "Name of tracking category that pages are placed into when a chart is used on them."
+	"chart-error-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart fails to render.",
+	"chart-render-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart is used on them."
 }

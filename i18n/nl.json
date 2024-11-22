@@ -16,5 +16,7 @@
 	"chart-error-invalid-width": "De breedte moet een geheel getal groter dan of gelijk aan 100 zijn.",
 	"chart-error-shell-disabled": "Diagrammen kunnen niet worden weergegeven omdat shell-uitvoering is uitgeschakeld.",
 	"chart-error-rendering-error": "Er is een fout opgetreden bij het weergeven van het diagram.",
-	"chart-error-unexpected": "Er is een onverwachte fout opgetreden bij het weergeven van de grafiek."
+	"chart-error-unexpected": "Er is een onverwachte fout opgetreden bij het weergeven van de grafiek.",
+	"chart-error-category": "Pagina's met Chart-weergavefouten",
+	"chart-render-category": "Pagina's die de uitbreiding Chart gebruiken"
 }

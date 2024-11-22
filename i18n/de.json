@@ -15,5 +15,7 @@
 	"chart-error-invalid-width": "Breite muss eine ganze Zahl von 100 oder größer sein.",
 	"chart-error-shell-disabled": "Diagramme können nicht gerendert werden, weil die Shell-Ausführung deaktiviert ist.",
 	"chart-error-rendering-error": "Bei der Darstellung des Diagramms ist ein Fehler aufgetreten.",
-	"chart-error-unexpected": "Beim Rendern des Diagramms ist ein unerwarteter Fehler aufgetreten."
+	"chart-error-unexpected": "Beim Rendern des Diagramms ist ein unerwarteter Fehler aufgetreten.",
+	"chart-error-category": "Seiten, die die Chart-Erweiterung verwenden, mit Darstellungsfehlern",
+	"chart-render-category": "Seiten, die die Chart-Erweiterung verwenden"
 }

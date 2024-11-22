@@ -15,5 +15,7 @@
 	"chart-error-invalid-width": "Genişlik 100-dən böyük və ya ona bərabər tam ədəd olmalıdır.",
 	"chart-error-shell-disabled": "Qrafiklər göstərilə bilməz, çünki shell icrası deaktivdir.",
 	"chart-error-rendering-error": "Qrafik yaradılarkən xəta baş verdi.",
-	"chart-error-unexpected": "Qrafiki göstərərkən gözlənilməz xəta baş verdi."
+	"chart-error-unexpected": "Qrafiki göstərərkən gözlənilməz xəta baş verdi.",
+	"chart-error-category": "Chart uzantısından istifadə edib render xətaları olan səhifələr",
+	"chart-render-category": "Chart uzantısından istifadə edən səhifələr"
 }
