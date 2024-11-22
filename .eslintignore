@@ -1,6 +1,14 @@
+# Upstream code
 /chart-renderer/
 /cli/
-/coverage/
-/doc/
 /lib/
-/node_modules/
+
+# Build
+/coverage/
+/vendor/
+/doc/
+
+# Language files written automatically by TranslateWiki
+**/i18n/**/*.json
+!**/i18n/**/en.json
+!**/i18n/**/qqq.json
