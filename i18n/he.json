@@ -15,5 +15,7 @@
 	"chart-error-invalid-width": "הרוחב חייב להיות מספר שלם הגדול מ־ או שווה ל־100.",
 	"chart-error-shell-disabled": "לא ניתן לתצג את התרשימים כי הרצת הפקודות במסוף כבויה.",
 	"chart-error-rendering-error": "אירעה שגיאה בעת תיצוג התרשים.",
-	"chart-error-unexpected": "אירעה שגיאה לא צפויה בעת תיצוג התרשים."
+	"chart-error-unexpected": "אירעה שגיאה לא צפויה בעת תיצוג התרשים.",
+	"chart-error-category": "דפים שמשתמשים בהרחבה Chart עם שגיאות תיצוג",
+	"chart-render-category": "דפים שמשתמשים בהרחבה Chart"
 }

@@ -4,6 +4,18 @@
 			"Beta16"
 		]
 	},
+	"chart-desc": "Aggiunge la funzione parser <code><nowiki>{{#chart:}}</nowiki></code> per la visualizzazione dei grafici",
+	"chart-error-chart-definition-not-found": "Pagina di definizione del grafico non trovata.",
+	"chart-error-data-source-invalid": "È stata fornita una fonte di dati tabellari non valida.",
+	"chart-error-data-source-page-not-found": "Pagina di origine dei dati tabellari del grafico non trovata.",
+	"chart-error-default-source-not-specified": "La pagina di definizione del grafico non specifica un'origine dati predefinita.",
+	"chart-error-incompatible-chart-definition": "La pagina di definizione non è compatibile con i grafici.",
+	"chart-error-incompatible-data-source": "La pagina di origine dei dati tabellari non è compatibile con i grafici.",
 	"chart-error-invalid-height": "L'altezza deve essere un numero intero maggiore o uguale a 100.",
-	"chart-error-invalid-width": "La larghezza deve essere un numero intero maggiore o uguale a 100."
+	"chart-error-invalid-width": "La larghezza deve essere un numero intero maggiore o uguale a 100.",
+	"chart-error-shell-disabled": "Non è possibile visualizzare i grafici perché l'esecuzione della shell è disabilitata.",
+	"chart-error-rendering-error": "Si è verificato un errore durante il rendering del grafico.",
+	"chart-error-unexpected": "Si è verificato un errore imprevisto durante il rendering del grafico.",
+	"chart-error-category": "Pagine che utilizzano l'estensione Chart con errori di rendering",
+	"chart-render-category": "Pagine che utilizzano l'estensione Chart"
 }

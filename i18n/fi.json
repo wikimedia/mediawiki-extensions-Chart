@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Lisää <code><nowiki>{{#chart:}}</nowiki></code>-jäsenninfunktion kaavioiden näyttämistä varten",
 	"chart-error-chart-definition-not-found": "Kaavion määrittelysivua ei löydy.",
+	"chart-error-data-source-invalid": "Annettu taulukkotietojen lähde on virheellinen.",
 	"chart-error-data-source-page-not-found": "Kaavion taulukkotiedon lähdesivua ei löydy.",
 	"chart-error-default-source-not-specified": "Kaavion määrittelysivua ei määritä oletustietolähdettä.",
 	"chart-error-incompatible-chart-definition": "Määrittelysivu ei ole yhteensopiva kaavioiden kanssa.",
@@ -13,5 +14,7 @@
 	"chart-error-invalid-height": "Korkeuden on oltava kokonaisluku, joka on suurempi tai yhtä suuri kuin 100.",
 	"chart-error-invalid-width": "Leveyden on oltava kokonaisluku, joka on suurempi tai yhtä suuri kuin 100.",
 	"chart-error-rendering-error": "Kaavion renderöinnissä tapahtui virhe.",
-	"chart-error-unexpected": "Kaaviota renderöinnissä tapahtui odottamaton virhe."
+	"chart-error-unexpected": "Kaaviota renderöinnissä tapahtui odottamaton virhe.",
+	"chart-error-category": "Chart-laajennusta käyttävät sivut, joissa on renderöintivirheitä",
+	"chart-render-category": "Chart-laajennusta käyttävät sivut"
 }
