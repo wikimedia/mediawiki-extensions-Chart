@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ainali"
+		]
+	},
+	"chart-desc": "Lägger till <code><nowiki>{{#chart:}}</nowiki></code> parserfunktion för att visa diagram",
+	"chart-error-chart-definition-not-found": "Diagramdefinitionssidan hittades inte.",
+	"chart-error-data-source-invalid": "Ogiltig tabelldatakälla har angetts.",
+	"chart-error-data-source-page-not-found": "Tabelldatakällan för diagrammet kunde inte hittas.",
+	"chart-error-default-source-not-specified": "Diagramdefinitionssidan anger inte en standarddatakälla.",
+	"chart-error-incompatible-chart-definition": "Definitionssidan är inkompatibel med diagram.",
+	"chart-error-incompatible-data-source": "Tabelldatakällsidan är inkompatibel med diagram.",
+	"chart-error-invalid-height": "Höjden måste vara ett heltal större än eller lika med 100.",
+	"chart-error-invalid-width": "Bredden måste vara ett heltal större än eller lika med 100.",
+	"chart-error-shell-disabled": "Diagram kan inte renderas eftersom skalexekvering är inaktiverat.",
+	"chart-error-rendering-error": "Det uppstod ett fel när diagrammet renderades.",
+	"chart-error-unexpected": "Ett oväntat fel uppstod när diagrammet renderades.",
+	"chart-error-category": "Sidor som använder diagramtillägget och som har renderingsfel",
+	"chart-render-category": "Sidor som använder diagramtillägget"
+}
