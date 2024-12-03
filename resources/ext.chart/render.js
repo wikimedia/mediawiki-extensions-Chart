@@ -27,6 +27,86 @@ const isDateSeries = ( dataSeries ) => dataSeries.filter( ( item ) => {
 } ).length === 0;
 
 /**
+ * Creates a number formatter.
+ *
+ * @param {string} language
+ * @param {number} decimals
+ * @return {Function}
+ */
+const numberFormatter = ( language, decimals ) => {
+	const formatter = new Intl.NumberFormat( language, {
+		style: 'decimal',
+		minimumFractionDigits: decimals,
+		maximumFractionDigits: decimals
+	} );
+	return ( value ) => formatter.format( value );
+};
+
+/**
+ * Check if the data series looks like a series of numbers.
+ * Returns false if one of the series cannot be interpreted as a date.
+ *
+ * @param {any[]} dataSeries
+ * @return {boolean}
+ */
+const isNumberSeries = ( dataSeries ) => dataSeries
+	.filter( ( item ) => typeof item !== 'number' ).length === 0;
+
+/**
+ * Check if the date series looks like a series of dates.
+ * Returns false if one of the series cannot be interpreted as a date.
+ *
+ * @param {any[]} dataSeries
+ * @return {boolean}
+ */
+const isNumberSeriesWithDecimals = ( dataSeries ) => dataSeries
+	.filter( ( item ) => Math.floor( item ) !== item ).length > 0;
+
+/**
+ * Infers the correct formatter based on the data series.
+ *
+ * @param {string[]} dataSeries
+ * @param {string} language
+ * @return {Function}
+ */
+const getFormatter = ( dataSeries, language ) => {
+	const dateFormatter = new Intl.DateTimeFormat( language );
+	const formatAsDate = ( value ) => dateFormatter.format( new Date( value ) );
+	const formatAsString = ( value ) => value;
+
+	if ( isDateSeries( dataSeries ) ) {
+		return formatAsDate;
+	} else if ( isNumberSeries( dataSeries ) ) {
+		return numberFormatter(
+			language,
+			isNumberSeriesWithDecimals( dataSeries ) ? 2 : 0
+		);
+	} else {
+		return formatAsString;
+	}
+};
+
+/**
+ * Adds tooltip functionality to chart.
+ *
+ * @param {Object} spec
+ * @param {Function} [xFormatter]
+ * @param {Function} [yFormatter]
+ * @return {Object}
+ */
+const specWithTooltip = ( spec, xFormatter, yFormatter ) => Object.assign( {}, spec, {
+	tooltip: {
+		axisPointer: {
+			label: {
+				formatter: ( axis ) => xFormatter( axis.value )
+			}
+		},
+		valueFormatter: yFormatter,
+		trigger: 'axis'
+	}
+} );
+
+/**
  * @param {HTMLElement} wikiChartElement
  * @param {Object} spec for rendering the chart
  * @param {Object} theme the theme to use.
@@ -43,38 +123,27 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 		renderer: 'svg',
 		height
 	} );
-	const formatter = new Intl.NumberFormat( language, {
-		style: 'decimal',
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2
-	} );
-	// https://github.com/apache/echarts/blob/release/src/i18n/langAR.ts
-	// update spec
-	spec.tooltip = {
-		valueFormatter: ( value ) => formatter.format( value ),
-		trigger: 'axis'
-	};
+	let xFormatter, yFormatter;
 
 	if ( spec.title && spec.title.textStyle ) {
 		spec.title.textStyle.width = chart.getWidth();
 	}
 
-	const dateFormatter = new Intl.DateTimeFormat( language );
-	const formatAsDate = ( value ) => dateFormatter.format( new Date( value ) );
-	const formatAsStringOrNumber = ( value ) => typeof value === 'string' ? value : formatter.format( value );
-
 	if ( spec.yAxis ) {
+		yFormatter = getFormatter( spec.series.length ? spec.series[ 0 ].data || [] : [], language );
 		spec.yAxis.axisLabel = {
-			formatter: formatAsStringOrNumber
+			formatter: yFormatter
 		};
 	}
 
 	if ( spec.xAxis ) {
+		xFormatter = getFormatter( spec.xAxis.data || [], language );
 		spec.xAxis.axisLabel = {
-			formatter: isDateSeries( spec.xAxis.data || [] ) ?
-				formatAsDate : formatAsStringOrNumber
+			formatter: xFormatter
 		};
 	}
+	spec = specWithTooltip( spec, xFormatter, yFormatter );
+
 	if ( spec.legend ) {
 		Object.assign( spec.legend, {
 			[ isRTL ? 'right' : 'left' ]: 0,
@@ -107,6 +176,8 @@ const render = ( wikiChartElement, spec ) => {
 };
 
 module.exports = {
+	numberFormatter,
 	isDateSeries,
+	getFormatter,
 	render
 };
