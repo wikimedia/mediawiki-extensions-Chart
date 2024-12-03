@@ -16,9 +16,14 @@ class WikiChart extends HTMLElement {
 						let type = 'unknown';
 						let specJSON = {};
 						intersectionObserver.disconnect();
-						if ( spec ) {
+
+						let theme = this.dataset.theme;
+						const xAxisType = this.dataset.xAxisType;
+						const yAxisType = this.dataset.yAxisType;
+						if ( spec && theme && xAxisType && yAxisType ) {
 							try {
 								specJSON = JSON.parse( decodeURIComponent( spec ) );
+								theme = JSON.parse( decodeURIComponent( theme ) );
 								type = specJSON.series[ 0 ].type;
 							} catch ( e ) {
 								// ignore.
@@ -30,7 +35,13 @@ class WikiChart extends HTMLElement {
 							}
 							mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderStart`, 1 );
 							mw.loader.using( 'ext.chart.render' ).then( ( req ) => {
-								req( 'ext.chart.render' ).render( this, specJSON );
+								req( 'ext.chart.render' ).render(
+									this,
+									specJSON,
+									theme,
+									xAxisType,
+									yAxisType
+								);
 								mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderEnd`, 1 );
 							} );
 						}

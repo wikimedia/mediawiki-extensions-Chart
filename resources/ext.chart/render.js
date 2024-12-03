@@ -10,23 +10,6 @@ const adjustTitleWidth = ( chart ) => {
 };
 
 /**
- * Check if the date series looks like a series of dates.
- * Returns false if one of the series cannot be interpreted as a date.
- *
- * @param {string[]} dataSeries
- * @return {boolean}
- */
-const isDateSeries = ( dataSeries ) => dataSeries.filter( ( item ) => {
-	// If it's not a string and it's not 10 characters long do not interpret.
-	// e.g. 2024-02-20 is a date.
-	if ( typeof item !== 'string' || item.length !== 10 ) {
-		return true;
-	}
-	const d = new Date( item[ 0 ] );
-	return isNaN( d );
-} ).length === 0;
-
-/**
  * Creates a number formatter.
  *
  * @param {string} language
@@ -46,35 +29,32 @@ const numberFormatter = ( language ) => ( value ) => {
 };
 
 /**
- * Check if the data series looks like a series of numbers.
- * Returns false if one of the series cannot be interpreted as a date.
- *
- * @param {any[]} dataSeries
- * @return {boolean}
+ * @typedef {'float'|'integer'|'date'|'string'|string} ChartAxisType
  */
-const isNumberSeries = ( dataSeries ) => dataSeries
-	.filter( ( item ) => typeof item !== 'number' ).length === 0;
 
 /**
  * Infers the correct formatter based on the data series.
  *
- * @param {string[]} dataSeries
+ * @param {string} type
  * @param {string} language
  * @return {Function}
  */
-const getFormatter = ( dataSeries, language ) => {
+const getFormatterForType = ( type, language ) => {
 	const dateFormatter = new Intl.DateTimeFormat( language );
-	const formatAsDate = ( value ) => dateFormatter.format( new Date( value ) );
-	const formatAsString = ( value ) => value;
+	const formatAsDate = ( /** @type {string} */ value ) => dateFormatter.format( new Date( value ) );
+	const formatAsString = ( /** @type {string} */ value ) => value;
 
-	if ( isDateSeries( dataSeries ) ) {
-		return formatAsDate;
-	} else if ( isNumberSeries( dataSeries ) ) {
-		return numberFormatter(
-			language
-		);
-	} else {
-		return formatAsString;
+	switch ( type ) {
+		case 'number':
+		case 'integer':
+		case 'float':
+			return numberFormatter(
+				language
+			);
+		case 'date':
+			return formatAsDate;
+		default:
+			return formatAsString;
 	}
 };
 
@@ -102,8 +82,10 @@ const specWithTooltip = ( spec, xFormatter, yFormatter ) => Object.assign( {}, s
  * @param {HTMLElement} wikiChartElement
  * @param {Object} spec for rendering the chart
  * @param {Object} theme the theme to use.
+ * @param {ChartAxisType} xAxisType
+ * @param {ChartAxisType} yAxisType
  */
-const renderInNode = ( wikiChartElement, spec, theme ) => {
+const renderInNode = ( wikiChartElement, spec, theme, xAxisType, yAxisType ) => {
 	const language = mw.config.get( 'wgUserLanguage' );
 	const height = wikiChartElement.clientHeight;
 	const locale = new Intl.Locale( language );
@@ -122,14 +104,14 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 	}
 
 	if ( spec.yAxis ) {
-		yFormatter = getFormatter( spec.series.length ? spec.series[ 0 ].data || [] : [], language );
+		yFormatter = getFormatterForType( yAxisType, language );
 		spec.yAxis.axisLabel = {
 			formatter: yFormatter
 		};
 	}
 
 	if ( spec.xAxis ) {
-		xFormatter = getFormatter( spec.xAxis.data || [], language );
+		xFormatter = getFormatterForType( xAxisType, language );
 		spec.xAxis.axisLabel = {
 			formatter: xFormatter
 		};
@@ -154,22 +136,22 @@ const renderInNode = ( wikiChartElement, spec, theme ) => {
 /**
  * @param {HTMLElement} wikiChartElement
  * @param {Object} spec
+ * @param {Object} theme the theme to use.
+ * @param {ChartAxisType} xAxisType
+ * @param {ChartAxisType} yAxisType
  */
-const render = ( wikiChartElement, spec ) => {
-	const theme = wikiChartElement.dataset.theme;
-	if ( !theme ) {
-		return;
-	}
+const render = ( wikiChartElement, spec, theme, xAxisType, yAxisType ) => {
 	renderInNode(
 		wikiChartElement,
 		spec,
-		JSON.parse( decodeURIComponent( theme ) )
+		theme,
+		xAxisType,
+		yAxisType
 	);
 };
 
 module.exports = {
 	numberFormatter,
-	isDateSeries,
-	getFormatter,
+	getFormatterForType,
 	render
 };
