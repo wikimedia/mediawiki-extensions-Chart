@@ -3,7 +3,8 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"test": "npm run lint",
+		"test:unit": "jest",
+		"test": "npm run lint && npm run test:unit",
 		"lint:i18n": "banana-checker --requireLowerCase=0 i18n/",
 		"lint": "npm -s run lint:js && npm -s run lint:styles && npm -s run lint:i18n",
 		"lint:js": "eslint --cache .",
@@ -12,7 +13,7 @@
 	"devDependencies": {
 		"eslint-config-wikimedia": "0.28.2",
 		"grunt-banana-checker": "0.13.0",
-		"jest-environment-jsdom": "^29.7.0",
+		"jest": "27.4.7",
 		"stylelint-config-wikimedia": "0.17.2"
 	}
 }
