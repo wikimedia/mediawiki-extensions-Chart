@@ -254,6 +254,7 @@ class ParserFunction implements MessageLocalizer {
 		}
 
 		$dataObj = $dataContent->getLocalizedData( $this->language );
+		$options['locale'] = $this->language->getCode();
 
 		$status = $this->chartRenderer->renderSVG(
 			$definitionObj,
