@@ -65,6 +65,24 @@
 				"resources/ext.chart/render.js",
 				"lib/echarts/echarts.common.js"
 			]
+		},
+		"ext.chart.visualEditor": {
+			"scripts": [
+				"resources/ext.chart.visualEditor/ve.dm.MWChartNode.js",
+				"resources/ext.chart.visualEditor/ve.ce.MWChartNode.js",
+				"resources/ext.chart.visualEditor/ve.ui.MWChartContextItem.js",
+				"resources/ext.chart.visualEditor/ve.ui.MWChartDialog.js",
+				"resources/ext.chart.visualEditor/ve.ui.MWChartDialogTool.js"
+			],
+			"dependencies": [
+				"ext.visualEditor.mwcore",
+				"ext.visualEditor.mwtransclusion"
+			],
+			"messages": [
+				"chart-visualeditor-mwchartdialog-title",
+				"chart-visualeditor-mwchartdialog-chart-label",
+				"chart-visualeditor-mwchartdialog-data-label"
+			]
 		}
 	},
 	"ExtensionMessagesFiles": {
@@ -78,6 +96,13 @@
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "main"
+	},
+	"attributes": {
+		"VisualEditor": {
+			"PluginModules": [
+				"ext.chart.visualEditor"
+			]
+		}
 	},
 	"manifest_version": 2
 }
