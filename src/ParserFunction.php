@@ -136,15 +136,12 @@ class ParserFunction implements MessageLocalizer {
 
 		if ( $status->isOK() ) {
 			$html = $status->getValue();
-
-			// HACK work around a parser bug that inserts <p> tags even though we said not to parse
-			$html = str_replace( ">\n", '>', $html );
 		} else {
 			$parser->addTrackingCategory( 'chart-error-category' );
 			$html = $this->renderStatus( $status );
 		}
 
-		return [ $html, 'noparse' => true, 'isHTML' => true ];
+		return [ $html, 'noparse' => true, 'isRawHTML' => true ];
 	}
 
 	/**
