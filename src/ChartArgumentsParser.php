@@ -44,7 +44,7 @@ class ChartArgumentsParser {
 			$definitionTitle = $this->dataPageResolver->resolvePageInDataNamespace( $definition );
 
 			if ( !$definitionTitle ) {
-				$errors = [
+				$errors[] = [
 					'key' => 'chart-error-chart-definition-not-found',
 					'params' => []
 				];
@@ -55,7 +55,7 @@ class ChartArgumentsParser {
 		if ( $dataSource !== null ) {
 			$dataTitle = $this->dataPageResolver->resolvePageInDataNamespace( $dataSource );
 			if ( !$dataTitle ) {
-				$errors = [
+				$errors[] = [
 					'key' => 'chart-error-data-source-page-not-found',
 					'params' => []
 				];
