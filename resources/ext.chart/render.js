@@ -34,10 +34,10 @@ const isDateSeries = ( dataSeries ) => dataSeries.filter( ( item ) => {
  */
 const numberFormatter = ( language ) => ( value ) => {
 	const isFraction = value < 0;
-	const decimals = value < 1000 ? 2 : 0;
+	const decimals = value < 100 ? 2 : 0;
 	const formatter = new Intl.NumberFormat( language, {
 		style: 'decimal',
-		notation: value > 1000 ? 'compact' : 'standard',
+		notation: value >= 1000 ? 'compact' : 'standard',
 		compactDisplay: 'short',
 		minimumFractionDigits: 0,
 		maximumFractionDigits: isFraction ? 3 : decimals
