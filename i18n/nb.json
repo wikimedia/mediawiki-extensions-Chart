@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Legger til parserfunksjonen <code><nowiki>{{#chart:}}</nowiki></code> for å vise diagrammer",
 	"chart-error-chart-definition-not-found": "Definisjonsside for diagrammet ikke funnet.",
+	"chart-error-data-source-invalid": "Ugyldig datakilde for tabulære data angitt.",
 	"chart-error-data-source-page-not-found": "Kildeside for diagrammets tabulære data ikke funnet.",
 	"chart-error-default-source-not-specified": "Definisjonssiden for diagrammet angir ikke en standard datakilde.",
 	"chart-error-incompatible-chart-definition": "Definisjonssiden er ikke kompatibel med diagrammer.",
@@ -14,5 +15,7 @@
 	"chart-error-invalid-width": "Bredden må være et heltall som ikke er større enn 100.",
 	"chart-error-shell-disabled": "Diagrammer kan ikke vises fordi skallkjøring er deaktivert.",
 	"chart-error-rendering-error": "En feil oppsto under tolkningen av diagrammet.",
-	"chart-error-unexpected": "En uventet feil oppsto under tolkningen av diagrammet."
+	"chart-error-unexpected": "En uventet feil oppsto under tolkningen av diagrammet.",
+	"chart-error-category": "Sider som bruker Chart-utvidelsen og har tolkningsfeil",
+	"chart-render-category": "Sider som bruker Chart-utvidelsen"
 }
