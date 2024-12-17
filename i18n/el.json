@@ -6,6 +6,7 @@
 	},
 	"chart-desc": "Προσθέτει τη λειτουργία ανάλυσης <code><nowiki>{{#chart:}}</nowiki></code> για την εμφάνιση γραφημάτων",
 	"chart-error-chart-definition-not-found": "Η σελίδα ορισμού γραφήματος δεν βρέθηκε.",
+	"chart-error-data-source-invalid": "Παρέχεται μη έγκυρη πηγή δεδομένων.",
 	"chart-error-data-source-page-not-found": "Δεν βρέθηκε η σελίδα πηγής δεδομένων σε πίνακα.",
 	"chart-error-default-source-not-specified": "Η σελίδα ορισμού γραφήματος δεν προσδιορίζει μια προεπιλεγμένη πηγή δεδομένων.",
 	"chart-error-incompatible-chart-definition": "Η σελίδα ορισμού δεν είναι συμβατή με γραφήματα.",
@@ -14,5 +15,7 @@
 	"chart-error-invalid-width": "Το πλάτος πρέπει να είναι ακέραιος μεγαλύτερος ή ίσος του 100.",
 	"chart-error-shell-disabled": "Δεν είναι δυνατή η απόδοση γραφημάτων επειδή η εκτέλεση φλοιού είναι απενεργοποιημένη.",
 	"chart-error-rendering-error": "Παρουσιάστηκε σφάλμα κατά την απόδοση του γραφήματος.",
-	"chart-error-unexpected": "Παρουσιάστηκε μη αναμενόμενο σφάλμα κατά την απόδοση του γραφήματος."
+	"chart-error-unexpected": "Παρουσιάστηκε μη αναμενόμενο σφάλμα κατά την απόδοση του γραφήματος.",
+	"chart-error-category": "Σελίδες που χρησιμοποιούν την επέκταση Chart με σφάλματα απόδοσης",
+	"chart-render-category": "Σελίδες που χρησιμοποιούν την επέκταση Chart"
 }
