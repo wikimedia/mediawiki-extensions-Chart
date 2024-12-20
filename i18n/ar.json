@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mr. Ibrahem"
+		]
+	},
+	"chart-desc": "يضيف<nowiki> <code>{{#chart:}}</code></nowiki> وظيفة المحلل لعرض المخططات البيانية",
+	"chart-error-chart-definition-not-found": "لم يتم العثور على صفحة تعريف الرسم البياني.",
+	"chart-error-data-source-invalid": "مصدر البيانات الجدولي غير صالح.",
+	"chart-error-data-source-page-not-found": "لم يتم العثور على صفحة مصدر البيانات الجدولية.",
+	"chart-error-default-source-not-specified": "لا تحدد صفحة تعريف الرسم البياني مصدر بيانات افتراضي.",
+	"chart-error-incompatible-chart-definition": "صفحة التعريف غير متوافقة مع الرسوم البيانية.",
+	"chart-error-incompatible-data-source": "صفحة مصدر البيانات الجدولية غير متوافقة مع الرسوم البيانية.",
+	"chart-error-invalid-height": "يجب أن يكون الارتفاع عددًا صحيحًا أكبر من أو يساوي 100.",
+	"chart-error-invalid-width": "يجب أن يكون العرض عددًا صحيحًا أكبر من أو يساوي 100.",
+	"chart-error-shell-disabled": "لا يمكن عرض المخططات البيانية لأن تنفيذ shell معطل.",
+	"chart-error-rendering-error": "حدث خطأ أثناء عرض الرسم البياني.",
+	"chart-error-unexpected": "حدث خطأ غير متوقع أثناء عرض الرسم البياني.",
+	"chart-error-category": "صفحات تستخدم إضافة الرسم البياني مع أخطاء العرض",
+	"chart-render-category": "صفحات تستخدم إضافة الرسم البياني"
+}
