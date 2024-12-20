@@ -20,8 +20,8 @@ class DataPageResolver {
 	 * @throws UnexpectedValueException
 	 */
 	public function resolvePageInDataNamespace( string $pageName ): ?JCTitle {
-		// Note: parseTitle cannot return false when given a string
-		return JCSingleton::parseTitle( $pageName, NS_DATA );
+		// Note: parseTitle can return false when given an empty string
+		return JCSingleton::parseTitle( $pageName, NS_DATA ) ?: null;
 	}
 
 }
