@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"FlatLanguage"
+		]
+	},
+	"chart-error-category": "Chart拡張機能のレンダリングエラーがあるページ",
+	"chart-render-category": "Chart拡張機能を使用しているページ"
+}
