@@ -55,6 +55,9 @@
 		"ext.chart.bootstrap": {
 			"packageFiles": [
 				"resources/ext.chart/bootstrap.js"
+			],
+			"dependencies": [
+				"web2017-polyfills"
 			]
 		},
 		"ext.chart.render": {

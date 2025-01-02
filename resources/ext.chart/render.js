@@ -106,7 +106,7 @@ const specWithTooltip = ( spec, xFormatter, yFormatter ) => Object.assign( {}, s
 const renderInNode = ( wikiChartElement, spec, theme ) => {
 	const language = mw.config.get( 'wgUserLanguage' );
 	const height = wikiChartElement.clientHeight;
-	const locale = new Intl.Locale( language );
+	const locale = Intl.Locale ? new Intl.Locale( language ) : null;
 	// Note: Only available in modern browsers, older browsers will fall back to LTR.
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
 	const isRTL = locale && locale.textInfo && locale.textInfo.direction === 'rtl';
