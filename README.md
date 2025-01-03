@@ -65,6 +65,8 @@ If the chart-renderer service runs on a different machine than the PHP web serve
 For the local `Data:` namespace, the `JsonConfig` extension is required to be running
 and configured for "`.tab`" tabular data and "`.chart`" formatting definitions.
 
+In a wiki farm configuration with multiple wikis pointing to a central repository of `Data:` pages, cache invalidation of pages using a chart definition or tabular data set will be performed via the global JSON tracking in `JsonConfig`.
+
 === .tab tabular data ===
 
 The "`.tab`" data pages are as per https://www.mediawiki.org/wiki/Help:Tabular_Data
@@ -72,10 +74,6 @@ The "`.tab`" data pages are as per https://www.mediawiki.org/wiki/Help:Tabular_D
 Sample config for local development:
 
 ```php
-	// Safety: before extension.json, these values were initialized by JsonConfig.php
-	$wgJsonConfigModels = $wgJsonConfigModels ?? [];
-	$wgJsonConfigs = $wgJsonConfigs ?? [];
-
 	// Tabular data is supported, but not configured on by default, in JsonConfig.
 	// This should be simplified.
 	// https://www.mediawiki.org/wiki/Extension:JsonConfig#Configuration
@@ -104,17 +102,13 @@ add the following after the configuration above:
 	}
 ```
 
-A sample .tab page may be found in the `sample/` folder.
+A sample `.tab` page may be found in the `sample/` folder.
 
 === .chart format descriptions ===
 
 The "`.chart`" data pages are custom for this extension and also build on `JsonConfig`.
 
 ```php
-	// Safety: before extension.json, these values were initialized by JsonConfig.php
-	$wgJsonConfigModels = $wgJsonConfigModels ?? [];
-	$wgJsonConfigs = $wgJsonConfigs ?? [];
-
 	// Chart data is supported here in the Chart extension, and currently must be
 	// configured manually as well. This should be simplified.
 	// https://www.mediawiki.org/wiki/Extension:JsonConfig#Configuration
@@ -143,4 +137,4 @@ add the following after the configuration above:
 	}
 ```
 
-Sample .chart page may be found under the `sample/` folder.
+Sample `.chart` page may be found under the `sample/` folder.
