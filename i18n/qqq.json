@@ -20,5 +20,7 @@
 	"chart-error-rendering-error": "Error message when executing the service or shell script returned an error.",
 	"chart-error-unexpected": "Error message when an unexpected technical error happened when rendering a chart. Shown to the user in a Codex message box.",
 	"chart-error-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart fails to render.",
-	"chart-render-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart is used on them."
+	"chart-render-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart is used on them.",
+	"chartjson-error-version": "Error message displayed when validating a chart JSON page if the version key ($1) is invalid; parameters $2 and $3 are the valid integer range.",
+	"chartjson-error-enum": "Error message displayed when a chart JSON value $1 needs to be one of a specific list of values and isn't; parameter $2 is the command-separated list of acceptable values."
 }

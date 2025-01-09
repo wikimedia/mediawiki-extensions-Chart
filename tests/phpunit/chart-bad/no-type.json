@@ -1,0 +1,18 @@
+{
+	"license": "CC0-1.0",
+	"version": 1,
+	"xAxis": {
+		"title": {
+			"en": "Column"
+		}
+	},
+	"yAxis": {
+		"title": {
+			"en": "Height"
+		}
+	},
+	"legend": {
+		"en": "Graph"
+	},
+	"source": "Source.tab"
+}

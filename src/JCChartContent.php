@@ -4,10 +4,23 @@ namespace MediaWiki\Extension\Chart;
 
 use JsonConfig\JCDataContent;
 use JsonConfig\JCUtils;
+use JsonConfig\JCValidators;
+use JsonConfig\JCValue;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 
 class JCChartContent extends JCDataContent {
+
+	public const MIN_CHART_VERSION = 1;
+	public const MAX_CHART_VERSION = 1;
+
+	public const CHART_TYPES = [
+		'bar',
+		'rect',
+		'line',
+		'area',
+		'pie',
+	];
 
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
@@ -35,8 +48,85 @@ class JCChartContent extends JCDataContent {
 	 * This should be kept compatible with mw.JsonConfig.JsonEditDialog validation
 	 */
 	public function validateContent() {
-		// @todo implement validation of the custom schema
 		parent::validateContent();
+
+		$this->test( 'version', self::isValidVersion() );
+		$this->test( 'type', self::isValidEnum( self::CHART_TYPES ) );
+
+		$this->testOptionalAlt( [ 'xAxis', 'title' ], self::isSwitchableString() );
+		$this->testOptionalAlt( [ 'yAxis', 'title' ], self::isSwitchableString() );
+		$this->testOptionalAlt( 'legend', self::isSwitchableString() );
+
+		$this->test( 'source', JCValidators::isStringLine() );
+	}
+
+	/**
+	 * Test for an optional parameter without fiddling around with
+	 * defaults that don't exist.
+	 * @param string|array $path
+	 * @param callable|array $validators
+	 */
+	private function testOptionalAlt( $path, $validators ) {
+		$field = $this->getField( $path );
+		if ( $field ) {
+			$this->test( $path, $validators );
+		}
+	}
+
+	/**
+	 * JsonConfig validator for Chart's optional localized strings
+	 * @param bool $nullable
+	 * @param int $maxlength
+	 * @return callable
+	 */
+	private static function isSwitchableString( $nullable = false, $maxlength = 400 ) {
+		$localizableString = JCValidators::isLocalizedString( $nullable, $maxlength );
+		$stringLine = JCValidators::isStringLine( $nullable, $maxlength );
+		return static function ( JCValue $jcv, array $path ) use ( $localizableString, $stringLine ) {
+			if ( !$jcv->isMissing() ) {
+				$v = $jcv->getValue();
+				if ( is_object( $v ) ) {
+					return $localizableString( $jcv, $path );
+				}
+			}
+			return $stringLine( $jcv, $path );
+		};
+	}
+
+	/**
+	 * JsonConfig validator for 'enums' of a set of specific values
+	 * @param array $validValues
+	 * @return callable
+	 */
+	private static function isValidEnum( $validValues ) {
+		return static function ( JCValue $jcv, array $path ) use ( $validValues ) {
+			if ( !$jcv->isMissing() ) {
+				$v = $jcv->getValue();
+				if ( in_array( $v, $validValues ) ) {
+					return true;
+				}
+			}
+			$jcv->error( 'chartjson-error-enum', $path, implode( ', ', $validValues ) );
+			return false;
+		};
+	}
+
+	/**
+	 * JsonConfig validator for Chart JSON version
+	 * @return callable
+	 */
+	private static function isValidVersion() {
+		$isint = JCValidators::isInt();
+		return static function ( JCValue $v, array $path ) use ( $isint ) {
+			if ( $isint( $v, $path ) ) {
+				$value = $v->getValue();
+				if ( $value < self::MIN_CHART_VERSION
+					|| $value > self::MAX_CHART_VERSION ) {
+					$v->error( 'chartjson-error-version', $path, self::MIN_CHART_VERSION, self::MAX_CHART_VERSION );
+				}
+			}
+			return false;
+		};
 	}
 
 	/**
@@ -76,6 +166,9 @@ class JCChartContent extends JCDataContent {
 		}
 		if ( isset( $data->yAxis ) ) {
 			$result->yAxis = $axis( $data->yAxis );
+		}
+		if ( isset( $data->legend ) ) {
+			$result->legend = $localize( $data->legend );
 		}
 		if ( isset( $data->source ) ) {
 			$result->source = $data->source;
