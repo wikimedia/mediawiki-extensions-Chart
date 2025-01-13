@@ -1,0 +1,69 @@
+{
+	"raw": {
+		"license": "CC0-1.0",
+		"version": 1,
+		"type": "line",
+		"xAxis": {
+			"title": {
+				"en": "",
+				"fr": ""
+			}
+		},
+		"yAxis": {
+			"title": {
+				"en": "%support",
+				"fr": "%soutien"
+			}
+		},
+		"legend": {
+			"en": "Party",
+			"fr": "Parti"
+		},
+		"source": "1993 Canadian federal election.tab"
+	},
+	"en": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"xAxis": {
+			"title": ""
+		},
+		"yAxis": {
+			"title": "%support"
+		},
+		"legend": "Party",
+		"source": "1993 Canadian federal election.tab"
+	},
+	"fr": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"xAxis": {
+			"title": ""
+		},
+		"yAxis": {
+			"title": "%soutien"
+		},
+		"legend": "Parti",
+		"source": "1993 Canadian federal election.tab"
+	},
+	"de": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"xAxis": {
+			"title": ""
+		},
+		"yAxis": {
+			"title": "%support"
+		},
+		"legend": "Party",
+		"source": "1993 Canadian federal election.tab"
+	}
+}

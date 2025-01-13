@@ -20,5 +20,7 @@
 	"chart-error-rendering-error": "There was an error rendering the chart.",
 	"chart-error-unexpected": "Unexpected error occurred when rendering the chart.",
 	"chart-error-category": "Pages using the Chart extension with rendering errors",
-	"chart-render-category": "Pages using the Chart extension"
+	"chart-render-category": "Pages using the Chart extension",
+	"chartjson-error-version": "$1 must be an integer between $2 and $3 inclusive.",
+	"chartjson-error-enum": "$1 must be one of the following values: $2"
 }

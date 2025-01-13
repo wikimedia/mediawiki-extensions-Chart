@@ -1,0 +1,32 @@
+{
+	"raw": {
+		"license": "CC0-1.0",
+		"version": 1,
+		"type": "line",
+		"source": "1993 Canadian federal election.tab"
+	},
+	"en": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"source": "1993 Canadian federal election.tab"
+	},
+	"fr": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"source": "1993 Canadian federal election.tab"
+	},
+	"de": {
+		"license": {
+			"code": "CC0-1.0"
+		},
+		"version": 1,
+		"type": "line",
+		"source": "1993 Canadian federal election.tab"
+	}
+}

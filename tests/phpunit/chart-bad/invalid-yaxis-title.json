@@ -1,0 +1,17 @@
+{
+	"license": "CC0-1.0",
+	"version": 1,
+	"type": "line",
+	"xAxis": {
+		"title": {
+			"en": "Column"
+		}
+	},
+	"yAxis": {
+		"title": []
+	},
+	"legend": {
+		"en": "Graph"
+	},
+	"source": "Source.tab"
+}
