@@ -17,5 +17,7 @@
 	"chart-error-rendering-error": "Bei der Darstellung des Diagramms ist ein Fehler aufgetreten.",
 	"chart-error-unexpected": "Beim Rendern des Diagramms ist ein unerwarteter Fehler aufgetreten.",
 	"chart-error-category": "Seiten, die die Chart-Erweiterung verwenden, mit Darstellungsfehlern",
-	"chart-render-category": "Seiten, die die Chart-Erweiterung verwenden"
+	"chart-render-category": "Seiten, die die Chart-Erweiterung verwenden",
+	"chartjson-error-version": "$1 muss eine ganze Zahl zwischen $2 und $3 inklusive sein.",
+	"chartjson-error-enum": "$1 muss einer der folgenden Werte sein: $2"
 }
