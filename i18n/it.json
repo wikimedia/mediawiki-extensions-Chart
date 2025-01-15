@@ -17,5 +17,7 @@
 	"chart-error-rendering-error": "Si è verificato un errore durante il rendering del grafico.",
 	"chart-error-unexpected": "Si è verificato un errore imprevisto durante il rendering del grafico.",
 	"chart-error-category": "Pagine che utilizzano l'estensione Chart con errori di rendering",
-	"chart-render-category": "Pagine che utilizzano l'estensione Chart"
+	"chart-render-category": "Pagine che utilizzano l'estensione Chart",
+	"chartjson-error-version": "$1 deve essere un numero intero tra $2 e $3 inclusi.",
+	"chartjson-error-enum": "$1 deve essere uno dei seguenti valori: $2"
 }

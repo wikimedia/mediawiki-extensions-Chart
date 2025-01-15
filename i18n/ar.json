@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Meno25",
 			"Mr. Ibrahem"
 		]
 	},
@@ -17,5 +18,7 @@
 	"chart-error-rendering-error": "حدث خطأ أثناء عرض الرسم البياني.",
 	"chart-error-unexpected": "حدث خطأ غير متوقع أثناء عرض الرسم البياني.",
 	"chart-error-category": "صفحات تستخدم إضافة الرسم البياني مع أخطاء العرض",
-	"chart-render-category": "صفحات تستخدم إضافة الرسم البياني"
+	"chart-render-category": "صفحات تستخدم إضافة الرسم البياني",
+	"chartjson-error-version": "يجب أن يكون $1 عددا صحيحا بين $2 و $3 شاملا.",
+	"chartjson-error-enum": "يجب أن يكون $1 أحد القيم التالية: $2"
 }

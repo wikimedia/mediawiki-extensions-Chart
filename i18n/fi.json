@@ -16,5 +16,7 @@
 	"chart-error-rendering-error": "Kaavion renderöinnissä tapahtui virhe.",
 	"chart-error-unexpected": "Kaaviota renderöinnissä tapahtui odottamaton virhe.",
 	"chart-error-category": "Chart-laajennusta käyttävät sivut, joissa on renderöintivirheitä",
-	"chart-render-category": "Chart-laajennusta käyttävät sivut"
+	"chart-render-category": "Chart-laajennusta käyttävät sivut",
+	"chartjson-error-version": "$1 on oltava kokonaisluku välillä $2–$3.",
+	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2"
 }

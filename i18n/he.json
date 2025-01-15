@@ -18,5 +18,7 @@
 	"chart-error-rendering-error": "אירעה שגיאה בעת תיצוג התרשים.",
 	"chart-error-unexpected": "אירעה שגיאה לא צפויה בעת תיצוג התרשים.",
 	"chart-error-category": "דפים שמשתמשים בהרחבה Chart עם שגיאות תיצוג",
-	"chart-render-category": "דפים שמשתמשים בהרחבה Chart"
+	"chart-render-category": "דפים שמשתמשים בהרחבה Chart",
+	"chartjson-error-version": "הערך $1 חייב להיות מספר שלם בין $2 ל־$3 כולל.",
+	"chartjson-error-enum": "$1 חייב להיות אחד מהערכים הבאים: $2"
 }

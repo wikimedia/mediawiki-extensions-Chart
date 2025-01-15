@@ -17,5 +17,7 @@
 	"chart-error-rendering-error": "Qrafik yaradılarkən xəta baş verdi.",
 	"chart-error-unexpected": "Qrafiki göstərərkən gözlənilməz xəta baş verdi.",
 	"chart-error-category": "Chart uzantısından istifadə edib render xətaları olan səhifələr",
-	"chart-render-category": "Chart uzantısından istifadə edən səhifələr"
+	"chart-render-category": "Chart uzantısından istifadə edən səhifələr",
+	"chartjson-error-version": "$1 $2 və $3 daxil olmaqla tam ədəd olmalıdır.",
+	"chartjson-error-enum": "$1 aşağıdakı dəyərlərdən biri olmalıdır: $2"
 }
