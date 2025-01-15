@@ -93,6 +93,10 @@ class ChartRenderer {
 		if ( !$status->isOK() ) {
 			[ $message, $context ] = $this->formatterFactory->getStatusFormatter( RequestContext::getMain() )
 				->getPsr3MessageAndContext( $status );
+			if ( $request->getContent() ) {
+				$error_content = json_decode( $request->getContent() );
+				$context['server_error'] = $error_content;
+			}
 			$this->logger->error(
 				'Chart service request returned error: {error}',
 				[ 'error' => $message ] + $context
