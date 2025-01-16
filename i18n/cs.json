@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nesuprachy"
+		]
+	},
+	"chartjson-error-version": "$1 musí být celé číslo mezi $2 a $3 včetně.",
+	"chartjson-error-enum": "$1 musí být jedna z následujících hodnot: $2"
+}

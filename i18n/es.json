@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dgstranz"
+		]
+	},
+	"chartjson-error-enum": "$1 debe ser uno de los siguientes valores: $2"
+}
