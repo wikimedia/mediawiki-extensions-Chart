@@ -1,4 +1,5 @@
 const trustedCharts = Array.from( document.querySelectorAll( 'wiki-chart' ) );
+
 class WikiChart extends HTMLElement {
 	constructor() {
 		super();
@@ -12,39 +13,41 @@ class WikiChart extends HTMLElement {
 				( entries ) => {
 					if ( entries.length && entries[ 0 ].isIntersecting ) {
 						this.visible = true;
-						const spec = this.dataset.spec;
-						let type = 'unknown';
-						let specJSON = {};
 						intersectionObserver.disconnect();
 
-						let theme = this.dataset.theme;
-						const xAxisType = this.dataset.xAxisType;
-						const yAxisType = this.dataset.yAxisType;
-						if ( spec && theme && xAxisType && yAxisType ) {
-							try {
-								specJSON = JSON.parse( decodeURIComponent( spec ) );
-								theme = JSON.parse( decodeURIComponent( theme ) );
-								type = specJSON.series[ 0 ].type;
-							} catch ( e ) {
-								// ignore.
-								mw.errorLogger.logError(
-									new Error( 'Unable to read data from spec data attribute' ),
-									'error.charts'
-								);
-								return;
+						let chartData = {};
+						let type = 'unknown';
+						try {
+							if ( this.dataset.chart !== undefined ) {
+								chartData = JSON.parse( this.dataset.chart );
+							} else {
+								// Backward compatibility: older content contains separate data
+								// attributes instead of a single data-chart attribute, and these
+								// are URL-encoded. This code can be removed once this older content
+								// has expired from the parser cache.
+								chartData = {
+									spec: this.dataset.spec === undefined ? undefined :
+										JSON.parse( decodeURIComponent( this.dataset.spec ) ),
+									theme: this.dataset.theme === undefined ? undefined :
+										JSON.parse( decodeURIComponent( this.dataset.theme ) ),
+									xAxisType: this.dataset.xAxisType,
+									yAxisType: this.dataset.yAxisType
+								};
 							}
-							mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderStart`, 1 );
-							mw.loader.using( 'ext.chart.render' ).then( ( req ) => {
-								req( 'ext.chart.render' ).render(
-									this,
-									specJSON,
-									theme,
-									xAxisType,
-									yAxisType
-								);
-								mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderEnd`, 1 );
-							} );
+							type = chartData.spec.series[ 0 ].type;
+						} catch ( e ) {
+							// ignore.
+							mw.errorLogger.logError(
+								new Error( 'Unable to read data from data-chart or data-spec attribute' ),
+								'error.charts'
+							);
+							return;
 						}
+						mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderStart`, 1 );
+						mw.loader.using( 'ext.chart.render' ).then( ( req ) => {
+							req( 'ext.chart.render' ).render( this, chartData );
+							mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderEnd`, 1 );
+						} );
 					}
 				}
 			);
