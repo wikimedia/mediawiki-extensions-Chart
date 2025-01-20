@@ -7,5 +7,7 @@
 	"chart-error-chart-definition-not-found": "صفحهٔ توصیف نمودار یافت نشد.",
 	"chart-error-data-source-page-not-found": "صفحهٔ منبع داده‌های جدولی نمودار یافت نشد.",
 	"chart-error-incompatible-chart-definition": "صفحهٔ توصیف با نمودارها سازگار نیست.",
-	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد."
+	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد.",
+	"chartjson-error-version": "$1 باید یک عدد صحیح بین $2 و $3 باشد.",
+	"chartjson-error-enum": "$1 باید برابر با یکی از این مقدارها باشد: $2"
 }

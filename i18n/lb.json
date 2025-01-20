@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Volvox"
+		]
+	},
+	"chartjson-error-enum": "$1 muss ee vun de follgende Wäerter hunn: $2"
+}
