@@ -3,7 +3,8 @@
 		"authors": [
 			"Mahabarata",
 			"Méthodes Bulebe Hangi",
-			"Terio legale"
+			"Terio legale",
+			"Wladek92"
 		]
 	},
 	"chart-desc": "Ajoute la fonction d'analyseur <code><nowiki>{{#chart:}}</nowiki></code> pour l'affichage des graphiques",
@@ -19,5 +20,6 @@
 	"chart-error-rendering-error": "Une erreur s'est produite lors de l'affichage du graphique",
 	"chart-error-unexpected": "Une erreur inattendue s'est produite lors du rendu du graphique.",
 	"chart-error-category": "Pages utilisant l'extension Chart avec des erreurs de rendu",
-	"chart-render-category": "Pages utilisant l'extension Chart"
+	"chart-render-category": "Pages utilisant l'extension Chart",
+	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2"
 }
