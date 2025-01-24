@@ -185,6 +185,10 @@ class ParserFunction implements MessageLocalizer {
 		}
 
 		$definitionTitleValue = $chartDefinitionPageTitle;
+		JCSingleton::recordJsonLink(
+			$output,
+			$definitionTitleValue
+		);
 		$definitionContent = JCSingleton::getContent( $definitionTitleValue );
 		if ( !$definitionContent ) {
 			$status->fatal( 'chart-error-chart-definition-not-found' );
@@ -243,6 +247,10 @@ class ParserFunction implements MessageLocalizer {
 			$status->fatal( 'chart-error-data-source-page-not-found' );
 			return $status;
 		}
+		JCSingleton::recordJsonLink(
+			$output,
+			$tabularDataTitleValue
+		);
 
 		$dataContent = JCSingleton::getContent( $tabularDataTitleValue );
 		if ( !$dataContent ) {
