@@ -21,6 +21,9 @@
 	"chart-error-unexpected": "Unexpected error occurred when rendering the chart.",
 	"chart-error-category": "Pages using the Chart extension with rendering errors",
 	"chart-render-category": "Pages using the Chart extension",
+	"chart-visualeditor-mwchartdialog-title": "Chart",
+	"chart-visualeditor-mwchartdialog-chart-label": "Chart definition page",
+	"chart-visualeditor-mwchartdialog-data-label": "Chart tabular data source",
 	"chartjson-error-version": "$1 must be an integer between $2 and $3 inclusive.",
 	"chartjson-error-enum": "$1 must be one of the following values: $2"
 }
