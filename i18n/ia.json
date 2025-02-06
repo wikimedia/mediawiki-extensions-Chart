@@ -18,6 +18,9 @@
 	"chart-error-unexpected": "Un error inexpectate ha occurrite durante le rendition del graphico.",
 	"chart-error-category": "Paginas que usa le extension Chart con errores de rendition",
 	"chart-render-category": "Paginas que usa le extension Chart",
+	"chart-visualeditor-mwchartdialog-title": "Graphico",
+	"chart-visualeditor-mwchartdialog-chart-label": "Pagina de definition del graphico",
+	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabular del graphico",
 	"chartjson-error-version": "$1 debe esser un numero integre inter $2 e $3 incluse.",
 	"chartjson-error-enum": "$1 debe esser un del sequente valores: $2"
 }

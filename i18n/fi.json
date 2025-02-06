@@ -17,6 +17,9 @@
 	"chart-error-unexpected": "Kaaviota renderöinnissä tapahtui odottamaton virhe.",
 	"chart-error-category": "Chart-laajennusta käyttävät sivut, joissa on renderöintivirheitä",
 	"chart-render-category": "Chart-laajennusta käyttävät sivut",
+	"chart-visualeditor-mwchartdialog-title": "Kaavio",
+	"chart-visualeditor-mwchartdialog-chart-label": "Kaavion määrittelysivu",
+	"chart-visualeditor-mwchartdialog-data-label": "Kaavion taulukkotiedon lähde",
 	"chartjson-error-version": "$1 on oltava kokonaisluku välillä $2–$3.",
 	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2"
 }

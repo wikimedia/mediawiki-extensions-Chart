@@ -19,6 +19,9 @@
 	"chart-error-unexpected": "אירעה שגיאה לא צפויה בעת תיצוג התרשים.",
 	"chart-error-category": "דפים שמשתמשים בהרחבה Chart עם שגיאות תיצוג",
 	"chart-render-category": "דפים שמשתמשים בהרחבה Chart",
+	"chart-visualeditor-mwchartdialog-title": "תרשים",
+	"chart-visualeditor-mwchartdialog-chart-label": "דף הגדרת תרשים",
+	"chart-visualeditor-mwchartdialog-data-label": "מקור נתונים טבלאי בתרשים",
 	"chartjson-error-version": "הערך $1 חייב להיות מספר שלם בין $2 ל־$3 כולל.",
 	"chartjson-error-enum": "$1 חייב להיות אחד מהערכים הבאים: $2"
 }
