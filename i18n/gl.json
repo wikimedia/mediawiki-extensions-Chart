@@ -18,6 +18,9 @@
 	"chart-error-unexpected": "Produciuse un erro inesperado ao renderizar o gráfico.",
 	"chart-error-category": "Páxinas que usan a extensión Chart con erros de renderizado",
 	"chart-render-category": "Páxinas que usan a extensión Chart",
+	"chart-visualeditor-mwchartdialog-title": "Gráfico",
+	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",
+	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabulares do gráfico",
 	"chartjson-error-version": "\"$1\" debe ser un número enteiro entre $2 e $3, incluídos.",
 	"chartjson-error-enum": "\"$1\" debe ser un dos seguintes valores: $2"
 }
