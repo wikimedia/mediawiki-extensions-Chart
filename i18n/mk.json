@@ -18,6 +18,9 @@
 	"chart-error-unexpected": "Се јави неочекувана грешка при исцртувањето на графиконот.",
 	"chart-error-category": "Страници што го користат додатокот Графикон со грешки во исписот",
 	"chart-render-category": "Страници што го користат додатокот Графикон",
+	"chart-visualeditor-mwchartdialog-title": "Графикон",
+	"chart-visualeditor-mwchartdialog-chart-label": "Страница за графиконска одредба",
+	"chart-visualeditor-mwchartdialog-data-label": "Извор на табеларни податоци за графиконот",
 	"chartjson-error-version": "$1 мора да биде цел број помеѓу $2 и $3 (заклучно со него).",
 	"chartjson-error-enum": "$1 мора да има една од следниве вредности: $2"
 }
