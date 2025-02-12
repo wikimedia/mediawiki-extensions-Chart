@@ -17,5 +17,10 @@
 	"chart-error-rendering-error": "Παρουσιάστηκε σφάλμα κατά την απόδοση του γραφήματος.",
 	"chart-error-unexpected": "Παρουσιάστηκε μη αναμενόμενο σφάλμα κατά την απόδοση του γραφήματος.",
 	"chart-error-category": "Σελίδες που χρησιμοποιούν την επέκταση Chart με σφάλματα απόδοσης",
-	"chart-render-category": "Σελίδες που χρησιμοποιούν την επέκταση Chart"
+	"chart-render-category": "Σελίδες που χρησιμοποιούν την επέκταση Chart",
+	"chart-visualeditor-mwchartdialog-title": "Γράφημα",
+	"chart-visualeditor-mwchartdialog-chart-label": "Σελίδα ορισμού γραφήματος",
+	"chart-visualeditor-mwchartdialog-data-label": "Πηγή πίνακα δεδομένων",
+	"chartjson-error-version": "Το $1 πρέπει να είναι ένας ακέραιος αριθμός μεταξύ $2 και $3 συμπεριλαμβανομένων αυτών.",
+	"chartjson-error-enum": "Το $1 πρέπει να είναι μία από τις ακόλουθες τιμές: $2"
 }
