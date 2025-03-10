@@ -22,6 +22,11 @@ class JCChartContent extends JCDataContent {
 		'pie',
 	];
 
+	public const FORMAT_TYPES = [
+		'auto',
+		'none'
+	];
+
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
 		$chartRenderer = $services->getService( 'Chart.ChartRenderer' );
@@ -55,6 +60,9 @@ class JCChartContent extends JCDataContent {
 
 		$this->testOptionalAlt( [ 'xAxis', 'title' ], self::isSwitchableString() );
 		$this->testOptionalAlt( [ 'yAxis', 'title' ], self::isSwitchableString() );
+		$this->testOptionalAlt( [ 'xAxis', 'format' ], self::isValidEnum( self::FORMAT_TYPES ) );
+		$this->testOptionalAlt( [ 'yAxis', 'format' ], self::isValidEnum( self::FORMAT_TYPES ) );
+
 		$this->testOptionalAlt( 'legend', self::isSwitchableString() );
 
 		$this->test( 'source', JCValidators::isStringLine() );
@@ -158,6 +166,9 @@ class JCChartContent extends JCDataContent {
 			$dst = (object)[];
 			if ( isset( $src->title ) ) {
 				$dst->title = $localize( $src->title );
+			}
+			if ( isset( $src->format ) ) {
+				$dst->format = $src->format;
 			}
 			return $dst;
 		};
