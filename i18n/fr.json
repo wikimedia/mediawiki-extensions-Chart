@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"JLTRY",
 			"Mahabarata",
 			"Méthodes Bulebe Hangi",
 			"Terio legale",
@@ -21,6 +22,9 @@
 	"chart-error-unexpected": "Une erreur inattendue s'est produite lors du rendu du graphique.",
 	"chart-error-category": "Pages utilisant l'extension Chart avec des erreurs de rendu",
 	"chart-render-category": "Pages utilisant l'extension Chart",
+	"chart-visualeditor-mwchartdialog-title": "Graphique",
+	"chart-visualeditor-mwchartdialog-chart-label": "Page de définition du graphique",
+	"chart-visualeditor-mwchartdialog-data-label": "Source de données tabulaires du graphique",
 	"chartjson-error-version": "$1 doit être un entier compris entre $2 et $3 inclus.",
 	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2"
 }
