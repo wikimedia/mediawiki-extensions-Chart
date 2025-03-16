@@ -40,6 +40,15 @@ const numberFormatter = ( language, formatMode ) => ( value ) => {
 	return formatter.format( value );
 };
 
+const getPercentFormatter = ( language ) => {
+	const formatter = new Intl.NumberFormat( language, {
+		style: 'percent',
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 2
+	} );
+	return ( value ) => formatter.format( value );
+};
+
 /**
  * @typedef {'float'|'integer'|'date'|'string'|string} ChartAxisType
  */
@@ -75,18 +84,38 @@ const getFormatterForType = ( type, formatMode, language ) => {
  * @param {Object} spec
  * @param {Function} xFormatter
  * @param {Function} yFormatter
+ * @param {Object} locale
+ * @param {string} language
+ * @param {boolean} isRTL
  */
-const addTooltip = ( spec, xFormatter, yFormatter ) => {
+const addTooltip = ( spec, xFormatter, yFormatter, language ) => {
+	if ( !spec.series || !Array.isArray( spec.series ) || !spec.series.length ) {
+		return;
+	}
+	const tooltipSpec = {
+		valueFormatter: yFormatter
+	};
+
+	if ( spec.series[ 0 ].type === 'pie' ) {
+		const formatPercent = getPercentFormatter( language );
+		tooltipSpec.trigger = 'item';
+		tooltipSpec.formatter = ( params ) => {
+			const value = yFormatter( params.value );
+			const percentage = params.percent !== null ?
+				` (${ formatPercent( params.percent / 100 ) })` :
+				'';
+			return ` ${ params.marker } ${ params.name }: ${ value }${ percentage }`;
+		};
+	} else {
+		tooltipSpec.trigger = 'axis';
+		tooltipSpec.axisPointer = {
+			label: {
+				formatter: ( axis ) => xFormatter( axis.value )
+			}
+		};
+	}
 	Object.assign( spec, {
-		tooltip: {
-			axisPointer: {
-				label: {
-					formatter: ( axis ) => xFormatter( axis.value )
-				}
-			},
-			valueFormatter: yFormatter,
-			trigger: 'axis'
-		}
+		tooltip: tooltipSpec
 	} );
 };
 
@@ -131,7 +160,7 @@ const render = ( wikiChartElement, chartData ) => {
 	const xFormatter = getFormatterForType( xAxisType, xAxisFormatMode, language );
 	const yFormatter = getFormatterForType( yAxisType, yAxisFormatMode, language );
 
-	addTooltip( spec, xFormatter, yFormatter );
+	addTooltip( spec, xFormatter, yFormatter, language );
 
 	if ( spec.xAxis ) {
 		spec.xAxis.axisLabel = {
