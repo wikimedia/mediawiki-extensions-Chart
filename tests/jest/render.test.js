@@ -22,13 +22,32 @@ describe( 'numberFormatter', () => {
 } );
 
 describe( 'getFormatter', () => {
-	it( 'formats integers correctly', () => {
-		const format = getFormatterForType( 'integer', 'fa' );
+	it( 'formats integers correctly with formatMode none', () => {
+		const format = getFormatterForType( 'integer', 'none', 'fa' );
 		expect( format( '5' ) ).toBe( '۵' );
 		expect( format( 5 ) ).toBe( '۵' );
 	} );
-	it( 'formats floats correctly', () => {
-		const format = getFormatterForType( 'float', 'fa' );
+	it( 'formats floats correctly with formatMode none', () => {
+		const format = getFormatterForType( 'float', 'none', 'fa' );
+		expect( format( '5.3343444' ) ).toBe( '۵٫۳۳۴۳۴۴۴' );
+	} );
+	it( 'formats integers correctly with formatMode none and no comma separator', () => {
+		const format = getFormatterForType( 'integer', 'none', 'en' );
+		expect( format( 2025 ) ).toBe( '2025' );
+	} );
+
+	it( 'formats integers correctly with formatMode auto', () => {
+		const format = getFormatterForType( 'integer', 'auto', 'fa' );
+		expect( format( '5' ) ).toBe( '۵' );
+		expect( format( 5 ) ).toBe( '۵' );
+	} );
+	it( 'formats floats correctly with formatMode auto', () => {
+		const format = getFormatterForType( 'float', 'auto', 'fa' );
 		expect( format( '5.3343444' ) ).toBe( '۵٫۳۳' );
 	} );
+	it( 'formats integers correctly with formatMode auto and comma separator', () => {
+		const format = getFormatterForType( 'integer', 'auto', 'en' );
+		expect( format( 2025 ) ).toBe( '2K' );
+	} );
+
 } );

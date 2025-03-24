@@ -11,20 +11,31 @@ const adjustTitleWidth = ( chart ) => {
 
 /**
  * Creates a number formatter.
+ * Uses basic formatting for the 'none' format option.
+ * (no thousands separator, no compact notation)
  *
  * @param {string} language
+ * @param {string} formatMode
  * @return {Function}
  */
-const numberFormatter = ( language ) => ( value ) => {
-	const isFraction = value < 0;
-	const decimals = value < 100 ? 2 : 0;
-	const formatter = new Intl.NumberFormat( language, {
-		style: 'decimal',
-		notation: value >= 1000 ? 'compact' : 'standard',
-		compactDisplay: 'short',
-		minimumFractionDigits: 0,
-		maximumFractionDigits: isFraction ? 3 : decimals
-	} );
+const numberFormatter = ( language, formatMode ) => ( value ) => {
+	let formatter;
+	if ( formatMode === 'none' ) {
+		formatter = new Intl.NumberFormat( language, {
+			useGrouping: false,
+			maximumFractionDigits: 20
+		} );
+	} else {
+		const isFraction = value < 0;
+		const decimals = value < 100 ? 2 : 0;
+		formatter = new Intl.NumberFormat( language, {
+			style: 'decimal',
+			notation: value >= 1000 ? 'compact' : 'standard',
+			compactDisplay: 'short',
+			minimumFractionDigits: 0,
+			maximumFractionDigits: isFraction ? 3 : decimals
+		} );
+	}
 	return formatter.format( value );
 };
 
@@ -36,10 +47,11 @@ const numberFormatter = ( language ) => ( value ) => {
  * Infers the correct formatter based on the data series.
  *
  * @param {string} type
+ * @param {string} formatMode
  * @param {string} language
  * @return {Function}
  */
-const getFormatterForType = ( type, language ) => {
+const getFormatterForType = ( type, formatMode, language ) => {
 	const dateFormatter = new Intl.DateTimeFormat( language );
 	const formatAsDate = ( /** @type {string} */ value ) => dateFormatter.format( new Date( value ) );
 	const formatAsString = ( /** @type {string} */ value ) => value;
@@ -48,9 +60,7 @@ const getFormatterForType = ( type, language ) => {
 		case 'number':
 		case 'integer':
 		case 'float':
-			return numberFormatter(
-				language
-			);
+			return numberFormatter( language, formatMode );
 		case 'date':
 			return formatAsDate;
 		default:
@@ -90,13 +100,21 @@ const render = ( wikiChartElement, chartData ) => {
 	// compatible (handle both the old and the new version of this interface correctly).
 	// For example, when a new field is added, this code should check whether that new field is
 	// present before using it.
-	const { spec, theme, xAxisType, yAxisType } = chartData;
+	const {
+		spec,
+		theme,
+		xAxisType,
+		xAxisFormatMode = 'none',
+		yAxisType,
+		yAxisFormatMode = 'none'
+	} = chartData;
 
 	const language = mw.config.get( 'wgUserLanguage' );
 	const locale = Intl.Locale ? new Intl.Locale( language ) : null;
 	// Note: Only available in modern browsers, older browsers will fall back to LTR.
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
-	const isRTL = locale && locale.textInfo && locale.textInfo.direction === 'rtl';
+	const isRTL =
+    locale && locale.textInfo && locale.textInfo.direction === 'rtl';
 
 	const height = wikiChartElement.clientHeight;
 	const originalSVG = wikiChartElement.querySelector( 'svg' );
@@ -109,8 +127,8 @@ const render = ( wikiChartElement, chartData ) => {
 		spec.title.textStyle.width = chart.getWidth();
 	}
 
-	const xFormatter = getFormatterForType( xAxisType, language );
-	const yFormatter = getFormatterForType( yAxisType, language );
+	const xFormatter = getFormatterForType( xAxisType, xAxisFormatMode, language );
+	const yFormatter = getFormatterForType( yAxisType, yAxisFormatMode, language );
 
 	addTooltip( spec, xFormatter, yFormatter );
 
