@@ -10,6 +10,14 @@ use MediaWikiIntegrationTestCase;
  */
 class JCChartContentTest extends MediaWikiIntegrationTestCase {
 
+	public function setUp(): void {
+		parent::setUp();
+
+		$chartSourceValidator = $this->createPartialMock( ChartSourceValidator::class, [ 'validateSourcePage' ] );
+		$chartSourceValidator->method( 'validateSourcePage' )->willReturn( true );
+		$this->setService( 'Chart.ChartSourceValidator', $chartSourceValidator );
+	}
+
 	/**
 	 * @dataProvider provideTestCases
 	 * @param string $file

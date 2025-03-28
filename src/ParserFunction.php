@@ -220,14 +220,19 @@ class ParserFunction implements MessageLocalizer {
 		?JCTitle $tabularData = null,
 		array $options = []
 	): Status {
+		$status = Status::newGood();
+
 		if ( !$definitionContent instanceof JCChartContent ) {
-			// @fixme should this be an exception or a status?
-			throw new \UnexpectedValueException( 'Expected JCChartContent' );
+			$status->fatal( 'chart-error-chart-definition-invalid' );
+			return $status;
 		}
 
 		$definitionObj = $definitionContent->getLocalizedData( $this->language );
 
-		$status = Status::newGood();
+		if ( !$definitionObj ) {
+			$status->fatal( 'chart-error-chart-definition-invalid' );
+			return $status;
+		}
 
 		if ( !$tabularData ) {
 			if ( !isset( $definitionObj->source ) ) {
@@ -259,6 +264,10 @@ class ParserFunction implements MessageLocalizer {
 		}
 
 		$dataObj = $dataContent->getLocalizedData( $this->language );
+		if ( !$dataObj ) {
+			$status->fatal( 'chart-error-invalid-data-source' );
+			return $status;
+		}
 		$options['locale'] = $this->language->getCode();
 
 		$status = $this->chartRenderer->renderSVG(

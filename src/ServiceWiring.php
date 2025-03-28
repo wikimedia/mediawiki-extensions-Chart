@@ -26,6 +26,9 @@ return [
 			LoggerFactory::getInstance( 'Chart' )
 		);
 	},
+	'Chart.ChartSourceValidator' => static function ( MediaWikiServices $services ): ChartSourceValidator {
+		return new ChartSourceValidator();
+	},
 	'Chart.DataPageResolver' => static function ( MediaWikiServices $services ): DataPageResolver {
 		return new DataPageResolver();
 	},

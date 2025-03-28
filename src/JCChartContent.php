@@ -65,7 +65,23 @@ class JCChartContent extends JCDataContent {
 
 		$this->testOptionalAlt( 'legend', self::isSwitchableString() );
 
-		$this->test( 'source', JCValidators::isStringLine() );
+		$this->test( 'source', self::isValidSource() );
+	}
+
+	/**
+	 * There are some checks on the data source used in rendering
+	 * either from chart definition or parser function override
+	 * but that does not prevent the chart definition from
+	 * being saved when referencing an invalid source.
+	 */
+	private static function isValidSource(): \Closure {
+		return static function ( JCValue $jcv, array $path ) {
+			/**
+			 * @var ChartSourceValidator $chartSourceValidator
+			 */
+			$chartSourceValidator = MediaWikiServices::getInstance()->getService( 'Chart.ChartSourceValidator' );
+			return $chartSourceValidator->validateSource( $jcv, $path );
+		};
 	}
 
 	/**
