@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Meno25",
-			"Mr. Ibrahem"
+			"Mr. Ibrahem",
+			"Zaid1442011"
 		]
 	},
 	"chart-desc": "يضيف<nowiki> <code>{{#chart:}}</code></nowiki> وظيفة المحلل لعرض المخططات البيانية",
@@ -12,6 +13,7 @@
 	"chart-error-default-source-not-specified": "لا تحدد صفحة تعريف الرسم البياني مصدر بيانات افتراضي.",
 	"chart-error-incompatible-chart-definition": "صفحة التعريف غير متوافقة مع الرسوم البيانية.",
 	"chart-error-incompatible-data-source": "صفحة مصدر البيانات الجدولية غير متوافقة مع الرسوم البيانية.",
+	"chart-error-invalid-data-source": "صفحة مصدر البيانات الجدولية غير صالحة.",
 	"chart-error-invalid-height": "يجب أن يكون الارتفاع عددًا صحيحًا أكبر من أو يساوي 100.",
 	"chart-error-invalid-width": "يجب أن يكون العرض عددًا صحيحًا أكبر من أو يساوي 100.",
 	"chart-error-shell-disabled": "لا يمكن عرض المخططات البيانية لأن تنفيذ shell معطل.",
