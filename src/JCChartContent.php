@@ -27,6 +27,7 @@ class JCChartContent extends JCDataContent {
 		'none'
 	];
 
+	/** @inheritDoc */
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
 		$chartRenderer = $services->getService( 'Chart.ChartRenderer' );
