@@ -8,6 +8,7 @@
 	},
 	"chart-desc": "يضيف<nowiki> <code>{{#chart:}}</code></nowiki> وظيفة المحلل لعرض المخططات البيانية",
 	"chart-error-chart-definition-not-found": "لم يتم العثور على صفحة تعريف الرسم البياني.",
+	"chart-error-chart-definition-invalid": "صفحة تعريف الرسم البياني غير صالحة.",
 	"chart-error-data-source-invalid": "مصدر البيانات الجدولي غير صالح.",
 	"chart-error-data-source-page-not-found": "لم يتم العثور على صفحة مصدر البيانات الجدولية.",
 	"chart-error-default-source-not-specified": "لا تحدد صفحة تعريف الرسم البياني مصدر بيانات افتراضي.",
