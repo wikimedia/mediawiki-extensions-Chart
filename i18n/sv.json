@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ainali"
+			"Ainali",
+			"WikiPhoenix"
 		]
 	},
-	"chart-desc": "Lägger till <code><nowiki>{{#chart:}}</nowiki></code> parserfunktion för att visa diagram",
+	"chart-desc": "Lägger till parserfunktionen <code><nowiki>{{#chart:}}</nowiki></code> för att visa diagram",
 	"chart-error-chart-definition-not-found": "Diagramdefinitionssidan hittades inte.",
 	"chart-error-data-source-page-not-found": "Tabelldatakällan för diagrammet kunde inte hittas.",
 	"chart-error-default-source-not-specified": "Diagramdefinitionssidan anger inte en standarddatakälla.",
