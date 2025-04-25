@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Title\Title;
 
 class JCChartContentView extends JCContentView {
 
@@ -46,9 +45,7 @@ class JCChartContentView extends JCContentView {
 		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
 
 		'@phan-var JCChartContent $content';
-		$lang = $this->languageFactory->getLanguage( $output->getLanguage() ??
-			Title::newFromPageReference( $page )->getPageLanguage()
-		);
+		$lang = $options->getUserLangObj();
 		$context = new RequestContext();
 		$context->setLanguage( $lang );
 		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
