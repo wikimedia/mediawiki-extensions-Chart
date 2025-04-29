@@ -27,5 +27,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Chart definition page",
 	"chart-visualeditor-mwchartdialog-data-label": "Chart tabular data source",
 	"chartjson-error-version": "$1 must be an integer between $2 and $3 inclusive.",
-	"chartjson-error-enum": "$1 must be one of the following values: $2"
+	"chartjson-error-enum": "$1 must be one of the following values: $2",
+	"chart-error-source-not-found": "Tabular data source page not found.",
+	"chart-error-invalid-source-type": "Tabular data source page is of invalid type.",
+	"chart-error-invalid-source-content": "Tabular data source page contents are invalid."
 }
