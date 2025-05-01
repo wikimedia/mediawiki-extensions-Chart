@@ -24,5 +24,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitionsseite",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabellarische Diagrammdatenquelle",
 	"chartjson-error-version": "$1 muss eine ganze Zahl zwischen $2 und $3 inklusive sein.",
-	"chartjson-error-enum": "$1 muss einer der folgenden Werte sein: $2"
+	"chartjson-error-enum": "$1 muss einer der folgenden Werte sein: $2",
+	"chart-error-source-not-found": "Die Seite mit der tabellarischen Datenquelle wurde nicht gefunden.",
+	"chart-error-invalid-source-type": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Typ.",
+	"chart-error-invalid-source-content": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Inhalt."
 }

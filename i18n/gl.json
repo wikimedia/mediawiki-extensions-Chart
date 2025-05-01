@@ -24,5 +24,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabulares do gráfico",
 	"chartjson-error-version": "\"$1\" debe ser un número enteiro entre $2 e $3, incluídos.",
-	"chartjson-error-enum": "\"$1\" debe ser un dos seguintes valores: $2"
+	"chartjson-error-enum": "\"$1\" debe ser un dos seguintes valores: $2",
+	"chart-error-source-not-found": "Non se atopou a páxina de orixe de datos tabulares.",
+	"chart-error-invalid-source-type": "A páxina de orixe de datos tabulares non é dun tipo válido.",
+	"chart-error-invalid-source-content": "O contido da páxina de orixe de datos tabulares non é válido."
 }

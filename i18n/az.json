@@ -24,5 +24,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Qrafik tərifi səhifəsi",
 	"chart-visualeditor-mwchartdialog-data-label": "Qrafik cədvəlşəkilli məlumat mənbəyi",
 	"chartjson-error-version": "$1 $2 və $3 daxil olmaqla tam ədəd olmalıdır.",
-	"chartjson-error-enum": "$1 aşağıdakı dəyərlərdən biri olmalıdır: $2"
+	"chartjson-error-enum": "$1 aşağıdakı dəyərlərdən biri olmalıdır: $2",
+	"chart-error-source-not-found": "Cədvəlşəkilli məlumat mənbə səhifəsi tapılmadı.",
+	"chart-error-invalid-source-type": "Cədvəlşəkilli məlumat mənbə səhifəsi etibarsız tipdədir.",
+	"chart-error-invalid-source-content": "Cədvəlşəkilli məlumat mənbə səhifəsi etibarsızdır."
 }
