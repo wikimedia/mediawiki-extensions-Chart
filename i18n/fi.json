@@ -23,5 +23,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Kaavion määrittelysivu",
 	"chart-visualeditor-mwchartdialog-data-label": "Kaavion taulukkotiedon lähde",
 	"chartjson-error-version": "$1 on oltava kokonaisluku välillä $2–$3.",
-	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2"
+	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2",
+	"chart-error-source-not-found": "Taulukkotiedon lähdesivua ei löytynyt.",
+	"chart-error-invalid-source-type": "Taulukkotiedon lähdesivu on virheellistä tyyppiä.",
+	"chart-error-invalid-source-content": "Taulukkotiedon lähdesivun sisältö on virheellinen."
 }

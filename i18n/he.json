@@ -25,5 +25,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "דף הגדרת תרשים",
 	"chart-visualeditor-mwchartdialog-data-label": "מקור נתונים טבלאי בתרשים",
 	"chartjson-error-version": "הערך $1 חייב להיות מספר שלם בין $2 ל־$3 כולל.",
-	"chartjson-error-enum": "$1 חייב להיות אחד מהערכים הבאים: $2"
+	"chartjson-error-enum": "$1 חייב להיות אחד מהערכים הבאים: $2",
+	"chart-error-source-not-found": "דף המקור לנתונים הטבלאיים של התרשים לא נמצא.",
+	"chart-error-invalid-source-type": "דף מקור נתונים טבלאיים אינו תקין.",
+	"chart-error-invalid-source-content": "תוכן דף מקור הנתונים הטבלאיים אינו תקין."
 }

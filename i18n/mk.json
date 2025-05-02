@@ -24,5 +24,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница за графиконска одредба",
 	"chart-visualeditor-mwchartdialog-data-label": "Извор на табеларни податоци за графиконот",
 	"chartjson-error-version": "$1 мора да биде цел број помеѓу $2 и $3 (заклучно со него).",
-	"chartjson-error-enum": "$1 мора да има една од следниве вредности: $2"
+	"chartjson-error-enum": "$1 мора да има една од следниве вредности: $2",
+	"chart-error-source-not-found": "Не ја најдов изворната страница со табеларни податоци.",
+	"chart-error-invalid-source-type": "Изворот на табеларни податоци е од неважечки тип.",
+	"chart-error-invalid-source-content": "Содржината на изворот на табеларни податоци е неважечка."
 }
