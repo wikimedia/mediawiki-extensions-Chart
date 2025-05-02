@@ -1,34 +1,29 @@
 {
     "license": "CC0-1.0",
     "version": 1,
+    "source": "1993 Canadian federal election.tab",
     "type": "line",
-    "width": 350,
-    "height": 200,
+    "title": {
+        "en": "1993 Canadian federal election"
+    },
     "xAxis": {
-        "title": "",
-        "angle": -40,
-        "type": "date"
+        "title": {
+            "en": "Year"
+        },
+        "format": "none"
     },
     "yAxis": {
         "title": {
             "en": "%support",
             "fr": "%soutien"
+        },
+        "format": "auto"
+    },
+    "mediawikiCategories": [
+        {
+            "name": "Canada",
+            "sort": "Its sortkey"
         }
-    },
-    "legend": {
-        "en": "Party",
-        "fr": "Parti"
-    },
-    "interpolate": "basis",
-    "showSymbols": true,
-    "colors": [
-        "#9999FF",
-        "#EA6D6A",
-        "#F4A460",
-        "#87CEFA",
-        "#3CB371",
-        "#FF00FF"
-    ],
-    "source": "1993 Canadian federal election.tab"
+    ]
 }
 
