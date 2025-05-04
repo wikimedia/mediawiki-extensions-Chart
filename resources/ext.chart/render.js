@@ -22,7 +22,8 @@ const numberFormatter = ( language, formatMode ) => ( value ) => {
 	let formatter;
 	if ( formatMode === 'none' ) {
 		formatter = new Intl.NumberFormat( language, {
-			useGrouping: false,
+			// Display grouping separators when there are at least 2 digits in a group.
+			useGrouping: 'min2',
 			maximumFractionDigits: 20
 		} );
 	} else {
