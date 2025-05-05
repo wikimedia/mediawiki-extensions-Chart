@@ -25,5 +25,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",
 	"chartjson-error-version": "$1 moet een geheel getal zijn tussen $2 en $3.",
-	"chartjson-error-enum": "$1 moet een van de volgende waarden zijn: $2"
+	"chartjson-error-enum": "$1 moet een van de volgende waarden zijn: $2",
+	"chart-error-source-not-found": "De tabel met gegevensbronnen is niet gevonden.",
+	"chart-error-invalid-source-type": "De tabelvormige gegevensbronpagina is van een ongeldig type.",
+	"chart-error-invalid-source-content": "De inhoud van de tabelgegevensbronpagina is ongeldig."
 }
