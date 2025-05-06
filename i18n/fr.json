@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"EmDashUser002",
 			"JLTRY",
 			"Mahabarata",
 			"Méthodes Bulebe Hangi",
@@ -28,5 +29,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Page de définition du graphique",
 	"chart-visualeditor-mwchartdialog-data-label": "Source de données tabulaires du graphique",
 	"chartjson-error-version": "$1 doit être un entier compris entre $2 et $3 inclus.",
-	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2"
+	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2",
+	"chart-error-source-not-found": "La page de la source des données du tableau graphique n'a pas été trouvée.",
+	"chart-error-invalid-source-type": "La page de source de données tabulaires est d'un type non valide.",
+	"chart-error-invalid-source-content": "Le contenu de la page de la source de données tabulaires n'est pas valide."
 }
