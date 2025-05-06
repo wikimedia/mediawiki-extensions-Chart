@@ -1,4 +1,7 @@
 wiki-chart {
+	// clear float of any floated elements appearing before the chart
+	// to avoid chart being inappropriately tall (T393286)
+	clear: both;
 	max-width: 100%;
 	height: auto;
 	display: block;
