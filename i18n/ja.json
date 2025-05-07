@@ -1,9 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afaz",
 			"FlatLanguage"
 		]
 	},
+	"chart-desc": "チャートを表示するためのパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
+	"chart-error-chart-definition-not-found": "チャート定義ページが見つかりません。",
+	"chart-error-chart-definition-invalid": "チャート定義ページが無効です。",
+	"chart-error-data-source-invalid": "無効な表形式データソースが指定されました。",
+	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",
+	"chart-error-default-source-not-specified": "チャート定義ページでデフォルトのデータソースが指定されていません。",
+	"chart-error-incompatible-chart-definition": "定義ページがチャートと互換性がありません。",
+	"chart-error-incompatible-data-source": "表形式のデータソースページがチャートと互換性がありません。",
+	"chart-error-invalid-data-source": "表形式データソースページが無効です。",
+	"chart-error-invalid-height": "高さは 100 以上の整数である必要があります。",
+	"chart-error-invalid-width": "幅は 100 以上の整数である必要があります。",
+	"chart-error-shell-disabled": "シェルの実行が無効になっているため、チャートをレンダリングできません。",
+	"chart-error-rendering-error": "チャートのレンダリング中にエラーがありました。",
+	"chart-error-unexpected": "チャートのレンダリング中に予期しないエラーが発生しました。",
 	"chart-error-category": "Chart拡張機能のレンダリングエラーがあるページ",
-	"chart-render-category": "Chart拡張機能を使用しているページ"
+	"chart-render-category": "Chart拡張機能を使用しているページ",
+	"chart-visualeditor-mwchartdialog-title": "チャート",
+	"chart-visualeditor-mwchartdialog-chart-label": "チャート定義ページ",
+	"chart-visualeditor-mwchartdialog-data-label": "チャートの表形式データソース",
+	"chartjson-error-version": "$1は$2から$3の間の整数である必要があります。",
+	"chartjson-error-enum": "$1は次のいずれかの値である必要があります: $2",
+	"chart-error-source-not-found": "表形式データソースページが見つかりませんでした。",
+	"chart-error-invalid-source-type": "表形式データソースページが無効なタイプです。",
+	"chart-error-invalid-source-content": "表形式データソースページの内容が無効です。"
 }
