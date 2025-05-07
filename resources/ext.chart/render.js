@@ -110,7 +110,7 @@ const render = ( wikiChartElement, chartData ) => {
 		yAxisFormatMode = 'none'
 	} = chartData;
 
-	const language = mw.config.get( 'wgPageViewLanguage' );
+	const language = wikiChartElement.lang ? wikiChartElement.lang : mw.config.get( 'wgPageViewLanguage' );
 	const locale = Intl.Locale ? new Intl.Locale( language ) : null;
 	// Note: Only available in modern browsers, older browsers will fall back to LTR.
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
