@@ -1,10 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
+			"Asked42",
 			"আফতাবুজ্জামান"
 		]
 	},
+	"chart-desc": "রেখাচিত্র প্রদর্শনের জন্য <code><nowiki>{{#chart:}}</nowiki></code> পার্সার ফাংশনটি যোগ করে",
+	"chart-error-chart-definition-not-found": "রেখাচিত্রের সংজ্ঞা পৃষ্ঠা পাওয়া যায়নি।",
+	"chart-error-chart-definition-invalid": "রেখাচিত্রের সংজ্ঞা পৃষ্ঠাটি অবৈধ।",
 	"chart-error-data-source-invalid": "অবৈধ ট্যাবুলার উপাত্ত উৎস প্রদান করা হয়েছে।",
+	"chart-error-data-source-page-not-found": "রেখাচিত্রের সারণিভিত্তিক উপাত্ত উৎস পৃষ্ঠাটি পাওয়া যায়নি।",
+	"chart-error-default-source-not-specified": "রেখাচিত্র সংজ্ঞা পৃষ্ঠায় ডিফল্ট উপাত্ত উৎস নির্দিষ্ট করা নেই।",
+	"chart-error-incompatible-chart-definition": "সংজ্ঞা পৃষ্ঠাটি রেখাচিত্রের সাথে সামঞ্জস্যপূর্ণ নয়।",
+	"chart-error-incompatible-data-source": "সারণিভিত্তিক উপাত্ত উৎস পৃষ্ঠাটি রেখাচিত্রের সাথে সামঞ্জস্যপূর্ণ নয়।",
+	"chart-error-invalid-data-source": "সারণিভিত্তিক উপাত্ত উৎস পৃষ্ঠা অবৈধ।",
 	"chart-error-invalid-height": "উচ্চতা অবশ্যই ১০০-এর চেয়ে বড় বা এর সমান একটি পূর্ণসংখ্যা হতে হবে।",
-	"chart-error-unexpected": "চার্ট রেন্ডার করার সময় অপ্রত্যাশিত ত্রুটি ঘটেছে।"
+	"chart-error-invalid-width": "প্রস্থ অবশ্যই ১০০-এর চেয়ে বড় বা এর সমান একটি পূর্ণসংখ্যা হতে হবে।",
+	"chart-error-shell-disabled": "শেল এক্সিকিউশন নিষ্ক্রিয় হওয়ার কারণে রেখাচিত্রগুলো প্রদর্শন করা যাবে না।",
+	"chart-error-rendering-error": "রেখাচিত্রটি প্রদর্শন করার সময় একটি ত্রুটি হয়েছে।",
+	"chart-error-unexpected": "চার্ট রেন্ডার করার সময় অপ্রত্যাশিত ত্রুটি ঘটেছে।",
+	"chart-error-category": "প্রদর্শনের ত্রুটি সহ রেখাচিত্র এক্সটেনশন ব্যবহার করা পৃষ্ঠাগুলি",
+	"chart-render-category": "রেখাচিত্র এক্সটেনশন ব্যবহার করা পাতা",
+	"chart-visualeditor-mwchartdialog-title": "রেখাচিত্র",
+	"chart-visualeditor-mwchartdialog-chart-label": "রেখাচিত্র সংজ্ঞা পৃষ্ঠা",
+	"chart-visualeditor-mwchartdialog-data-label": "রেখাচিত্রের সারণিভিত্তিক উপাত্ত উৎস",
+	"chartjson-error-version": "$1-কে অবশ্যই $2 এবং $3 এর মধ্যবর্তী একটি পূর্ণসংখ্যা হতে হবে।",
+	"chartjson-error-enum": "$1-কে অবশ্যই নিম্নলিখিত মানগুলির মধ্যে একটি হতে হবে: $2",
+	"chart-error-source-not-found": "সারণিভিত্তিক উপাত্তের উৎস পৃষ্ঠাটি পাওয়া যায়নি।",
+	"chart-error-invalid-source-type": "সারণিভিত্তিক উপাত্ত উৎস পৃষ্ঠাটির ধরণ অবৈধ।",
+	"chart-error-invalid-source-content": "সারণিভিত্তিক উপাত্ত উৎস পৃষ্ঠার বিষয়বস্তু অবৈধ।"
 }

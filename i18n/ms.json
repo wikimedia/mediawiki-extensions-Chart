@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hakimi97"
+		]
+	},
+	"chart-desc": "Menambahkan fungsi penghurai <code><nowiki>{{#chart:}}</nowiki></code> untuk memaparkan carta",
+	"chart-error-chart-definition-not-found": "Laman pentakrifan carta tidak ditemui.",
+	"chart-error-chart-definition-invalid": "Laman pentakrifan carta tidak sah.",
+	"chart-error-data-source-invalid": "Sumber data jadual tidak sah disediakan.",
+	"chart-error-data-source-page-not-found": "Laman sumber data jadual carta tidak ditemui.",
+	"chart-error-default-source-not-specified": "Laman pentakrifan carta tidak menyatakan sumber data lalai.",
+	"chart-error-incompatible-chart-definition": "Laman pentakrifan tidak serasi dengan carta.",
+	"chart-error-incompatible-data-source": "Laman sumber data jadual tidak serasi dengan carta.",
+	"chart-error-invalid-data-source": "Laman sumber data jadual adalah tidak sah.",
+	"chart-error-invalid-height": "Ketinggian mestilah merupakan integer yang lebih besar atau sama dengan nilai 100.",
+	"chart-error-invalid-width": "Lebar mestilah merupakan integer yang lebih besar daripada atau sama dengan nilai 100.",
+	"chart-error-shell-disabled": "Carta tidak boleh dipaparkan kerana pelaksanaan shell dilumpuhkan.",
+	"chart-error-rendering-error": "Terdapat ralat semasa memaparkan carta.",
+	"chart-error-unexpected": "Ralat yang tidak dijangka berlaku semasa memaparkan carta.",
+	"chart-error-category": "Laman menggunakan sambungan Chart dengan ralat pemaparan",
+	"chart-render-category": "Laman yang menggunakan sambungan Chart",
+	"chart-visualeditor-mwchartdialog-title": "Carta",
+	"chart-visualeditor-mwchartdialog-chart-label": "Laman pentakrifan carta",
+	"chart-visualeditor-mwchartdialog-data-label": "Sumber data jadual carta",
+	"chartjson-error-version": "$1 mestilah merupakan integer bernilai sama atau antara $2 dan $3.",
+	"chartjson-error-enum": "$1 mestilah merupakan salah satu daripada nilai berikut: $2",
+	"chart-error-source-not-found": "Laman sumber data jadual tidak ditemui.",
+	"chart-error-invalid-source-type": "Laman sumber data jadual adalah daripada jenis tidak sah.",
+	"chart-error-invalid-source-content": "Kandungan laman sumber data jadual adalah tidak sah."
+}
