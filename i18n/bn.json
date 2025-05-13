@@ -1,9 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Asked42"
 		]
 	},
+	"chart-desc": "রেখাচিত্র প্রদর্শনের জন্য <code><nowiki>{{#chart:}}</nowiki></code> পার্সার ফাংশনটি যোগ করে",
+	"chart-error-chart-definition-not-found": "রেখাচিত্রের সংজ্ঞা পৃষ্ঠা পাওয়া যায়নি।",
+	"chart-error-data-source-page-not-found": "রেখাচিত্রের সারণিভিত্তিক উপাত্তের উৎস পৃষ্ঠাটি পাওয়া যায়নি।",
+	"chart-error-default-source-not-specified": "রেখাচিত্রের সংজ্ঞা পৃষ্ঠায় পূর্বনির্ধারিত উপাত্তের উৎস নির্দিষ্ট করা নেই।",
+	"chart-error-incompatible-chart-definition": "সংজ্ঞা পৃষ্ঠাটি রেখাচিত্রের সাথে সামঞ্জস্যপূর্ণ নয়।",
+	"chart-error-incompatible-data-source": "সারণিভিত্তিক উপাত্তের উৎস পৃষ্ঠাটি রেখাচিত্রের সাথে সামঞ্জস্যপূর্ণ নয়।",
 	"chart-error-invalid-height": "উচ্চতা অবশ্যই ১০০-এর চেয়ে বড় বা এর সমান একটি পূর্ণসংখ্যা হতে হবে।",
-	"chart-error-unexpected": "চার্ট রেন্ডার করার সময় অপ্রত্যাশিত ত্রুটি ঘটেছে।"
+	"chart-error-invalid-width": "প্রস্থ অবশ্যই ১০০-এর চেয়ে বড় বা এর সমান একটি পূর্ণসংখ্যা হতে হবে।",
+	"chart-error-shell-disabled": "শেল এক্সিকিউশন নিষ্ক্রিয় হওয়ার কারণে রেখাচিত্রগুলো প্রদর্শন করা যাবে না।",
+	"chart-error-rendering-error": "রেখাচিত্রটি প্রদর্শন করার সময় একটি ত্রুটি হয়েছে।",
+	"chart-error-unexpected": "রেখাচিত্র রেন্ডার করার সময় অপ্রত্যাশিত ত্রুটি ঘটেছে।"
 }

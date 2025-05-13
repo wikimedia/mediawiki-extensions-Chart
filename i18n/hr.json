@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"MaGa"
+		]
+	},
+	"chart-desc": "Dodaje <code><nowiki>{{#chart:}}</nowiki></code> funkciju raščlanjivača za prikaz grafikona",
+	"chart-error-chart-definition-not-found": "Stranica s definicijom grafikona nije pronađena.",
+	"chart-error-data-source-page-not-found": "Stranica s izvorom tabličnih podataka grafikona nije pronađena.",
+	"chart-error-default-source-not-specified": "Stranica s definicijom grafikona ne navodi zadani izvor podataka.",
+	"chart-error-incompatible-chart-definition": "Stranica s definicijom nije podudarna s grafikonima.",
+	"chart-error-incompatible-data-source": "Stranica s izvorom tabličnih podataka nije podudarna s grafikonima.",
+	"chart-error-invalid-height": "Visina mora biti cijeli broj veći ili jednak 100.",
+	"chart-error-invalid-width": "Širina mora biti cijeli broj veći ili jednak 100.",
+	"chart-error-shell-disabled": "Grafikoni se ne mogu iscrtati jer je izvršavanje ljuske onemogućeno.",
+	"chart-error-rendering-error": "Greška prilikom iscrtavanja grafikona.",
+	"chart-error-unexpected": "Neočekivana greška prilikom iscrtavanja grafikona."
+}

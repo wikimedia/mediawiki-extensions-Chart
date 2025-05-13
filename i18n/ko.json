@@ -4,5 +4,15 @@
 			"Ykhwong"
 		]
 	},
-	"chart-error-invalid-height": "높이는 100보다 크거나 같은 정수여야 합니다."
+	"chart-desc": "차트 표시를 위해 <code><nowiki>{{#chart:}}</nowiki></code> 파서 함수를 추가합니다",
+	"chart-error-chart-definition-not-found": "차트 정의 문서가 없습니다.",
+	"chart-error-data-source-page-not-found": "차트 탭 형식 데이터 원본 문서가 없습니다.",
+	"chart-error-default-source-not-specified": "차트 정의 문서가 기본 데이터 원본을 지정하고 있지 않습니다.",
+	"chart-error-incompatible-chart-definition": "정의 문서가 차트와 호환되지 않습니다.",
+	"chart-error-incompatible-data-source": "탭 형식 데이터 원본 문서가 차트와 호환되지 않습니다.",
+	"chart-error-invalid-height": "높이는 100보다 크거나 같은 정수여야 합니다.",
+	"chart-error-invalid-width": "너비는 100보다 크거나 같은 정수여야 합니다.",
+	"chart-error-shell-disabled": "셸 실행이 비활성화되어 있기 때문에 차트를 렌더링할 수 없습니다.",
+	"chart-error-rendering-error": "차트를 렌더링하는 동안 오류가 발생했습니다.",
+	"chart-error-unexpected": "차트를 렌더링할 때 예측하지 못한 오류가 발생했습니다."
 }
