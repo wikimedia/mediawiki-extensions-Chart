@@ -2,16 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Valepert"
+			"Valepert",
+			"ZioNicco"
 		]
 	},
 	"chart-desc": "Aggiunge la funzione parser <code><nowiki>{{#chart:}}</nowiki></code> per la visualizzazione dei grafici",
 	"chart-error-chart-definition-not-found": "Pagina di definizione del grafico non trovata.",
+	"chart-error-chart-definition-invalid": "Pagina di definizione del grafico non è valida.",
 	"chart-error-data-source-invalid": "È stata fornita una fonte di dati tabellari non valida.",
 	"chart-error-data-source-page-not-found": "Pagina di origine dei dati tabellari del grafico non trovata.",
 	"chart-error-default-source-not-specified": "La pagina di definizione del grafico non specifica un'origine dati predefinita.",
 	"chart-error-incompatible-chart-definition": "La pagina di definizione non è compatibile con i grafici.",
 	"chart-error-incompatible-data-source": "La pagina di origine dei dati tabellari non è compatibile con i grafici.",
+	"chart-error-invalid-data-source": "La pagina di origine dei dati tabellari non è valida.",
 	"chart-error-invalid-height": "L'altezza deve essere un numero intero maggiore o uguale a 100.",
 	"chart-error-invalid-width": "La larghezza deve essere un numero intero maggiore o uguale a 100.",
 	"chart-error-shell-disabled": "Non è possibile visualizzare i grafici perché l'esecuzione della shell è disabilitata.",
@@ -23,5 +26,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Pagina di definizione del grafico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte dei dati del grafico",
 	"chartjson-error-version": "$1 deve essere un numero intero tra $2 e $3 inclusi.",
-	"chartjson-error-enum": "$1 deve essere uno dei seguenti valori: $2"
+	"chartjson-error-enum": "$1 deve essere uno dei seguenti valori: $2",
+	"chart-error-source-not-found": "Pagina di origine dei dati tabellari del grafico non è stata trovata.",
+	"chart-error-invalid-source-type": "La pagina di origine dei dati tabellari non è di tipo valido.",
+	"chart-error-invalid-source-content": "La pagina di origine dei dati tabellari non è valida."
 }

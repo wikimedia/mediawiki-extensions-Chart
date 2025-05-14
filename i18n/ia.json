@@ -24,5 +24,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Pagina de definition del graphico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabular del graphico",
 	"chartjson-error-version": "$1 debe esser un numero integre inter $2 e $3 incluse.",
-	"chartjson-error-enum": "$1 debe esser un del sequente valores: $2"
+	"chartjson-error-enum": "$1 debe esser un del sequente valores: $2",
+	"chart-error-source-not-found": "Le pagina de origine con datos tabular non ha essite trovate.",
+	"chart-error-invalid-source-type": "Le pagina de origine con datos tabular es de un typo non valide.",
+	"chart-error-invalid-source-content": "Le contento del pagina de origine con datos tabular non es valide."
 }
