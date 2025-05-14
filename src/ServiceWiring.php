@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Chart;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @codeCoverageIgnore
@@ -14,6 +15,12 @@ use MediaWiki\MediaWikiServices;
 return [
 	'Chart.ChartArgumentsParser' => static function ( MediaWikiServices $services ): ChartArgumentsParser {
 		return new ChartArgumentsParser( $services->get( 'Chart.DataPageResolver' ) );
+	},
+	'Chart.ChartMetrics' => static function ( MediaWikiServices $services ): ChartMetrics {
+		return new ChartMetrics(
+			$services->getStatsFactory(),
+			WikiMap::getCurrentWikiId()
+		);
 	},
 	'Chart.ChartRenderer' => static function ( MediaWikiServices $services ): ChartRenderer {
 		return new ChartRenderer(

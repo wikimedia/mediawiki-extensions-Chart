@@ -11,6 +11,8 @@ use MediaWiki\MediaWikiServices;
 
 class JCChartContent extends JCDataContent {
 
+	public const CONTENT_MODEL = 'Chart.JsonConfig';
+
 	public const MIN_CHART_VERSION = 1;
 	public const MAX_CHART_VERSION = 1;
 
