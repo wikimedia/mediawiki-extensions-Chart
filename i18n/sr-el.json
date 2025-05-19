@@ -1,0 +1,6 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"chartjson-error-enum": "$1 mora biti jedna od sledećih vrednosti: $2"
+}
