@@ -30,5 +30,6 @@
 	"chartjson-error-enum": "$1 must be one of the following values: $2",
 	"chart-error-source-not-found": "Tabular data source page not found.",
 	"chart-error-invalid-source-type": "Tabular data source page is of invalid type.",
-	"chart-error-invalid-source-content": "Tabular data source page contents are invalid."
+	"chart-error-invalid-source-content": "Tabular data source page contents are invalid.",
+	"chart-error-transforms-disabled": "Tabular data transforms are disabled."
 }

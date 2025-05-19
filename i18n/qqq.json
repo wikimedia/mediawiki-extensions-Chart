@@ -30,5 +30,6 @@
 	"chartjson-error-enum": "Error message displayed when a chart JSON value $1 needs to be one of a specific list of values and isn't; parameter $2 is the command-separated list of acceptable values.",
 	"chart-error-source-not-found": "Error message when the chart tabular data source page is not found.",
 	"chart-error-invalid-source-type": "Error message when the chart tabular data source page is of an invalid type.",
-	"chart-error-invalid-source-content": "Error message when the chart tabular data source page's contents are invalid."
+	"chart-error-invalid-source-content": "Error message when the chart tabular data source page's contents are invalid.",
+	"chart-error-transforms-disabled": "Error message when the chart uses a transform but transforms are disabled."
 }

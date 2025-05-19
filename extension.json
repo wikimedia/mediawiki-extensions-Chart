@@ -27,6 +27,10 @@
 		"ChartCliPath": {
 			"value": null,
 			"description": "File path to the chart-renderer CLI script. Defaults to 'path/to/extensions/Chart/chart-renderer/cli.js'. If both ChartServiceUrl and this setting are set, this setting is ignored and ChartServiceUrl is used."
+		},
+		"ChartTransformsEnabled": {
+			"value": false,
+			"description": "Enables Lua transforms of input data specified in chart definitions."
 		}
 	},
 	"callback": "MediaWiki\\Extension\\Chart\\Hooks::onRegistration",
