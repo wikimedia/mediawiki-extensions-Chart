@@ -6,6 +6,7 @@ use JsonConfig\JCContent;
 use JsonConfig\JCSingleton;
 use JsonConfig\JCTabularContent;
 use JsonConfig\JCTitle;
+use JsonConfig\JCTransform;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
@@ -212,7 +213,7 @@ class ParserFunction implements MessageLocalizer {
 	 * @param ?JCTitle $tabularData Optional tabular data page title. If not provided, the default
 	 *        data source specified in the chart definition will be used.
 	 * @param array $options Rendering options (e.g., 'width' and 'height').
-	 * @return Status wrapped HTML string containing the rendered chart or an error message.
+	 * @return Status<string> wrapped HTML string containing the rendered chart or an error message.
 	 */
 	public function renderChartForDefinitionContent(
 		ParserOutput $output,
@@ -220,53 +221,63 @@ class ParserFunction implements MessageLocalizer {
 		?JCTitle $tabularData = null,
 		array $options = []
 	): Status {
-		$status = Status::newGood();
-
 		if ( !$definitionContent instanceof JCChartContent ) {
-			$status->fatal( 'chart-error-chart-definition-invalid' );
-			return $status;
+			return Status::newFatal( 'chart-error-chart-definition-invalid' );
 		}
 
 		$definitionObj = $definitionContent->getLocalizedData( $this->language );
-
 		if ( !$definitionObj ) {
-			$status->fatal( 'chart-error-chart-definition-invalid' );
-			return $status;
+			return Status::newFatal( 'chart-error-chart-definition-invalid' );
 		}
 
-		if ( !$tabularData ) {
+		$tabularDataTitleValue = null;
+		if ( $tabularData ) {
+			$tabularDataTitleValue = $tabularData;
+		} else {
 			if ( !isset( $definitionObj->source ) ) {
-				$status->fatal( 'chart-error-default-source-not-specified' );
-				return $status;
+				return Status::newFatal( 'chart-error-default-source-not-specified' );
 			}
 			$tabularDataTitleValue = $this->dataPageResolver->resolvePageInDataNamespace(
 				$definitionObj->source
 			);
-		} else {
-			$tabularDataTitleValue = $tabularData;
 		}
 		if ( !$tabularDataTitleValue ) {
-			$status->fatal( 'chart-error-data-source-page-not-found' );
-			return $status;
+			return Status::newFatal( 'chart-error-data-source-page-not-found' );
 		}
+
 		JCSingleton::recordJsonLink(
 			$output,
 			$tabularDataTitleValue
 		);
 
-		$dataContent = JCSingleton::getContent( $tabularDataTitleValue );
-		if ( !$dataContent ) {
-			$status->fatal( 'chart-error-data-source-page-not-found' );
-			return $status;
-		} elseif ( !( $dataContent instanceof JCTabularContent ) ) {
-			$status->fatal( 'chart-error-incompatible-data-source' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$loader = JCSingleton::getContentLoader( $tabularDataTitleValue );
+		if ( $definitionObj->transform ?? null ) {
+			if ( $config->get( 'ChartTransformsEnabled' ) ) {
+				$transform = JCTransform::newFromJson( $definitionObj->transform );
+				$loader->transform( $transform );
+			} else {
+				return Status::newFatal( 'chart-error-transforms-disabled' );
+			}
+		}
+		$status = $loader->load();
+		if ( !$status->isOk() ) {
+			// Phan doesn't seem to like changing container generic types here?
+			// There's no contained value, so we're only reporting the error.
+			// @phan-suppress-next-line PhanTypeMismatchReturn
 			return $status;
 		}
 
+		$wrapper = $status->getValue();
+		$dataContent = $wrapper->getContent();
+		if ( !( $dataContent instanceof JCTabularContent ) ) {
+			return Status::newFatal( 'chart-error-incompatible-data-source' );
+		}
+		$wrapper->addToParserOutput( $output );
+
 		$dataObj = $dataContent->getLocalizedData( $this->language );
 		if ( !$dataObj ) {
-			$status->fatal( 'chart-error-invalid-data-source' );
-			return $status;
+			return Status::newFatal( 'chart-error-invalid-data-source' );
 		}
 		$options['locale'] = $this->language->getCode();
 
@@ -276,11 +287,10 @@ class ParserFunction implements MessageLocalizer {
 			$options
 		);
 
-		if ( $status->isOK() ) {
+		if ( $status->isOk() ) {
 			$output->addModuleStyles( [ 'ext.chart.styles' ] );
 
 			// Check that Charts progressive enhancement is enabled. If so, modify output.
-			$config = MediaWikiServices::getInstance()->getMainConfig();
 			if ( $config->get( 'ChartProgressiveEnhancement' ) ) {
 				$output->addWrapperDivClass( 'ext-chart-js' );
 				$output->addModules( [ 'ext.chart.bootstrap' ] );

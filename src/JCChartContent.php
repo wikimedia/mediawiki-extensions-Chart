@@ -68,6 +68,21 @@ class JCChartContent extends JCDataContent {
 
 		$this->testOptionalAlt( 'legend', self::isSwitchableString() );
 
+		if ( $this->getField( 'transform' ) ) {
+			$this->test( [ 'transform', 'module' ], JCValidators::isStringLine() );
+			$this->test( [ 'transform', 'function' ], JCValidators::isStringLine() );
+			$this->testOptionalAlt( [ 'transform', 'args' ], JCValidators::isDictionary() );
+			$args = $this->getField( [ 'transform', 'args' ] );
+			if ( $args ) {
+				foreach ( $args->getValue() as $key => $value ) {
+					// Note args are intended to be passable as key=value pairs
+					// in parser function arguments and will be strings but may be
+					// long or include newlines.
+					$this->test( [ 'transform', 'args', $key ], JCValidators::isString() );
+				}
+			}
+		}
+
 		$this->test( 'source', self::isValidSource() );
 	}
 
@@ -202,6 +217,9 @@ class JCChartContent extends JCDataContent {
 		}
 		if ( isset( $data->source ) ) {
 			$result->source = $data->source;
+		}
+		if ( isset( $data->transform ) ) {
+			$result->transform = $data->transform;
 		}
 	}
 }
