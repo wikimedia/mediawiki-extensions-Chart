@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Snævar"
+		]
+	},
+	"chart-error-chart-definition-not-found": "Skilgreiningarsíða fyrir graf fannst ekki.",
+	"chart-error-data-source-page-not-found": "Töflugögn fyrir graf fannst ekki."
+}
