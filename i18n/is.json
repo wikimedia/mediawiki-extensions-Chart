@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Snævar"
+		]
+	},
+	"chart-error-chart-definition-not-found": "Skilgreiningarsíða fyrir graf fannst ekki.",
+	"chart-error-chart-definition-invalid": "Skilgreiningarsíða fyrir graf er ógild.",
+	"chart-error-data-source-invalid": "Ógild töflugögn gefin.",
+	"chart-error-data-source-page-not-found": "Töflugögn fyrir graf fannst ekki.",
+	"chart-visualeditor-mwchartdialog-title": "Graf",
+	"chart-visualeditor-mwchartdialog-chart-label": "Skilgreiningarsíða grafs",
+	"chart-visualeditor-mwchartdialog-data-label": "Töflugögn grafs",
+	"chart-error-source-not-found": "Töflugögn fundust ekki.",
+	"chart-error-invalid-source-type": "Síðan fyrir töflugögn er af ógildri gerð.",
+	"chart-error-invalid-source-content": "Innihald töflugagna síðu er ógilt."
+}

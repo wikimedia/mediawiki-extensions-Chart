@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yurina Tatiana"
+		]
+	},
+	"chart-desc": "Добавляет функцию парсера <code><nowiki>{{#chart:}}</nowiki></code> для отображения диаграмм.",
+	"chart-error-chart-definition-not-found": "Страница определения диаграммы не найдена.",
+	"chart-error-chart-definition-invalid": "Страница определения диаграммы недействительна.",
+	"chart-error-data-source-invalid": "Указан недействительный источник табличных данных.",
+	"chart-error-data-source-page-not-found": "Страница источника табличных данных диаграммы не найдена.",
+	"chart-error-default-source-not-specified": "На странице определения диаграммы не указан источник данных по умолчанию.",
+	"chart-error-incompatible-chart-definition": "Страница определения несовместима с диаграммами.",
+	"chart-error-incompatible-data-source": "Страница источника табличных данных несовместима с диаграммами.",
+	"chart-error-invalid-data-source": "Страница источника табличных данных недействительна.",
+	"chart-error-invalid-height": "Высота должна быть целым числом, большим или равным 100.",
+	"chart-error-invalid-width": "Ширина должна быть целым числом, большим или равным 100.",
+	"chart-error-rendering-error": "При отрисовке диаграммы произошла ошибка.",
+	"chart-render-category": "Страницы, использующие расширение Chart",
+	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
+	"chart-visualeditor-mwchartdialog-chart-label": "Страница определения диаграммы",
+	"chart-visualeditor-mwchartdialog-data-label": "Источник табличных данных диаграммы",
+	"chartjson-error-version": "$1 должно быть целым числом от $2 до $3 включительно.",
+	"chart-error-source-not-found": "Страница источника табличных данных диаграммы не найдена."
+}
