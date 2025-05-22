@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Stjn",
 			"Yurina Tatiana"
 		]
 	},
@@ -16,6 +17,7 @@
 	"chart-error-invalid-height": "Высота должна быть целым числом, большим или равным 100.",
 	"chart-error-invalid-width": "Ширина должна быть целым числом, большим или равным 100.",
 	"chart-error-rendering-error": "При отрисовке диаграммы произошла ошибка.",
+	"chart-error-category": "Страницы с ошибками рендеринга расширения Chart",
 	"chart-render-category": "Страницы, использующие расширение Chart",
 	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница определения диаграммы",
