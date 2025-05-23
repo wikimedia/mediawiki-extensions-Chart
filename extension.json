@@ -95,7 +95,9 @@
 		}
 	},
 	"Hooks": {
-		"ParserFirstCallInit": "main"
+		"LinksUpdateComplete": "main",
+		"ParserFirstCallInit": "main",
+		"PageSaveComplete": "main"
 	},
 	"attributes": {
 		"VisualEditor": {
