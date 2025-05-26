@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Lolekek",
 			"Meno25",
 			"Mr. Ibrahem",
 			"Zaid1442011"
@@ -20,8 +21,8 @@
 	"chart-error-shell-disabled": "لا يمكن عرض المخططات البيانية لأن تنفيذ shell معطل.",
 	"chart-error-rendering-error": "حدث خطأ أثناء عرض الرسم البياني.",
 	"chart-error-unexpected": "حدث خطأ غير متوقع أثناء عرض الرسم البياني.",
-	"chart-error-category": "صفحات تستخدم إضافة الرسم البياني مع أخطاء العرض",
-	"chart-render-category": "صفحات تستخدم إضافة الرسم البياني",
+	"chart-error-category": "صفحات تستخدم امتداد الرسم البياني مع أخطاء العرض",
+	"chart-render-category": "صفحات تستخدم امتداد الرسم البياني",
 	"chart-visualeditor-mwchartdialog-title": "رسم بياني",
 	"chart-visualeditor-mwchartdialog-chart-label": "صفحة تعريف الرسم البياني",
 	"chart-visualeditor-mwchartdialog-data-label": "مصدر البيانات الجدولية",
