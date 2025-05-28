@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"FlatLanguage",
-			"Afaz"
+			"Afaz",
+			"Shirayuki"
 		]
 	},
 	"chart-desc": "チャートを表示するためのパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
@@ -10,7 +11,7 @@
 	"chart-error-chart-definition-invalid": "チャート定義ページが無効です。",
 	"chart-error-data-source-invalid": "無効な表形式データソースが指定されました。",
 	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",
-	"chart-error-default-source-not-specified": "チャート定義ページでデフォルトのデータソースが指定されていません。",
+	"chart-error-default-source-not-specified": "チャート定義ページで既定のデータソースが指定されていません。",
 	"chart-error-incompatible-chart-definition": "定義ページがチャートと互換性がありません。",
 	"chart-error-incompatible-data-source": "表形式のデータソースページがチャートと互換性がありません。",
 	"chart-error-invalid-data-source": "表形式データソースページが無効です。",
