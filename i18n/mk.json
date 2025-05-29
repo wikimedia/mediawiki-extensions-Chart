@@ -27,5 +27,6 @@
 	"chartjson-error-enum": "$1 мора да има една од следниве вредности: $2",
 	"chart-error-source-not-found": "Не ја најдов изворната страница со табеларни податоци.",
 	"chart-error-invalid-source-type": "Изворот на табеларни податоци е од неважечки тип.",
-	"chart-error-invalid-source-content": "Содржината на изворот на табеларни податоци е неважечка."
+	"chart-error-invalid-source-content": "Содржината на изворот на табеларни податоци е неважечка.",
+	"chart-error-transforms-disabled": "Преобразувањата на табеларни податоци се оневозможени."
 }
