@@ -74,7 +74,7 @@ class JCChartContent extends JCDataContent {
 			$this->testOptionalAlt( [ 'transform', 'args' ], JCValidators::isDictionary() );
 			$args = $this->getField( [ 'transform', 'args' ] );
 			if ( $args ) {
-				foreach ( $args->getValue() as $key => $value ) {
+				foreach ( array_keys( get_object_vars( $args->getValue() ) ) as $key ) {
 					// Note args are intended to be passable as key=value pairs
 					// in parser function arguments and will be strings but may be
 					// long or include newlines.
