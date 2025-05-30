@@ -27,5 +27,6 @@
 	"chartjson-error-enum": "\"$1\" debe ser un dos seguintes valores: $2",
 	"chart-error-source-not-found": "Non se atopou a páxina de orixe de datos tabulares.",
 	"chart-error-invalid-source-type": "A páxina de orixe de datos tabulares non é dun tipo válido.",
-	"chart-error-invalid-source-content": "O contido da páxina de orixe de datos tabulares non é válido."
+	"chart-error-invalid-source-content": "O contido da páxina de orixe de datos tabulares non é válido.",
+	"chart-error-transforms-disabled": "As transformacións de datos tabulares están desactivadas."
 }

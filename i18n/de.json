@@ -27,5 +27,6 @@
 	"chartjson-error-enum": "$1 muss einer der folgenden Werte sein: $2",
 	"chart-error-source-not-found": "Die Seite mit der tabellarischen Datenquelle wurde nicht gefunden.",
 	"chart-error-invalid-source-type": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Typ.",
-	"chart-error-invalid-source-content": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Inhalt."
+	"chart-error-invalid-source-content": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Inhalt.",
+	"chart-error-transforms-disabled": "Tabellen-Daten-Transformationen sind deaktiviert."
 }
