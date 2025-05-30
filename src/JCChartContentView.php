@@ -73,21 +73,23 @@ class JCChartContentView extends JCContentView {
 	 * @inheritDoc
 	 */
 	public function getDefault( $modelId ): string {
-		$licenseIntro = JCContentView::getLicenseIntro();
 		return <<<JSON
 {
-	// !!!!! All comments will be automatically deleted on save !!!!!
+	"@documentation": "https://www.mediawiki.org/wiki/Extension:Chart/Specification",
 	"version": 1,
 
-	$licenseIntro,
+	"license": "",
 
-	// Name of a tabular data page to use as the data source. Can be overridden on each page that uses the chart.
 	"source": "Example.tab",
 
-	// Chart type. Available types are: line
+	"mediawikiCategories": [],
+
+	"title": {
+		"en": "Title of chart"
+	},
+
 	"type": "line",
 
-	// Axis labels and other axis settings
 	"xAxis": {
 		"title": {
 			"en": "X axis label"
@@ -98,8 +100,6 @@ class JCChartContentView extends JCContentView {
 			"en": "Y axis label"
 		}
 	}
-
-	// Other chart parameters, these are specific to each chart type
 }
 JSON;
 	}
