@@ -31,6 +31,10 @@
 		"ChartTransformsEnabled": {
 			"value": false,
 			"description": "Enables Lua transforms of input data specified in chart definitions."
+		},
+		"ChartRequestSizeLimit": {
+			"value": 100000,
+			"description": "Maximum size of request payload in bytes when sending data to the chart-renderer service. Default is 100KB."
 		}
 	},
 	"callback": "MediaWiki\\Extension\\Chart\\Hooks::onRegistration",

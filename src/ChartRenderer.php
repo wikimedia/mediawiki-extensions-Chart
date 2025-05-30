@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\Chart\Validators\ChartRequestValidator;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Shell\Shell;
@@ -18,6 +19,7 @@ class ChartRenderer {
 	private HttpRequestFactory $httpRequestFactory;
 	private FormatterFactory $formatterFactory;
 	private LoggerInterface $logger;
+	private ChartRequestValidator $requestValidator;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -31,18 +33,21 @@ class ChartRenderer {
 	 * @param ServiceOptions $options
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param FormatterFactory $formatterFactory
+	 * @param ChartRequestValidator $requestValidator
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		HttpRequestFactory $httpRequestFactory,
 		FormatterFactory $formatterFactory,
+		ChartRequestValidator $requestValidator,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->formatterFactory = $formatterFactory;
+		$this->requestValidator = $requestValidator;
 		$this->logger = $logger;
 	}
 
@@ -73,14 +78,16 @@ class ChartRenderer {
 	}
 
 	private function renderWithService( stdclass $chartDef, stdclass $tabularData, array $options ): Status {
-		$requestData = array_merge( [
-			'definition' => $chartDef,
-			'data' => $tabularData,
-		], $options );
+		$requestJson = $this->encodeRequestData( $chartDef, $tabularData, $options );
+
+		$status = $this->requestValidator->validateRequestSize( $requestJson );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		$requestOptions = [
 			'method' => 'POST',
-			'postData' => json_encode( $requestData )
+			'postData' => $requestJson
 		];
 		$request = $this->httpRequestFactory->create(
 			$this->options->get( 'ChartServiceUrl' ),
@@ -112,12 +119,14 @@ class ChartRenderer {
 			return Status::newFatal( 'chart-error-shell-disabled' );
 		}
 
+		$requestData = $this->encodeRequestData( $chartDef, $tabularData, $options );
+		$status = $this->requestValidator->validateRequestSize( $requestData );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		$dataPath = tempnam( \wfTempDir(), 'data-json' );
-		file_put_contents( $dataPath, json_encode( [
-			'definition' => $chartDef,
-			'data' => $tabularData,
-			...$options
-		] ) );
+		file_put_contents( $dataPath, $requestData );
 
 		$result = Shell::command(
 			'node',
@@ -143,5 +152,15 @@ class ChartRenderer {
 
 		unlink( $dataPath );
 		return $status;
+	}
+
+	private function encodeRequestData( stdclass $chartDef, stdclass $tabularData, array $options ): string {
+		// JSON_UNESCAPED_UNICODE prevents non-ASCII characters from being escaped as \uXXXX,
+		// reducing payload size when chart definitions or data when non-ASCII characters are present.
+		return json_encode( [
+			'definition' => $chartDef,
+			'data' => $tabularData,
+			...$options
+		], JSON_UNESCAPED_UNICODE );
 	}
 }

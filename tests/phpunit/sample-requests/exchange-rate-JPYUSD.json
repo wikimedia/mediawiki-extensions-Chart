@@ -1,0 +1,140 @@
+{
+	"definition": {
+		"license": {
+			"code": "CC0-1.0",
+			"text": "Creative Commons Zero",
+			"url": "https://creativecommons.org/publicdomain/zero/1.0/"
+		},
+		"version": 1,
+		"type": "line",
+		"xAxis": {
+			"title": "Data"
+		},
+		"yAxis": {
+			"title": "Exchange rate JPY-USD"
+		},
+		"source": "ExchangeRateJPYUSD.tab",
+		"idPrefix": "mw-chart-230589cb13b21653ac8376a659f6bf895eb479661c51b57d420fc2ac23f8f6d362012d98e4ce1dc060615e72cbf1f5dff434b0d9eea1f5c82fec48ccb303074f"
+	},
+	"data": {
+		"description": "JPYUSD exchange rate, 2023-2024",
+		"license": {
+			"code": "CC0-1.0",
+			"text": "Creative Commons Zero",
+			"url": "https://creativecommons.org/publicdomain/zero/1.0/"
+		},
+		"schema": {
+			"fields": [
+				{
+					"name": "date",
+					"type": "string",
+					"title": "Date"
+				},
+				{
+					"name": "ExchangeRate",
+					"type": "number",
+					"title": "Exchange rate"
+				}
+			]
+		},
+		"data": [
+			[
+				"2023-01-01",
+				0.007684
+			],
+			[
+				"2023-02-01",
+				0.007338
+			],
+			[
+				"2023-03-01",
+				0.007527
+			],
+			[
+				"2023-04-01",
+				0.007338
+			],
+			[
+				"2023-05-01",
+				0.007176
+			],
+			[
+				"2023-06-01",
+				0.006928
+			],
+			[
+				"2023-07-01",
+				0.007027
+			],
+			[
+				"2023-08-01",
+				0.006868
+			],
+			[
+				"2023-09-01",
+				0.006692
+			],
+			[
+				"2023-10-01",
+				0.00659
+			],
+			[
+				"2023-11-01",
+				0.006745
+			],
+			[
+				"2023-12-01",
+				0.007087
+			],
+			[
+				"2024-01-01",
+				0.006803
+			],
+			[
+				"2024-02-01",
+				0.006666
+			],
+			[
+				"2024-03-01",
+				0.006607
+			],
+			[
+				"2024-04-01",
+				0.006356
+			],
+			[
+				"2024-05-01",
+				0.006356
+			],
+			[
+				"2024-06-01",
+				0.006212
+			],
+			[
+				"2024-07-01",
+				0.00667
+			],
+			[
+				"2024-08-01",
+				0.006839
+			],
+			[
+				"2024-09-01",
+				0.006957
+			],
+			[
+				"2024-10-01",
+				0.006575
+			],
+			[
+				"2024-11-01",
+				0.006675
+			],
+			[
+				"2024-12-01",
+				0.0066393
+			]
+		]
+	},
+	"locale": "en"
+}

@@ -31,5 +31,6 @@
 	"chart-error-source-not-found": "Error message when the chart tabular data source page is not found.",
 	"chart-error-invalid-source-type": "Error message when the chart tabular data source page is of an invalid type.",
 	"chart-error-invalid-source-content": "Error message when the chart tabular data source page's contents are invalid.",
-	"chart-error-transforms-disabled": "Error message when the chart uses a transform but transforms are disabled."
+	"chart-error-transforms-disabled": "Error message when the chart uses a transform but transforms are disabled.",
+	"chart-error-request-too-large": "Error message when the chart and tabular data combined size exceed the maximum allowed size of $1, determined by the ChartRequestSizeLimit configuration. The size will be automatically formatted with appropriate units and number formatting for the user's language. Also provide a link to documentation on data transformation options available via lua modules."
 }

@@ -31,5 +31,6 @@
 	"chart-error-source-not-found": "Tabular data source page not found.",
 	"chart-error-invalid-source-type": "Tabular data source page is of invalid type.",
 	"chart-error-invalid-source-content": "Tabular data source page contents are invalid.",
-	"chart-error-transforms-disabled": "Tabular data transforms are disabled."
+	"chart-error-transforms-disabled": "Tabular data transforms are disabled.",
+	"chart-error-request-too-large": "Chart and tabular data exceed the maximum allowed size of $1 bytes. Please use a smaller dataset or consider [https://www.mediawiki.org/wiki/Extension:Chart/Transforms data transformation options] to filter or aggregate your data."
 }

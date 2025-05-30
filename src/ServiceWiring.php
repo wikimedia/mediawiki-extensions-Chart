@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Extension\Chart\Validators\ChartRequestValidator;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
@@ -30,6 +31,16 @@ return [
 			),
 			$services->getHttpRequestFactory(),
 			$services->getFormatterFactory(),
+			$services->get( 'Chart.ChartRequestValidator' ),
+			LoggerFactory::getInstance( 'Chart' )
+		);
+	},
+	'Chart.ChartRequestValidator' => static function ( MediaWikiServices $services ): ChartRequestValidator {
+		return new ChartRequestValidator(
+			new ServiceOptions(
+				ChartRequestValidator::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
 			LoggerFactory::getInstance( 'Chart' )
 		);
 	},
