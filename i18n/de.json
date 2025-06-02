@@ -28,5 +28,6 @@
 	"chart-error-source-not-found": "Die Seite mit der tabellarischen Datenquelle wurde nicht gefunden.",
 	"chart-error-invalid-source-type": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Typ.",
 	"chart-error-invalid-source-content": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Inhalt.",
-	"chart-error-transforms-disabled": "Tabellen-Daten-Transformationen sind deaktiviert."
+	"chart-error-transforms-disabled": "Tabellen-Daten-Transformationen sind deaktiviert.",
+	"chart-error-request-too-large": "Diagramm- und Tabellendaten überschreiten die maximal zulässige Größe von $1 Byte. Verwende einen kleineren Datensatz oder nutze [https://www.mediawiki.org/wiki/Extension:Chart/Transforms Datentransformationsoptionen], um deine Daten zu filtern oder zu aggregieren."
 }

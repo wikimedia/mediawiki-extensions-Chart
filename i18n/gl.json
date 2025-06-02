@@ -28,5 +28,6 @@
 	"chart-error-source-not-found": "Non se atopou a páxina de orixe de datos tabulares.",
 	"chart-error-invalid-source-type": "A páxina de orixe de datos tabulares non é dun tipo válido.",
 	"chart-error-invalid-source-content": "O contido da páxina de orixe de datos tabulares non é válido.",
-	"chart-error-transforms-disabled": "As transformacións de datos tabulares están desactivadas."
+	"chart-error-transforms-disabled": "As transformacións de datos tabulares están desactivadas.",
+	"chart-error-request-too-large": "Os datos dos gráficos e das táboas superan o tamaño máximo permitido de $1 bytes. Emprega un conxunto de datos máis pequeno ou considera as [https://www.mediawiki.org/wiki/Extension:Chart/Transforms opcións de transformación de datos] para filtrar ou agregar os teus datos."
 }

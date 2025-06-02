@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Epiphanus Jidechukwu"
+		]
+	},
+	"chart-error-request-too-large": "Chart na data tabular gafere oke ikike nke bytes $1. Biko jiri obere dataset ma ọ bụ tụlee [https://www.mediawiki.org/wiki/Extension:Chart/Transforms data mgbanwe nhọrọ] iji zachaa maọbụ chịkọta data gị."
+}

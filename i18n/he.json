@@ -28,5 +28,7 @@
 	"chartjson-error-enum": "$1 חייב להיות אחד מהערכים הבאים: $2",
 	"chart-error-source-not-found": "דף המקור לנתונים הטבלאיים של התרשים לא נמצא.",
 	"chart-error-invalid-source-type": "דף מקור נתונים טבלאיים אינו תקין.",
-	"chart-error-invalid-source-content": "תוכן דף מקור הנתונים הטבלאיים אינו תקין."
+	"chart-error-invalid-source-content": "תוכן דף מקור הנתונים הטבלאיים אינו תקין.",
+	"chart-error-transforms-disabled": "התמרות של נתונים טבלאיים מושבתות.",
+	"chart-error-request-too-large": "התרשים והנתונים הטבלאיים חורגים מהגודל המרבי המותר של $1 בתים. יש להשתמש בערכת נתונים קטנה יותר או לשקול [https://www.mediawiki.org/wiki/Extension:Chart/Transforms אפשרויות התמרת נתונים] כדי לסנן או לצבור את הנתונים שלך."
 }

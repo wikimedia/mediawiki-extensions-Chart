@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Derugon",
 			"EmDashUser002",
 			"JLTRY",
 			"Mahabarata",
@@ -32,5 +33,7 @@
 	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2",
 	"chart-error-source-not-found": "La page de la source des données du tableau graphique n'a pas été trouvée.",
 	"chart-error-invalid-source-type": "La page de source de données tabulaires est d'un type non valide.",
-	"chart-error-invalid-source-content": "Le contenu de la page de la source de données tabulaires n'est pas valide."
+	"chart-error-invalid-source-content": "Le contenu de la page de la source de données tabulaires n'est pas valide.",
+	"chart-error-transforms-disabled": "Les transformations de données tabulaires sont désactivées.",
+	"chart-error-request-too-large": "Les données des graphiques et des tableaux dépassent la taille maximale autorisée de $1 octet{{PLURAL:$1||s}}. Veuillez utiliser un jeu de données plus petit ou utiliser des [https://www.mediawiki.org/wiki/Extension:Chart/Transforms solutions de transformation de données] pour filtrer ou agréger vos données."
 }

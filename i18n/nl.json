@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jeroen N",
 			"McDutchie",
 			"Siebrand"
 		]
@@ -20,7 +21,7 @@
 	"chart-error-rendering-error": "Er is een fout opgetreden bij het weergeven van het diagram.",
 	"chart-error-unexpected": "Er is een onverwachte fout opgetreden bij het weergeven van de grafiek.",
 	"chart-error-category": "Pagina's met Chart-weergavefouten",
-	"chart-render-category": "Pagina's die de uitbreiding Chart gebruiken",
+	"chart-render-category": "Wikipedia:Pagina's die de uitbreiding Chart gebruiken",
 	"chart-visualeditor-mwchartdialog-title": "Grafiek",
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",

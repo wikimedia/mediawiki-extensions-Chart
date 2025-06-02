@@ -3,6 +3,7 @@
 		"authors": [
 			"Afaz",
 			"FlatLanguage",
+			"Foomin10",
 			"Shirayuki"
 		]
 	},
@@ -13,7 +14,7 @@
 	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",
 	"chart-error-default-source-not-specified": "チャート定義ページで既定のデータソースが指定されていません。",
 	"chart-error-incompatible-chart-definition": "定義ページがチャートと互換性がありません。",
-	"chart-error-incompatible-data-source": "表形式のデータソースページがチャートと互換性がありません。",
+	"chart-error-incompatible-data-source": "表形式データソースページがチャートと互換性がありません。",
 	"chart-error-invalid-data-source": "表形式データソースページが無効です。",
 	"chart-error-invalid-height": "高さは 100 以上の整数である必要があります。",
 	"chart-error-invalid-width": "幅は 100 以上の整数である必要があります。",
@@ -29,5 +30,7 @@
 	"chartjson-error-enum": "$1は次のいずれかの値である必要があります: $2",
 	"chart-error-source-not-found": "表形式データソースページが見つかりませんでした。",
 	"chart-error-invalid-source-type": "表形式データソースページが無効なタイプです。",
-	"chart-error-invalid-source-content": "表形式データソースページの内容が無効です。"
+	"chart-error-invalid-source-content": "表形式データソースページの内容が無効です。",
+	"chart-error-transforms-disabled": "表形式データ変換が無効です。",
+	"chart-error-request-too-large": "チャートと表形式データが最大許容サイズ $1 を超えています。データセットの容量を小さくすることや、[https://www.mediawiki.org/wiki/Extension:Chart/Transforms データ変換のオプション]を使用してデータをフィルタリング・集計することを検討してください。"
 }

@@ -28,5 +28,6 @@
 	"chart-error-source-not-found": "Cədvəlşəkilli məlumat mənbə səhifəsi tapılmadı.",
 	"chart-error-invalid-source-type": "Cədvəlşəkilli məlumat mənbə səhifəsi etibarsız tipdədir.",
 	"chart-error-invalid-source-content": "Cədvəlşəkilli məlumat mənbə səhifəsi etibarsızdır.",
-	"chart-error-transforms-disabled": "Cədvəlşəkilli data transformasiyası deaktiv edilib."
+	"chart-error-transforms-disabled": "Cədvəlşəkilli data transformasiyası deaktiv edilib.",
+	"chart-error-request-too-large": "Diaqram və cədvəlşəkilli datalar icazə verilən maksimum $1 bayt ölçüsünü keçir. Zəhmət olmasa, daha datasetdən istifadə edin və ya məlumatlarınızı filtrləmək və ya toplamaq üçün [https://www.mediawiki.org/wiki/Extension:Chart/Transforms data transformasiya seçimlərini] nəzərdən keçirin."
 }
