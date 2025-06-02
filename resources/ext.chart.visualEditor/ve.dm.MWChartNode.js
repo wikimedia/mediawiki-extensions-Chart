@@ -44,7 +44,9 @@ ve.dm.MWChartNode.static.enableAboutGrouping = true;
 // ahead of it because it is registered later (via a dependency in ResourceLoader)
 // TODO: Make this less fragile.
 ve.dm.MWChartNode.static.matchFunction = function ( domElement ) {
-	const mwDataJSON = domElement.getAttribute( 'data-mw' );
+	// FIXME: `data-mw` is for cached HTML (T395462)
+	const mwDataJSON = domElement.getAttribute( 'data-mw-charts' ) ||
+		domElement.getAttribute( 'data-mw' );
 	const mwData = mwDataJSON ? JSON.parse( mwDataJSON ) : {};
 	const mwPart = ( mwData.parts || [] )[ 0 ];
 	if ( !mwPart ) {
