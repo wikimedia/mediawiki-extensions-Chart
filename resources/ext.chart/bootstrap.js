@@ -3,7 +3,10 @@ const trustedCharts = Array.from( document.querySelectorAll( 'wiki-chart' ) );
 class WikiChart extends HTMLElement {
 	constructor() {
 		super();
-		this.trusted = trustedCharts.includes( this ) && this.hasAttribute( 'data-mw' );
+		this.trusted = trustedCharts.includes( this ) && (
+			// FIXME: `data-mw` is for cached HTML (T395462)
+			this.hasAttribute( 'data-mw-charts' ) || this.hasAttribute( 'data-mw' )
+		);
 		this.visible = false;
 	}
 
