@@ -3,7 +3,8 @@
 		"authors": [
 			"FlatLanguage",
 			"Afaz",
-			"Shirayuki"
+			"Shirayuki",
+			"Foomin10"
 		]
 	},
 	"chart-desc": "チャートを表示するためのパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
@@ -11,7 +12,7 @@
 	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",
 	"chart-error-default-source-not-specified": "チャート定義ページで既定のデータソースが指定されていません。",
 	"chart-error-incompatible-chart-definition": "定義ページがチャートと互換性がありません。",
-	"chart-error-incompatible-data-source": "表形式のデータソースページがチャートと互換性がありません。",
+	"chart-error-incompatible-data-source": "表形式データソースページがチャートと互換性がありません。",
 	"chart-error-invalid-height": "高さは 100 以上の整数である必要があります。",
 	"chart-error-invalid-width": "幅は 100 以上の整数である必要があります。",
 	"chart-error-shell-disabled": "シェルの実行が無効になっているため、チャートをレンダリングできません。",
