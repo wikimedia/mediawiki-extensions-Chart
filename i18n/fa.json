@@ -4,10 +4,30 @@
 			"Jeeputer"
 		]
 	},
+	"chart-desc": "تابع تجزیه‌گر <code><nowiki>{{#chart:}}</nowiki></code> را برای نمایش نمودارها اضافه می‌کند",
 	"chart-error-chart-definition-not-found": "صفحهٔ توصیف نمودار یافت نشد.",
+	"chart-error-chart-definition-invalid": "صفحهٔ توصیف نمودار نامعتبر است.",
+	"chart-error-data-source-invalid": "منبع داده‌های جدول ارائه‌شده نامعتبر است.",
 	"chart-error-data-source-page-not-found": "صفحهٔ منبع داده‌های جدولی نمودار یافت نشد.",
+	"chart-error-default-source-not-specified": "منبع  پیش‌فرض داده در صفحهٔ توصیف نمودار تعریف نشده است.",
 	"chart-error-incompatible-chart-definition": "صفحهٔ توصیف با نمودارها سازگار نیست.",
+	"chart-error-incompatible-data-source": "صفحهٔ منبع داده‌های جدول با نمودارهای سازگار نیست.",
+	"chart-error-invalid-data-source": "صفحهٔ منبع داده‌های جدولی نامعتبر است.",
+	"chart-error-invalid-height": "مقدار حداکثر باید یک عدد بزرگ‌تر یا برابر با ۱۰۰ باشد.",
+	"chart-error-invalid-width": "عرض باید یک عدد بزرگ‌تر یا برابر با ۱۰۰ باشد.",
+	"chart-error-shell-disabled": "ناتوان در تولید نمودار به دلیل غیرفعال بودن اجرای پوسته.",
 	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد.",
+	"chart-error-unexpected": "در زمان ارائهٔ نمودار خطای غیرمنتظره‌ای رخ داد.",
+	"chart-error-category": "صفحه‌هایی که از افزونه نمودار با خطای تولید اسستفاده می‌کنند",
+	"chart-render-category": "صفحه‌هایی که از افزونه نمودار استفاده می‌کنند",
+	"chart-visualeditor-mwchartdialog-title": "نمودار",
+	"chart-visualeditor-mwchartdialog-chart-label": "صفحهٔ توصیف نمودار",
+	"chart-visualeditor-mwchartdialog-data-label": "منبع داده‌های جدولی نمودار",
 	"chartjson-error-version": "$1 باید یک عدد صحیح بین $2 و $3 باشد.",
-	"chartjson-error-enum": "$1 باید برابر با یکی از این مقدارها باشد: $2"
+	"chartjson-error-enum": "$1 باید برابر با یکی از این مقدارها باشد: $2",
+	"chart-error-source-not-found": "صفحهٔ منبع داده‌های جدول یافت نشد.",
+	"chart-error-invalid-source-type": "نوع صفحهٔ منبع داده‌های جدولی نامعتبر است.",
+	"chart-error-invalid-source-content": "محتوای صفحهٔ منبع داده‌های جدولی نامعتبر است.",
+	"chart-error-transforms-disabled": "تبدیل داده‌های جدولی غیرفعال شده است.",
+	"chart-error-request-too-large": "نمودار و داده‌های جدول از محدودیت اندازهٔ مجاز $1 بایت گذر کرده‌اند. لطفاً از مجموعه داده‌های کوچک‌تر استفاده کنید یا برای پالایش یا متراکم‌سازی داده‌های خود از [https://www.mediawiki.org/wiki/Extension:Chart/Transforms گزینهٔ تبدیل داده] استفاده کنید."
 }
