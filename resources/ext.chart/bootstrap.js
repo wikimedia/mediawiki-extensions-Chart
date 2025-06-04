@@ -5,7 +5,7 @@ class WikiChart extends HTMLElement {
 		super();
 		this.trusted = trustedCharts.includes( this ) && (
 			// FIXME: `data-mw` is for cached HTML (T395462)
-			this.hasAttribute( 'data-mw-charts' ) || this.hasAttribute( 'data-mw' )
+			this.hasAttribute( 'data-mw-chart' ) || this.hasAttribute( 'data-mw' )
 		);
 		this.visible = false;
 	}
@@ -21,21 +21,12 @@ class WikiChart extends HTMLElement {
 						let chartData = {};
 						let type = 'unknown';
 						try {
-							if ( this.dataset.chart !== undefined ) {
-								chartData = JSON.parse( this.dataset.chart );
+							if ( this.dataset.mwChart !== undefined ) {
+								chartData = JSON.parse( this.dataset.mwChart );
 							} else {
-								// Backward compatibility: older content contains separate data
-								// attributes instead of a single data-chart attribute, and these
-								// are URL-encoded. This code can be removed once this older content
-								// has expired from the parser cache.
-								chartData = {
-									spec: this.dataset.spec === undefined ? undefined :
-										JSON.parse( decodeURIComponent( this.dataset.spec ) ),
-									theme: this.dataset.theme === undefined ? undefined :
-										JSON.parse( decodeURIComponent( this.dataset.theme ) ),
-									xAxisType: this.dataset.xAxisType,
-									yAxisType: this.dataset.yAxisType
-								};
+								// Backward compatibility: older content uses data-chart
+								// rather than data-mw-chart
+								chartData = JSON.parse( this.dataset.chart );
 							}
 							type = chartData.spec.series[ 0 ].type;
 						} catch ( e ) {
