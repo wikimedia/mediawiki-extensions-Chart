@@ -21,7 +21,7 @@ class WikiChart extends HTMLElement {
 						let chartData = {};
 						let type = 'unknown';
 						try {
-							if ( this.dataset.mwChart !== undefined ) {
+							if ( this.dataset.mwChart !== undefined && this.dataset.mwChart !== 'true' ) {
 								chartData = JSON.parse( this.dataset.mwChart );
 							} else {
 								// Backward compatibility: older content uses data-chart
