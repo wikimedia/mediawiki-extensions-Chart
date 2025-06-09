@@ -32,5 +32,6 @@
 	"chart-error-source-not-found": "لم يتم العثور على صفحة مصدر البيانات الجدولية.",
 	"chart-error-invalid-source-type": "صفحة مصدر البيانات الجدولية من نوع غير صالح.",
 	"chart-error-invalid-source-content": "محتويات صفحة مصدر البيانات الجدولية غير صالحة.",
+	"chart-error-transforms-disabled": "تم تعطيل تحويلات البيانات الجدولية.",
 	"chart-error-request-too-large": "تتجاوز بيانات الرسم البياني والجداول الحد الأقصى المسموح به وهو $1 بايت. يرجى استخدام مجموعة بيانات أصغر أو النظر في [https://www.mediawiki.org/wiki/Extension:Chart/Transforms خيارات تحويل البيانات] لتصفية بياناتك أو تجميعها."
 }
