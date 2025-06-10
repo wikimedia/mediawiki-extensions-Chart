@@ -4,8 +4,15 @@
 			"Jeeputer"
 		]
 	},
+	"chart-desc": "تابع تجزیه‌گر <code><nowiki>{{#chart:}}</nowiki></code> را برای نمایش نمودارها اضافه می‌کند",
 	"chart-error-chart-definition-not-found": "صفحهٔ توصیف نمودار یافت نشد.",
 	"chart-error-data-source-page-not-found": "صفحهٔ منبع داده‌های جدولی نمودار یافت نشد.",
+	"chart-error-default-source-not-specified": "منبع  پیش‌فرض داده در صفحهٔ توصیف نمودار تعریف نشده است.",
 	"chart-error-incompatible-chart-definition": "صفحهٔ توصیف با نمودارها سازگار نیست.",
-	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد."
+	"chart-error-incompatible-data-source": "صفحهٔ منبع داده‌های جدول با نمودارهای سازگار نیست.",
+	"chart-error-invalid-height": "مقدار حداکثر باید یک عدد بزرگ‌تر یا برابر با ۱۰۰ باشد.",
+	"chart-error-invalid-width": "عرض باید یک عدد بزرگ‌تر یا برابر با ۱۰۰ باشد.",
+	"chart-error-shell-disabled": "ناتوان در تولید نمودار به دلیل غیرفعال بودن اجرای پوسته.",
+	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد.",
+	"chart-error-unexpected": "در زمان ارائهٔ نمودار خطای غیرمنتظره‌ای رخ داد."
 }
