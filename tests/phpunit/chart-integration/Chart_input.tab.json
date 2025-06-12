@@ -1,0 +1,47 @@
+{
+	"license": "CC0-1.0",
+	"description": {
+		"en": "Sample monthly temperature data"
+	},
+	"schema": {
+		"fields": [
+			{
+				"name": "month",
+				"type": "localized",
+				"title": {
+					"en": "Month"
+				}
+			},
+			{
+				"name": "low",
+				"type": "number",
+				"title": {
+					"en": "Low temp"
+				}
+			},
+			{
+				"name": "high",
+				"type": "number",
+				"title": {
+					"en": "High temp"
+				}
+			}
+		]
+	},
+	"data": [
+		[
+			{
+				"en": "January"
+			},
+			5,
+			20
+		],
+		[
+			{
+				"en": "July"
+			},
+			15,
+			30
+		]
+	]
+}
