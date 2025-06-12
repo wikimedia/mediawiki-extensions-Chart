@@ -168,6 +168,7 @@ class ParserFunction implements MessageLocalizer {
 		$tabularData = $parsedArguments->getDataPageTitle();
 		$options = $parsedArguments->getOptions();
 		$errors = $parsedArguments->getErrors();
+		$transformArgs = $parsedArguments->getTransformArgs();
 		$status = Status::newGood();
 
 		if ( $errors !== [] ) {
@@ -197,7 +198,8 @@ class ParserFunction implements MessageLocalizer {
 				$output,
 				$definitionContent,
 				$tabularData,
-				$options
+				$options,
+				$transformArgs
 			);
 		}
 
@@ -213,13 +215,15 @@ class ParserFunction implements MessageLocalizer {
 	 * @param ?JCTitle $tabularData Optional tabular data page title. If not provided, the default
 	 *        data source specified in the chart definition will be used.
 	 * @param array $options Rendering options (e.g., 'width' and 'height').
+	 * @param array $transformArgs arguments passed on to the transform
 	 * @return Status<string> wrapped HTML string containing the rendered chart or an error message.
 	 */
 	public function renderChartForDefinitionContent(
 		ParserOutput $output,
 		JCContent $definitionContent,
 		?JCTitle $tabularData = null,
-		array $options = []
+		array $options = [],
+		array $transformArgs = []
 	): Status {
 		if ( !$definitionContent instanceof JCChartContent ) {
 			return Status::newFatal( 'chart-error-chart-definition-invalid' );
@@ -254,7 +258,16 @@ class ParserFunction implements MessageLocalizer {
 		$loader = JCSingleton::getContentLoader( $tabularDataTitleValue );
 		if ( $definitionObj->transform ?? null ) {
 			if ( $config->get( 'ChartTransformsEnabled' ) ) {
-				$transform = JCTransform::newFromJson( $definitionObj->transform );
+				$transformDef = $definitionObj->transform;
+				// Apply any options as transform argumemnts,
+				// overriding those in the format definition;
+				if ( !property_exists( $transformDef, 'args' ) ) {
+					$transformDef->args = (object)[];
+				}
+				foreach ( $transformArgs as $key => $val ) {
+					$transformDef->args->$key = $val;
+				}
+				$transform = JCTransform::newFromJson( $transformDef );
 				$loader->transform( $transform );
 			} else {
 				return Status::newFatal( 'chart-error-transforms-disabled' );

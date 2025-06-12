@@ -1,0 +1,23 @@
+{
+	"license": "CC0-1.0",
+	"version": 1,
+	"type": "bar",
+	"xAxis": {
+		"title": {
+			"en": "Day"
+		}
+	},
+	"yAxis": {
+		"title": {
+			"en": "Temperature"
+		}
+	},
+	"transform": {
+		"module": "Temperature conversion",
+		"function": "convert_temps",
+		"args": {
+			"units": "C"
+		}
+	},
+	"source": "Chart input.tab"
+}
