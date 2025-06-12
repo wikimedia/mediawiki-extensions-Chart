@@ -15,10 +15,14 @@ class ChartArgumentsParser {
 		$magicWords = $parser->getMagicWordFactory()->newArray( [
 			'chart_data'
 		] );
+		$magicPrefix = $parser->getMagicWordFactory()->newArray( [
+			'chart_arg'
+		] );
 
 		$definition = array_shift( $args );
 		$dataSource = null;
 		$options = [];
+		$transformArgs = [];
 
 		$errors = [];
 		foreach ( $args as $arg ) {
@@ -29,7 +33,13 @@ class ChartArgumentsParser {
 						$dataSource = $value;
 						break;
 					default:
-						// no-op
+						switch ( $magicPrefix->matchStartAndRemove( $key ) ) {
+							case 'chart_arg':
+								$transformArgs[$key] = $value;
+								break;
+							default:
+							// no-op
+						}
 				}
 			}
 		}
@@ -62,7 +72,7 @@ class ChartArgumentsParser {
 			}
 		}
 
-		return new ParsedArguments( $definitionTitle, $dataTitle, $options, $errors );
+		return new ParsedArguments( $definitionTitle, $dataTitle, $options, $transformArgs, $errors );
 	}
 
 }
