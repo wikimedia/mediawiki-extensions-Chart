@@ -4,11 +4,12 @@
 			"Afaz",
 			"FlatLanguage",
 			"Foomin10",
+			"Omotecho",
 			"Shirayuki"
 		]
 	},
-	"chart-desc": "チャートを表示するためのパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
-	"chart-error-chart-definition-not-found": "チャート定義ページが見つかりません。",
+	"chart-desc": "グラフを表示するパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
+	"chart-error-chart-definition-not-found": "グラフ定義ページが見つかりません。",
 	"chart-error-chart-definition-invalid": "チャート定義ページが無効です。",
 	"chart-error-data-source-invalid": "無効な表形式データソースが指定されました。",
 	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",

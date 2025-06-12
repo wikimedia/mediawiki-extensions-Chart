@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Huji",
 			"Jeeputer"
 		]
 	},
@@ -19,7 +20,7 @@
 	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد.",
 	"chart-error-unexpected": "در زمان ارائهٔ نمودار خطای غیرمنتظره‌ای رخ داد.",
 	"chart-error-category": "صفحه‌هایی که از افزونه نمودار با خطای تولید اسستفاده می‌کنند",
-	"chart-render-category": "صفحه‌هایی که از افزونه نمودار استفاده می‌کنند",
+	"chart-render-category": "صفحه‌هایی که از افزونهٔ نمودار استفاده می‌کنند",
 	"chart-visualeditor-mwchartdialog-title": "نمودار",
 	"chart-visualeditor-mwchartdialog-chart-label": "صفحهٔ توصیف نمودار",
 	"chart-visualeditor-mwchartdialog-data-label": "منبع داده‌های جدولی نمودار",
