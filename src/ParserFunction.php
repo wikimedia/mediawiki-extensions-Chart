@@ -75,16 +75,21 @@ class ParserFunction implements MessageLocalizer {
 	 */
 	public static function funcHook( Parser $parser, ...$args ) {
 		$logger = LoggerFactory::getInstance( 'Chart' );
-		$chartRenderer = MediaWikiServices::getInstance()->getService( 'Chart.ChartRenderer' );
-		$chartArgumentsParser = MediaWikiServices::getInstance()->getService( 'Chart.ChartArgumentsParser' );
-		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
+		$services = MediaWikiServices::getInstance();
+		$chartRenderer = $services->getService( 'Chart.ChartRenderer' );
+		$languageFactory = $services->getService( 'LanguageFactory' );
+		$chartArgumentsParser = $services->getService( 'Chart.ChartArgumentsParser' );
+		$dataPageResolver = $services->getService( 'Chart.DataPageResolver' );
+		$language = $languageFactory->getLanguage(
+			$parser->getTargetLanguageConverter()->getPreferredVariant()
+		);
 		$context = new RequestContext();
-		$context->setLanguage( MediaWikiServices::getInstance()->getContentLanguage() );
+		$context->setLanguage( $language );
 		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
 			->getStatusFormatter( $context );
 		$instance = new static(
 			$chartRenderer,
-			$parser->getTargetLanguage(),
+			$language,
 			$chartArgumentsParser,
 			$dataPageResolver,
 			$logger,
