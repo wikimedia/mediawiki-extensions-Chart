@@ -1,7 +1,7 @@
 [
 	{
 		"resourceModule": "ext.chart.styles",
-		"maxSize": "0.2 kB"
+		"maxSize": "0.3 kB"
 	},
 	{
 		"resourceModule": "ext.chart.bootstrap",
