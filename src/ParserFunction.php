@@ -80,11 +80,23 @@ class ParserFunction implements MessageLocalizer {
 		$languageFactory = $services->getService( 'LanguageFactory' );
 		$chartArgumentsParser = $services->getService( 'Chart.ChartArgumentsParser' );
 		$dataPageResolver = $services->getService( 'Chart.DataPageResolver' );
-		$language = $languageFactory->getLanguage(
-			$parser->getTargetLanguageConverter()->getPreferredVariant()
-		);
+
+		$converter = $parser->getTargetLanguageConverter();
+		if ( $converter->getVariants() ) {
+			// The user language sets the preferred variant to use on languages
+			// that use the language converter. We must inform the parser that
+			// cache bifurcation needs to take it into account.
+			$parser->getOptions()->getUserLangObj();
+			$language = $languageFactory->getLanguage(
+				$converter->getPreferredVariant()
+			);
+		} else {
+			// Otherwise simply use the page's target language.
+			$language = $parser->getTargetLanguage();
+		}
 		$context = new RequestContext();
 		$context->setLanguage( $language );
+
 		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
 			->getStatusFormatter( $context );
 		$instance = new static(
