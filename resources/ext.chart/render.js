@@ -157,6 +157,10 @@ const render = ( wikiChartElement, chartData ) => {
 		spec.title.textStyle.width = chart.getWidth();
 	}
 
+	if ( spec.title && spec.title.subtextStyle ) {
+		spec.title.subtextStyle.width = chart.getWidth();
+	}
+
 	const xFormatter = getFormatterForType( xAxisType, xAxisFormatMode, language );
 	const yFormatter = getFormatterForType( yAxisType, yAxisFormatMode, language );
 
