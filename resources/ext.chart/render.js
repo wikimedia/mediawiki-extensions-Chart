@@ -24,7 +24,7 @@ const numberFormatter = ( language, formatMode ) => ( value ) => {
 		formatter = new Intl.NumberFormat( language, {
 			// Display grouping separators when there are at least 2 digits in a group.
 			useGrouping: 'min2',
-			maximumFractionDigits: 20
+			maximumFractionDigits: 13
 		} );
 	} else {
 		const isFraction = value < 0;
