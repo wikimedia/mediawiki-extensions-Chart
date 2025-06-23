@@ -39,13 +39,15 @@ class WikiChart extends HTMLElement {
 						}
 						mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderStart`, 1 );
 						mw.track( 'stats.mediawiki_Chart_render_start_total', 1, { type } );
-						const startTime = mw.now();
+						const renderStartTime = mw.now();
 						mw.loader.using( 'ext.chart.render' ).then( ( req ) => {
 							try {
+								const eChartsStartTime = mw.now();
 								req( 'ext.chart.render' ).render( this, chartData );
 								mw.track( `counter.MediaWiki.extensions.Chart.${ type }.renderEnd`, 1 );
 								mw.track( 'stats.mediawiki_Chart_render_end_total', 1, { type } );
-								mw.track( 'stats.mediawiki_Chart_render_time_seconds', mw.now() - startTime );
+								mw.track( 'stats.mediawiki_Chart_render_time_seconds', mw.now() - renderStartTime );
+								mw.track( 'stats.mediawiki_Chart_echarts_time_seconds', mw.now() - eChartsStartTime );
 							} catch ( e ) {
 								mw.errorLogger.logError( e, 'error.charts' );
 								mw.track( 'stats.mediawiki_Chart_render_failure_total', 1, { type } );
