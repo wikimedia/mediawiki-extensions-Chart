@@ -29,6 +29,21 @@ class JCChartContent extends JCDataContent {
 		'none'
 	];
 
+	// Note: doesn't include transform options which are checked separately.
+	private const VALIDATION_SCHEMA = [
+		[ [ 'version' ], 'required', [ self::class, 'isValidVersion' ], 'raw' ],
+		[ [ 'type' ], 'required', [ self::class, 'isValidChartType' ], 'raw' ],
+		[ [ 'source' ], 'optional', [ JCValidators::class, 'isString' ], 'raw' ],
+		[ [ 'xAxis', 'title' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
+		[ [ 'yAxis', 'title' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
+		[ [ 'xAxis', 'format' ], 'optional', [ self::class, 'isValidFormatType' ], 'raw' ],
+		[ [ 'yAxis', 'format' ], 'optional', [ self::class, 'isValidFormatType' ], 'raw' ],
+		[ [ 'legend' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
+		[ [ 'transform', 'module' ], 'optional', [ JCValidators::class, 'isStringLine' ], 'raw' ],
+		[ [ 'transform', 'function' ], 'optional', [ JCValidators::class, 'isStringLine' ], 'raw' ],
+		[ [ 'transform', 'args' ], 'optional', [ JCValidators::class, 'isDictionary' ], 'raw' ],
+	];
+
 	/** @inheritDoc */
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
@@ -58,20 +73,19 @@ class JCChartContent extends JCDataContent {
 	public function validateContent() {
 		parent::validateContent();
 
-		$this->test( 'version', self::isValidVersion() );
-		$this->test( 'type', self::isValidEnum( self::CHART_TYPES ) );
-
-		$this->testOptionalAlt( [ 'xAxis', 'title' ], self::isSwitchableString() );
-		$this->testOptionalAlt( [ 'yAxis', 'title' ], self::isSwitchableString() );
-		$this->testOptionalAlt( [ 'xAxis', 'format' ], self::isValidEnum( self::FORMAT_TYPES ) );
-		$this->testOptionalAlt( [ 'yAxis', 'format' ], self::isValidEnum( self::FORMAT_TYPES ) );
-
-		$this->testOptionalAlt( 'legend', self::isSwitchableString() );
+		foreach ( self::VALIDATION_SCHEMA as [ $path, $presence, $validator ] ) {
+			if ( $presence === 'required' ) {
+				$this->test( $path, $validator() );
+			} else {
+				$this->testOptionalAlt( $path, $validator() );
+			}
+		}
 
 		if ( $this->getField( 'transform' ) ) {
+			// *if* we have a transform, module and function must be provided
+			// so double up on them with a required check
 			$this->test( [ 'transform', 'module' ], JCValidators::isStringLine() );
 			$this->test( [ 'transform', 'function' ], JCValidators::isStringLine() );
-			$this->testOptionalAlt( [ 'transform', 'args' ], JCValidators::isDictionary() );
 			$args = $this->getField( [ 'transform', 'args' ] );
 			if ( $args ) {
 				foreach ( array_keys( get_object_vars( $args->getValue() ) ) as $key ) {
@@ -153,6 +167,14 @@ class JCChartContent extends JCDataContent {
 		};
 	}
 
+	private static function isValidChartType(): callable {
+		return self::isValidEnum( self::CHART_TYPES );
+	}
+
+	private static function isValidFormatType(): callable {
+		return self::isValidEnum( self::FORMAT_TYPES );
+	}
+
 	/**
 	 * JsonConfig validator for Chart JSON version
 	 * @return callable
@@ -187,39 +209,33 @@ class JCChartContent extends JCDataContent {
 			return $value;
 		};
 
-		$result->version = $data->version;
-		if ( isset( $data->type ) ) {
-			$result->type = $data->type;
-		}
+		foreach ( self::VALIDATION_SCHEMA as [ $path, $presence, $validator, $format ] ) {
+			$field = $this->getField( $path );
+			if ( $field ) {
+				$to = $result;
+				$from = $data;
+				while ( count( $path ) > 1 ) {
+					$segment = array_shift( $path );
+					if ( !property_exists( $to, $segment ) ) {
+						$to->$segment = (object)[];
+					}
+					$to = $to->$segment;
+					$from = $from->$segment;
+				}
 
-		if ( isset( $data->title ) ) {
-			$result->title = $localize( $data->title );
-		}
+				$segment = array_shift( $path );
+				$value = $from->$segment;
 
-		$axis = static function ( $src ) use ( $localize ) {
-			$dst = (object)[];
-			if ( isset( $src->title ) ) {
-				$dst->title = $localize( $src->title );
+				if ( $format === 'localized' ) {
+					$value = $localize( $value );
+				} else {
+					if ( is_object( $value ) ) {
+						$value = clone $value;
+					}
+				}
+
+				$to->$segment = $value;
 			}
-			if ( isset( $src->format ) ) {
-				$dst->format = $src->format;
-			}
-			return $dst;
-		};
-		if ( isset( $data->xAxis ) ) {
-			$result->xAxis = $axis( $data->xAxis );
-		}
-		if ( isset( $data->yAxis ) ) {
-			$result->yAxis = $axis( $data->yAxis );
-		}
-		if ( isset( $data->legend ) ) {
-			$result->legend = $localize( $data->legend );
-		}
-		if ( isset( $data->source ) ) {
-			$result->source = $data->source;
-		}
-		if ( isset( $data->transform ) ) {
-			$result->transform = $data->transform;
 		}
 	}
 }
