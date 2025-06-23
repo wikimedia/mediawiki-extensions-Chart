@@ -48,6 +48,7 @@ class WikiChart extends HTMLElement {
 								mw.track( 'stats.mediawiki_Chart_render_time_seconds', mw.now() - startTime );
 							} catch ( e ) {
 								mw.errorLogger.logError( e, 'error.charts' );
+								mw.track( 'stats.mediawiki_Chart_render_failure_total', 1, { type } );
 							}
 						} );
 					}
