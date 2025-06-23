@@ -32,7 +32,7 @@ class WikiChart extends HTMLElement {
 						} catch ( e ) {
 							// ignore.
 							mw.errorLogger.logError(
-								new Error( 'Unable to read data from data-chart or data-spec attribute' ),
+								new Error( 'Unable to read data from data-mw-chart or data-chart attribute' ),
 								'error.charts'
 							);
 							return;
