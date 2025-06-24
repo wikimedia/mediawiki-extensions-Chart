@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\Chart;
 
+use JsonConfig\JCContentHandler;
+use JsonConfig\JCSingleton;
 use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
@@ -13,9 +15,105 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
+		$this->overrideConfigValues( [
+			'LanguageCode' => 'en',
+			'JsonConfigEnableLuaSupport' => true,
+			'JsonConfigTransformsEnabled' => true,
+			'JsonConfigs' => [
+				'Tabular.JsonConfig' => [
+					'namespace' => 486,
+					'nsName' => 'Data',
+					'pattern' => '/.\.tab$/',
+					'license' => 'CC0-1.0',
+					'isLocal' => true,
+					'store' => true,
+				]
+			],
+			'JsonConfigModels' => [
+				'Chart.JsonConfig' => 'MediaWiki\Extension\Chart\JCChartContent',
+				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent'
+			],
+		] );
+		JCSingleton::init( true );
+
 		$chartSourceValidator = $this->createPartialMock( ChartSourceValidator::class, [ 'validateSourcePage' ] );
 		$chartSourceValidator->method( 'validateSourcePage' )->willReturn( true );
 		$this->setService( 'Chart.ChartSourceValidator', $chartSourceValidator );
+	}
+
+	protected function tearDown(): void {
+		parent::tearDown();
+		JCSingleton::init( true );
+	}
+
+	public function testUnserializeContent() {
+		$file = __DIR__ . '/chart-integration/1993 Canadian federal election-chart.json';
+		$content = $this->getRawJCChartContentFromFile( $file );
+
+		$data = $content->getData();
+
+		// test the data structure is correct
+		$expectedStructure = [
+			'title' => [
+				'en' => '1993 Canadian federal election',
+			],
+			'type' => 'line',
+			'source' => '1993 Canadian federal election.tab',
+			'xAxis' => [
+				'title' => [
+					'en' => 'Year',
+				],
+				'format' => 'auto'
+			],
+			'yAxis' => [
+				'title' => [
+					'en' => '%support',
+					'fr' => '%soutien'
+				]
+			]
+		];
+
+		$this->assertObjectStructure( $expectedStructure, $data );
+	}
+
+	public function testGetLocalizedData() {
+		$file = __DIR__ . '/chart-integration/1993 Canadian federal election-chart.json';
+		$content = $this->getRawJCChartContentFromFile( $file );
+
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( code: 'en' );
+
+		$localizedData = $content->getLocalizedData( $lang );
+
+		$expectedStructure = [
+			'title' => '1993 Canadian federal election',
+			'type' => 'line',
+			'source' => '1993 Canadian federal election.tab',
+			'xAxis' => [
+				'title' => 'Year',
+				'format' => 'auto'
+			],
+			'yAxis' => [
+				'title' => '%support'
+			]
+		];
+
+		$this->assertObjectStructure( $expectedStructure, $localizedData );
+	}
+
+	private function getRawJCChartContentFromFile( $filePath ): JCChartContent {
+		$rawData = file_get_contents( $filePath );
+		if ( $rawData === false ) {
+			$this->fail( "Can't read file $filePath" );
+		}
+		$contentHandler = new JCContentHandler( JCChartContent::CONTENT_MODEL );
+
+		$content = $contentHandler->unserializeContent( $rawData );
+
+		if ( !( $content instanceof JCChartContent ) ) {
+			$this->fail( "Expected JCChartContent but got " . get_class( $content ) );
+		}
+
+		return $content;
 	}
 
 	/**
@@ -81,6 +179,26 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 	public static function provideBadTestCases() {
 		foreach ( glob( __DIR__ . "/chart-bad/*.json" ) as $file ) {
 			yield [ $file ];
+		}
+	}
+
+	/**
+	 * @param array $expectedStructure
+	 * @param \stdClass $actual
+	 * @param string $path
+	 */
+	private function assertObjectStructure( array $expectedStructure, \stdClass $actual, string $path = '' ) {
+		foreach ( $expectedStructure as $property => $value ) {
+			$fullPath = $path ? "$path.$property" : $property;
+			$this->assertObjectHasProperty( $property, $actual, "Missing property: $fullPath" );
+
+			if ( is_array( $value ) ) {
+				$this->assertIsObject( $actual->$property, "Property $fullPath should be an object" );
+				$this->assertObjectStructure( $value, $actual->$property, $fullPath );
+			} else {
+				// assert value matches expected value from expectedStructure
+				$this->assertSame( $value, $actual->$property, "Property $fullPath should be $value" );
+			}
 		}
 	}
 

@@ -1,0 +1,21 @@
+{
+	"license": "CC0-1.0",
+	"version": 1,
+	"type": "line",
+	"xAxis": {
+		"title": {
+			"en": "Year"
+		},
+		"format": "auto"
+	},
+	"yAxis": {
+		"title": {
+			"en": "%support",
+			"fr": "%soutien"
+		}
+	},
+	"source": "1993 Canadian federal election.tab",
+	"title": {
+		"en": "1993 Canadian federal election"
+	}
+}

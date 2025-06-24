@@ -34,6 +34,7 @@ class JCChartContent extends JCDataContent {
 		[ [ 'version' ], 'required', [ self::class, 'isValidVersion' ], 'raw' ],
 		[ [ 'type' ], 'required', [ self::class, 'isValidChartType' ], 'raw' ],
 		[ [ 'source' ], 'optional', [ JCValidators::class, 'isString' ], 'raw' ],
+		[ [ 'title' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
 		[ [ 'xAxis', 'title' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
 		[ [ 'yAxis', 'title' ], 'optional', [ self::class, 'isSwitchableString' ], 'localized' ],
 		[ [ 'xAxis', 'format' ], 'optional', [ self::class, 'isValidFormatType' ], 'raw' ],
