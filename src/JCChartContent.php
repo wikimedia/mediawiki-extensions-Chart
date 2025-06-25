@@ -137,16 +137,26 @@ class JCChartContent extends JCDataContent {
 	 * @return callable
 	 */
 	private static function isSwitchableString( $nullable = false, $maxlength = 400 ) {
-		$localizableString = JCValidators::isLocalizedString( $nullable, $maxlength );
-		$stringLine = JCValidators::isStringLine( $nullable, $maxlength );
-		return static function ( JCValue $jcv, array $path ) use ( $localizableString, $stringLine ) {
+		return static function ( JCValue $jcv, array $path ) use ( $nullable, $maxlength ) {
 			if ( !$jcv->isMissing() ) {
 				$v = $jcv->getValue();
+				if ( JCUtils::isValidLineString( $v, $maxlength ) ||
+					( $nullable && $v === null )
+				) {
+					return true;
+				}
 				if ( is_object( $v ) ) {
-					return $localizableString( $jcv, $path );
+					$v = (array)$v;
+				}
+				if ( JCUtils::isLocalizedArray( $v, $maxlength ) ) {
+					// Sort array so that the values are sorted alphabetically
+					ksort( $v );
+					$jcv->setValue( (object)$v );
+					return true;
 				}
 			}
-			return $stringLine( $jcv, $path );
+			$jcv->error( 'chart-error-switchable-string', $path, $maxlength );
+			return false;
 		};
 	}
 
