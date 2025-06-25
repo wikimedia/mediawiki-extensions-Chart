@@ -54,6 +54,15 @@
 			"i18n"
 		]
 	},
+	"APIModules": {
+		"chartinfo": {
+			"class": "MediaWiki\\Extension\\Chart\\ApiChartInfo",
+			"services": [
+				"MainWANObjectCache",
+				"JsonConfig.GlobalJsonLinks"
+			]
+		}
+	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteExtPath": "Chart"
