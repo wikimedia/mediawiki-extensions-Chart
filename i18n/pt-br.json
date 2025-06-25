@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Juwan~backup"
+		]
+	},
+	"chart-desc": "Adiciona a função de análise <code><nowiki>{{#chart:}}</nowiki></code> para mostrar gráficos",
+	"chart-error-chart-definition-not-found": "Pagína de definição do gráfico não encontrada.",
+	"chart-error-chart-definition-invalid": "Pagína de definição do gráfico inválida.",
+	"chart-error-data-source-invalid": "Fonte de dados tabulares inválida.",
+	"chart-error-data-source-page-not-found": "Fonte de dados tabulares não encontrada.",
+	"chart-error-default-source-not-specified": "A página de definição do gráfico não especifica uma fonte de dados predeterminada.",
+	"chart-error-incompatible-chart-definition": "A página de definição é incompatível com gráficos.",
+	"chart-error-incompatible-data-source": "A página de origem dos dados tabulares é incompatível com gráficos.",
+	"chart-error-invalid-data-source": "A página de origem dos dados tabulares não é válida.",
+	"chart-error-invalid-height": "A altura deve ser um número inteiro maior ou iqual a 100.",
+	"chart-error-invalid-width": "A largura dever ser um número inteiro maior ou igual a 100.",
+	"chart-error-shell-disabled": "Os gráficos não podem ser renderizados por que a execução de shell está desativada.",
+	"chart-error-rendering-error": "Ocorreu um erro ao renderizar o gráfico.",
+	"chart-error-unexpected": "Ocorreu um erro inesperado a renderizar o gráfico.",
+	"chart-error-category": "Páginas que utilizam a extensão Chart com erros de renderização",
+	"chart-render-category": "Páginas que utilizam a extensão Chart",
+	"chart-visualeditor-mwchartdialog-title": "Gráfico",
+	"chart-visualeditor-mwchartdialog-chart-label": "Página de definição do gráfico",
+	"chart-visualeditor-mwchartdialog-data-label": "Fonte de dados tabulares do gráfico",
+	"chartjson-error-version": "$1 deve ser um número de inteiro entre $2 e $3 inclusive.",
+	"chartjson-error-enum": "$1 deve ser um dos seguintes valores: $2",
+	"chart-error-source-not-found": "Página de origem dos dados tabulares não encontrada.",
+	"chart-error-invalid-source-type": "Página de origem dos dados tabulares é de um tipo inválido.",
+	"chart-error-invalid-source-content": "Os conteúdos da página de origem dos dados tabulares são inválidos."
+}
