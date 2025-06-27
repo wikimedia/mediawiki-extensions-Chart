@@ -33,5 +33,6 @@
 	"chart-error-invalid-source-type": "صفحة مصدر البيانات الجدولية من نوع غير صالح.",
 	"chart-error-invalid-source-content": "محتويات صفحة مصدر البيانات الجدولية غير صالحة.",
 	"chart-error-transforms-disabled": "تم تعطيل تحويلات البيانات الجدولية.",
-	"chart-error-request-too-large": "تتجاوز بيانات الرسم البياني والجداول الحد الأقصى المسموح به وهو $1 بايت. يرجى استخدام مجموعة بيانات أصغر أو النظر في [https://www.mediawiki.org/wiki/Extension:Chart/Transforms خيارات تحويل البيانات] لتصفية بياناتك أو تجميعها."
+	"chart-error-request-too-large": "تتجاوز بيانات الرسم البياني والجداول الحد الأقصى المسموح به وهو $1 بايت. يرجى استخدام مجموعة بيانات أصغر أو النظر في [https://www.mediawiki.org/wiki/Extension:Chart/Transforms خيارات تحويل البيانات] لتصفية بياناتك أو تجميعها.",
+	"chart-error-switchable-string": "يجب أن يكون المعامل \"$1\" عبارة عن سلسلة أو كائن يطابق أكواد اللغة الصالحة لسلاسل سطر واحد لا يزيد طولها عن $2 حرف، بدون علامات تبويب أو مسافات نهائية، على سبيل المثال <kbd>{ \"en\":\"String in English\", ... }</kbd>"
 }
