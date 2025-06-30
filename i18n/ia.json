@@ -29,5 +29,6 @@
 	"chart-error-invalid-source-type": "Le pagina de origine con datos tabular es de un typo non valide.",
 	"chart-error-invalid-source-content": "Le contento del pagina de origine con datos tabular non es valide.",
 	"chart-error-transforms-disabled": "Le transformationes de datos tabular es disactivate.",
-	"chart-error-request-too-large": "Le datos de graphicos e tabellas excede le dimension maxime permittite de $1 bytes. Per favor usa un insimul de datos plus micre o considera modificar le [https://www.mediawiki.org/wiki/Extension:Chart/Transforms optiones de transformation de datos] pro filtrar o aggregar tu datos."
+	"chart-error-request-too-large": "Le datos de graphicos e tabellas excede le dimension maxime permittite de $1 bytes. Per favor usa un insimul de datos plus micre o considera modificar le [https://www.mediawiki.org/wiki/Extension:Chart/Transforms optiones de transformation de datos] pro filtrar o aggregar tu datos.",
+	"chart-error-switchable-string": "Le parametro “$1” debe esser un catena o un objecto que mappa le codices de lingua valide a singule lineas de texto non plus longe de $2 characteres, sin tabulationes e sin spatios al fin, p.ex. <kbd>{ \"ia\":\"Texto in interlingua\", ... }</kbd>"
 }
