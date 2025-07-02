@@ -30,5 +30,6 @@
 	"chart-error-invalid-source-type": "דף מקור נתונים טבלאיים אינו תקין.",
 	"chart-error-invalid-source-content": "תוכן דף מקור הנתונים הטבלאיים אינו תקין.",
 	"chart-error-transforms-disabled": "התמרות של נתונים טבלאיים מושבתות.",
-	"chart-error-request-too-large": "התרשים והנתונים הטבלאיים חורגים מהגודל המרבי המותר של $1 בתים. יש להשתמש בערכת נתונים קטנה יותר או לשקול [https://www.mediawiki.org/wiki/Extension:Chart/Transforms אפשרויות התמרת נתונים] כדי לסנן או לצבור את הנתונים שלך."
+	"chart-error-request-too-large": "התרשים והנתונים הטבלאיים חורגים מהגודל המרבי המותר של $1 בתים. יש להשתמש בערכת נתונים קטנה יותר או לשקול [https://www.mediawiki.org/wiki/Extension:Chart/Transforms אפשרויות התמרת נתונים] כדי לסנן או לצבור את הנתונים שלך.",
+	"chart-error-switchable-string": "הפרמטר \"$1\" צריך להיות מחרוזת או עצם שממפה קודי שפה תקינים למחרוזות בנות שורה אחת באורך של $2 תווים לכל היותר, ללא תווי טאב או רווחים בסוף, למשל <kbd>{ \"en\":\"String in English\", ... }</kbd>"
 }
