@@ -27,5 +27,8 @@
 	"chartjson-error-enum": "$1 mestilah merupakan salah satu daripada nilai berikut: $2",
 	"chart-error-source-not-found": "Laman sumber data jadual tidak ditemui.",
 	"chart-error-invalid-source-type": "Laman sumber data jadual adalah daripada jenis tidak sah.",
-	"chart-error-invalid-source-content": "Kandungan laman sumber data jadual adalah tidak sah."
+	"chart-error-invalid-source-content": "Kandungan laman sumber data jadual adalah tidak sah.",
+	"chart-error-transforms-disabled": "Transformasi data jadual dilumpuhkan.",
+	"chart-error-request-too-large": "Data carta dan jadual melebihi saiz maksimum yang dibenarkan iaitu $1 bait. Sila gunakan set data yang lebih kecil atau pertimbangkan [https://www.mediawiki.org/wiki/Extension:Chart/Transforms pilihan transformasi data] untuk menapis atau mengagregat data anda.",
+	"chart-error-switchable-string": "Parameter \" $1 \" mestilah merupakan rentetan atau objek yang memetakan kod bahasa yang sah kepada rentetan baris tunggal tidak lebih daripada $2 aksara, tanpa tab atau ruang belakang, cth <kbd>{\"en\":\"Rentetan dalam Bahasa Inggeris\", ... }</kbd>"
 }
