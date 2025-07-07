@@ -62,7 +62,7 @@ class JCChartContentView extends JCContentView {
 		);
 
 		$status = $parserFunction->renderChartForDefinitionContent( $output, $content );
-		if ( $status->isOK() ) {
+		if ( $status->isGood() ) {
 			return $status->getValue();
 		} else {
 			return $parserFunction->renderStatus( $status );
