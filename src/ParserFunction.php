@@ -134,7 +134,7 @@ class ParserFunction implements MessageLocalizer {
 				}
 			}
 
-			if ( $status->isOK() ) {
+			if ( $status->isGood() ) {
 				$status = $this->renderChart(
 					$parser->getOutput(),
 					$parsedArguments
@@ -152,7 +152,7 @@ class ParserFunction implements MessageLocalizer {
 			$status->fatal( 'chart-error-unexpected' );
 		}
 
-		if ( $status->isOK() ) {
+		if ( $status->isGood() ) {
 			$html = $status->getValue();
 		} else {
 			$parser->addTrackingCategory( 'chart-error-category' );
@@ -291,7 +291,7 @@ class ParserFunction implements MessageLocalizer {
 			}
 		}
 		$status = $loader->load();
-		if ( !$status->isOk() ) {
+		if ( !$status->isGood() ) {
 			// Phan doesn't seem to like changing container generic types here?
 			// There's no contained value, so we're only reporting the error.
 			// @phan-suppress-next-line PhanTypeMismatchReturn
@@ -317,7 +317,7 @@ class ParserFunction implements MessageLocalizer {
 			$options
 		);
 
-		if ( $status->isOk() ) {
+		if ( $status->isGood() ) {
 			$output->addModuleStyles( [ 'ext.chart.styles' ] );
 
 			// Check that Charts progressive enhancement is enabled. If so, modify output.

@@ -81,7 +81,7 @@ class ChartRenderer {
 		$requestJson = $this->encodeRequestData( $chartDef, $tabularData, $options );
 
 		$status = $this->requestValidator->validateRequestSize( $requestJson );
-		if ( !$status->isOK() ) {
+		if ( !$status->isGood() ) {
 			return $status;
 		}
 
@@ -97,7 +97,7 @@ class ChartRenderer {
 		$request->setHeader( 'Content-Type', 'application/json' );
 
 		$status = $request->execute();
-		if ( !$status->isOK() ) {
+		if ( !$status->isGood() ) {
 			[ $message, $context ] = $this->formatterFactory->getStatusFormatter( RequestContext::getMain() )
 				->getPsr3MessageAndContext( $status );
 			if ( $request->getContent() ) {
@@ -121,7 +121,7 @@ class ChartRenderer {
 
 		$requestData = $this->encodeRequestData( $chartDef, $tabularData, $options );
 		$status = $this->requestValidator->validateRequestSize( $requestData );
-		if ( !$status->isOK() ) {
+		if ( !$status->isGood() ) {
 			return $status;
 		}
 
