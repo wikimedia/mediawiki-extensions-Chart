@@ -25,5 +25,8 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagramdefinitionssida",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabelldatakälla för diagram",
 	"chartjson-error-version": "$1 måste vara ett heltal mellan samt inklusive $2 och $3.",
-	"chartjson-error-enum": "$1 måste vara ett av följande värden: $2"
+	"chartjson-error-enum": "$1 måste vara ett av följande värden: $2",
+	"chart-error-source-not-found": "Källsidan med tabelldata hittades inte.",
+	"chart-error-invalid-source-type": "Källsidan med tabelldata är av ogiltig typ.",
+	"chart-error-invalid-source-content": "Källsidan med tabelldata har ogiltigt innehåll."
 }
