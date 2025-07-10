@@ -22,6 +22,7 @@
 	"chart-error-unexpected": "Si è verificato un errore imprevisto durante il rendering del grafico.",
 	"chart-error-category": "Pagine che utilizzano l'estensione Chart con errori di rendering",
 	"chart-render-category": "Pagine che utilizzano l'estensione Chart",
+	"chart-render-category-desc": "La pagina utilizza la funzione parser <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "Grafico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Pagina di definizione del grafico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte dei dati del grafico",

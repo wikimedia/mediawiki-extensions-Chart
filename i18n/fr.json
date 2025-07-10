@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bananax47",
 			"Derugon",
 			"EmDashUser002",
 			"JLTRY",
@@ -25,7 +26,9 @@
 	"chart-error-rendering-error": "Une erreur s'est produite lors de l'affichage du graphique",
 	"chart-error-unexpected": "Une erreur inattendue s'est produite lors du rendu du graphique.",
 	"chart-error-category": "Pages utilisant l'extension Chart avec des erreurs de rendu",
+	"chart-error-category-desc": "La page contient un graphique avec des erreurs de rendu.",
 	"chart-render-category": "Pages utilisant l'extension Chart",
+	"chart-render-category-desc": "La page utilise la fonction d'analyse <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "Graphique",
 	"chart-visualeditor-mwchartdialog-chart-label": "Page de définition du graphique",
 	"chart-visualeditor-mwchartdialog-data-label": "Source de données tabulaires du graphique",
