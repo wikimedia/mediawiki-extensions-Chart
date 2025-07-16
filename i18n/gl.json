@@ -18,7 +18,7 @@
 	"chart-error-shell-disabled": "Non se poden renderizar os gráficos porque a execución por consola está desactivada.",
 	"chart-error-rendering-error": "Produciuse un erro ao renderizar o gráfico.",
 	"chart-error-unexpected": "Produciuse un erro inesperado ao renderizar o gráfico.",
-	"chart-error-category": "Páxinas que usan a extensión Chart con erros de renderizado",
+	"chart-error-category": "Páxinas que usan a extensión Chart con erros de renderización",
 	"chart-render-category": "Páxinas que usan a extensión Chart",
 	"chart-visualeditor-mwchartdialog-title": "Gráfico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",

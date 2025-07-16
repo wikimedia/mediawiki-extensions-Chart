@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"chart-error-category": "Trang sử dụng phần mở rộng Biểu đồ có lỗi kết xuất",
+	"chart-render-category": "Trang sử dụng phần mở rộng Chart",
+	"chart-visualeditor-mwchartdialog-title": "Biểu đồ",
+	"chart-visualeditor-mwchartdialog-chart-label": "Trang định nghĩa Biểu đồ",
+	"chart-visualeditor-mwchartdialog-data-label": "Nguồn dữ liệu bảng Biểu đồ"
+}
