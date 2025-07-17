@@ -1,8 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dgstranz"
+			"Dgstranz",
+			"No se"
 		]
 	},
+	"chart-error-chart-definition-not-found": "No se encontró la página de definición del gráfico.",
+	"chart-error-category": "Páginas que utilizan la extensión Chart con errores de representación",
+	"chart-render-category": "Páginas que utilizan la extensión Chart",
 	"chartjson-error-enum": "$1 debe ser uno de los siguientes valores: $2"
 }

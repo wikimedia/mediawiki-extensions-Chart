@@ -32,5 +32,9 @@
 	"chart-error-invalid-source-content": "Die Tabellen-Datenquelle-Seite hat einen ungültigen Inhalt.",
 	"chart-error-transforms-disabled": "Tabellen-Daten-Transformationen sind deaktiviert.",
 	"chart-error-request-too-large": "Diagramm- und Tabellendaten überschreiten die maximal zulässige Größe von $1 Byte. Verwende einen kleineren Datensatz oder nutze [https://www.mediawiki.org/wiki/Extension:Chart/Transforms Datentransformationsoptionen], um deine Daten zu filtern oder zu aggregieren.",
-	"chart-error-switchable-string": "Der Parameter „$1“ muss ein String oder ein Objekt sein, das gültige Sprachcodes auf einzeilige Strings mit maximal $2 Zeichen abbildet, ohne Tabulatoren oder abschließende Leerzeichen, z.B. <kbd>{ \"en\":\"String in English\", ... }</kbd>"
+	"chart-error-switchable-string": "Der Parameter „$1“ muss ein String oder ein Objekt sein, das gültige Sprachcodes auf einzeilige Strings mit maximal $2 Zeichen abbildet, ohne Tabulatoren oder abschließende Leerzeichen, z.B. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Ruft die aktuelle Anzahl der eindeutigen Verwendungen der Diagrammseite ab. Mehrere Verwendungen desselben Diagramms auf derselben Seite werden als eine einzige Verwendung betrachtet.",
+	"apihelp-chartinfo-param-global": "Setzt auf true, um alle verbundenen Wikis anstelle des lokalen Wiki einzuschließen.",
+	"apihelp-chartinfo-example-1": "Abruf der Anzahl der Diagramme des lokalen Wikis.",
+	"apihelp-chartinfo-example-2": "Abruf der Anzahl der Diagramme aller Wikis."
 }
