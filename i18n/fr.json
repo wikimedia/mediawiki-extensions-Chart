@@ -39,5 +39,9 @@
 	"chart-error-invalid-source-content": "Le contenu de la page de la source de données tabulaires n'est pas valide.",
 	"chart-error-transforms-disabled": "Les transformations de données tabulaires sont désactivées.",
 	"chart-error-request-too-large": "Les données des graphiques et des tableaux dépassent la taille maximale autorisée de $1 octet{{PLURAL:$1||s}}. Veuillez utiliser un jeu de données plus petit ou utiliser des [https://www.mediawiki.org/wiki/Extension:Chart/Transforms solutions de transformation de données] pour filtrer ou agréger vos données.",
-	"chart-error-switchable-string": "Le paramètre « $1 » doit être une chaîne ou un objet qui mappe les codes de langue valides à des chaînes d'une seule ligne ne dépassant pas $2 caractères, sans tabulations ni espaces de fin, par exemple <kbd>{ \"en\":\"Chaîne en anglais\", ... }</kbd>"
+	"chart-error-switchable-string": "Le paramètre « $1 » doit être une chaîne ou un objet qui mappe les codes de langue valides à des chaînes d'une seule ligne ne dépassant pas $2 caractères, sans tabulations ni espaces de fin, par exemple <kbd>{ \"en\":\"Chaîne en anglais\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Récupérer le nombre actuel d'utilisations uniques d'une page de graphique. Plusieurs utilisations d'un même graphique sur la même page sont considérées comme une seule utilisation.",
+	"apihelp-chartinfo-param-global": "S'installer à vrai pour inclure tous les wikis connectés au lieu du wiki local seulement.",
+	"apihelp-chartinfo-example-1": "Récupération du nombre de graphiques du wiki local.",
+	"apihelp-chartinfo-example-2": "Récupération du nombre de graphiques de tous les wikis."
 }

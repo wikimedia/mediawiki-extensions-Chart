@@ -2,11 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Dgstranz",
+			"JorgeElias2302",
 			"No se"
 		]
 	},
 	"chart-error-chart-definition-not-found": "No se encontró la página de definición del gráfico.",
 	"chart-error-category": "Páginas que utilizan la extensión Chart con errores de representación",
 	"chart-render-category": "Páginas que utilizan la extensión Chart",
-	"chartjson-error-enum": "$1 debe ser uno de los siguientes valores: $2"
+	"chartjson-error-enum": "$1 debe ser uno de los siguientes valores: $2",
+	"apihelp-chartinfo-summary": "Recupera el recuento actual de usos únicos de la página del gráfico. Varios usos del mismo gráfico en la misma página se consideran un solo uso.",
+	"apihelp-chartinfo-param-global": "Establezca como verdadero para incluir todos los wikis conectados en lugar de solo el wiki local.",
+	"apihelp-chartinfo-example-1": "Obtención del recuento de gráficos del wiki local.",
+	"apihelp-chartinfo-example-2": "Obtención del recuento de gráficos de todos los wikis."
 }
