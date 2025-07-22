@@ -1,7 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dgstranz"
+			"Dgstranz",
+			"JorgeElias2302",
+			"No se"
 		]
-	}
+	},
+	"chart-error-chart-definition-not-found": "No se encontró la página de definición del gráfico."
 }
