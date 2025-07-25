@@ -22,7 +22,9 @@
 	"chart-error-rendering-error": "Er is een fout opgetreden bij het weergeven van het diagram.",
 	"chart-error-unexpected": "Er is een onverwachte fout opgetreden bij het weergeven van de grafiek.",
 	"chart-error-category": "Pagina's met Chart-weergavefouten",
+	"chart-error-category-desc": "De pagina bevat een grafiek met weergavefouten.",
 	"chart-render-category": "Pagina's die de uitbreiding Chart gebruiken",
+	"chart-render-category-desc": "De pagina gebruikt de parserfunctie <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "Grafiek",
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",
@@ -30,5 +32,12 @@
 	"chartjson-error-enum": "$1 moet een van de volgende waarden zijn: $2",
 	"chart-error-source-not-found": "De bronpagina met tabelgegevens is niet gevonden.",
 	"chart-error-invalid-source-type": "De bronpagina met tabelgegevens is van een onjuist type.",
-	"chart-error-invalid-source-content": "De inhoud van de bronpagina met tabelgegevens is foutief."
+	"chart-error-invalid-source-content": "De inhoud van de bronpagina met tabelgegevens is foutief.",
+	"chart-error-transforms-disabled": "Het transformeren van tabelgegevens is uitgeschakeld.",
+	"chart-error-request-too-large": "De grafiek- en tabelgegevens overschrijden de maximaal toegestane grootte van $1 bytes. Gebruik een kleinere verzameling gegevens of overweeg de [https://www.mediawiki.org/wiki/Extension:Chart/Transforms mogelijkheden voor gegevenstransformatie] om uw gegevens te filteren of te aggregeren.",
+	"chart-error-switchable-string": "De parameter “$1” moet een tekenreeks zijn of een object dat geldige taalcodes toewijst aan tekenreeksen van één regel die niet langer zijn dan $2 tekens en geen tabs en aan het eind geen spaties bevatten, bv. <kbd>{ \"nl\":\"Tekenreeks in het Nederlands\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Het huidige aantal unieke gebruiken van grafiekpagina’s ophalen. Herhaaldelijk gebruik van dezelfde grafiek op dezelfde pagina wordt beschouwd als éénmalig gebruik.",
+	"apihelp-chartinfo-param-global": "Stel in op ‘true’ om alle verbonden wiki’s op te nemen in plaats van alleen de lokale wiki.",
+	"apihelp-chartinfo-example-1": "Haal het aantal grafieken van de lokale wiki op.",
+	"apihelp-chartinfo-example-2": "Haal het aantal grafieken van alle wiki’s op."
 }
