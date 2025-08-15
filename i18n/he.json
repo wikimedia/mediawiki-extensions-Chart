@@ -20,7 +20,9 @@
 	"chart-error-rendering-error": "אירעה שגיאה בעת תיצוג התרשים.",
 	"chart-error-unexpected": "אירעה שגיאה לא צפויה בעת תיצוג התרשים.",
 	"chart-error-category": "דפים שמשתמשים בהרחבה Chart עם שגיאות תיצוג",
+	"chart-error-category-desc": "הדף הזה מכיל תרשים עם שגיאות תיצוג.",
 	"chart-render-category": "דפים שמשתמשים בהרחבה Chart",
+	"chart-render-category-desc": "הדף משתמש בפונקציית המפענח <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "תרשים",
 	"chart-visualeditor-mwchartdialog-chart-label": "דף הגדרת תרשים",
 	"chart-visualeditor-mwchartdialog-data-label": "מקור נתונים טבלאי בתרשים",
@@ -31,5 +33,9 @@
 	"chart-error-invalid-source-content": "תוכן דף מקור הנתונים הטבלאיים אינו תקין.",
 	"chart-error-transforms-disabled": "התמרות של נתונים טבלאיים מושבתות.",
 	"chart-error-request-too-large": "התרשים והנתונים הטבלאיים חורגים מהגודל המרבי המותר של $1 בתים. יש להשתמש בערכת נתונים קטנה יותר או לשקול [https://www.mediawiki.org/wiki/Extension:Chart/Transforms אפשרויות התמרת נתונים] כדי לסנן או לצבור את הנתונים שלך.",
-	"chart-error-switchable-string": "הפרמטר \"$1\" צריך להיות מחרוזת או עצם שממפה קודי שפה תקינים למחרוזות בנות שורה אחת באורך של $2 תווים לכל היותר, ללא תווי טאב או רווחים בסוף, למשל <kbd>{ \"en\":\"String in English\", ... }</kbd>"
+	"chart-error-switchable-string": "הפרמטר \"$1\" צריך להיות מחרוזת או עצם שממפה קודי שפה תקינים למחרוזות בנות שורה אחת באורך של $2 תווים לכל היותר, ללא תווי טאב או רווחים בסוף, למשל <kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "אחזור הספירה הנוכחית של מספר השימושים הייחודיים ב־Chart. שימושים מרובים באותו תרשים באותו דף נחשבים לשימוש יחיד.",
+	"apihelp-chartinfo-param-global": "יש להגדיר כ־true כדי לכלול את כל אתרי הוויקי המחוברים ולא רק את הוויקי המקומי.",
+	"apihelp-chartinfo-example-1": "שליפת ספירת התרשימים של הוויקי המקומי.",
+	"apihelp-chartinfo-example-2": "שליפת ספירת התרשימים של כל אתרי הוויקי."
 }
