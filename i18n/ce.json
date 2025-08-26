@@ -3,5 +3,16 @@
 		"authors": [
 			"Умар"
 		]
-	}
+	},
+	"chart-desc": "ТӀетуху парсеран функци <code><nowiki>{{#chart:}}</nowiki></code> диаграммаш гайтархьама.",
+	"chart-error-chart-definition-not-found": "Диаграмма къасторан агӀо ца карийна.",
+	"chart-error-data-source-page-not-found": "Диаграмман таблицин хаамийн хьостан агӀо ца карийна.",
+	"chart-error-default-source-not-specified": "Диаграмман билгалдаккхаран агӀонан тӀехь билгалдаьккхина стандартан хьост дац.",
+	"chart-error-incompatible-chart-definition": "Къастаман агӀо диаграммашца йогӀуш йац.",
+	"chart-error-incompatible-data-source": "Таблицин хаамийн хьостан агӀо диаграммашца йогӀуш йац.",
+	"chart-error-invalid-height": "Локхалла 100-л йоккха йа цхьатерра дерриг терахь хила деза.",
+	"chart-error-invalid-width": "Шоралла 100-л йоккха йа цхьатерра дерриг терахь хила деза.",
+	"chart-error-shell-disabled": "Диаграммаш гайта йиш йац, хӀунда аьлча чкъор кхочушдар дӀадаьккхина ду.",
+	"chart-error-rendering-error": "Диаграммма гойтуш гӀалат даьлла.",
+	"chart-error-unexpected": "Дагахь доцуш гӀалат делира диаграмма гойтуш."
 }
