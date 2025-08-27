@@ -4,7 +4,28 @@
 			"Умар"
 		]
 	},
+	"chart-desc": "ТӀетуху парсеран функци <code><nowiki>{{#chart:}}</nowiki></code> диаграммаш гайтархьама.",
+	"chart-error-chart-definition-not-found": "Диаграмма къасторан агӀо ца карийна.",
+	"chart-error-chart-definition-invalid": "Диаграмма къасторан агӀо нийса йац.",
+	"chart-error-data-source-invalid": "Таблицин хаамийн билгалдаьккхина хьост нийса дац.",
+	"chart-error-data-source-page-not-found": "Диаграмман таблицин хаамийн хьостан агӀо ца карийна.",
+	"chart-error-default-source-not-specified": "Диаграмман билгалдаккхаран агӀонан тӀехь билгалдаьккхина стандартан хьост дац.",
+	"chart-error-incompatible-chart-definition": "Къастаман агӀо диаграммашца йогӀуш йац.",
+	"chart-error-incompatible-data-source": "Таблицин хаамийн хьостан агӀо диаграммашца йогӀуш йац.",
+	"chart-error-invalid-data-source": "Таблицин хаамийн хьостан агӀо нийса йац.",
+	"chart-error-invalid-height": "Локхалла 100-л йоккха йа цхьатерра дерриг терахь хила деза.",
+	"chart-error-invalid-width": "Шоралла 100-л йоккха йа цхьатерра дерриг терахь хила деза.",
+	"chart-error-shell-disabled": "Диаграммаш гайта йиш йац, хӀунда аьлча чкъор кхочушдар дӀадаьккхина ду.",
+	"chart-error-rendering-error": "Диаграммма гойтуш гӀалат даьлла.",
+	"chart-error-unexpected": "Дагахь доцуш гӀалат делира диаграмма гойтуш.",
+	"chart-error-category": "Chart шордаран рендеринган гӀалаташ долу агӀо",
+	"chart-render-category": "Chart шордар лелош йолу агӀонаш",
 	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Диаграмман билгалдаккхаран агӀо",
-	"chart-visualeditor-mwchartdialog-data-label": "Диаграмман таблицин хьост"
+	"chart-visualeditor-mwchartdialog-data-label": "Диаграмман таблицин хьост",
+	"chartjson-error-version": "$1 хила деза дерриг терахь $2 а, $3 а йукъахь, цу йукъадогӀуш.",
+	"chartjson-error-enum": "$1 хӀокху маьӀнех цхьаъ хила деза: $2",
+	"chart-error-source-not-found": "Диаграмман таблицин хаамийн хьостан агӀо ца карийна.",
+	"chart-error-invalid-source-type": "Таблицин хьостан агӀонан нийса йоцу тайпа йу.",
+	"chart-error-invalid-source-content": "Таблицин хаамийн хьостан агӀонан чулацам нийса бац."
 }
