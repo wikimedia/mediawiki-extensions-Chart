@@ -1,19 +1,41 @@
 {
 	"@metadata": {
 		"authors": [
+			"GuoPC",
 			"沈澄心"
 		]
 	},
-	"chart-desc": "添加用于显示图表的解析器函数<nowiki><code>{{#chart:}}</code></nowiki>",
+	"chart-desc": "添加用于显示图表的解析器函数<code><nowiki>{{#chart:}}</nowiki></code>",
 	"chart-error-chart-definition-not-found": "找不到图表定义页面。",
+	"chart-error-chart-definition-invalid": "图表定义页面无效。",
 	"chart-error-data-source-invalid": "提供的表格数据源无效。",
 	"chart-error-data-source-page-not-found": "找不到图表表格数据源页面。",
 	"chart-error-default-source-not-specified": "图表定义页面未指定默认数据源。",
 	"chart-error-incompatible-chart-definition": "定义页面与图表不兼容。",
 	"chart-error-incompatible-data-source": "表格数据源页面与图表不兼容。",
+	"chart-error-invalid-data-source": "表格数据源页面无效。",
 	"chart-error-invalid-height": "高度必须是大于或等于100的整数。",
 	"chart-error-invalid-width": "宽度必须是大于或等于100的整数。",
 	"chart-error-shell-disabled": "由于已禁用shell执行，无法呈现图表。",
 	"chart-error-rendering-error": "呈现图表时出错。",
-	"chart-error-unexpected": "呈现图表时发生意外错误。"
+	"chart-error-unexpected": "呈现图表时发生意外错误。",
+	"chart-error-category": "使用Chart扩展存在渲染错误的页面",
+	"chart-error-category-desc": "包含存在渲染错误图表的页面。",
+	"chart-render-category": "使用Chart扩展的页面",
+	"chart-render-category-desc": "使用<code><nowiki>{{#chart}}</nowiki></code>解析器函数的页面。",
+	"chart-visualeditor-mwchartdialog-title": "图表",
+	"chart-visualeditor-mwchartdialog-chart-label": "图表定义页面",
+	"chart-visualeditor-mwchartdialog-data-label": "图表表格数据源",
+	"chartjson-error-version": "$1必须是$2和$3及其之间的整数。",
+	"chartjson-error-enum": "$1必须是以下值之一：$2",
+	"chart-error-source-not-found": "未找到表格数据源页面。",
+	"chart-error-invalid-source-type": "表格数据源页面的类型无效。",
+	"chart-error-invalid-source-content": "表格数据源页面的内容无效。",
+	"chart-error-transforms-disabled": "表格数据转换已禁用。",
+	"chart-error-request-too-large": "图表和表格数据超出了允许的最大大小（$1字节）。请使用较小的数据集，或者考虑使用[https://www.mediawiki.org/wiki/Extension:Chart/Transforms 数据转换选项]来筛选或聚合数据。",
+	"chart-error-switchable-string": "参数“$1”必须映射有效语言代码至不超过$2个字符的单行字符串，并且必须是没有制表符或末尾空格的对象。例如：<kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "检索图表页面当前的唯一使用次数。同一页面上多次使用同一图表会被视为一次使用。",
+	"apihelp-chartinfo-param-global": "设置为true以包含所有连接的wiki，而不仅是本地wiki。",
+	"apihelp-chartinfo-example-1": "获取本地wiki的图表数量。",
+	"apihelp-chartinfo-example-2": "获取所有wiki的图表数量。"
 }
