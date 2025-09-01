@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"chart-desc": "Lisab parserifunktsiooni <code><nowiki>{{#chart:}}</nowiki></code> diagrammide kuvamiseks.",
+	"chart-error-category": "Tarkvaralisa Chart kasutavad leheküljed viimistlustõrkega",
+	"chart-error-category-desc": "Sellel leheküljel on viimistlustõrgetega diagramm.",
+	"chart-render-category": "Tarkvaralisa Chart kasutavad leheküljed",
+	"chart-render-category-desc": "Lehekülg kasutab parserifunktsiooni <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-visualeditor-mwchartdialog-title": "Diagramm",
+	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammi kirjelduslehekülg",
+	"chart-visualeditor-mwchartdialog-data-label": "Diagrammi tabelandmete allikas"
+}
