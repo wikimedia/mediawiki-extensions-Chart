@@ -10,13 +10,13 @@
 	},
 	"chart-desc": "グラフを表示するパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
 	"chart-error-chart-definition-not-found": "グラフ定義ページが見つかりません。",
-	"chart-error-data-source-page-not-found": "チャートの表形式データソースページが見つかりませんでした。",
-	"chart-error-default-source-not-specified": "チャート定義ページで既定のデータソースが指定されていません。",
-	"chart-error-incompatible-chart-definition": "定義ページがチャートと互換性がありません。",
-	"chart-error-incompatible-data-source": "表形式データソースページがチャートと互換性がありません。",
-	"chart-error-invalid-height": "高さは 100 以上の整数である必要があります。",
-	"chart-error-invalid-width": "幅は 100 以上の整数である必要があります。",
-	"chart-error-shell-disabled": "シェルの実行が無効になっているため、チャートをレンダリングできません。",
-	"chart-error-rendering-error": "チャートのレンダリング中にエラーがありました。",
-	"chart-error-unexpected": "チャートのレンダリング中に予期しないエラーが発生しました。"
+	"chart-error-data-source-page-not-found": "グラフの表形式データソースページが見つかりませんでした。",
+	"chart-error-default-source-not-specified": "グラフ定義ページで既定のデータソースが指定されていません。",
+	"chart-error-incompatible-chart-definition": "定義ページがグラフと互換性がありません。",
+	"chart-error-incompatible-data-source": "表形式データソースページがグラフと互換性がありません。",
+	"chart-error-invalid-height": "高さは 100 以上の整数でなければなりません。",
+	"chart-error-invalid-width": "幅は 100 以上の整数でなければなりません。",
+	"chart-error-shell-disabled": "シェルの実行が無効になっているため、グラフをレンダリングできません。",
+	"chart-error-rendering-error": "グラフのレンダリング中にエラーがありました。",
+	"chart-error-unexpected": "グラフのレンダリング中に予期しないエラーが発生しました。"
 }

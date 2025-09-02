@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"沈澄心"
+			"沈澄心",
+			"GuoPC"
 		]
 	},
-	"chart-desc": "添加用于显示图表的解析器函数<nowiki><code>{{#chart:}}</code></nowiki>",
+	"chart-desc": "添加用于显示图表的解析器函数<code><nowiki>{{#chart:}}</nowiki></code>",
 	"chart-error-chart-definition-not-found": "找不到图表定义页面。",
 	"chart-error-data-source-page-not-found": "找不到图表表格数据源页面。",
 	"chart-error-default-source-not-specified": "图表定义页面未指定默认数据源。",
