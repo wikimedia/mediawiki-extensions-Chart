@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Serhio Magpie"
+		]
+	},
+	"chart-error-category": "Сторінки з помилками відображення розширення Chart",
+	"chart-render-category": "Сторінки, що використовують розширення Chart"
+}
