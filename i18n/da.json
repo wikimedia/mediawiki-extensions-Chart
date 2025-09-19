@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Steenth"
+		]
+	},
+	"chart-desc": "Tilføjer <code><nowiki>{{#chart:}}</nowiki></code> parserfunktion til visning af diagrammer",
+	"chart-error-chart-definition-not-found": "Definitionsside for diagrammet ikke fundet.",
+	"chart-error-chart-definition-invalid": "Definitionssiden for diagrammet er ugyldig.",
+	"chart-error-data-source-invalid": "Ugyldig datakilde for tabulære data angivet.",
+	"chart-error-data-source-page-not-found": "Kildesiden for diagramtabeldata blev ikke fundet.",
+	"chart-error-default-source-not-specified": "Definitionssiden for diagrammet angiver ikke en standard datakilde.",
+	"chart-error-incompatible-chart-definition": "Definitionssiden er inkompatibel med diagrammer.",
+	"chart-error-incompatible-data-source": "Siden med tabeldatakilden er inkompatibel med diagrammer.",
+	"chart-error-invalid-data-source": "Siden med den tabelformede datakilde er ugyldig.",
+	"chart-error-invalid-height": "Højden skal være et heltal større end eller lig med 100.",
+	"chart-error-invalid-width": "Bredden skal være et heltal større end eller lig med 100.",
+	"chart-error-shell-disabled": "Diagrammer kan ikke vises, fordi shell-udførelse er deaktiveret.",
+	"chart-error-rendering-error": "En fejl opstod under tolkningen af diagrammet.",
+	"chart-error-unexpected": "Der opstod en uventet fejl under tolkningen af diagrammet.",
+	"chart-error-category": "Sider, der bruger Chart-udvidelsen og har tolkningsfejl",
+	"chart-error-category-desc": "Siden indeholder et diagram med gengivelsesfejl.",
+	"chart-render-category": "Sider, der bruger Chart-udvidelsen",
+	"chart-render-category-desc": "Siden bruger <code><nowiki>{{#chart}}</nowiki></code> parserfunktion.",
+	"chart-visualeditor-mwchartdialog-title": "Diagram",
+	"chart-visualeditor-mwchartdialog-chart-label": "Side med diagramdefinition",
+	"chart-visualeditor-mwchartdialog-data-label": "Diagramtabeldatakilde",
+	"chartjson-error-version": "$1 skal være et heltal mellem $2 og $3 inklusive.",
+	"chartjson-error-enum": "$1 skal være en af følgende værdier: $2",
+	"chart-error-source-not-found": "Siden med tabelformet datakilde blev ikke fundet.",
+	"chart-error-invalid-source-type": "Siden med tabellarisk datakilde er af ugyldig type.",
+	"chart-error-invalid-source-content": "Indholdet af siden med tabellarisk datakilde er ugyldigt.",
+	"chart-error-transforms-disabled": "Tabeldatatransformationer er deaktiveret.",
+	"chart-error-request-too-large": "Diagram- og tabeldata overstiger den maksimalt tilladte størrelse på $1 byte. Brug venligst et mindre datasæt, eller overvej [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformationsmuligheder] for at filtrere eller aggregere dine data.",
+	"chart-error-switchable-string": "Parameteren \"$1\" skal være en streng eller et objekt, der knytter gyldige sprogkoder til strenge på én linje, der ikke er længere end $2 tegn, uden tabulatorer eller mellemrum, f.eks <kbd>. { \"en\":\"String på engelsk\", ... }</kbd>"
+}
