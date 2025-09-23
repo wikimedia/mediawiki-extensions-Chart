@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Steenth"
+		]
+	},
+	"chart-desc": "Tilføjer <code><nowiki>{{#chart:}}</nowiki></code> parserfunktion til visning af diagrammer",
+	"chart-error-chart-definition-not-found": "Definitionsside for diagrammet ikke fundet.",
+	"chart-error-data-source-page-not-found": "Kildesiden for diagramtabeldata blev ikke fundet.",
+	"chart-error-default-source-not-specified": "Definitionssiden for diagrammet angiver ikke en standard datakilde.",
+	"chart-error-incompatible-chart-definition": "Definitionssiden er inkompatibel med diagrammer.",
+	"chart-error-incompatible-data-source": "Siden med tabeldatakilden er inkompatibel med diagrammer.",
+	"chart-error-invalid-height": "Højden skal være et heltal større end eller lig med 100.",
+	"chart-error-invalid-width": "Bredden skal være et heltal større end eller lig med 100.",
+	"chart-error-shell-disabled": "Diagrammer kan ikke vises, fordi shell-udførelse er deaktiveret.",
+	"chart-error-rendering-error": "En fejl opstod under tolkningen af diagrammet.",
+	"chart-error-unexpected": "Der opstod en uventet fejl under tolkningen af diagrammet."
+}
