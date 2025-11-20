@@ -25,6 +25,7 @@
 	"chart-error-category-desc": "The page contains a chart with rendering errors.",
 	"chart-render-category": "Pages using the Chart extension",
 	"chart-render-category-desc": "The page uses the <code><nowiki>{{#chart}}</nowiki></code> parser function.",
+	"chart-render-tooltip-nodata": "No data",
 	"chart-visualeditor-mwchartdialog-title": "Chart",
 	"chart-visualeditor-mwchartdialog-chart-label": "Chart definition page",
 	"chart-visualeditor-mwchartdialog-data-label": "Chart tabular data source",

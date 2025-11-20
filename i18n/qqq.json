@@ -25,6 +25,7 @@
 	"chart-error-category-desc": "Description of the chart error tracking category.",
 	"chart-render-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart is used on them.",
 	"chart-render-category-desc": "Description of the chart render tracking category.",
+	"chart-render-tooltip-nodata": "Message displayed in the chart's tooltip when there's no data.",
 	"chart-visualeditor-mwchartdialog-title": "Title for the VisualEditor chart dialog and context item",
 	"chart-visualeditor-mwchartdialog-chart-label": "Label in the VisualEditor chart dialog for the chart definition input",
 	"chart-visualeditor-mwchartdialog-data-label": "Label in the VisualEditor chart dialog for the tabular data source input",
