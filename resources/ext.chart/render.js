@@ -10,6 +10,19 @@ const adjustTitleWidth = ( chart ) => {
 };
 
 /**
+ * Check if value has data
+ *
+ * @param {number|string} value
+ * @return {boolean}
+ */
+const hasData = ( value ) => {
+	if ( typeof value === 'undefined' || value === null ) {
+		return false;
+	}
+	return true;
+};
+
+/**
  * Creates a number formatter.
  * Uses basic formatting for the 'none' format option.
  * (no thousands separator, no compact notation)
@@ -19,6 +32,9 @@ const adjustTitleWidth = ( chart ) => {
  * @return {Function}
  */
 const numberFormatter = ( language, formatMode ) => ( value ) => {
+	if ( !hasData( value ) ) {
+		return mw.message( 'chart-render-tooltip-nodata' );
+	}
 	let formatter;
 	if ( formatMode === 'none' ) {
 		formatter = new Intl.NumberFormat( language, {
@@ -40,13 +56,17 @@ const numberFormatter = ( language, formatMode ) => ( value ) => {
 	return formatter.format( value );
 };
 
-const getPercentFormatter = ( language ) => {
+const getPercentFormatter = ( language ) => ( value ) => {
+	if ( !hasData( value ) ) {
+		return mw.message( 'chart-render-tooltip-nodata' );
+	}
 	const formatter = new Intl.NumberFormat( language, {
 		style: 'percent',
 		minimumFractionDigits: 0,
 		maximumFractionDigits: 2
 	} );
-	return ( value ) => formatter.format( value );
+
+	return formatter.format( value );
 };
 
 /**
@@ -63,8 +83,18 @@ const getPercentFormatter = ( language ) => {
  */
 const getFormatterForType = ( type, formatMode, language ) => {
 	const dateFormatter = new Intl.DateTimeFormat( language );
-	const formatAsDate = ( /** @type {string} */ value ) => dateFormatter.format( new Date( value ) );
-	const formatAsString = ( /** @type {string} */ value ) => value;
+	const formatAsDate = ( /** @type {string} */ value ) => {
+		if ( !hasData( value ) ) {
+			return mw.message( 'chart-render-tooltip-nodata' );
+		}
+		return dateFormatter.format( new Date( value ) );
+	};
+	const formatAsString = ( /** @type {string} */ value ) => {
+		if ( !hasData( value ) ) {
+			return mw.message( 'chart-render-tooltip-nodata' );
+		}
+		return value;
+	};
 
 	switch ( type ) {
 		case 'number':

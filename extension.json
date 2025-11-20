@@ -85,6 +85,9 @@
 			"packageFiles": [
 				"resources/ext.chart/render.js",
 				"lib/echarts/echarts.common.js"
+			],
+			"messages": [
+				"chart-render-tooltip-nodata"
 			]
 		},
 		"ext.chart.visualEditor": {
