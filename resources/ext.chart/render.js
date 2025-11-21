@@ -23,6 +23,61 @@ const hasData = ( value ) => {
 };
 
 /**
+ * In RTL languages, titles that begin with a number can be reordered by the
+ * browser's bidi algorithm so that the number appears on the opposite side
+ * of the text (i.e. "… 15" rendered as "15 …"). See T401719.
+ *
+ * To keep the visual order matching the logical one, these titles can be
+ * wrapped in an explicit RTL embedding using Unicode bidi control characters.
+ *
+ * Note this is a client-side only. The static SVG rendered on the
+ * server will continue to use the unmodified title text.
+ *
+ * @param {Object} spec
+ * @param {boolean} isRTL
+ */
+const fixBidiTitle = ( spec, isRTL ) => {
+	if ( !isRTL || !spec || !spec.title ) {
+		return;
+	}
+
+	/**
+	 * @param {string} text
+	 * @return {string}
+	 */
+	const wrapIfNeeded = ( text ) => {
+		if ( typeof text !== 'string' ) {
+			return text;
+		}
+
+		// Only adjust titles that start with an ASCII digit.
+		if ( !/^[0-9]/.test( text ) ) {
+			return text;
+		}
+
+		// Right-to-Left Embedding
+		const RLE = '\u202B';
+		// Pop directional formatting
+		const PDF = '\u202C';
+
+		// Avoid double wrapping if someone has already added control chars.
+		if ( text.charAt( 0 ) === RLE ) {
+			return text;
+		}
+
+		return RLE + text + PDF;
+	};
+
+	if ( Object.prototype.hasOwnProperty.call( spec.title, 'text' ) ) {
+		spec.title.text = wrapIfNeeded( spec.title.text );
+	}
+
+	if ( Object.prototype.hasOwnProperty.call( spec.title, 'subtext' ) ) {
+		spec.title.subtext = wrapIfNeeded( spec.title.subtext );
+	}
+};
+
+/**
  * Creates a number formatter.
  * Uses basic formatting for the 'none' format option.
  * (no thousands separator, no compact notation)
@@ -216,6 +271,10 @@ const render = ( wikiChartElement, chartData ) => {
 		} );
 	}
 
+	// Ensure that on RTL pages titles that begin with a number preserve
+	// their logical order. See T401719.
+	fixBidiTitle( spec, isRTL );
+
 	chart.setOption( spec );
 	originalSVG.parentNode.removeChild( originalSVG );
 	window.addEventListener( 'resize', () => {
@@ -227,5 +286,6 @@ const render = ( wikiChartElement, chartData ) => {
 module.exports = {
 	numberFormatter,
 	getFormatterForType,
-	render
+	render,
+	fixBidiTitle
 };
