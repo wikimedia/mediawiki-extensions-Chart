@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Juwan~backup"
+			"Juwan~backup",
+			"Sixaxis"
 		]
 	},
 	"chart-desc": "Adiciona a função de análise <code><nowiki>{{#chart:}}</nowiki></code> para mostrar gráficos",
@@ -20,6 +21,7 @@
 	"chart-error-unexpected": "Ocorreu um erro inesperado a renderizar o gráfico.",
 	"chart-error-category": "Páginas que utilizam a extensão Chart com erros de renderização",
 	"chart-render-category": "Páginas que utilizam a extensão Chart",
+	"chart-render-tooltip-nodata": "Sem dados",
 	"chart-visualeditor-mwchartdialog-title": "Gráfico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Página de definição do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de dados tabulares do gráfico",

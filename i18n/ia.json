@@ -22,6 +22,7 @@
 	"chart-error-category-desc": "Le pagina contine un graphico con errores de rendition.",
 	"chart-render-category": "Paginas que usa le extension Chart",
 	"chart-render-category-desc": "Le pagina usa le function <code><nowiki>{{#chart}}</nowiki></code> del analysator syntactic.",
+	"chart-render-tooltip-nodata": "Nulle datos",
 	"chart-visualeditor-mwchartdialog-title": "Graphico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Pagina de definition del graphico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabular del graphico",

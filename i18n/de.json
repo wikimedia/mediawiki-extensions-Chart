@@ -22,6 +22,7 @@
 	"chart-error-category-desc": "Die Seite enthält ein Diagramm mit Renderingsfehlern.",
 	"chart-render-category": "Seiten, die die Chart-Erweiterung verwenden",
 	"chart-render-category-desc": "Die Seite verwendet die Parserfunktion <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Keine Daten",
 	"chart-visualeditor-mwchartdialog-title": "Diagramm",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitionsseite",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabellarische Diagrammdatenquelle",
