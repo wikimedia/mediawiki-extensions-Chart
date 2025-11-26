@@ -5,6 +5,7 @@
 		]
 	},
 	"chart-render-category-desc": "D'Säit benotzt d'Parserfunktioun<code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Keng Donnéeën",
 	"chart-visualeditor-mwchartdialog-title": "Diagramm",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitiounssäit",
 	"chartjson-error-enum": "$1 muss ee vun de follgende Wäerter hunn: $2"

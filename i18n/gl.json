@@ -22,6 +22,7 @@
 	"chart-error-category-desc": "A páxina contén un gráfico con erros de renderización.",
 	"chart-render-category": "Páxinas que usan a extensión Chart",
 	"chart-render-category-desc": "A páxina emprega a función de análise <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Sen datos",
 	"chart-visualeditor-mwchartdialog-title": "Gráfico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabulares do gráfico",
