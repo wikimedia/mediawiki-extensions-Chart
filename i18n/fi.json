@@ -21,6 +21,7 @@
 	"chart-error-category-desc": "Sivulla on kaavio, jossa on renderöintivirheitä.",
 	"chart-render-category": "Chart-laajennusta käyttävät sivut",
 	"chart-render-category-desc": "Sivu käyttää <code><nowiki>{{#chart}}</nowiki></code>-jäsenninfunktiota.",
+	"chart-render-tooltip-nodata": "Ei tietoja",
 	"chart-visualeditor-mwchartdialog-title": "Kaavio",
 	"chart-visualeditor-mwchartdialog-chart-label": "Kaavion määrittelysivu",
 	"chart-visualeditor-mwchartdialog-data-label": "Kaavion taulukkotiedon lähde",
