@@ -4,6 +4,7 @@
 			"Milicevic01"
 		]
 	},
+	"chart-render-tooltip-nodata": "Нема података",
 	"chart-visualeditor-mwchartdialog-title": "Графикон",
 	"chartjson-error-enum": "$1 мора бити једна од следећих вредности: $2"
 }

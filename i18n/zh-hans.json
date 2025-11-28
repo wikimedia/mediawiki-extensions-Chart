@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ExoHyper2026",
 			"GuoPC",
 			"沈澄心"
 		]
@@ -23,6 +24,7 @@
 	"chart-error-category-desc": "包含存在渲染错误图表的页面。",
 	"chart-render-category": "使用Chart扩展的页面",
 	"chart-render-category-desc": "使用<code><nowiki>{{#chart}}</nowiki></code>解析器函数的页面。",
+	"chart-render-tooltip-nodata": "没有数据",
 	"chart-visualeditor-mwchartdialog-title": "图表",
 	"chart-visualeditor-mwchartdialog-chart-label": "图表定义页面",
 	"chart-visualeditor-mwchartdialog-data-label": "图表表格数据源",

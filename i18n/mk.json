@@ -22,6 +22,7 @@
 	"chart-error-category-desc": "Страницата содржи графикот со грешки при испис.",
 	"chart-render-category": "Страници што го користат додатокот Графикон",
 	"chart-render-category-desc": "Страницата ја користи расчленувачката функција <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Нема податоци",
 	"chart-visualeditor-mwchartdialog-title": "Графикон",
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница за графиконска одредба",
 	"chart-visualeditor-mwchartdialog-data-label": "Извор на табеларни податоци за графиконот",
