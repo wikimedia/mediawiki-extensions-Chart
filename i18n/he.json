@@ -23,6 +23,7 @@
 	"chart-error-category-desc": "הדף הזה מכיל תרשים עם שגיאות תיצוג.",
 	"chart-render-category": "דפים שמשתמשים בהרחבה Chart",
 	"chart-render-category-desc": "הדף משתמש בפונקציית המפענח <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "אין נתונים",
 	"chart-visualeditor-mwchartdialog-title": "תרשים",
 	"chart-visualeditor-mwchartdialog-chart-label": "דף הגדרת תרשים",
 	"chart-visualeditor-mwchartdialog-data-label": "מקור נתונים טבלאי בתרשים",
