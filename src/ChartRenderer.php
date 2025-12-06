@@ -15,12 +15,6 @@ use stdclass;
 
 class ChartRenderer {
 
-	private ServiceOptions $options;
-	private HttpRequestFactory $httpRequestFactory;
-	private FormatterFactory $formatterFactory;
-	private LoggerInterface $logger;
-	private ChartRequestValidator $requestValidator;
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -29,26 +23,14 @@ class ChartRenderer {
 		'ChartCliPath'
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param FormatterFactory $formatterFactory
-	 * @param ChartRequestValidator $requestValidator
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct(
-		ServiceOptions $options,
-		HttpRequestFactory $httpRequestFactory,
-		FormatterFactory $formatterFactory,
-		ChartRequestValidator $requestValidator,
-		LoggerInterface $logger
+		private readonly ServiceOptions $options,
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly FormatterFactory $formatterFactory,
+		private readonly ChartRequestValidator $requestValidator,
+		private readonly LoggerInterface $logger,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->httpRequestFactory = $httpRequestFactory;
-		$this->formatterFactory = $formatterFactory;
-		$this->requestValidator = $requestValidator;
-		$this->logger = $logger;
 	}
 
 	/**

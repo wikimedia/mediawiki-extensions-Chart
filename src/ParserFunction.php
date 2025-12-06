@@ -23,37 +23,15 @@ use Psr\Log\LoggerInterface;
 
 class ParserFunction implements MessageLocalizer {
 
-	private Language $language;
-
-	/** @var ?PageReference */
-	private ?PageReference $page;
-
-	private ChartRenderer $chartRenderer;
-
-	private ChartArgumentsParser $argumentsParser;
-
-	private DataPageResolver $dataPageResolver;
-
-	private LoggerInterface $logger;
-
-	private StatusFormatter $statusFormatter;
-
 	public function __construct(
-		ChartRenderer $chartRenderer,
-		Language $language,
-		ChartArgumentsParser $chartArgumentsParser,
-		DataPageResolver $dataPageResolver,
-		LoggerInterface $logger,
-		StatusFormatter $statusFormatter,
-		?PageReference $page
+		private readonly ChartRenderer $chartRenderer,
+		private readonly Language $language,
+		private readonly ChartArgumentsParser $argumentsParser,
+		private readonly DataPageResolver $dataPageResolver,
+		private readonly LoggerInterface $logger,
+		private readonly StatusFormatter $statusFormatter,
+		private readonly ?PageReference $page,
 	) {
-		$this->chartRenderer = $chartRenderer;
-		$this->language = $language;
-		$this->argumentsParser = $chartArgumentsParser;
-		$this->dataPageResolver = $dataPageResolver;
-		$this->logger = $logger;
-		$this->statusFormatter = $statusFormatter;
-		$this->page = $page;
 	}
 
 	/**

@@ -14,13 +14,10 @@ use MediaWiki\Parser\ParserOutput;
 
 class JCChartContentView extends JCContentView {
 
-	private ChartRenderer $chartRenderer;
-
-	private LanguageFactory $languageFactory;
-
-	public function __construct( ChartRenderer $chartRenderer, LanguageFactory $languageFactory ) {
-		$this->chartRenderer = $chartRenderer;
-		$this->languageFactory = $languageFactory;
+	public function __construct(
+		private readonly ChartRenderer $chartRenderer,
+		private readonly LanguageFactory $languageFactory,
+	) {
 	}
 
 	/**

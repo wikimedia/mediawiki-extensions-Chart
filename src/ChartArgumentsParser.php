@@ -5,10 +5,7 @@ namespace MediaWiki\Extension\Chart;
 use MediaWiki\Parser\Parser;
 
 class ChartArgumentsParser {
-	private DataPageResolver $dataPageResolver;
-
-	public function __construct( DataPageResolver $dataPageResolver ) {
-		$this->dataPageResolver = $dataPageResolver;
+	public function __construct( private readonly DataPageResolver $dataPageResolver ) {
 	}
 
 	public function parseArguments( Parser $parser, array $args ): ParsedArguments {

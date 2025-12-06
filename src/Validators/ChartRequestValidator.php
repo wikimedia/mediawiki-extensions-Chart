@@ -7,9 +7,6 @@ use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 
 class ChartRequestValidator {
-	private ServiceOptions $options;
-	private LoggerInterface $logger;
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -22,12 +19,10 @@ class ChartRequestValidator {
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
-		ServiceOptions $options,
-		LoggerInterface $logger
+		private readonly ServiceOptions $options,
+		private readonly LoggerInterface $logger,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->logger = $logger;
 	}
 
 	/**

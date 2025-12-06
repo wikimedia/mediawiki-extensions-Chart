@@ -14,17 +14,13 @@ class ChartMetrics {
 	public const CHART_DEFINITION_CREATE = 'definitions_created_total';
 	public const CHART_ADDED_TO_PAGE = 'added_to_pages_total';
 
-	/** @var StatsFactory */
-	private StatsFactory $statsFactory;
-
 	/** @var string */
 	private $wikiId;
 
 	public function __construct(
-		StatsFactory $statsFactory,
+		private readonly StatsFactory $statsFactory,
 		?string $wikiId = null
 	) {
-		$this->statsFactory = $statsFactory;
 		$this->wikiId = $wikiId ?? WikiMap::getCurrentWikiId();
 	}
 

@@ -12,18 +12,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiChartInfo extends ApiBase {
 
-	private WANObjectCache $cache;
-	private GlobalJsonLinks $globalJsonLinks;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		WANObjectCache $cache,
-		GlobalJsonLinks $globalJsonLinks
+		private readonly WANObjectCache $cache,
+		private readonly GlobalJsonLinks $globalJsonLinks,
 	) {
 		parent::__construct( $main, $action );
-		$this->cache = $cache;
-		$this->globalJsonLinks = $globalJsonLinks;
 	}
 
 	public function execute() {
