@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srđan"
+		]
+	},
+	"chart-error-chart-definition-not-found": "Stranica s definicijom grafikona nije pronađena.",
+	"chart-error-data-source-page-not-found": "Stranica s izvorom tabelarnih podataka grafikona nije pronađena."
+}
