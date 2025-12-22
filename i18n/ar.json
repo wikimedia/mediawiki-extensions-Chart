@@ -26,6 +26,7 @@
 	"chart-error-category-desc": "تحتوي الصفحة على مخطط يحتوي على أخطاء العرض.",
 	"chart-render-category": "صفحات تستخدم امتداد الرسم البياني",
 	"chart-render-category-desc": "الصفحة تستخدم <code><nowiki>{{#chart}}</nowiki></code> وظيفة المحلل.",
+	"chart-render-tooltip-nodata": "لا توجد بيانات",
 	"chart-visualeditor-mwchartdialog-title": "رسم بياني",
 	"chart-visualeditor-mwchartdialog-chart-label": "صفحة تعريف الرسم البياني",
 	"chart-visualeditor-mwchartdialog-data-label": "مصدر البيانات الجدولية",
