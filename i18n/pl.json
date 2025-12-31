@@ -20,7 +20,10 @@
 	"chart-error-rendering-error": "Wystąpił błąd podczas renderowania wykresu.",
 	"chart-error-unexpected": "Podczas renderowania wykresu wystąpił nieoczekiwany błąd.",
 	"chart-error-category": "Strony używające rozszerzenia Chart z błędami renderowania",
+	"chart-error-category-desc": "Strony zawierające wykresy z błędami ich renderowania.",
 	"chart-render-category": "Strony używające rozszerzenia Chart",
+	"chart-render-category-desc": "Strony używające funkcji parsera <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Brak danych",
 	"chart-visualeditor-mwchartdialog-title": "Wykres",
 	"chart-visualeditor-mwchartdialog-chart-label": "Strona definicji wykresu",
 	"chart-visualeditor-mwchartdialog-data-label": "Źródło danych wykresu w formie tabelarycznej",
@@ -28,5 +31,9 @@
 	"chartjson-error-enum": "$1 musi stanowić jedną z następujących wartości: $2",
 	"chart-error-source-not-found": "Nie znaleziono strony ze źródłem danych w formie tabelarycznej.",
 	"chart-error-invalid-source-type": "Strona źródła danych w formie tabelarycznej jest nieprawidłowego rodzaju.",
-	"chart-error-invalid-source-content": "Zawartość strony źródła danych w formie tabelarycznej jest nieprawidłowa."
+	"chart-error-invalid-source-content": "Zawartość strony źródła danych w formie tabelarycznej jest nieprawidłowa.",
+	"chart-error-transforms-disabled": "Przekształcenia danych tabelarycznych są wyłączone.",
+	"chart-error-request-too-large": "Wykres i dane tabelaryczne przekroczyły maksymalny dozwolony rozmiar wynoszący $1 bajtów. Użyj mniejszego zestawu danych albo rozważ użycie [https://www.mediawiki.org/wiki/Extension:Chart/Transforms opcji przekształceń danych] do filtrowania i agregowania danych.",
+	"chart-error-switchable-string": "Parametr „$1” musi być obiektem mapującym poprawne kody języków do jednolinijkowych ciągów znaków nie dłuższych niż $2 znaków, bez tabulacji i końcowych spacji, np. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Pobierz aktualną liczbę unikalnych użyć strony wykresu. Wielokrotne użycie tego samego wykresu na tej samej stronie jest traktowane jako pojedyncze użycie."
 }
