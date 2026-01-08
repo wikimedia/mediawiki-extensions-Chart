@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Stefan2255"
 		]
 	},
 	"chart-desc": "Lägger till parserfunktionen <code><nowiki>{{#chart:}}</nowiki></code> för att visa diagram",
@@ -20,7 +21,9 @@
 	"chart-error-rendering-error": "Det uppstod ett fel när diagrammet renderades.",
 	"chart-error-unexpected": "Ett oväntat fel uppstod när diagrammet renderades.",
 	"chart-error-category": "Sidor som använder diagramtillägget och som har renderingsfel",
+	"chart-error-category-desc": "Sidan innehåller ett diagram med renderingsfel.",
 	"chart-render-category": "Sidor som använder diagramtillägget",
+	"chart-render-category-desc": "Sidan använder <code><nowiki>{{#chart}}</nowiki></code> parserfunktion.",
 	"chart-visualeditor-mwchartdialog-title": "Diagram",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagramdefinitionssida",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabelldatakälla för diagram",
@@ -29,5 +32,11 @@
 	"chart-error-source-not-found": "Källsidan med tabelldata hittades inte.",
 	"chart-error-invalid-source-type": "Källsidan med tabelldata är av ogiltig typ.",
 	"chart-error-invalid-source-content": "Källsidan med tabelldata har ogiltigt innehåll.",
-	"chart-error-transforms-disabled": "Tabelldatatransformering är inte aktiverat."
+	"chart-error-transforms-disabled": "Tabelldatatransformering är inte aktiverat.",
+	"chart-error-request-too-large": "Diagram- och tabelldata överskrider den maximalt tillåtna storleken på $1 byte. Använd en mindre datamängd eller överväg [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformationsalternativ] för att filtrera eller aggregera dina data.",
+	"chart-error-switchable-string": "Parametern \"$1\" måste vara ett objekt som mappar giltiga språkkoder till enradiga strängar som inte är längre än $2 tecken, utan tabbar eller efterföljande mellanslag, t.ex. <kbd>{ \"en\":\"Sträng på engelska\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Hämta aktuellt antal unika användningar av diagramsidan. Flera användningar av samma diagram på samma sida betraktas som en enda användning.",
+	"apihelp-chartinfo-param-global": "Sätt till sant för att inkludera alla anslutna wikier istället för endast den lokala wikin.",
+	"apihelp-chartinfo-example-1": "Hämta den lokala wikins diagramantal.",
+	"apihelp-chartinfo-example-2": "Hämtning av alla wikiers diagramräkning."
 }
