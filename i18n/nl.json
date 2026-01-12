@@ -25,6 +25,7 @@
 	"chart-error-category-desc": "De pagina bevat een grafiek met weergavefouten.",
 	"chart-render-category": "Pagina's die de uitbreiding Chart gebruiken",
 	"chart-render-category-desc": "De pagina gebruikt de parserfunctie <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Geen gegevens",
 	"chart-visualeditor-mwchartdialog-title": "Grafiek",
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",
