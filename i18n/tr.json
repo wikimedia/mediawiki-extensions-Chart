@@ -1,8 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pedian4169"
+			"Pedian4169",
+			"Joseph"
 		]
 	},
-	"chart-render-category": "Chart uzantısını kullanan sayfalar"
+	"chart-desc": "Çizelgeleri görüntülemek için <code><nowiki>{{#chart:}}</nowiki></code> ayrıştırıcı işlevini ekler",
+	"chart-error-chart-definition-not-found": "Çizelge tanım sayfası bulunamadı.",
+	"chart-error-chart-definition-invalid": "Çizelge tanım sayfası geçersiz.",
+	"chart-error-data-source-invalid": "Geçersiz tablo biçimli veri kaynağı sağlandı.",
+	"chart-error-data-source-page-not-found": "Çizelge tablo biçimli veri kaynağı sayfası bulunamadı.",
+	"chart-error-default-source-not-specified": "Çizelge tanım sayfası varsayılan bir veri kaynağı belirtmiyor.",
+	"chart-error-incompatible-chart-definition": "Tanım sayfası çizelgelerle uyumlu değil.",
+	"chart-error-incompatible-data-source": "Tablo biçimli veri kaynağı sayfası çizelgelerle uyumlu değil.",
+	"chart-error-invalid-data-source": "Tablo biçimli veri kaynak sayfası geçersiz.",
+	"chart-error-invalid-height": "Yükseklik, 100 ya da daha büyük bir tam sayı olmalıdır.",
+	"chart-error-invalid-width": "Genişlik, 100 ya da daha büyük bir tam sayı olmalıdır.",
+	"chart-error-shell-disabled": "Komut satırı yürütmesi devre dışı bırakıldığı için çizelgeler işlenemiyor.",
+	"chart-error-rendering-error": "Çizelge işlenirken bir hata oluştu.",
+	"chart-error-unexpected": "Çizelge işlenirken beklenmedik bir hata oluştu.",
+	"chart-error-category": "İşleme hataları içeren Çizelge eklentisi kullanan  sayfalar",
+	"chart-render-category": "Chart uzantısını kullanan sayfalar",
+	"chart-visualeditor-mwchartdialog-title": "Çizelge",
+	"chart-visualeditor-mwchartdialog-chart-label": "Çizelge tanım sayfası",
+	"chart-visualeditor-mwchartdialog-data-label": "Çizelge tablo biçimli veri kaynağı",
+	"chartjson-error-version": "$1, $2 ile $3 (dahil) arasında bir tam sayı olmalıdır.",
+	"chartjson-error-enum": "$1 aşağıdaki değerlerden biri olmalıdır: $2",
+	"chart-error-source-not-found": "Tablo biçimli veri kaynağı sayfası bulunamadı.",
+	"chart-error-invalid-source-type": "Tablo biçimli veri kaynağı sayfası geçersiz türde.",
+	"chart-error-invalid-source-content": "Tablo biçimli veri kaynağı sayfasının içeriği geçersiz."
 }
