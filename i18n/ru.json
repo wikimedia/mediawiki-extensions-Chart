@@ -19,6 +19,7 @@
 	"chart-error-rendering-error": "При отрисовке диаграммы произошла ошибка.",
 	"chart-error-category": "Страницы с ошибками рендеринга расширения Chart",
 	"chart-render-category": "Страницы, использующие расширение Chart",
+	"chart-render-tooltip-nodata": "Нет данных",
 	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница определения диаграммы",
 	"chart-visualeditor-mwchartdialog-data-label": "Источник табличных данных диаграммы",
