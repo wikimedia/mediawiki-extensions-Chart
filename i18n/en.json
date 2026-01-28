@@ -36,7 +36,7 @@
 	"chart-error-invalid-source-content": "Tabular data source page contents are invalid.",
 	"chart-error-transforms-disabled": "Tabular data transforms are disabled.",
 	"chart-error-request-too-large": "Chart and tabular data exceed the maximum allowed size of $1 bytes. Please use a smaller dataset or consider [https://www.mediawiki.org/wiki/Extension:Chart/Transforms data transformation options] to filter or aggregate your data.",
-	"chart-error-switchable-string": "Parameter \"$1\" must be a string or an object that maps valid language codes to single line strings no longer than $2 characters, without tabs or trailing spaces, e.g. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"chart-error-switchable-string": "Parameter \"$1\" must be a string or an object that maps valid language codes to single line strings no longer than $2 {{PLURAL:$2|character|characters}}, without tabs or trailing spaces, e.g. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Retrieve current count of how many unique Chart page usages there are. Multiple uses of the same chart on the same page are considered a single use.",
 	"apihelp-chartinfo-param-global": "Set to true to include all connected wikis instead of the local wiki only.",
 	"apihelp-chartinfo-example-1": "Fetch of the local wiki's charts count.",
