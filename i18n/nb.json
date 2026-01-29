@@ -19,7 +19,9 @@
 	"chart-error-rendering-error": "En feil oppsto under tolkningen av diagrammet.",
 	"chart-error-unexpected": "En uventet feil oppsto under tolkningen av diagrammet.",
 	"chart-error-category": "Sider som bruker Chart-utvidelsen og har tolkningsfeil",
+	"chart-error-category-desc": "Siden inneholder et diagram med visningsfeil.",
 	"chart-render-category": "Sider som bruker Chart-utvidelsen",
+	"chart-render-category-desc": "Siden bruker parserfunksjonen <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "Diagram",
 	"chart-visualeditor-mwchartdialog-chart-label": "Definisjonsside for diagram",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabulær datakilde for diagrammet",
@@ -27,5 +29,11 @@
 	"chartjson-error-enum": "$1 må være en av følgende verdier: $2",
 	"chart-error-source-not-found": "Kildeside for tabulære data ikke funnet.",
 	"chart-error-invalid-source-type": "Kildesiden for tabulære data har en ugyldig type.",
-	"chart-error-invalid-source-content": "Innholdet i kildesiden for tabulære data er ugyldig."
+	"chart-error-invalid-source-content": "Innholdet i kildesiden for tabulære data er ugyldig.",
+	"chart-error-transforms-disabled": "Transformering av tabulære data er deaktivert.",
+	"chart-error-request-too-large": "Diagrammet og tabulære data overskrider maksimumsstørrelsen på $1 byte. Bruk et mindre datasett, eller vurder å bruke [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformeringsalternativene] for å filtrere eller aggregere dataene.",
+	"apihelp-chartinfo-summary": "Hent det gjeldende antallet unike bruk av diagramsider. Dersom samme diagram brukes flere ganger på samme side telles det som én bruk.",
+	"apihelp-chartinfo-param-global": "Sett denne til sann for å inkludere alle tilkoblede wikier i stedet for kun den lokale wikien.",
+	"apihelp-chartinfo-example-1": "Hent antall diagrammer for den lokale wikien.",
+	"apihelp-chartinfo-example-2": "Hent antall diagrammer for alle wikier."
 }

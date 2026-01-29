@@ -34,5 +34,8 @@
 	"chart-error-transforms-disabled": "Przekształcenia danych tabelarycznych są wyłączone.",
 	"chart-error-request-too-large": "Wykres i dane tabelaryczne przekroczyły maksymalny dozwolony rozmiar wynoszący $1 bajtów. Użyj mniejszego zestawu danych albo rozważ użycie [https://www.mediawiki.org/wiki/Extension:Chart/Transforms opcji przekształceń danych] do filtrowania i agregowania danych.",
 	"chart-error-switchable-string": "Parametr „$1” musi być obiektem mapującym poprawne kody języków do jednolinijkowych ciągów znaków nie dłuższych niż $2 znaków, bez tabulacji i końcowych spacji, np. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
-	"apihelp-chartinfo-summary": "Pobierz aktualną liczbę unikalnych użyć strony wykresu. Wielokrotne użycie tego samego wykresu na tej samej stronie jest traktowane jako pojedyncze użycie."
+	"apihelp-chartinfo-summary": "Pobierz aktualną liczbę unikalnych użyć strony wykresu. Wielokrotne użycie tego samego wykresu na tej samej stronie jest traktowane jako pojedyncze użycie.",
+	"apihelp-chartinfo-param-global": "Ustaw na true, aby uwzględnić wszystkie połączone wiki, a nie tylko wiki lokalną.",
+	"apihelp-chartinfo-example-1": "Pobieranie liczby wykresów lokalnej wiki.",
+	"apihelp-chartinfo-example-2": "Pobieranie liczby wykresów z wszystkich wiki."
 }
