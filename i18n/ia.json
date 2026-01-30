@@ -33,7 +33,7 @@
 	"chart-error-invalid-source-content": "Le contento del pagina de origine con datos tabular non es valide.",
 	"chart-error-transforms-disabled": "Le transformationes de datos tabular es disactivate.",
 	"chart-error-request-too-large": "Le datos de graphicos e tabellas excede le dimension maxime permittite de $1 bytes. Per favor usa un insimul de datos plus micre o considera modificar le [https://www.mediawiki.org/wiki/Extension:Chart/Transforms optiones de transformation de datos] pro filtrar o aggregar tu datos.",
-	"chart-error-switchable-string": "Le parametro “$1” debe esser un catena o un objecto que mappa le codices de lingua valide a singule lineas de texto non plus longe de $2 characteres, sin tabulationes e sin spatios al fin, p.ex. <kbd>{ \"ia\":\"Texto in interlingua\", ... }</kbd>",
+	"chart-error-switchable-string": "Le parametro “$1” debe esser un catena o un objecto que mappa le codices de lingua valide a singule lineas de texto non plus longe de $2 character{{PLURAL:$2||es}}, sin tabulationes e sin spatios al fin, p.ex. <kbd>{ \"ia\":\"Texto in interlingua\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Recupera le numero actual de usos unic de paginas Chart. Plure usos del mesme graphico sur le mesme pagina se considera como un uso singule.",
 	"apihelp-chartinfo-param-global": "Mitte a <code>true</code> (ver) pro includer tote le wikis connectite in loco del wiki local solmente.",
 	"apihelp-chartinfo-example-1": "Obtention del numero de graphicos del wiki local.",
