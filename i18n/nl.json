@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bdijkstra",
+			"HanV",
 			"Jeroen N",
 			"McDutchie",
 			"Siebrand"
@@ -36,7 +37,7 @@
 	"chart-error-invalid-source-content": "De inhoud van de bronpagina met tabelgegevens is foutief.",
 	"chart-error-transforms-disabled": "Het transformeren van tabelgegevens is uitgeschakeld.",
 	"chart-error-request-too-large": "De grafiek- en tabelgegevens overschrijden de maximaal toegestane grootte van $1 bytes. Gebruik een kleinere verzameling gegevens of overweeg de [https://www.mediawiki.org/wiki/Extension:Chart/Transforms mogelijkheden voor gegevenstransformatie] om uw gegevens te filteren of te aggregeren.",
-	"chart-error-switchable-string": "De parameter “$1” moet een tekenreeks zijn of een object dat geldige taalcodes toewijst aan tekenreeksen van één regel die niet langer zijn dan $2 tekens en geen tabs en aan het eind geen spaties bevatten, bv. <kbd>{ \"nl\":\"Tekenreeks in het Nederlands\", ... }</kbd>",
+	"chart-error-switchable-string": "De parameter “$1” moet een tekenreeks zijn of een object dat geldige taalcodes toewijst aan tekenreeksen van één regel die niet langer zijn dan $2 {{PLURAL:$2|teken|tekens}}, zonder tabs en aan het eind geen spaties bevatten, bv. <kbd>{ \"nl\":\"Tekenreeks in het Nederlands\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Het huidige aantal unieke gebruiken van grafiekpagina’s ophalen. Herhaaldelijk gebruik van dezelfde grafiek op dezelfde pagina wordt beschouwd als éénmalig gebruik.",
 	"apihelp-chartinfo-param-global": "Stel in op ‘true’ om alle verbonden wiki’s op te nemen in plaats van alleen de lokale wiki.",
 	"apihelp-chartinfo-example-1": "Haal het aantal grafieken van de lokale wiki op.",
