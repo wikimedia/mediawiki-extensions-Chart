@@ -34,7 +34,7 @@
 	"chart-error-invalid-source-content": "表格資料來源頁面的內容無效。",
 	"chart-error-transforms-disabled": "已停用表格資料轉換。",
 	"chart-error-request-too-large": "圖表和表格資料超過了允許的最多大小（$1 位元組）。請使用較小的資料集，或是考慮使用[https://www.mediawiki.org/wiki/Extension:Chart/Transforms 資料轉換選項]來篩選或聚集您的資料。",
-	"chart-error-switchable-string": "「$1」參數必須是個字串、或是個物件，其會將有效語言代碼對應到不帶製表字元或末端空格，且{{PLURAL:$2|字元|字元}}長度不超過 $2 的單行字串，例如：<kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"chart-error-switchable-string": "「$1」參數必須是個字串、或是個物件，其會將有效語言代碼對應到不帶製表字元或末端空格，且{{PLURAL:$2|字元}}長度不超過 $2 的單行字串，例如：<kbd>{ \"en\":\"String in English\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "取得目前圖表頁面使用次數的不重複值。在同一頁面上同一圖表的多次使用僅計算成一次使用。",
 	"apihelp-chartinfo-param-global": "設定為 true 可包含所有連線的 wiki（不限於本機 wiki）。",
 	"apihelp-chartinfo-example-1": "取得本地 wiki 的圖表數量。",
