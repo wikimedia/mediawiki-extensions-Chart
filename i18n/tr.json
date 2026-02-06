@@ -34,7 +34,7 @@
 	"chart-error-invalid-source-content": "Tablo biçimli veri kaynağı sayfasının içeriği geçersiz.",
 	"chart-error-transforms-disabled": "Tablo biçimli veri dönüşümleri devre dışı bırakıldı.",
 	"chart-error-request-too-large": "Çizelge ve tablo biçimli verileri, izin verilen en fazla $1 bayt boyutunu aşıyor. Lütfen daha küçük bir veri seti kullanın ya da verinizi filtrelemek ya da birleştirmek için [https://www.mediawiki.org/wiki/Extension:Chart/Transforms veri dönüştürme seçeneklerini] düşünün.",
-	"chart-error-switchable-string": "\"$1\" değişkeni, geçerli dil kodlarını, sekme ya da sondaki boşluklar olmadan, $2 karakteri geçmeyen tek satırlık dizelere eşleyen bir dize ya da nesne olmalıdır, ör. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"chart-error-switchable-string": "\"$1\" değişkeni, geçerli dil kodlarını, sekme ya da sondaki boşluklar olmadan, $2 {{PLURAL:$2|karakteri}} geçmeyen tek satırlık dizelere eşleyen bir dize ya da nesne olmalıdır, ör. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Mevzut benzersiz Çizelge sayfası kullanım sayısını verir. Aynı sayfada aynı çizelgenin birden fazla kullanımı tek kullanım olarak kabul edilir.",
 	"apihelp-chartinfo-param-global": "Yalnızca yerel viki yerine bağlı tüm vikileri katmak için \"true\" olarak ayarlayın.",
 	"apihelp-chartinfo-example-1": "Yerel vikinin çizelge sayısının alınması.",
