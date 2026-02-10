@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
+			"Michael FOSS",
 			"Stefan2255",
 			"WikiPhoenix"
 		]
@@ -35,7 +36,7 @@
 	"chart-error-invalid-source-content": "Källsidan med tabelldata har ogiltigt innehåll.",
 	"chart-error-transforms-disabled": "Tabelldatatransformering är inte aktiverat.",
 	"chart-error-request-too-large": "Diagram- och tabelldata överskrider den maximalt tillåtna storleken på $1 byte. Använd en mindre datamängd eller överväg [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformationsalternativ] för att filtrera eller aggregera dina data.",
-	"chart-error-switchable-string": "Parametern \"$1\" måste vara ett objekt som mappar giltiga språkkoder till enradiga strängar som inte är längre än $2 {{PLURAL:$2|tecken}}, utan tabbar eller efterföljande mellanslag, t.ex. <kbd>{ \"en\":\"Sträng på engelska\", ... }</kbd>",
+	"chart-error-switchable-string": "Parametern \"$1\" måste vara en sträng eller ett objekt som mappar giltiga språkkoder till enradssträngar som inte är längre än $2 {{PLURAL:$2|tecken}}, utan tabbar eller efterföljande mellanslag, t.ex. <kbd>{ \"en\":\"String in English\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Hämta aktuellt antal unika användningar av diagramsidan. Flera användningar av samma diagram på samma sida betraktas som en enda användning.",
 	"apihelp-chartinfo-param-global": "Sätt till sant för att inkludera alla anslutna wikier istället för endast den lokala wikin.",
 	"apihelp-chartinfo-example-1": "Hämta den lokala wikins diagramantal.",
