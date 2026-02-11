@@ -3,6 +3,7 @@
 		"authors": [
 			"ExoHyper2026",
 			"GuoPC",
+			"Pawsdt",
 			"沈澄心"
 		]
 	},
@@ -35,7 +36,7 @@
 	"chart-error-invalid-source-content": "表格数据源页面的内容无效。",
 	"chart-error-transforms-disabled": "表格数据转换已禁用。",
 	"chart-error-request-too-large": "图表和表格数据超出了允许的最大大小（$1字节）。请使用较小的数据集，或者考虑使用[https://www.mediawiki.org/wiki/Extension:Chart/Transforms 数据转换选项]来筛选或聚合数据。",
-	"chart-error-switchable-string": "参数“$1”必须映射有效语言代码至不超过$2个字符的单行字符串，并且必须是没有制表符或末尾空格的对象。例如：<kbd>{ \"en\":\"String in English\", ... }</kbd>",
+	"chart-error-switchable-string": "参数“$1”必须映射有效语言代码至不超过$2个{{PLURAL:$2|字符}}的单行字符串，并且必须是没有制表符或末尾空格的对象。例如：<kbd>{ \"en\":\"String in English\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "检索图表页面当前的唯一使用次数。同一页面上多次使用同一图表会被视为一次使用。",
 	"apihelp-chartinfo-param-global": "设置为true以包含所有连接的wiki，而不仅是本地wiki。",
 	"apihelp-chartinfo-example-1": "获取本地wiki的图表数量。",
