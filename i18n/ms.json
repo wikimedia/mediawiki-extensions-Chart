@@ -19,7 +19,9 @@
 	"chart-error-rendering-error": "Terdapat ralat semasa memaparkan carta.",
 	"chart-error-unexpected": "Ralat yang tidak dijangka berlaku semasa memaparkan carta.",
 	"chart-error-category": "Laman menggunakan sambungan Chart dengan ralat pemaparan",
+	"chart-error-category-desc": "Laman tersebut mengandungi carta dengan ralat kemasan.",
 	"chart-render-category": "Laman yang menggunakan sambungan Chart",
+	"chart-render-category-desc": "Laman tersebut menggunakan fungsi penghurai <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-visualeditor-mwchartdialog-title": "Carta",
 	"chart-visualeditor-mwchartdialog-chart-label": "Laman pentakrifan carta",
 	"chart-visualeditor-mwchartdialog-data-label": "Sumber data jadual carta",
@@ -30,5 +32,9 @@
 	"chart-error-invalid-source-content": "Kandungan laman sumber data jadual adalah tidak sah.",
 	"chart-error-transforms-disabled": "Transformasi data jadual dilumpuhkan.",
 	"chart-error-request-too-large": "Data carta dan jadual melebihi saiz maksimum yang dibenarkan iaitu $1 bait. Sila gunakan set data yang lebih kecil atau pertimbangkan [https://www.mediawiki.org/wiki/Extension:Chart/Transforms pilihan transformasi data] untuk menapis atau mengagregat data anda.",
-	"chart-error-switchable-string": "Parameter \" $1 \" mestilah merupakan rentetan atau objek yang memetakan kod bahasa yang sah kepada rentetan baris tunggal tidak lebih daripada $2 aksara, tanpa tab atau ruang belakang, cth <kbd>{\"en\":\"Rentetan dalam Bahasa Inggeris\", ... }</kbd>"
+	"chart-error-switchable-string": "Parameter \" $1 \" mestilah merupakan rentetan atau objek yang memetakan kod bahasa yang sah kepada rentetan baris tunggal tidak lebih daripada $2 aksara, tanpa tab atau ruang belakang, cth <kbd>{\"en\":\"Rentetan dalam Bahasa Inggeris\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Dapatkan kiraan semasa bilangan penggunaan unik laman Carta. Pelbagai penggunaan carta yang sama pada satu laman yang sama dianggap sebagai satu penggunaan sahaja.",
+	"apihelp-chartinfo-param-global": "Tetapkan kepada benar untuk memasukkan semua wiki yang disambungkan dan bukannya wiki setempat sahaja.",
+	"apihelp-chartinfo-example-1": "Pengambilan kiraan carta wiki tempatan.",
+	"apihelp-chartinfo-example-2": "Pengambilan kiraan carta kesemua wiki."
 }
