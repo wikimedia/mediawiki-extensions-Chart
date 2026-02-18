@@ -9,9 +9,5 @@
 	},
 	"parserOptions": {
 		"sourceType": "module"
-	},
-	"rules": {
-		"compat/compat": "warn",
-		"es-x/no-array-prototype-includes": "warn"
 	}
 }

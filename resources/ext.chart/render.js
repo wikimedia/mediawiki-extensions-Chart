@@ -169,9 +169,7 @@ const getFormatterForType = ( type, formatMode, language ) => {
  * @param {Object} spec
  * @param {Function} xFormatter
  * @param {Function} yFormatter
- * @param {Object} locale
  * @param {string} language
- * @param {boolean} isRTL
  */
 const addTooltip = ( spec, xFormatter, yFormatter, language ) => {
 	if ( !spec.series || !Array.isArray( spec.series ) || !spec.series.length ) {
@@ -225,6 +223,7 @@ const render = ( wikiChartElement, chartData ) => {
 	} = chartData;
 
 	const language = wikiChartElement.lang ? wikiChartElement.lang : mw.config.get( 'wgPageViewLanguage' );
+	// eslint-disable-next-line compat/compat
 	const locale = Intl.Locale ? new Intl.Locale( language ) : null;
 	// Note: Only available in modern browsers, older browsers will fall back to LTR.
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
