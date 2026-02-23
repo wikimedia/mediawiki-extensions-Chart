@@ -22,6 +22,7 @@
 	"chart-error-category-desc": "АгӀонан чохь рендеринган гӀалаташ долу диаграмма йу.",
 	"chart-render-category": "Chart шордар лелош йолу агӀонаш",
 	"chart-render-category-desc": "АгӀонан тӀехь лелайо <code><nowiki>{{#chart}}</nowiki></code> парсеран функци.",
+	"chart-render-tooltip-nodata": "Хаамаш бац",
 	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Диаграмман билгалдаккхаран агӀо",
 	"chart-visualeditor-mwchartdialog-data-label": "Диаграмман таблицин хьост",
