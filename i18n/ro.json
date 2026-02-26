@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Paloi Sciurala"
+		]
+	},
+	"chart-error-chart-definition-not-found": "Pagina de definiție a graficului nu a fost găsită.",
+	"chart-error-chart-definition-invalid": "Pagina de definiție a graficului este invalidă.",
+	"chart-error-data-source-invalid": "S-a furnizat o sursă invalidă de date tabelare ale graficului.",
+	"chart-error-data-source-page-not-found": "Pagina sursei de date tabelare ale graficului nu a fost găsită.",
+	"chart-error-rendering-error": "A apărut o eroare la redarea graficului.",
+	"chart-visualeditor-mwchartdialog-title": "Grafic",
+	"chart-visualeditor-mwchartdialog-chart-label": "Pagina de definiție a graficului",
+	"chart-visualeditor-mwchartdialog-data-label": "Sursa de date tabelare ale graficului"
+}

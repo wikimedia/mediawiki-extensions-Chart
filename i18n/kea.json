@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"GrogeXaKaba"
+		]
+	},
+	"chart-desc": "Ta disona funson di análizi sintátiku <code><nowiki>{{#chart:}}</nowiki></code> pa izibi gráfikus",
+	"chart-error-chart-definition-not-found": "Pájina di difinisons di gráfiku ka foi nkontradu.",
+	"chart-error-chart-definition-invalid": "Pájina di difinison di gráfiku é nbálidu.",
+	"chart-error-data-source-invalid": "Foi pruvidensiadu fonti di dadus tabular nbálidu.",
+	"chart-error-data-source-page-not-found": "Pájina di fonti di dadus tabular ka foi nkontradu.",
+	"chart-error-default-source-not-specified": "Pájina di difinison di gráfiku ka ta spisifika un fonti di dadus padron.",
+	"chart-error-incompatible-chart-definition": "Pájina di difinisons é nkunpatívi ku gráfikus.",
+	"chart-error-incompatible-data-source": "Pájina di fonti di dadus tabular é nkunpatívi ku gráfikus.",
+	"chart-error-invalid-data-source": "Pájina di fonti di dadus tabular é nbálidu.",
+	"chart-error-invalid-height": "Oltura debi ser un nunbru nter más grandi o igual 100.",
+	"chart-error-invalid-width": "Largéza debi ser un nunbru nter más grandi o igual 100.",
+	"chart-error-shell-disabled": "Ka é pusívi izibi gráfikus, pabia izikuson di kumandus sta dizativadu.",
+	"chart-error-rendering-error": "Okori un éru na jerason di gráfiku.",
+	"chart-error-unexpected": "Okori un éru inisperadu na jerason di gráfiku.",
+	"chart-error-category": "Pájinas ki ta uza stenson Chart ku érus di jerason",
+	"chart-error-category-desc": "Pájina ta konte un gráfiku ku érus di jerason.",
+	"chart-render-category": "Pájinas ki ta uza stenson Chart",
+	"chart-render-category-desc": "Pájina ta uza funson di análizi sintátiku <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-visualeditor-mwchartdialog-title": "Gráfiku",
+	"chart-visualeditor-mwchartdialog-chart-label": "Pájina di difinison di gráfiku",
+	"chart-visualeditor-mwchartdialog-data-label": "Fonti di dadus tabular di gráfiku",
+	"chartjson-error-version": "$1 debi ser un nunbru nter entri $2 i $3, nkluzivi.",
+	"chartjson-error-enum": "$1 debi ser un di baloris siginti: $2",
+	"chart-error-source-not-found": "Pájina di fonti di dadus tabular ka foi nkontradu.",
+	"chart-error-invalid-source-type": "Pájina di fonti di dadus tabular é di un tipu nbálidu.",
+	"chart-error-invalid-source-content": "Kuntiúdu di pájina di fonti di dadus tabular é nbálidu.",
+	"chart-error-transforms-disabled": "Transfurmasons di dadus tabular sta dizativadu.",
+	"chart-error-request-too-large": "Dadus di gráfiku i di tabéla ta isedi tamóin másimu pirmitidu di $1 báiti. Di sumóla, uza kunjuntu di dadus más pikénu o kunsidera otu opusons di transfurmason di dadus na [https://www.mediawiki.org/wiki/Extension:Chart/Transforms] pa filtra o agrega bu dadus.",
+	"apihelp-chartinfo-param-global": "Difini kumó berdaderu pa nklui tudu uikis kunetadu nbes di uiki lukal txaskan."
+}
