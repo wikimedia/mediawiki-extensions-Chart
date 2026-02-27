@@ -4,14 +4,14 @@ namespace MediaWiki\Extension\Chart\Tests\Unit;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\Chart\Validators\ChartRequestValidator;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
 /**
  * @covers \MediaWiki\Extension\Chart\Validators\ChartRequestValidator
  */
-class ChartRequestValidatorTest extends TestCase {
+class ChartRequestValidatorTest extends MediaWikiUnitTestCase {
 	private const SMALL_SIZE_LIMIT = 50;
 	private const LARGE_SIZE_LIMIT = 5000;
 
@@ -36,7 +36,7 @@ class ChartRequestValidatorTest extends TestCase {
 
 		$result = $validator->validateRequestSize( $sampleJson );
 
-		$this->assertFalse( $result->isGood() );
+		$this->assertStatusNotGood( $result );
 	}
 
 	public function testRequestWithinSizeLimit() {
@@ -48,7 +48,7 @@ class ChartRequestValidatorTest extends TestCase {
 
 		$result = $validator->validateRequestSize( $requestJson );
 
-		$this->assertTrue( $result->isGood() );
+		$this->assertStatusGood( $result );
 	}
 
 	/** @return MockObject&LoggerInterface */
