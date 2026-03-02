@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\GlobalJsonLinks;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
+use MediaWiki\Extension\JsonConfig\GlobalJsonLinks;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\ParamValidator\ParamValidator;
 

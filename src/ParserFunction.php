@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCContent;
-use JsonConfig\JCSingleton;
-use JsonConfig\JCTabularContent;
-use JsonConfig\JCTitle;
-use JsonConfig\JCTransform;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\JsonConfig\JCContent;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\JsonConfig\JCTabularContent;
+use MediaWiki\Extension\JsonConfig\JCTitle;
+use MediaWiki\Extension\JsonConfig\JCTransform;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;

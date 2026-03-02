@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCSingleton;
-use JsonConfig\JCTabularContent;
-use JsonConfig\JCValue;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\JsonConfig\JCTabularContent;
+use MediaWiki\Extension\JsonConfig\JCValue;
 use MediaWiki\MediaWikiServices;
 
 /**

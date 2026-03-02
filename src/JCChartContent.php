@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCDataContent;
-use JsonConfig\JCUtils;
-use JsonConfig\JCValidators;
-use JsonConfig\JCValue;
+use MediaWiki\Extension\JsonConfig\JCDataContent;
+use MediaWiki\Extension\JsonConfig\JCUtils;
+use MediaWiki\Extension\JsonConfig\JCValidators;
+use MediaWiki\Extension\JsonConfig\JCValue;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 

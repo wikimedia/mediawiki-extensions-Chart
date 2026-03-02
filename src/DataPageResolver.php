@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCSingleton;
-use JsonConfig\JCTitle;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\JsonConfig\JCTitle;
 use UnexpectedValueException;
 
 class DataPageResolver {

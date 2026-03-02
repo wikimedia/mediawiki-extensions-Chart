@@ -3,9 +3,9 @@
 namespace MediaWiki\Extension\Chart;
 
 use Article;
-use JsonConfig\JCSingleton;
-use JsonConfig\Tests\JCTransformTestCase;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\JsonConfig\Tests\JCTransformTestCase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;

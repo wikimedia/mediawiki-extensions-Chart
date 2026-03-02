@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCTitle;
+use MediaWiki\Extension\JsonConfig\JCTitle;
 
 class ParsedArguments {
 	private ?JCTitle $definitionPageTitle;

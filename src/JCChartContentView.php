@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCContent;
-use JsonConfig\JCContentView;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\JsonConfig\JCContent;
+use MediaWiki\Extension\JsonConfig\JCContentView;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;

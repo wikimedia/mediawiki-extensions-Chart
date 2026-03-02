@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use JsonConfig\JCContentHandler;
-use JsonConfig\JCSingleton;
+use MediaWiki\Extension\JsonConfig\JCContentHandler;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
