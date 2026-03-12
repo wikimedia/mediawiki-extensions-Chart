@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"JeffreyKim"
+		]
+	},
+	"chart-visualeditor-mwchartdialog-title": "圖表",
+	"chart-visualeditor-mwchartdialog-chart-label": "圖表定義版",
+	"chart-visualeditor-mwchartdialog-data-label": "圖表表格嘅資料來源"
+}
