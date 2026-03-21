@@ -35,6 +35,10 @@
 		"ChartRequestSizeLimit": {
 			"value": 100000,
 			"description": "Maximum size of request payload in bytes when sending data to the chart-renderer service. Default is 100KB."
+		},
+		"ChartVisualModeEnabled": {
+			"value": false,
+			"description": "Enables visual mode form when creating a chart"
 		}
 	},
 	"callback": "MediaWiki\\Extension\\Chart\\Hooks::onRegistration",
@@ -107,6 +111,16 @@
 				"chart-visualeditor-mwchartdialog-chart-label",
 				"chart-visualeditor-mwchartdialog-data-label"
 			]
+		},
+		"ext.chart.visualEditMode": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
+			"dependencies": [
+				"vue"
+			],
+			"packageFiles": [
+				"resources/ext.chart.visualEditMode/init.js",
+				"resources/ext.chart.visualEditMode/ChartVisualEditor.vue"
+			]
 		}
 	},
 	"ExtensionMessagesFiles": {
@@ -115,13 +129,17 @@
 	"HookHandlers": {
 		"main": {
 			"class": "MediaWiki\\Extension\\Chart\\Hooks",
-			"services": []
+			"services": [
+				"MainConfig"
+			]
 		}
 	},
 	"Hooks": {
+		"BeforePageDisplay": "main",
 		"LinksUpdateComplete": "main",
 		"ParserFirstCallInit": "main",
-		"PageSaveComplete": "main"
+		"PageSaveComplete": "main",
+		"SkinTemplateNavigation::Universal": "main"
 	},
 	"attributes": {
 		"VisualEditor": {
