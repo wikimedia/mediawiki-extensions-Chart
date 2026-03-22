@@ -79,7 +79,7 @@ class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 		}, $parsed->getErrors() ), 'errors' );
 	}
 
-	public function chartArgumentsProvider(): array {
+	public static function chartArgumentsProvider(): array {
 		return [
 			[
 				'Definition page.chart',
