@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huñvreüs"
+		]
+	},
+	"chart-desc": "Ouzhpennañ a ra ar fonksion dielfenner <code><nowiki>{{#chart:}}</nowiki></code> da ziskwel grafikoù",
+	"chart-error-chart-definition-not-found": "N'eo ket bet kavet pajenn termenadur ar grafik.",
+	"chart-error-chart-definition-invalid": "Diwiriek eo pajenn termenadur ar gartenn.",
+	"chart-error-data-source-invalid": "Mammenn roadennoù taolenn diwiriek pourvezet.",
+	"chart-error-data-source-page-not-found": "N'eo ket bet kavet pajenn mammenn roadennoù taolenn ar grafik.",
+	"chart-visualeditor-mwchartdialog-title": "Grafik",
+	"chart-visualeditor-mwchartdialog-chart-label": "Pajenn termenadur ar grafik",
+	"chart-visualeditor-mwchartdialog-data-label": "Mammenn roadennoù taolenn ar grafik"
+}
