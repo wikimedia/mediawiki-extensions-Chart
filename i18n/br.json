@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huñvreüs"
+		]
+	},
+	"chart-desc": "Ouzhpennañ a ra ar fonksion dielfenner <code><nowiki>{{#chart:}}</nowiki></code> da ziskwel grafikoù",
+	"chart-error-chart-definition-not-found": "N'eo ket bet kavet pajenn termenadur ar grafik.",
+	"chart-error-data-source-page-not-found": "N'eo ket bet kavet pajenn mammenn roadennoù taolenn ar grafik."
+}
