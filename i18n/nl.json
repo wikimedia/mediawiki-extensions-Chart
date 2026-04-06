@@ -30,6 +30,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Grafiek",
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",
+	"chart-visualedit-tab-label": "Visuele tekstverwerker",
 	"chartjson-error-version": "$1 moet een geheel getal zijn tussen $2 en $3.",
 	"chartjson-error-enum": "$1 moet een van de volgende waarden zijn: $2",
 	"chart-error-source-not-found": "De bronpagina met tabelgegevens is niet gevonden.",

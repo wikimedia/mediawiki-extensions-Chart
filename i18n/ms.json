@@ -26,6 +26,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Carta",
 	"chart-visualeditor-mwchartdialog-chart-label": "Laman pentakrifan carta",
 	"chart-visualeditor-mwchartdialog-data-label": "Sumber data jadual carta",
+	"chart-visualedit-tab-label": "Suntingan visual",
 	"chartjson-error-version": "$1 mestilah merupakan integer bernilai sama atau antara $2 dan $3.",
 	"chartjson-error-enum": "$1 mestilah merupakan salah satu daripada nilai berikut: $2",
 	"chart-error-source-not-found": "Laman sumber data jadual tidak ditemui.",

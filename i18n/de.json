@@ -27,6 +27,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Diagramm",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitionsseite",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabellarische Diagrammdatenquelle",
+	"chart-visualedit-tab-label": "Visuelle Bearbeitung",
 	"chartjson-error-version": "$1 muss eine ganze Zahl zwischen $2 und $3 inklusive sein.",
 	"chartjson-error-enum": "$1 muss einer der folgenden Werte sein: $2",
 	"chart-error-source-not-found": "Die Seite mit der tabellarischen Datenquelle wurde nicht gefunden.",

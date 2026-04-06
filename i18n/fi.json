@@ -25,6 +25,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Kaavio",
 	"chart-visualeditor-mwchartdialog-chart-label": "Kaavion määrittelysivu",
 	"chart-visualeditor-mwchartdialog-data-label": "Kaavion taulukkotiedon lähde",
+	"chart-visualedit-tab-label": "Visuaalinen muokkaus",
 	"chartjson-error-version": "$1 on oltava kokonaisluku välillä $2–$3.",
 	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2",
 	"chart-error-source-not-found": "Taulukkotiedon lähdesivua ei löytynyt.",

@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"KormiSK",
 			"Luky001"
 		]
 	},
-	"chart-visualeditor-mwchartdialog-title": "Graf"
+	"chart-visualeditor-mwchartdialog-title": "Graf",
+	"chart-visualedit-tab-label": "Vizuálny editor"
 }
