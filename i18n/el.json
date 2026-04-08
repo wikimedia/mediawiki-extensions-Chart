@@ -26,6 +26,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Γράφημα",
 	"chart-visualeditor-mwchartdialog-chart-label": "Σελίδα ορισμού γραφήματος",
 	"chart-visualeditor-mwchartdialog-data-label": "Πηγή πίνακα δεδομένων",
+	"chart-visualedit-tab-label": "Οπτική επεξεργασία",
 	"chartjson-error-version": "Το $1 πρέπει να είναι ένας ακέραιος αριθμός μεταξύ $2 και $3 συμπεριλαμβανομένων αυτών.",
 	"chartjson-error-enum": "Το $1 πρέπει να είναι μία από τις ακόλουθες τιμές: $2",
 	"chart-error-source-not-found": "Η σελίδα πηγής δεδομένων σε μορφή πίνακα δεν βρέθηκε.",
