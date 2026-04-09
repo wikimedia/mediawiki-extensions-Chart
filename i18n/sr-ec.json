@@ -6,5 +6,6 @@
 	},
 	"chart-render-tooltip-nodata": "Нема података",
 	"chart-visualeditor-mwchartdialog-title": "Графикон",
+	"chart-visualedit-tab-label": "Визуелна измена",
 	"chartjson-error-enum": "$1 мора бити једна од следећих вредности: $2"
 }
