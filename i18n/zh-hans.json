@@ -29,6 +29,7 @@
 	"chart-visualeditor-mwchartdialog-title": "图表",
 	"chart-visualeditor-mwchartdialog-chart-label": "图表定义页面",
 	"chart-visualeditor-mwchartdialog-data-label": "图表表格数据源",
+	"chart-visualedit-tab-label": "可视化编辑",
 	"chartjson-error-version": "$1必须是$2和$3及其之间的整数。",
 	"chartjson-error-enum": "$1必须是以下值之一：$2",
 	"chart-error-source-not-found": "未找到表格数据源页面。",
