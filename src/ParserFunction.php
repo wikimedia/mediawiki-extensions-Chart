@@ -10,6 +10,7 @@ use MediaWiki\Extension\JsonConfig\JCTitle;
 use MediaWiki\Extension\JsonConfig\JCTransform;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\MessageLocalizer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -18,7 +19,6 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\Status;
 use MediaWiki\Status\StatusFormatter;
-use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 
 class ParserFunction implements MessageLocalizer {

@@ -3,14 +3,14 @@
 namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Deferred\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
-use MediaWiki\Hook\LinksUpdateCompleteHook;
-use MediaWiki\Hook\ParserFirstCallInitHook;
-use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Skin\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;

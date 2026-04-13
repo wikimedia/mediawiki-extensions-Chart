@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\Chart;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\JsonConfig\JCContent;
 use MediaWiki\Extension\JsonConfig\JCContentView;
-use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;

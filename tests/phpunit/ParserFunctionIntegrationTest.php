@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\Chart;
 
-use Article;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Extension\JsonConfig\Tests\JCTransformTestCase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Article;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
