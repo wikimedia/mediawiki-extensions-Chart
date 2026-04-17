@@ -23,6 +23,7 @@
 	"chart-visualeditor-mwchartdialog-title": "차트",
 	"chart-visualeditor-mwchartdialog-chart-label": "차트 정의 문서",
 	"chart-visualeditor-mwchartdialog-data-label": "차트 탭 형식 데이터 원본",
+	"chart-visualedit-tab-label": "시각 편집",
 	"chartjson-error-version": "$1 값은 $2와 $3 사이의 정수여야 합니다.",
 	"chartjson-error-enum": "$1 값은 다음 값 중 하나여야 합니다: $2",
 	"chart-error-source-not-found": "탭 형식 데이터 원본 문서가 없습니다.",
