@@ -2,7 +2,8 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/mediawiki"
+		"wikimedia/mediawiki",
+		"wikimedia/vue3/es2017"
 	],
 	"globals": {
 		"exports": true

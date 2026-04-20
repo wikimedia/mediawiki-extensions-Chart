@@ -115,11 +115,27 @@
 		"ext.chart.visualEditMode": {
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"dependencies": [
-				"vue"
+				"vue",
+				"pinia"
 			],
 			"packageFiles": [
 				"resources/ext.chart.visualEditMode/init.js",
-				"resources/ext.chart.visualEditMode/ChartVisualEditor.vue"
+				"resources/ext.chart.visualEditMode/stores/chart.js",
+				"resources/ext.chart.visualEditMode/components/ChartForm.vue",
+				"resources/ext.chart.visualEditMode/components/ChartPreviewArea.vue",
+				"resources/ext.chart.visualEditMode/components/ChartVisualEditor.vue",
+				"resources/ext.chart.visualEditMode/components/DatasetLookupField.vue"
+			],
+			"codexComponents": [
+				"CdxField",
+				"CdxLookup"
+			],
+			"messages": [
+				"chart-visualedit-tab-form-dataset-label",
+				"chart-visualedit-tab-form-dataset-description",
+				"chart-visualedit-tab-form-dataset-placeholder",
+				"chart-visualedit-tab-preview-placeholder-title",
+				"chart-visualedit-tab-preview-placeholder-description"
 			]
 		}
 	},

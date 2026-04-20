@@ -1,0 +1,179 @@
+<template>
+	<cdx-field>
+		<cdx-lookup
+			v-model:selected="selection"
+			v-model:input-value="currentSearchTerm"
+			:menu-items="menuItems"
+			:menu-config="menuConfig"
+			:placeholder="$i18n( 'chart-visualedit-tab-form-dataset-placeholder' ).text()"
+			@input="onInput"
+			@change="onChange"
+			@update:selected="onSelect"
+		>
+		</cdx-lookup>
+		<template #label>
+			{{ $i18n( 'chart-visualedit-tab-form-dataset-label' ).text() }}
+		</template>
+		<template #description>
+			{{ $i18n( 'chart-visualedit-tab-form-dataset-description' ).text() }}
+		</template>
+	</cdx-field>
+</template>
+
+<script>
+const { defineComponent, ref } = require( 'vue' );
+const { CdxField, CdxLookup } = require( '../../../codex.js' );
+const { storeToRefs } = require( 'pinia' );
+const useChartStore = require( '../stores/chart.js' );
+const api = new mw.Api();
+
+module.exports = exports = defineComponent( {
+	name: 'DatasetField',
+	components: { CdxField, CdxLookup },
+	props: {
+		modelValue: { type: [ String, null ], default: null }
+	},
+	emits: [
+		'update:modelValue'
+	],
+	setup( props ) {
+		const store = useChartStore();
+		const { dataset } = storeToRefs( store );
+		const tabularNs = mw.config.get( 'wgNamespaceIds' ).data;
+		if ( tabularNs === undefined ) {
+			// log a warning
+			return Promise.resolve( [] );
+		}
+
+		// Selected item, defaulting to null.
+		const selection = ref( props.modelValue || '' );
+		// Current input value. This is helpful to track so we can fetch results for the current
+		// search term, and is bound to the Lookup via v-model.
+		// Note that, on selection, the input updates to match the selected item.
+		const currentSearchTerm = ref( props.modelValue || '' );
+		// Menu items to show. On input, results will be fetched and provided as menu items. When
+		// the input is cleared, the menu items will be reset to an empty array.
+		// On selection, since the input updates to match the selected item, the
+		// `onUpdateInputValue` method runs and fetches new results based on the selected item.
+		const menuItems = ref( [] );
+		// Limit the height of the menu and enable scrolling.
+		const menuConfig = {
+			visibleItemLimit: 6
+		};
+
+		// Set a flag to keep track of pending API requests, so we can abort if
+		// the target string changes
+		let pending = false;
+
+		/**
+		 * Get search results.
+		 *
+		 * @param {string} searchTerm
+		 * @return {Promise}
+		 */
+		function fetchDatasetPages( searchTerm ) {
+			const params = {
+				action: 'query',
+				generator: 'prefixsearch',
+				gpssearch: searchTerm,
+				gpsnamespace: tabularNs,
+				gpslimit: 10,
+				prop: 'info',
+				formatversion: 2
+			};
+			return api.get( params ).then( ( response ) => {
+				const pages = response.query && response.query.pages || [];
+				return pages.filter( ( p ) => p.contentmodel === 'Tabular.JsonConfig' );
+			} );
+		}
+
+		/**
+		 * Handle lookup input.
+		 *
+		 * @param {string} value
+		 * @return {Promise}
+		 */
+		function onInput( value ) {
+			// Abort any existing request if one is still pending
+			if ( pending ) {
+				pending = false;
+				api.abort();
+			}
+
+			// Internally track the current search term.
+			currentSearchTerm.value = value;
+
+			// Do nothing if we have no input.
+			if ( !value ) {
+				menuItems.value = [];
+				return Promise.resolve();
+			}
+
+			return fetchDatasetPages( value )
+				.then( ( data ) => {
+					pending = false;
+
+					// Make sure this data is still relevant first.
+					if ( currentSearchTerm.value !== value ) {
+						return;
+					}
+
+					// Reset the menu items if there are no results.
+					if ( !data || data.length === 0 ) {
+						menuItems.value = [];
+						return;
+					}
+
+					// Build an array of menu items.
+					menuItems.value = data.map( ( result ) => ( {
+						label: result.title,
+						value: result.title
+					} ) );
+				} )
+				.catch( () => {
+					// On error, set results to empty.
+					menuItems.value = [];
+				} );
+		}
+
+		/**
+		 * Handle lookup change.
+		 */
+		function onChange() {
+			// Use the currentSearchTerm value instead of the event target value,
+			// since the event can be fired before the watcher updates the value.
+			setDataset( currentSearchTerm.value );
+		}
+
+		/**
+		 * Handle lookup selection.
+		 */
+		function onSelect() {
+			if ( selection.value !== null ) {
+				currentSearchTerm.value = selection.value;
+				setDataset( selection.value );
+			}
+		}
+
+		/**
+		 * Set the dataset
+		 *
+		 * @param {string} value
+		 */
+		function setDataset( value ) {
+			dataset.value = value;
+			onInput( value );
+		}
+
+		return {
+			currentSearchTerm,
+			selection,
+			menuItems,
+			menuConfig,
+			onInput,
+			onChange,
+			onSelect
+		};
+	}
+} );
+</script>
