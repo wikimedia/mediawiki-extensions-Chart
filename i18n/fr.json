@@ -35,6 +35,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Graphique",
 	"chart-visualeditor-mwchartdialog-chart-label": "Page de définition du graphique",
 	"chart-visualeditor-mwchartdialog-data-label": "Source de données tabulaires du graphique",
+	"chart-visualedit-tab-label": "Modification avec l'éditeur visuel",
 	"chartjson-error-version": "$1 doit être un entier compris entre $2 et $3 inclus.",
 	"chartjson-error-enum": "$1 doit être l'une des valeurs suivantes : $2",
 	"chart-error-source-not-found": "La page de la source des données du tableau graphique n'a pas été trouvée.",
