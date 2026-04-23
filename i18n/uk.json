@@ -1,9 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Repakr",
 			"Serhio Magpie"
 		]
 	},
+	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> ждя відображення діаграм",
+	"chart-error-chart-definition-not-found": "Сторінку визначення діаграми не знайдено.",
+	"chart-error-chart-definition-invalid": "Сторінка визначення діаграми є недійсною.",
+	"chart-error-data-source-invalid": "Вказано недійсне джерело табличних даних.",
+	"chart-error-data-source-page-not-found": "Не знайдено сторінку джерела табличних даних діаграми.",
+	"chart-error-default-source-not-specified": "Сторінка визначення діаграми не зазначає стандартне джерело даних.",
+	"chart-error-incompatible-chart-definition": "Сторінка визначення не сумісна з діаграмами.",
 	"chart-error-category": "Сторінки з помилками відображення розширення Chart",
-	"chart-render-category": "Сторінки, що використовують розширення Chart"
+	"chart-render-category": "Сторінки, що використовують розширення Chart",
+	"chart-render-tooltip-nodata": "Немає даних",
+	"chart-visualeditor-mwchartdialog-title": "Діаграма",
+	"chart-visualeditor-mwchartdialog-chart-label": "Сторінка визначення діаграми",
+	"chart-visualeditor-mwchartdialog-data-label": "Джерело табличних даних діаграми"
 }
