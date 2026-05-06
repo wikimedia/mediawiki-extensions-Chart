@@ -12,9 +12,18 @@
 	"chart-error-data-source-page-not-found": "Не знайдено сторінку джерела табличних даних діаграми.",
 	"chart-error-default-source-not-specified": "Сторінка визначення діаграми не зазначає стандартне джерело даних.",
 	"chart-error-incompatible-chart-definition": "Сторінка визначення не сумісна з діаграмами.",
+	"chart-error-incompatible-data-source": "Сторінка джерела табличних даних несумісна з діаграмами.",
+	"chart-error-invalid-data-source": "Недійсна сторінка джерела табличних даних.",
+	"chart-error-rendering-error": "Сталася помилка під час відображення діаграми.",
+	"chart-error-unexpected": "Сталася неочікувана помилка під час відображення діаграми.",
 	"chart-error-category": "Сторінки з помилками відображення розширення Chart",
 	"chart-render-category": "Сторінки, що використовують розширення Chart",
 	"chart-visualeditor-mwchartdialog-title": "Діаграма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Сторінка визначення діаграми",
-	"chart-visualeditor-mwchartdialog-data-label": "Джерело табличних даних діаграми"
+	"chart-visualeditor-mwchartdialog-data-label": "Джерело табличних даних діаграми",
+	"chartjson-error-version": "$1 повинен бути цілим числом між $2 та $3 включно.",
+	"chartjson-error-enum": "$1 повинен бути одним із наступних значень: $2",
+	"chart-error-source-not-found": "Не знайдено сторінку джерела табличних даних.",
+	"chart-error-invalid-source-type": "Сторінка джерела табличних даних має недійсний тип.",
+	"chart-error-invalid-source-content": "Недійсний вміст сторінки джерела табличних даних."
 }
