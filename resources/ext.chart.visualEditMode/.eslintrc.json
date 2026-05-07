@@ -1,0 +1,17 @@
+{
+	"extends": [
+		"wikimedia/client",
+		"wikimedia/vue3/es2017",
+		"wikimedia/mediawiki"
+	],
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"env": {
+		"browser": true,
+		"jest": true
+	},
+	"globals": {
+		"global": "writable"
+	}
+}

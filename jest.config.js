@@ -35,5 +35,18 @@ module.exports = {
 	// set up the testing environment before each test
 	setupFiles: [
 		'./jest.setup.js'
-	]
+	],
+
+	// The test environment that will be used for testing
+	testEnvironment: 'jsdom',
+
+	// Options that will be passed to the testEnvironment
+	testEnvironmentOptions: {
+		customExportConditions: [ 'node', 'node-addons' ]
+	},
+
+	// A map from regular expressions to paths to transformers
+	transform: {
+		'^.+\\.vue$': '<rootDir>/node_modules/@vue/vue3-jest'
+	}
 };
