@@ -112,30 +112,30 @@
 				"chart-visualeditor-mwchartdialog-data-label"
 			]
 		},
-		"ext.chart.visualEditMode": {
+		"ext.chart.wizard": {
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"dependencies": [
 				"vue",
 				"pinia"
 			],
 			"packageFiles": [
-				"resources/ext.chart.visualEditMode/init.js",
-				"resources/ext.chart.visualEditMode/stores/chart.js",
-				"resources/ext.chart.visualEditMode/components/ChartForm.vue",
-				"resources/ext.chart.visualEditMode/components/ChartPreviewArea.vue",
-				"resources/ext.chart.visualEditMode/components/ChartVisualEditor.vue",
-				"resources/ext.chart.visualEditMode/components/DatasetLookupField.vue"
+				"resources/ext.chart.wizard/init.js",
+				"resources/ext.chart.wizard/stores/chart.js",
+				"resources/ext.chart.wizard/components/ChartForm.vue",
+				"resources/ext.chart.wizard/components/ChartPreviewArea.vue",
+				"resources/ext.chart.wizard/components/ChartWizard.vue",
+				"resources/ext.chart.wizard/components/SourceField.vue"
 			],
 			"codexComponents": [
 				"CdxField",
 				"CdxLookup"
 			],
 			"messages": [
-				"chart-visualedit-tab-form-dataset-label",
-				"chart-visualedit-tab-form-dataset-description",
-				"chart-visualedit-tab-form-dataset-placeholder",
-				"chart-visualedit-tab-preview-placeholder-title",
-				"chart-visualedit-tab-preview-placeholder-description"
+				"chart-wizard-form-source-label",
+				"chart-wizard-form-source-description",
+				"chart-wizard-form-source-placeholder",
+				"chart-wizard-preview-placeholder-title",
+				"chart-wizard-preview-placeholder-description"
 			]
 		}
 	},

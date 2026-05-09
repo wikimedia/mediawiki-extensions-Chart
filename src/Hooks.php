@@ -80,13 +80,13 @@ class Hooks implements
 	 * @param array &$links
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
-		if ( $this->shouldSupportVisualMode( $sktemplate->getTitle() ) ) {
+		if ( $this->shouldSupportWizard( $sktemplate->getTitle() ) ) {
 			$this->updateEditLinks( $sktemplate, $links );
 		}
 	}
 
 	/**
-	 * Adds Chart visual editor JS to the output.
+	 * Adds the Chart Wizard JS to the output.
 	 *
 	 * This is attached to the MediaWiki 'BeforePageDisplay' hook.
 	 *
@@ -94,8 +94,8 @@ class Hooks implements
 	 * @param Skin $skin The skin that's going to build the UI.
 	 */
 	public function onBeforePageDisplay( $output, $skin ): void {
-		if ( $this->shouldSupportVisualMode( $output->getTitle() ) && $output->getRequest()->getBool( 'visual' ) ) {
-			$output->addModules( 'ext.chart.visualEditMode' );
+		if ( $this->shouldSupportWizard( $output->getTitle() ) && $output->getRequest()->getBool( 'visual' ) ) {
+			$output->addModules( 'ext.chart.wizard' );
 		}
 	}
 
@@ -106,15 +106,15 @@ class Hooks implements
 	 * @param array &$links
 	 */
 	private function updateEditLinks( SkinTemplate $sktemplate, array &$links ): void {
-		$setVisualMode = $sktemplate->getRequest()->getInt( 'visual' );
+		$selected = $sktemplate->getRequest()->getInt( 'visual' );
 		// Deselect "edit source" link
-		if ( $setVisualMode ) {
+		if ( $selected ) {
 			$links['views']['edit']['class'] = '';
 		}
-		$chartVisualEditTab = [
-			'text' => $sktemplate->msg( 'chart-visualedit-tab-label' )->text(),
+		$chartWizardTab = [
+			'text' => $sktemplate->msg( 'chart-wizard-tab-label' )->text(),
 			'icon' => 'edit',
-			'class' => $setVisualMode ? 'selected' : '',
+			'class' => $selected ? 'selected' : '',
 			'href' => $sktemplate->getRelevantTitle()->getLinkURL( [ 'action' => 'edit', 'visual' => 1 ] )
 		];
 
@@ -123,13 +123,13 @@ class Hooks implements
 		$newTabs = [];
 		foreach ( $tabs as $key => $val ) {
 			if ( $key === 'history' ) {
-				$newTabs['chart-visual-edit'] = $chartVisualEditTab;
+				$newTabs['chart-wizard'] = $chartWizardTab;
 			}
 			$newTabs[$key] = $val;
 		}
 		// If no "View history" tab was found, append to the end.
-		if ( !isset( $newTabs['chart-visual-edit'] ) ) {
-			$newTabs['chart-visual-edit'] = $chartVisualEditTab;
+		if ( !isset( $newTabs['chart-wizard'] ) ) {
+			$newTabs['chart-wizard'] = $chartWizardTab;
 		}
 
 		$links['views'] = $newTabs;
@@ -141,7 +141,7 @@ class Hooks implements
 	 * @param Title $title Title to render visual mode
 	 * @return bool True if chart visual mode flag is enabled and it's a chart page
 	 */
-	private function shouldSupportVisualMode( Title $title ): bool {
+	private function shouldSupportWizard( Title $title ): bool {
 		return $this->isChartVisualModeEnabled && $title->getContentModel() === JCChartContent::CONTENT_MODEL;
 	}
 }

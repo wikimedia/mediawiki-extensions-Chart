@@ -6,14 +6,14 @@ const { ref, Ref } = require( 'vue' );
  */
 module.exports = exports = defineStore( 'chart', () => {
 	/**
-	 * The dataset used to create the chart.
-	 * This is set only by the DatasetLookupField component.
+	 * The source dataset used to create the chart.
+	 * This is set only by the SourceField component.
 	 *
 	 * @type {Ref<string>}
 	 */
-	const dataset = ref( '' );
+	const source = ref( '' );
 
 	return {
-		dataset
+		source
 	};
 } );

@@ -1,21 +1,21 @@
 <template>
-	<cdx-field>
+	<cdx-field class="ext-chart-wizard__source">
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
-			:placeholder="$i18n( 'chart-visualedit-tab-form-dataset-placeholder' ).text()"
+			:placeholder="$i18n( 'chart-wizard-form-source-placeholder' ).text()"
 			@input="onInput"
 			@change="onChange"
 			@update:selected="onSelect"
 		>
 		</cdx-lookup>
 		<template #label>
-			{{ $i18n( 'chart-visualedit-tab-form-dataset-label' ).text() }}
+			{{ $i18n( 'chart-wizard-form-source-label' ).text() }}
 		</template>
 		<template #description>
-			{{ $i18n( 'chart-visualedit-tab-form-dataset-description' ).text() }}
+			{{ $i18n( 'chart-wizard-form-source-description' ).text() }}
 		</template>
 	</cdx-field>
 </template>
@@ -28,7 +28,7 @@ const useChartStore = require( '../stores/chart.js' );
 const api = new mw.Api();
 
 module.exports = exports = defineComponent( {
-	name: 'DatasetField',
+	name: 'SourceField',
 	components: { CdxField, CdxLookup },
 	props: {
 		modelValue: { type: [ String, null ], default: null }
@@ -38,7 +38,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props ) {
 		const store = useChartStore();
-		const { dataset } = storeToRefs( store );
+		const { source } = storeToRefs( store );
 		const tabularNs = mw.config.get( 'wgNamespaceIds' ).data;
 		if ( tabularNs === undefined ) {
 			// log a warning
@@ -71,7 +71,7 @@ module.exports = exports = defineComponent( {
 		 * @param {string} searchTerm
 		 * @return {Promise}
 		 */
-		function fetchDatasetPages( searchTerm ) {
+		function fetchSourcePages( searchTerm ) {
 			const params = {
 				action: 'query',
 				generator: 'prefixsearch',
@@ -109,7 +109,7 @@ module.exports = exports = defineComponent( {
 				return Promise.resolve();
 			}
 
-			return fetchDatasetPages( value )
+			return fetchSourcePages( value )
 				.then( ( data ) => {
 					pending = false;
 
@@ -142,7 +142,7 @@ module.exports = exports = defineComponent( {
 		function onChange() {
 			// Use the currentSearchTerm value instead of the event target value,
 			// since the event can be fired before the watcher updates the value.
-			setDataset( currentSearchTerm.value );
+			setSource( currentSearchTerm.value );
 		}
 
 		/**
@@ -151,17 +151,17 @@ module.exports = exports = defineComponent( {
 		function onSelect() {
 			if ( selection.value !== null ) {
 				currentSearchTerm.value = selection.value;
-				setDataset( selection.value );
+				setSource( selection.value );
 			}
 		}
 
 		/**
-		 * Set the dataset
+		 * Set the source dataset.
 		 *
 		 * @param {string} value
 		 */
-		function setDataset( value ) {
-			dataset.value = value;
+		function setSource( value ) {
+			source.value = value;
 			onInput( value );
 		}
 

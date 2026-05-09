@@ -1,5 +1,5 @@
 <template>
-	<div class="ext-chart-visualmode">
+	<div class="ext-chart-wizard">
 		<chart-form></chart-form>
 		<chart-preview-area></chart-preview-area>
 	</div>
@@ -11,7 +11,7 @@ const ChartForm = require( './ChartForm.vue' );
 const ChartPreviewArea = require( './ChartPreviewArea.vue' );
 
 module.exports = exports = defineComponent( {
-	name: 'ChartVisualEditor',
+	name: 'ChartWizard',
 	components: {
 		ChartForm,
 		ChartPreviewArea
@@ -22,11 +22,11 @@ module.exports = exports = defineComponent( {
 <style lang="less">
 @import 'mediawiki.skin.variables.less';
 
-.ext-chart-visualmode {
-	margin-top: @spacing-100;
+.ext-chart-wizard {
 	display: flex;
 	flex-wrap: wrap;
-	column-gap: @spacing-12;
+	column-gap: @spacing-200;
+	margin-top: @spacing-100;
 
 	& > * {
 		flex-basis: 0;
