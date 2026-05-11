@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Samoasambia"
+			"Samoasambia",
+			"Wikipeedikko"
 		]
 	},
 	"chart-desc": "Lisää <code><nowiki>{{#chart:}}</nowiki></code>-jäsenninfunktion kaavioiden näyttämistä varten",
@@ -26,6 +27,11 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Kaavion määrittelysivu",
 	"chart-visualeditor-mwchartdialog-data-label": "Kaavion taulukkotiedon lähde",
 	"chart-visualedit-tab-label": "Visuaalinen muokkaus",
+	"chart-visualedit-tab-form-dataset-label": "1. Valitse tietojoukko",
+	"chart-visualedit-tab-form-dataset-description": "Valitse kuvattava taulukkomuotoinen tietojoukko",
+	"chart-visualedit-tab-form-dataset-placeholder": "Etsi tietojoukkoa...",
+	"chart-visualedit-tab-preview-placeholder-title": "Valitse tietojoukko",
+	"chart-visualedit-tab-preview-placeholder-description": "Tietojen esikatselu näytetään täällä ennen kaavion luomista",
 	"chartjson-error-version": "$1 on oltava kokonaisluku välillä $2–$3.",
 	"chartjson-error-enum": "$1 on oltava jokin seuraavista arvoista: $2",
 	"chart-error-source-not-found": "Taulukkotiedon lähdesivua ei löytynyt.",
