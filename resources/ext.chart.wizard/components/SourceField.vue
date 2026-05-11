@@ -6,8 +6,10 @@
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="$i18n( 'chart-wizard-form-source-placeholder' ).text()"
+			:clearable="true"
 			@input="onInput"
 			@change="onChange"
+			@clear="onChange"
 			@update:selected="onSelect"
 		>
 		</cdx-lookup>

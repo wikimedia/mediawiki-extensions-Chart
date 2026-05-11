@@ -122,7 +122,7 @@
 				"resources/ext.chart.wizard/init.js",
 				"resources/ext.chart.wizard/stores/chart.js",
 				"resources/ext.chart.wizard/components/ChartForm.vue",
-				"resources/ext.chart.wizard/components/ChartPreviewArea.vue",
+				"resources/ext.chart.wizard/components/ChartPreview.vue",
 				"resources/ext.chart.wizard/components/ChartWizard.vue",
 				"resources/ext.chart.wizard/components/SourceField.vue"
 			],

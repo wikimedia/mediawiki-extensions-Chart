@@ -2,5 +2,8 @@
 	"root": true,
 	"extends": [
 		"wikimedia/server"
-	]
+	],
+	"globals": {
+		"jest": "readonly"
+	}
 }

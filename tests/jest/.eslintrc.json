@@ -4,9 +4,10 @@
 		"../../resources/.eslintrc.json"
 	],
 	"globals": {
-		"global": "readonly"
+		"global": "writable"
 	},
 	"env": {
+		"browser": true,
 		"jest": true
 	}
 }

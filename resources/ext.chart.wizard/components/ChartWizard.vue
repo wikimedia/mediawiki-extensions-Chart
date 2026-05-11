@@ -1,20 +1,20 @@
 <template>
 	<div class="ext-chart-wizard">
 		<chart-form></chart-form>
-		<chart-preview-area></chart-preview-area>
+		<chart-preview></chart-preview>
 	</div>
 </template>
 
 <script>
 const { defineComponent } = require( 'vue' );
 const ChartForm = require( './ChartForm.vue' );
-const ChartPreviewArea = require( './ChartPreviewArea.vue' );
+const ChartPreview = require( './ChartPreview.vue' );
 
 module.exports = exports = defineComponent( {
 	name: 'ChartWizard',
 	components: {
 		ChartForm,
-		ChartPreviewArea
+		ChartPreview
 	}
 } );
 </script>
