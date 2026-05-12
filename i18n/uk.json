@@ -11,6 +11,8 @@
 	"chart-error-default-source-not-specified": "Сторінка визначення діаграми не зазначає стандартне джерело даних.",
 	"chart-error-incompatible-chart-definition": "Сторінка визначення не сумісна з діаграмами.",
 	"chart-error-incompatible-data-source": "Сторінка джерела табличних даних несумісна з діаграмами.",
+	"chart-error-invalid-height": "Висота має бути цілим числом, більшим або рівним 100.",
+	"chart-error-invalid-width": "Ширина має бути цілим числом, більшим або рівним 100.",
 	"chart-error-rendering-error": "Сталася помилка під час відображення діаграми.",
 	"chart-error-unexpected": "Сталася неочікувана помилка під час відображення діаграми."
 }
