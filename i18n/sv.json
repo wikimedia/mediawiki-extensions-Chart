@@ -29,6 +29,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Diagram",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagramdefinitionssida",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabelldatakälla för diagram",
+	"chart-wizard-form-source-label": "1. Välj datauppställning",
 	"chartjson-error-version": "$1 måste vara ett heltal mellan samt inklusive $2 och $3.",
 	"chartjson-error-enum": "$1 måste vara ett av följande värden: $2",
 	"chart-error-source-not-found": "Källsidan med tabelldata hittades inte.",
