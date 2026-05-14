@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Samoasambia"
+			"Samoasambia",
+			"Wikipeedikko"
 		]
 	},
 	"chart-desc": "Lisää <code><nowiki>{{#chart:}}</nowiki></code>-jäsenninfunktion kaavioiden näyttämistä varten",
