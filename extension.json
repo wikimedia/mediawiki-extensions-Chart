@@ -36,9 +36,9 @@
 			"value": 100000,
 			"description": "Maximum size of request payload in bytes when sending data to the chart-renderer service. Default is 100KB."
 		},
-		"ChartVisualModeEnabled": {
+		"ChartWizardEnabled": {
 			"value": false,
-			"description": "Enables visual mode form when creating a chart"
+			"description": "Enables the chart wizard form when creating or editing a chart definition page."
 		}
 	},
 	"callback": "MediaWiki\\Extension\\Chart\\Hooks::onRegistration",

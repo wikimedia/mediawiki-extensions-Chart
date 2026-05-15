@@ -23,12 +23,12 @@ class Hooks implements
 	LinksUpdateCompleteHook,
 	SkinTemplateNavigation__UniversalHook
 {
-	protected bool $isChartVisualModeEnabled;
+	protected bool $isChartWizardEnabled;
 
 	public function __construct(
 		private readonly Config $config,
 	) {
-		$this->isChartVisualModeEnabled = $config->get( 'ChartVisualModeEnabled' );
+		$this->isChartWizardEnabled = $config->get( 'ChartWizardEnabled' );
 	}
 
 	public static function onRegistration() {
@@ -142,6 +142,6 @@ class Hooks implements
 	 * @return bool True if chart visual mode flag is enabled and it's a chart page
 	 */
 	private function shouldSupportWizard( Title $title ): bool {
-		return $this->isChartVisualModeEnabled && $title->getContentModel() === JCChartContent::CONTENT_MODEL;
+		return $this->isChartWizardEnabled && $title->getContentModel() === JCChartContent::CONTENT_MODEL;
 	}
 }
