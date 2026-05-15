@@ -7,6 +7,7 @@ use MediaWiki\Extension\Chart\Validators\ChartRequestValidator;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
+use Psr\Log\LoggerInterface;
 
 /**
  * @codeCoverageIgnore
@@ -32,7 +33,7 @@ return [
 			$services->getHttpRequestFactory(),
 			$services->getFormatterFactory(),
 			$services->get( 'Chart.ChartRequestValidator' ),
-			LoggerFactory::getInstance( 'Chart' )
+			$services->get( 'Chart.Logger' ),
 		);
 	},
 	'Chart.ChartRequestValidator' => static function ( MediaWikiServices $services ): ChartRequestValidator {
@@ -41,7 +42,7 @@ return [
 				ChartRequestValidator::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			LoggerFactory::getInstance( 'Chart' )
+			$services->get( 'Chart.Logger' ),
 		);
 	},
 	'Chart.ChartSourceValidator' => static function ( MediaWikiServices $services ): ChartSourceValidator {
@@ -50,4 +51,7 @@ return [
 	'Chart.DataPageResolver' => static function ( MediaWikiServices $services ): DataPageResolver {
 		return new DataPageResolver();
 	},
+	'Chart.Logger' => static function (): LoggerInterface {
+		return LoggerFactory::getInstance( 'Chart' );
+	}
 ];

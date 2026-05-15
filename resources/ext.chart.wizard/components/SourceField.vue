@@ -1,8 +1,13 @@
 <template>
-	<cdx-field class="ext-chart-wizard__source">
+	<cdx-field
+		class="ext-chart-wizard__source"
+		:status="sourceStatus ? 'error' : 'default'"
+		:messages="sourceStatus ? { error: sourceStatus } : {}"
+	>
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
+			required
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
 			:placeholder="$i18n( 'chart-wizard-form-source-placeholder' ).text()"
@@ -32,27 +37,17 @@ const api = new mw.Api();
 module.exports = exports = defineComponent( {
 	name: 'SourceField',
 	components: { CdxField, CdxLookup },
-	props: {
-		modelValue: { type: [ String, null ], default: null }
-	},
-	emits: [
-		'update:modelValue'
-	],
-	setup( props ) {
+	setup() {
 		const store = useChartStore();
-		const { source } = storeToRefs( store );
+		const { source, sourceStatus } = storeToRefs( store );
 		const tabularNs = mw.config.get( 'wgNamespaceIds' ).data;
-		if ( tabularNs === undefined ) {
-			// log a warning
-			return Promise.resolve( [] );
-		}
 
 		// Selected item, defaulting to null.
-		const selection = ref( props.modelValue || '' );
+		const selection = ref( source.value );
 		// Current input value. This is helpful to track so we can fetch results for the current
 		// search term, and is bound to the Lookup via v-model.
 		// Note that, on selection, the input updates to match the selected item.
-		const currentSearchTerm = ref( props.modelValue || '' );
+		const currentSearchTerm = ref( source.value );
 		// Menu items to show. On input, results will be fetched and provided as menu items. When
 		// the input is cleared, the menu items will be reset to an empty array.
 		// On selection, since the input updates to match the selected item, the
@@ -73,7 +68,7 @@ module.exports = exports = defineComponent( {
 		 * @param {string} searchTerm
 		 * @return {Promise}
 		 */
-		function fetchSourcePages( searchTerm ) {
+		async function fetchSourcePages( searchTerm ) {
 			const params = {
 				action: 'query',
 				generator: 'prefixsearch',
@@ -83,10 +78,9 @@ module.exports = exports = defineComponent( {
 				prop: 'info',
 				formatversion: 2
 			};
-			return api.get( params ).then( ( response ) => {
-				const pages = response.query && response.query.pages || [];
-				return pages.filter( ( p ) => p.contentmodel === 'Tabular.JsonConfig' );
-			} );
+			const response = await api.get( params );
+			const pages = response.query && response.query.pages || [];
+			return pages.filter( ( p ) => p.contentmodel === 'Tabular.JsonConfig' );
 		}
 
 		/**
@@ -172,6 +166,7 @@ module.exports = exports = defineComponent( {
 			selection,
 			menuItems,
 			menuConfig,
+			sourceStatus,
 			onInput,
 			onChange,
 			onSelect

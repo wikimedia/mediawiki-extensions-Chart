@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Chart;
 
@@ -6,18 +7,14 @@ use MediaWiki\Config\Config;
 use MediaWiki\Deferred\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Skin\Hook\SkinTemplateNavigation__UniversalHook;
-use MediaWiki\Skin\Skin;
 use MediaWiki\Skin\SkinTemplate;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;
-use MediaWiki\Title\Title;
 
 class Hooks implements
-	BeforePageDisplayHook,
 	ParserFirstCallInitHook,
 	PageSaveCompleteHook,
 	LinksUpdateCompleteHook,
@@ -26,7 +23,8 @@ class Hooks implements
 	protected bool $isChartWizardEnabled;
 
 	public function __construct(
-		private readonly Config $config,
+		private readonly SpecialPageFactory $specialPageFactory,
+		Config $config
 	) {
 		$this->isChartWizardEnabled = $config->get( 'ChartWizardEnabled' );
 	}
@@ -73,49 +71,32 @@ class Hooks implements
 	}
 
 	/**
-	 * Add an "Visual" tab to the navigation of Data: chart.
-	 *
+	 * Add an "Edit with form" tab to Chart definition pages.
 	 *
 	 * @param SkinTemplate $sktemplate
 	 * @param array &$links
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
-		if ( $this->shouldSupportWizard( $sktemplate->getTitle() ) ) {
-			$this->updateEditLinks( $sktemplate, $links );
+		$title = $sktemplate->getTitle();
+		$isSpecial = $title->isSpecial( 'ChartWizard' );
+		if ( !$this->isChartWizardEnabled ||
+			(
+				!$isSpecial && (
+					$title->getContentModel() !== JCChartContent::CONTENT_MODEL ||
+					!$sktemplate->getUser()->probablyCan( 'edit', $title )
+				)
+			)
+		) {
+			return;
 		}
-	}
 
-	/**
-	 * Adds the Chart Wizard JS to the output.
-	 *
-	 * This is attached to the MediaWiki 'BeforePageDisplay' hook.
-	 *
-	 * @param OutputPage $output The page view.
-	 * @param Skin $skin The skin that's going to build the UI.
-	 */
-	public function onBeforePageDisplay( $output, $skin ): void {
-		if ( $this->shouldSupportWizard( $output->getTitle() ) && $output->getRequest()->getBool( 'visual' ) ) {
-			$output->addModules( 'ext.chart.wizard' );
-		}
-	}
-
-	/**
-	 * Update the edit links for the given skin template.
-	 *
-	 * @param SkinTemplate $sktemplate
-	 * @param array &$links
-	 */
-	private function updateEditLinks( SkinTemplate $sktemplate, array &$links ): void {
-		$selected = $sktemplate->getRequest()->getInt( 'visual' );
-		// Deselect "edit source" link
-		if ( $selected ) {
-			$links['views']['edit']['class'] = '';
-		}
 		$chartWizardTab = [
 			'text' => $sktemplate->msg( 'chart-wizard-tab-label' )->text(),
 			'icon' => 'edit',
-			'class' => $selected ? 'selected' : '',
-			'href' => $sktemplate->getRelevantTitle()->getLinkURL( [ 'action' => 'edit', 'visual' => 1 ] )
+			'class' => $isSpecial ? 'selected' : '',
+			'href' => $this->specialPageFactory->getPage( 'ChartWizard' )
+				->getPageTitle( $sktemplate->getRelevantTitle() )
+				->getLocalURL()
 		];
 
 		$tabs = $links['views'];
@@ -133,15 +114,5 @@ class Hooks implements
 		}
 
 		$links['views'] = $newTabs;
-	}
-
-	/**
-	 * Determine if Visual mode should be added to the given page title
-	 *
-	 * @param Title $title Title to render visual mode
-	 * @return bool True if chart visual mode flag is enabled and it's a chart page
-	 */
-	private function shouldSupportWizard( Title $title ): bool {
-		return $this->isChartWizardEnabled && $title->getContentModel() === JCChartContent::CONTENT_MODEL;
 	}
 }

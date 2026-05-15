@@ -65,6 +65,28 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		{
+			params: {
+				prop: 'revisions',
+				rvprop: 'content',
+				titles: 'Data:Nonexistent data.tab'
+			},
+			response: {
+				query: {
+					pages: [ {
+						missing: true
+					} ]
+				}
+			}
+		},
+		{
+			params: {
+				prop: 'revisions',
+				rvprop: 'content',
+				titles: 'Data:Erroneous data.tab'
+			},
+			reject: true
+		},
 		// Add more shared mocks as needed above this line.
 		...additionalMocks
 	];
@@ -83,7 +105,10 @@ function mockMwApiGet( additionalMocks = [] ) {
 			console.warn( 'No mock found for:', params );
 			return Promise.resolve( jest.fn() );
 		}
-		return Promise.resolve( mock.response );
+		if ( mock.response ) {
+			return Promise.resolve( mock.response );
+		}
+		return Promise.reject( mock.reject );
 	} );
 }
 

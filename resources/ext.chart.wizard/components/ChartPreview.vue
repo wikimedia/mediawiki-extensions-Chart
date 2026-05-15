@@ -1,6 +1,23 @@
 <template>
 	<div class="ext-chart-wizard__preview">
-		<div v-if="sourcePreview.length">
+		<div
+			v-if="sourcePreview === null"
+			class="ext-chart-wizard__preview--error"
+		>
+			<cdx-message
+				type="error"
+				inline
+			>
+				{{ $i18n( 'chart-wizard-preview-error' ) }}
+			</cdx-message>
+			<cdx-button
+				weight="primary"
+				@click.prevent="doPreviewSource"
+			>
+				{{ $i18n( 'chart-wizard-preview-error-retry' ) }}
+			</cdx-button>
+		</div>
+		<div v-else-if="sourcePreview.length">
 			<pre class="ext-chart-wizard__preview--source">{{ sourcePreview }}</pre>
 		</div>
 		<div v-else class="ext-chart-wizard__preview-placeholder">
@@ -26,14 +43,16 @@
 <script>
 const { defineComponent, ref, watch, Ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
+const { CdxButton, CdxMessage } = require( '../../../codex.js' );
 const useChartStore = require( '../stores/chart.js' );
 const api = new mw.Api();
 
 module.exports = exports = defineComponent( {
 	name: 'ChartPreview',
+	components: { CdxButton, CdxMessage },
 	setup() {
 		const store = useChartStore();
-		const { source } = storeToRefs( store );
+		const { initialLoad, source, sourceStatus } = storeToRefs( store );
 
 		/**
 		 * Preview of the source content.
@@ -42,34 +61,61 @@ module.exports = exports = defineComponent( {
 		 */
 		const sourcePreview = ref( '' );
 
-		watch( source, ( newValue ) => {
-			if ( newValue ) {
-				previewSource();
-			} else {
-				sourcePreview.value = '';
-			}
-		} );
-
 		/**
 		 * Fetches the content of the page specified in the source field
 		 * and sets it as the source preview.
 		 */
-		async function previewSource() {
-			const response = await api.get( {
-				action: 'query',
-				format: 'json',
-				prop: 'revisions',
-				rvprop: 'content',
-				titles: source.value,
-				formatversion: 2
-			} );
+		async function doPreviewSource() {
+			let response;
+			try {
+				response = await store.pushPromise(
+					api.get( {
+						action: 'query',
+						format: 'json',
+						prop: 'revisions',
+						rvprop: 'content',
+						titles: source.value,
+						formatversion: 2
+					} )
+				);
+			} catch ( e ) {
+				sourcePreview.value = null;
+				return;
+			} finally {
+				initialLoad.value = false;
+			}
+			const page = response.query.pages[ 0 ];
+			if ( page.missing ) {
+				sourceStatus.value = mw.msg( 'chart-error-data-source-page-not-found' );
+				sourcePreview.value = '';
+				return;
+			} else if ( response.error ) {
+				sourcePreview.value = null;
+				return;
+			} else {
+				sourceStatus.value = null;
+			}
 			sourcePreview.value = JSON.stringify( JSON.parse(
-				response.query.pages[ 0 ].revisions[ 0 ].content
+				page.revisions[ 0 ].content
 			), null, '    ' );
 		}
 
+		/**
+		 * Watch for changes to the source field and update the preview accordingly.
+		 * If the source field is empty, clear the preview.
+		 */
+		watch( source, ( newValue ) => {
+			if ( newValue ) {
+				doPreviewSource();
+			} else {
+				sourcePreview.value = '';
+				initialLoad.value = false;
+			}
+		}, { immediate: true } );
+
 		return {
-			sourcePreview
+			sourcePreview,
+			doPreviewSource
 		};
 	}
 } );
@@ -79,44 +125,23 @@ module.exports = exports = defineComponent( {
 @import 'mediawiki.skin.variables.less';
 
 .ext-chart-wizard__preview {
-	border: @border-subtle;
+	position: relative;
 
-	&--source {
-		background: transparent;
-		border: none;
-		margin: 0;
-		padding: @spacing-200;
-	}
-}
-
-.ext-chart-wizard__preview-placeholder {
-	text-align: center;
-	padding: @spacing-200 0;
-
-	&-header {
-		font-size: @font-size-large;
-		font-weight: @font-weight-bold;
-		padding-top: @spacing-200;
-		padding-bottom: @spacing-25;
-	}
-
-	&-image-wrapper {
-		background-color: @background-color-disabled;
-		border-radius: @border-radius-circle;
-		display: inline-block;
-		height: 96px;
-		position: relative;
-		width: 96px;
-	}
-
-	svg {
-		height: @size-200;
+	&--error {
 		left: @size-half;
 		position: absolute;
+		text-align: center;
+		text-wrap: nowrap;
 		top: @size-half;
 		transform: translate( -50%, -50% );
-		width: @size-200;
+
+		.cdx-message {
+			&__icon--vue,
+			&__content {
+				font-size: @font-size-large;
+				margin-bottom: @spacing-100;
+			}
+		}
 	}
 }
-
 </style>

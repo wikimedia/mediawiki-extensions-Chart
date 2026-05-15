@@ -116,7 +116,8 @@
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"dependencies": [
 				"vue",
-				"pinia"
+				"pinia",
+				"mediawiki.Title"
 			],
 			"packageFiles": [
 				"resources/ext.chart.wizard/init.js",
@@ -127,35 +128,58 @@
 				"resources/ext.chart.wizard/components/SourceField.vue"
 			],
 			"codexComponents": [
+				"CdxButton",
 				"CdxField",
-				"CdxLookup"
+				"CdxLookup",
+				"CdxMessage"
 			],
 			"messages": [
+				"chart-error-data-source-page-not-found",
 				"chart-wizard-form-source-label",
 				"chart-wizard-form-source-description",
 				"chart-wizard-form-source-placeholder",
+				"chart-wizard-preview-error",
+				"chart-wizard-preview-error-retry",
 				"chart-wizard-preview-placeholder-title",
-				"chart-wizard-preview-placeholder-description"
+				"chart-wizard-preview-placeholder-description",
+				"chart-wizard-publish",
+				"publishchanges"
+			]
+		},
+		"ext.chart.wizard.styles": {
+			"styles": [
+				"resources/ext.chart.wizard/styles.less"
 			]
 		}
 	},
 	"ExtensionMessagesFiles": {
-		"ChartMagic": "Chart.i18n.magic.php"
+		"ChartMagic": "Chart.i18n.magic.php",
+		"ChartAlias": "Chart.i18n.alias.php"
 	},
 	"HookHandlers": {
 		"main": {
 			"class": "MediaWiki\\Extension\\Chart\\Hooks",
 			"services": [
+				"SpecialPageFactory",
 				"MainConfig"
 			]
 		}
 	},
 	"Hooks": {
-		"BeforePageDisplay": "main",
 		"LinksUpdateComplete": "main",
 		"ParserFirstCallInit": "main",
 		"PageSaveComplete": "main",
 		"SkinTemplateNavigation::Universal": "main"
+	},
+	"SpecialPages": {
+		"ChartWizard": {
+			"class": "MediaWiki\\Extension\\Chart\\SpecialChartWizard",
+			"services": [
+				"WikiPageFactory",
+				"MainConfig",
+				"Chart.Logger"
+			]
+		}
 	},
 	"attributes": {
 		"VisualEditor": {

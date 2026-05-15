@@ -1,0 +1,75 @@
+@import 'mediawiki.skin.variables.less';
+
+/* Styles for Special:ChartWizard */
+
+/* HTMLForm only allows us to set an ID, not a class */
+/* stylelint-disable selector-max-id */
+
+/* Flexbox gap not supported by all browsers, but yet is used widely in MW */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+#ext-chart-wizard {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: @spacing-200;
+	margin-top: @spacing-100;
+	max-width: 100%;
+
+	& > * {
+		flex-basis: 0;
+		flex-grow: 1;
+	}
+
+	.cdx-label {
+		font-size: @font-size-base;
+		margin-bottom: @spacing-50;
+
+		&__label {
+			font-size: @font-size-large;
+
+			&__text {
+				font-weight: @font-weight-bold;
+			}
+		}
+	}
+
+	.ext-chart-wizard__preview {
+		border: @border-subtle;
+
+		&--source {
+			background: transparent;
+			border: 0;
+			margin: 0;
+			padding: @spacing-200;
+		}
+	}
+
+	.ext-chart-wizard__preview-placeholder {
+		text-align: center;
+		padding: @spacing-200 0;
+
+		&-header {
+			font-size: @font-size-large;
+			font-weight: @font-weight-bold;
+			padding-top: @spacing-200;
+			padding-bottom: @spacing-25;
+		}
+
+		&-image-wrapper {
+			background-color: @background-color-disabled;
+			border-radius: @border-radius-circle;
+			display: inline-block;
+			height: 96px;
+			position: relative;
+			width: 96px;
+		}
+
+		svg {
+			height: @size-200;
+			left: @size-half;
+			position: absolute;
+			top: @size-half;
+			transform: translate( -50%, -50% );
+			width: @size-200;
+		}
+	}
+}

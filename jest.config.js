@@ -45,6 +45,12 @@ module.exports = {
 		customExportConditions: [ 'node', 'node-addons' ]
 	},
 
+	// A map from regular expressions to module names or to arrays of module
+	// names that allow to stub out resources with a single module
+	moduleNameMapper: {
+		'codex.js': '@wikimedia/codex'
+	},
+
 	// A map from regular expressions to paths to transformers
 	transform: {
 		'^.+\\.vue$': '<rootDir>/node_modules/@vue/vue3-jest'
