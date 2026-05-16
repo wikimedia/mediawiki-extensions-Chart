@@ -4,7 +4,15 @@
 			<pre class="ext-chart-wizard__preview--source">{{ sourcePreview }}</pre>
 		</div>
 		<div v-else class="ext-chart-wizard__preview-placeholder">
-			<div class="ext-chart-wizard__preview-placeholder-image"></div>
+			<div class="ext-chart-wizard__preview-placeholder-image-wrapper skin-invert">
+				<!-- eslint-disable-next-line vue/max-attributes-per-line -->
+				<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" viewBox="0 0 34 34">
+					<!-- eslint-disable-next-line max-len -->
+					<path fill="#54595d" d="M3.69049 29.8362H33.2144V33.5658H0V0H3.69049V29.8362Z" />
+					<!-- eslint-disable-next-line max-len -->
+					<path fill="#54595d" d="M33.2146 7.6922V25.8736H7.61182V24.0555L15.8413 14.0557L21.3276 20.4192L31.3858 7.6922H33.2146Z" />
+				</svg>
+			</div>
 			<div class="ext-chart-wizard__preview-placeholder-header">
 				{{ $i18n( 'chart-wizard-preview-placeholder-title' ).text() }}
 			</div>
@@ -91,12 +99,22 @@ module.exports = exports = defineComponent( {
 		padding-bottom: @spacing-25;
 	}
 
-	&-image {
-		background-image: url( ../images/PreviewArea_EmptyState.png );
-		background-repeat: no-repeat;
-		background-size: auto 96px;
-		background-position: center;
+	&-image-wrapper {
+		background-color: @background-color-disabled;
+		border-radius: @border-radius-circle;
+		display: inline-block;
 		height: 96px;
+		position: relative;
+		width: 96px;
+	}
+
+	svg {
+		height: @size-200;
+		left: @size-half;
+		position: absolute;
+		top: @size-half;
+		transform: translate( -50%, -50% );
+		width: @size-200;
 	}
 }
 
