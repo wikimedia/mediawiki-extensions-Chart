@@ -5,7 +5,8 @@
 			"FlatLanguage",
 			"Foomin10",
 			"Omotecho",
-			"Shirayuki"
+			"Shirayuki",
+			"Tensama0415"
 		]
 	},
 	"chart-desc": "グラフを表示するパーサー関数 <code><nowiki>{{#chart:}}</nowiki></code> を追加します",
@@ -36,5 +37,5 @@
 	"chart-error-invalid-source-content": "表形式データソースページの内容が無効です。",
 	"chart-error-transforms-disabled": "表形式データ変換が無効です。",
 	"chart-error-request-too-large": "チャートと表形式データが最大許容サイズ $1 を超えています。データセットの容量を小さくすることや、[https://www.mediawiki.org/wiki/Extension:Chart/Transforms データ変換のオプション]を使用してデータをフィルタリング・集計することを検討してください。",
-	"chart-error-switchable-string": "引数「$1」は、文字列か有効な言語コードのマップのオブジェクトでなければなりません。$2 文字以下の1行であり、タブや末尾の空白は含んではいけません。\nなければなりません。例: <kbd>{ \"en\":\"String in English\", ... }</kbd>"
+	"chart-error-switchable-string": "引数「$1」は、文字列か有効な言語コードのマップのオブジェクトでなければなりません。$2 {{PLURAL:$2|文字}}以下の1行であり、タブや末尾の空白は含んではいけません。\nなければなりません。例: <kbd>{ \"en\":\"String in English\", ... }</kbd>"
 }
