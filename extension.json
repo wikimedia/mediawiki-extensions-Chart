@@ -162,6 +162,11 @@
 			"PluginModules": [
 				"ext.chart.visualEditor"
 			]
+		},
+		"WikiEditor": {
+			"RealtimePreviewContentModels": [
+				"Chart.JsonConfig"
+			]
 		}
 	},
 	"manifest_version": 2
