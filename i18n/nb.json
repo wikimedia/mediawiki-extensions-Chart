@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"EdoAug",
 			"Jon Harald Søby"
 		]
 	},
@@ -26,6 +27,12 @@
 	"chart-visualeditor-mwchartdialog-title": "Diagram",
 	"chart-visualeditor-mwchartdialog-chart-label": "Definisjonsside for diagram",
 	"chart-visualeditor-mwchartdialog-data-label": "Tabulær datakilde for diagrammet",
+	"chart-wizard-tab-label": "Rediger med skjema",
+	"chart-wizard-form-source-label": "1. Velg datasett",
+	"chart-wizard-form-source-description": "Velg det tabulariske datasettet du har lyst til å visualisere",
+	"chart-wizard-form-source-placeholder": "Søker etter datasett ...",
+	"chart-wizard-preview-placeholder-title": "Velg datasett",
+	"chart-wizard-preview-placeholder-description": "Dataene dine forhåndsvises her før du oppretter et diagram",
 	"chartjson-error-version": "$1 må være et heltall mellom $2 og $3 inklusivt.",
 	"chartjson-error-enum": "$1 må være en av følgende verdier: $2",
 	"chart-error-source-not-found": "Kildeside for tabulære data ikke funnet.",

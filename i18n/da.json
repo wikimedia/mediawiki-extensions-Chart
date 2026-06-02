@@ -22,9 +22,16 @@
 	"chart-error-category-desc": "Siden indeholder et diagram med gengivelsesfejl.",
 	"chart-render-category": "Sider, der bruger Chart-udvidelsen",
 	"chart-render-category-desc": "Siden bruger <code><nowiki>{{#chart}}</nowiki></code> parserfunktion.",
+	"chart-render-tooltip-nodata": "Ingen data",
 	"chart-visualeditor-mwchartdialog-title": "Diagram",
 	"chart-visualeditor-mwchartdialog-chart-label": "Side med diagramdefinition",
 	"chart-visualeditor-mwchartdialog-data-label": "Diagramtabeldatakilde",
+	"chart-wizard-tab-label": "Rediger med formular",
+	"chart-wizard-form-source-label": "1. Vælg datasæt",
+	"chart-wizard-form-source-description": "Vælg det tabeldatasæt, du vil visualisere",
+	"chart-wizard-form-source-placeholder": "Søg efter datasæt...",
+	"chart-wizard-preview-placeholder-title": "Vælg datasæt",
+	"chart-wizard-preview-placeholder-description": "Dine data vises her, så du kan forhåndsvise dem, før du opretter et diagram",
 	"chartjson-error-version": "$1 skal være et heltal mellem $2 og $3 inklusive.",
 	"chartjson-error-enum": "$1 skal være en af følgende værdier: $2",
 	"chart-error-source-not-found": "Siden med tabelformet datakilde blev ikke fundet.",
@@ -32,5 +39,9 @@
 	"chart-error-invalid-source-content": "Indholdet af siden med tabellarisk datakilde er ugyldigt.",
 	"chart-error-transforms-disabled": "Tabeldatatransformationer er deaktiveret.",
 	"chart-error-request-too-large": "Diagram- og tabeldata overstiger den maksimalt tilladte størrelse på $1 byte. Brug venligst et mindre datasæt, eller overvej [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformationsmuligheder] for at filtrere eller aggregere dine data.",
-	"chart-error-switchable-string": "Parameteren \"$1\" skal være en streng eller et objekt, der knytter gyldige sprogkoder til strenge på én linje, der ikke er længere end $2 tegn, uden tabulatorer eller mellemrum, f.eks <kbd>. { \"en\":\"String på engelsk\", ... }</kbd>"
+	"chart-error-switchable-string": "Parameteren \"$1\" skal være en streng eller et objekt, der knytter gyldige sprogkoder til strenge på én linje, der ikke er længere end {{PLURAL:$2|$2|tegn}}, uden tabulatorer eller mellemrum, f.eks <kbd>. { \"en\":\"String på engelsk\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Hent det aktuelle antal unikke anvendelser af diagramsiden. Flere anvendelser af det samme diagram på samme side betragtes som én anvendelse.",
+	"apihelp-chartinfo-param-global": "Sæt til sand for at inkludere alle forbundne wikier i stedet for kun den lokale wiki.",
+	"apihelp-chartinfo-example-1": "Hentning af den lokale wikis diagramantal.",
+	"apihelp-chartinfo-example-2": "Hentning af alle wikiers diagrammer."
 }
