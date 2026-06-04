@@ -32,5 +32,9 @@
 	"chart-error-invalid-source-content": "Indholdet af siden med tabellarisk datakilde er ugyldigt.",
 	"chart-error-transforms-disabled": "Tabeldatatransformationer er deaktiveret.",
 	"chart-error-request-too-large": "Diagram- og tabeldata overstiger den maksimalt tilladte størrelse på $1 byte. Brug venligst et mindre datasæt, eller overvej [https://www.mediawiki.org/wiki/Extension:Chart/Transforms datatransformationsmuligheder] for at filtrere eller aggregere dine data.",
-	"chart-error-switchable-string": "Parameteren \"$1\" skal være en streng eller et objekt, der knytter gyldige sprogkoder til strenge på én linje, der ikke er længere end $2 tegn, uden tabulatorer eller mellemrum, f.eks <kbd>. { \"en\":\"String på engelsk\", ... }</kbd>"
+	"chart-error-switchable-string": "Parameteren \"$1\" skal være en streng eller et objekt, der knytter gyldige sprogkoder til strenge på én linje, der ikke er længere end $2 tegn, uden tabulatorer eller mellemrum, f.eks <kbd>. { \"en\":\"String på engelsk\", ... }</kbd>",
+	"apihelp-chartinfo-summary": "Hent det aktuelle antal unikke anvendelser af diagramsiden. Flere anvendelser af det samme diagram på samme side betragtes som én anvendelse.",
+	"apihelp-chartinfo-param-global": "Sæt til sand for at inkludere alle forbundne wikier i stedet for kun den lokale wiki.",
+	"apihelp-chartinfo-example-1": "Hentning af den lokale wikis diagramantal.",
+	"apihelp-chartinfo-example-2": "Hentning af alle wikiers diagrammer."
 }
