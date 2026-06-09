@@ -3,5 +3,16 @@
 		"authors": [
 			"AhmedG612"
 		]
-	}
+	},
+	"chart-desc": "Waxay ku dartaa shaqada falanqeeye <code><nowiki>{{#chart:}}</nowiki></code> ee lagu soo bandhigo jaantusyo",
+	"chart-error-chart-definition-not-found": "Bogga qeexidda jaantuska lama helin.",
+	"chart-error-data-source-page-not-found": "Bogga xogta jaantuska lama helin.",
+	"chart-error-default-source-not-specified": "Bogga qeexidda jaantuska ma qeexin il xogeed caadi ah.",
+	"chart-error-incompatible-chart-definition": "Bogga qeexidda jaantuska lama jaanqaadi karo jaantusyada.",
+	"chart-error-incompatible-data-source": "Bogga isha xogta jadwalka lama jaanqaadi karo jaantusyada.",
+	"chart-error-invalid-height": "Dhererku waa inuu ahaadaa tiro dhan oo ka weyn ama la mid ah 100.",
+	"chart-error-invalid-width": "Ballaca waa inuu ahaadaa tiro dhan oo ka weyn ama la mid ah 100.",
+	"chart-error-shell-disabled": "Jaantusyada lama soo bandhigi karo sababtoo ah shell execution waa la damiyay.",
+	"chart-error-rendering-error": "Waxaa dhacay qalad markii la isku dayay in la soo bandhigo jaantuska.",
+	"chart-error-unexpected": "Waxaa dhacay qalad lama filaan ah markii jaantuska la soo bandhigayay."
 }
