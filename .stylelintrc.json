@@ -5,6 +5,7 @@
 	],
 	"reportNeedlessDisables": true,
 	"rules": {
-		"selector-type-no-unknown": null
+		"selector-type-no-unknown": null,
+		"declaration-property-value-disallowed-list": null
 	}
 }

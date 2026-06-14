@@ -88,6 +88,7 @@ module.exports = exports = defineComponent( {
 		padding: @spacing-200;
 	}
 }
+
 .ext-chart-wizard__preview-placeholder {
 	text-align: center;
 	padding: @spacing-200 0;
