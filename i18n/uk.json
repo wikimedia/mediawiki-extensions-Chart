@@ -26,6 +26,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Діаграма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Сторінка визначення діаграми",
 	"chart-visualeditor-mwchartdialog-data-label": "Джерело табличних даних діаграми",
+	"chart-wizard-tab-label": "Редагувати через форму",
 	"chart-wizard-form-source-label": "1. Виберіть набір даних",
 	"chart-wizard-form-source-description": "Виберіть набір табличних даних, який Ви хочете зобразити",
 	"chart-wizard-form-source-placeholder": "Пошук набору даних...",
@@ -38,5 +39,6 @@
 	"chart-error-invalid-source-content": "Недійсний вміст сторінки джерела табличних даних.",
 	"chart-error-transforms-disabled": "Перетворення табличних даних вимкнено.",
 	"chart-error-request-too-large": "Діаграма і табличні дані вийшли за межі максимально дозволеного розміру в {{PLURAL:$1|байт|байти|байтів}}. Будь ласка, використайте набір даних меншого розміру або розгляньте [https://www.mediawiki.org/wiki/Extension:Chart/Transforms варіант перетворення даних] для фільтрації або агрегації Ваших даних.",
+	"chart-error-switchable-string": "Параметр «$1» повинен бути рядком або об'єктом, що вказує на відповідність правильних кодів мови до одиничних рядків не довше $2 {{PLURAL:$2|символа|символів}} без табуляцій чи кінцевих пробілів, наприклад <kbd>{ \"uk\":\"Рядок українською\", … }</kbd>",
 	"apihelp-chartinfo-param-global": "Встановіть true, щоб включити усі прив'язані вікі замість лише локальної вікі."
 }
