@@ -195,7 +195,7 @@ class SpecialChartWizard extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function onSubmit( array $data, ?HTMLForm $form = null ): Status {
-		// TODO: implement
+		// TODO: implement; Be sure to merge fields with the preexisting chart definition as applicable
 		return Status::newGood();
 	}
 

@@ -1,5 +1,10 @@
 'use strict';
 
+const fixtures = {
+	'Data:Example.Line.chart': require( './fixtures/Data:Example.Line.chart.json' ),
+	'Data:Chart Example Data.tab': require( './fixtures/Data:Chart Example Data.tab.json' )
+};
+
 /**
  * Mock calls to mw.Api.prototype.get() based on given parameters and response.
  * The default implementation mocks API GET requests used across the test suite.
@@ -27,40 +32,11 @@ function mockMwApiGet( additionalMocks = [] ) {
 			response: {
 				query: {
 					pages: [ {
-						revisions: [
-							{
-								content: JSON.stringify( {
-									license: 'CC0-1.0',
-									description: {
-										en: 'Description (en)',
-										de: 'Beschreibung (de)'
-									},
-									mediaWikiCategories: [
-										{ name: 'Data for Chart', sort: '' }
-									],
-									schema: {
-										fields: [
-											{
-												name: 'a1',
-												type: 'string',
-												title: {
-													de: 'Datum',
-													en: 'Date'
-												}
-											},
-											{
-												name: 'a2',
-												type: 'number',
-												title: {
-													de: 'Elben',
-													en: 'Elves'
-												}
-											}
-										]
-									}
-								} )
-							}
-						]
+						revisions: [ {
+							content: JSON.stringify(
+								fixtures[ 'Data:Chart Example Data.tab' ]
+							)
+						} ]
 					} ]
 				}
 			}
@@ -86,6 +62,24 @@ function mockMwApiGet( additionalMocks = [] ) {
 				titles: 'Data:Erroneous data.tab'
 			},
 			reject: true
+		},
+		{
+			params: {
+				prop: 'revisions',
+				rvprop: 'content',
+				titles: 'Chart Example Data.tab'
+			},
+			response: {
+				query: {
+					pages: [ {
+						revisions: [ {
+							content: JSON.stringify(
+								fixtures[ 'Data:Chart Example Data.tab' ]
+							)
+						} ]
+					} ]
+				}
+			}
 		},
 		// Add more shared mocks as needed above this line.
 		...additionalMocks
@@ -113,5 +107,6 @@ function mockMwApiGet( additionalMocks = [] ) {
 }
 
 module.exports = {
+	fixtures,
 	mockMwApiGet
 };

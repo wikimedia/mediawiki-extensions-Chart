@@ -1,0 +1,53 @@
+{
+	"license": "CC0-1.0",
+	"mediawikiCategories": [
+		{ "name": "Example charts", "sort": "Example Line Chart" },
+		{ "name": "Line charts" }
+	],
+	"version": 1,
+	"type": "line",
+	"title": {
+		"de": "Beispiel Linien-Diagramm",
+		"en": "Example Line Chart",
+		"fa": "نمونه نمودار خطی",
+		"fr": "Exemple de graphique linéaire",
+		"sv": "Exempel på linjediagram",
+		"uk": "Приклад лінійної діаграми"
+	},
+	"subtitle": {
+		"de": "Beispiel-Untertitel",
+		"en": "Example subtitle",
+		"fr": "Exemple de sous-titre",
+		"sv": "Exempel på underrubrik",
+		"uk": "Приклад підзаголовка"
+	},
+	"xAxis": {
+		"title": {
+			"de": "Datum",
+			"en": "Date",
+			"fa": "تاریخ",
+			"fr": "Date",
+			"uk": "Дата",
+			"zh": "日期"
+		},
+		"type": "date"
+	},
+	"yAxis": {
+		"title": {
+			"de": "% Unterstützung",
+			"en": "%support",
+			"fa": "درصد حمایت",
+			"fr": "%support",
+			"uk": "%підтримка"
+		}
+	},
+	"source": "Chart Example Data.tab",
+	"transform": {
+		"module": "Foo",
+		"function": "bar",
+		"args": {
+			"baz": 5,
+			"qux": "quux"
+		}
+	}
+}

@@ -13,6 +13,34 @@ module.exports = exports = defineStore( 'chart', () => {
 	 *
 	 * @typedef {string|null} Status
 	 */
+	/**
+	 * Translations of a string in form of an object, keyed by language code.
+	 *
+	 * @typedef {Object} LocalizableString
+	 */
+	/**
+	 * A MediaWiki category with optional `sort` property.
+	 *
+	 * @typedef {Object} Category
+	 * @property {string} name
+	 * @property {string} [sort]
+	 */
+	/**
+	 * An axis configuration for a chart.
+	 *
+	 * @typedef {Object} Axis
+	 * @property {LocalizableString} title
+	 * @property {boolean} [format] When enabled numbers on axis will be abbreviated,
+	 *   e.g. 1,000,000 becomes 1M.
+	 */
+	/**
+	 * Lua transformation to apply to the chart data.
+	 *
+	 * @typedef {Object} LuaTransform
+	 * @property {string} module Page name of the Lua module, without the namespace.
+	 * @property {string} function The name of Lua function to call
+	 * @property {Object} args Key-value pairs of arguments to pass to the Lua function.
+	 */
 
 	// ** State properties (refs) **
 
@@ -33,6 +61,15 @@ module.exports = exports = defineStore( 'chart', () => {
 	 * @internal
 	 */
 	const initialLoad = ref( true );
+
+	// Chart definition fields.
+
+	/**
+	 * The license for the chart.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const license = ref( '' );
 	/**
 	 * The source dataset used to create the chart.
 	 * This is set only by the SourceField component.
@@ -46,6 +83,58 @@ module.exports = exports = defineStore( 'chart', () => {
 	 * @type {Ref<Status>}
 	 */
 	const sourceStatus = ref( null );
+	/**
+	 * Categories the chart should be added to.
+	 *
+	 * @type {Ref<Array<Category>>}
+	 */
+	const mediawikiCategories = ref( [] );
+	/**
+	 * The title of the chart as a localizable string.
+	 *
+	 * @type {Ref<LocalizableString>}
+	 */
+	const title = ref( {} );
+	/**
+	 * The subtitle of the chart as a localizable string.
+	 *
+	 * @type {Ref<LocalizableString>}
+	 */
+	const subtitle = ref( {} );
+	/**
+	 * The chart type. Possible values are hard-coded in the TypeField component.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const type = ref( '' );
+	/**
+	 * X-axis configuration.
+	 *
+	 * @type {Ref<Axis>}
+	 */
+	const xAxis = ref( {
+		title: '',
+		format: false
+	} );
+	/**
+	 * Y-axis configuration.
+	 *
+	 * @type {Ref<Axis>}
+	 */
+	const yAxis = ref( {
+		title: '',
+		format: false
+	} );
+	/**
+	 * The transform configuration for the chart.
+	 *
+	 * @type {Ref<LuaTransform>}
+	 */
+	const transform = ref( {
+		module: '',
+		function: '',
+		args: {}
+	} );
 
 	// ** Getters (computed properties) **
 
@@ -55,7 +144,16 @@ module.exports = exports = defineStore( 'chart', () => {
 	 * @type {ComputedRef<Object>}
 	 */
 	const chartDefinition = computed( () => ( {
-		source: source.value
+		version: 1,
+		license: license.value,
+		source: source.value,
+		mediawikiCategories: mediawikiCategories.value,
+		title: title.value,
+		subtitle: subtitle.value,
+		type: type.value,
+		xAxis: xAxis.value,
+		yAxis: yAxis.value,
+		transform: transform.value
 	} ) );
 	/**
 	 * Whether the form is disabled due to an in-flight API request.
@@ -88,7 +186,15 @@ module.exports = exports = defineStore( 'chart', () => {
 
 	return {
 		initialLoad,
+		license,
 		source,
+		mediawikiCategories,
+		title,
+		subtitle,
+		type,
+		xAxis,
+		yAxis,
+		transform,
 		sourceStatus,
 		chartDefinition,
 		formDisabled,

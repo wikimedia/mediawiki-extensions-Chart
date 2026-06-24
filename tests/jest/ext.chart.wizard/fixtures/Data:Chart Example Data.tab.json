@@ -1,0 +1,218 @@
+{
+	"license": "CC0-1.0",
+	"description": {
+		"af": "n Paar betekenislose voorbeelddata oor Middel-Aarde om Chart-extensie te demonstreer.",
+		"bn": "মধ্য-পৃথিবী সম্পর্কে কিছু অর্থহীন উদাহরণমূলক উপাত্ত উইকি রেখাচিত্র প্রদর্শনের জন্য।",
+		"de": "Bedeutungslose Beispiel-Daten über Mittelerde zur Demonstration von Wiki-Diagrammen",
+		"en": "Some meaningless example data about Middle-Earth for showcasing wiki charts.",
+		"fa": "داده‌های نمونهٔ بی‌معنی پیرامون سرزمین میانه برای به نمایش گذاشتن نمودارهای ویکی",
+		"fr": "Quelques données d'exemple insignifiantes sur la Terre du Milieu pour présenter des graphiques wiki.",
+		"nl": "Betekenisloze gegevens, ter demonstratie van de Chart-extensie.",
+		"uk": "Деякі незмістовні приклади даних про Середзем'я для демонстрації вікі діаграм"
+	},
+	"mediawikiCategories": [
+		{
+			"name": "Data for Chart",
+			"sort": ""
+		},
+		{
+			"name": "Charts extension documentation",
+			"sort": ""
+		},
+		{
+			"name": "Data:Examples.chart",
+			"sort": ""
+		}
+	],
+	"schema": {
+		"fields": [
+			{
+				"name": "a1",
+				"type": "string",
+				"title": {
+					"bn": "তারিখ",
+					"de": "Datum",
+					"en": "Date",
+					"fa": "تاریخ",
+					"fr": "Date",
+					"nl": "Datum",
+					"uk": "Дата"
+				}
+			},
+			{
+				"name": "a2",
+				"type": "number",
+				"title": {
+					"bn": "পরী",
+					"de": "Elben",
+					"en": "Elves",
+					"fa": "الف‌ها",
+					"fr": "Elfes",
+					"uk": "Ельфи"
+				}
+			},
+			{
+				"name": "a3",
+				"type": "number",
+				"title": {
+					"bn": "বৃক্ষ",
+					"de": "Ents",
+					"en": "Ents",
+					"fa": "انت‌ها",
+					"fr": "Ents",
+					"uk": "Енти"
+				}
+			},
+			{
+				"name": "a4",
+				"type": "number",
+				"title": {
+					"bn": "দানব",
+					"de": "Orks",
+					"en": "Orcs",
+					"fa": "اورک‌ها",
+					"fr": "Orcs",
+					"uk": "Орки"
+				}
+			},
+			{
+				"name": "a5",
+				"type": "number",
+				"title": {
+					"bn": "ছোট মানুষ",
+					"de": "Hobbits",
+					"en": "Hobbits",
+					"fa": "هابیت‌ها",
+					"fr": "Hobbits",
+					"uk": "Гобіти"
+				}
+			},
+			{
+				"name": "a6",
+				"type": "number",
+				"title": {
+					"bn": "দৈত্য",
+					"de": "Trolle",
+					"en": "Trolls",
+					"fa": "ترول‌ها",
+					"fr": "Trolls",
+					"uk": "Тролі"
+				}
+			}
+		]
+	},
+	"data": [
+		[
+			"1993/09/09",
+			35,
+			37,
+			8,
+			8,
+			10
+		],
+		[
+			"1993/09/14",
+			36,
+			33,
+			8,
+			10,
+			11
+		],
+		[
+			"1993/09/20",
+			35,
+			35,
+			6,
+			11,
+			11
+		],
+		[
+			"1993/09/25",
+			30,
+			37,
+			8,
+			10,
+			13
+		],
+		[
+			"1993/09/26",
+			31,
+			36,
+			7,
+			11,
+			13
+		],
+		[
+			"1993/09/26",
+			28,
+			34,
+			7,
+			12,
+			15
+		],
+		[
+			"1993/09/30",
+			25,
+			39,
+			6,
+			12,
+			17
+		],
+		[
+			"1993/10/02",
+			26,
+			38,
+			8,
+			12,
+			14
+		],
+		[
+			"1993/10/08",
+			22,
+			37,
+			8,
+			12,
+			18
+		],
+		[
+			"1993/10/16",
+			22,
+			40,
+			7,
+			13,
+			16
+		],
+		[
+			"1993/10/19",
+			21,
+			39,
+			6,
+			14,
+			17
+		],
+		[
+			"1993/10/22",
+			18,
+			43,
+			7,
+			14,
+			18
+		],
+		[
+			"1993/10/22",
+			16,
+			44,
+			7,
+			12,
+			19
+		],
+		[
+			"1993/10/25",
+			16,
+			41,
+			6,
+			13,
+			18
+		]
+	]
+}

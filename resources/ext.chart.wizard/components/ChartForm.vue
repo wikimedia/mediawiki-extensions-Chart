@@ -5,10 +5,17 @@
 		class="ext-chart-wizard__form"
 	>
 		<source-field></source-field>
+		<input
+			type="hidden"
+			name="chartDefinition"
+			:value="JSON.stringify( chartDefinition )"
+		>
 		<div class="mw-htmlform-submit-buttons">
 			<cdx-button
 				action="progressive"
+				type="submit"
 				weight="primary"
+				@click="onFormSubmission"
 			>
 				{{ submitText }}
 			</cdx-button>
@@ -17,7 +24,7 @@
 </template>
 
 <script>
-const { computed, defineComponent } = require( 'vue' );
+const { computed, defineComponent, nextTick } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxField } = require( '../../../codex.js' );
 const SourceField = require( './SourceField.vue' );
@@ -34,16 +41,40 @@ module.exports = exports = defineComponent( {
 		chartIsNew: { type: Boolean, required: true }
 	},
 	setup( { chartIsNew } ) {
-		const { formDisabled } = storeToRefs( useChartStore() );
+		const { formDisabled, chartDefinition } = storeToRefs( useChartStore() );
 		const submitText = computed( () => mw.msg(
 			chartIsNew ?
 				'chart-wizard-publish' :
 				'publishchanges'
 		) );
 
+		/**
+		 * Handle form submission. If the form is invalid, scroll to the
+		 * first error message to ensure the user sees it.
+		 *
+		 * If the form is valid, submit the form to the server.
+		 *
+		 * @param {Event} event
+		 */
+		async function onFormSubmission( event ) {
+			if ( !event.target.form.checkValidity() ) {
+				await nextTick();
+				// Scrolling to `cdx-message--error` is merely future-proofing to
+				// ensure the user sees the error message, wherever it may be.
+				const firstError = document.querySelector( '.cdx-message--error' );
+				if ( firstError ) {
+					// Guard against there not being any parent fieldset.
+					const firstErrorFieldset = firstError.closest( '.cdx-field' );
+					( firstErrorFieldset || firstError ).scrollIntoView( { behavior: 'smooth' } );
+				}
+			}
+		}
+
 		return {
 			formDisabled,
-			submitText
+			submitText,
+			chartDefinition,
+			onFormSubmission
 		};
 	}
 } );

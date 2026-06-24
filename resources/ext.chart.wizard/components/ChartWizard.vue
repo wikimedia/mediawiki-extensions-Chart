@@ -22,13 +22,31 @@ module.exports = exports = defineComponent( {
 	},
 	setup( { chartDefinition } ) {
 		// Set refs in the store for each field based on what was passed in from the server.
-		const { source } = storeToRefs( useChartStore() );
+		const {
+			license,
+			mediawikiCategories,
+			source,
+			subtitle,
+			title,
+			type,
+			xAxis,
+			yAxis,
+			transform
+		} = storeToRefs( useChartStore() );
 		if ( chartDefinition.source ) {
 			source.value = mw.Title.newFromText(
 				chartDefinition.source,
 				mw.config.get( 'wgNamespaceIds' ).data
 			).getPrefixedText();
 		}
+		license.value = chartDefinition.license;
+		mediawikiCategories.value = chartDefinition.mediawikiCategories;
+		subtitle.value = chartDefinition.subtitle;
+		title.value = chartDefinition.title;
+		type.value = chartDefinition.type;
+		xAxis.value = chartDefinition.xAxis;
+		yAxis.value = chartDefinition.yAxis;
+		transform.value = chartDefinition.transform;
 	}
 } );
 </script>

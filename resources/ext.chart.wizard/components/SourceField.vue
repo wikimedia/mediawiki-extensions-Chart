@@ -5,6 +5,7 @@
 		:messages="sourceStatus ? { error: sourceStatus } : {}"
 	>
 		<cdx-lookup
+			ref="sourceLookup"
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
 			required
@@ -28,7 +29,7 @@
 </template>
 
 <script>
-const { defineComponent, ref } = require( 'vue' );
+const { defineComponent, ref, useTemplateRef, watch } = require( 'vue' );
 const { CdxField, CdxLookup } = require( '../../../codex.js' );
 const { storeToRefs } = require( 'pinia' );
 const useChartStore = require( '../stores/chart.js' );
@@ -41,6 +42,7 @@ module.exports = exports = defineComponent( {
 		const store = useChartStore();
 		const { source, sourceStatus } = storeToRefs( store );
 		const tabularNs = mw.config.get( 'wgNamespaceIds' ).data;
+		const sourceLookup = useTemplateRef( 'sourceLookup' );
 
 		// Selected item, defaulting to null.
 		const selection = ref( source.value );
@@ -61,6 +63,11 @@ module.exports = exports = defineComponent( {
 		// Set a flag to keep track of pending API requests, so we can abort if
 		// the target string changes
 		let pending = false;
+
+		// Sync validity to the HTMLInputElement so it bubbles up to the <form>.
+		watch( sourceStatus, ( newStatus ) => {
+			sourceLookup.value.textInput.setCustomValidity( newStatus || '' );
+		} );
 
 		/**
 		 * Get search results.
