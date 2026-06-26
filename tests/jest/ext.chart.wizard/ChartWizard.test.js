@@ -29,6 +29,14 @@ describe( 'ChartWizard', () => {
 		expect( store.chartDefinition ).toStrictEqual( fixtures[ 'Data:Example.Line.chart' ] );
 	} );
 
+	it( 'should use schema format values for default axes', () => {
+		createTestingPinia( { stubActions: false } );
+		const store = useChartStore();
+
+		expect( store.chartDefinition.xAxis.format ).toBe( 'none' );
+		expect( store.chartDefinition.yAxis.format ).toBe( 'none' );
+	} );
+
 	it( 'should bubble constraint validations to the <form> element', async () => {
 		const form = document.createElement( 'form' );
 		form.id = 'ext-chart-wizard';

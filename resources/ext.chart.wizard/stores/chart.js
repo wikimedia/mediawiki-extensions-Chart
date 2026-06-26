@@ -19,6 +19,11 @@ module.exports = exports = defineStore( 'chart', () => {
 	 * @typedef {Object} LocalizableString
 	 */
 	/**
+	 * Axis format mode.
+	 *
+	 * @typedef {'auto'|'none'} AxisFormat
+	 */
+	/**
 	 * A MediaWiki category with optional `sort` property.
 	 *
 	 * @typedef {Object} Category
@@ -30,8 +35,7 @@ module.exports = exports = defineStore( 'chart', () => {
 	 *
 	 * @typedef {Object} Axis
 	 * @property {LocalizableString} title
-	 * @property {boolean} [format] When enabled numbers on axis will be abbreviated,
-	 *   e.g. 1,000,000 becomes 1M.
+	 * @property {AxisFormat} [format]
 	 */
 	/**
 	 * Lua transformation to apply to the chart data.
@@ -114,7 +118,7 @@ module.exports = exports = defineStore( 'chart', () => {
 	 */
 	const xAxis = ref( {
 		title: '',
-		format: false
+		format: 'none'
 	} );
 	/**
 	 * Y-axis configuration.
@@ -123,7 +127,7 @@ module.exports = exports = defineStore( 'chart', () => {
 	 */
 	const yAxis = ref( {
 		title: '',
-		format: false
+		format: 'none'
 	} );
 	/**
 	 * The transform configuration for the chart.
