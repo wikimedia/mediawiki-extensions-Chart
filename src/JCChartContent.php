@@ -113,8 +113,22 @@ class JCChartContent extends JCDataContent {
 			/**
 			 * @var ChartSourceValidator $chartSourceValidator
 			 */
-			$chartSourceValidator = MediaWikiServices::getInstance()->getService( 'Chart.ChartSourceValidator' );
-			return $chartSourceValidator->validateSource( $jcv, $path );
+			$services = MediaWikiServices::getInstance();
+			$chartSourceValidator = $services->getService( 'Chart.ChartSourceValidator' );
+			if ( !$chartSourceValidator->validateSource( $jcv, $path ) ) {
+				return false;
+			}
+
+			/**
+			 * @var DataPageResolver $dataPageResolver
+			 */
+			$dataPageResolver = $services->getService( 'Chart.DataPageResolver' );
+			$source = $dataPageResolver->normalizePageNameInDataNamespace( $jcv->getValue() );
+			if ( $source === null ) {
+				return false;
+			}
+			$jcv->setValue( $source );
+			return true;
 		};
 	}
 

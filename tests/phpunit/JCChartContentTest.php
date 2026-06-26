@@ -35,6 +35,13 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 		JCSingleton::init( true );
+		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
+		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
+			$this->overrideConfigValue( 'ExtraNamespaces', [
+				NS_DATA => 'Data',
+				NS_DATA_TALK => 'Data_talk',
+			] );
+		}
 
 		$chartSourceValidator = $this->createPartialMock( ChartSourceValidator::class, [ 'validateSourcePage' ] );
 		$chartSourceValidator->method( 'validateSourcePage' )->willReturn( true );
@@ -98,6 +105,21 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->assertObjectStructure( $expectedStructure, $localizedData );
+	}
+
+	public function testSerializeContentNormalizesPrefixedSource() {
+		$contentHandler = new JCContentHandler( JCChartContent::CONTENT_MODEL );
+		$content = $contentHandler->unserializeContent( FormatJson::encode( [
+			'license' => 'CC0-1.0',
+			'version' => 1,
+			'type' => 'line',
+			'source' => 'Data:2022 US energy consumption.tab',
+		], false, FormatJson::ALL_OK ) );
+
+		$serialized = FormatJson::parse( $contentHandler->serializeContent( $content ) );
+
+		$this->assertTrue( $serialized->isOK() );
+		$this->assertSame( '2022 US energy consumption.tab', $serialized->getValue()->source );
 	}
 
 	private function getRawJCChartContentFromFile( $filePath ): JCChartContent {

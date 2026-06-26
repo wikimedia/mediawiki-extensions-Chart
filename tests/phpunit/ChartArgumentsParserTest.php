@@ -41,6 +41,13 @@ class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 		JCSingleton::init( true );
+		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
+		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
+			$this->overrideConfigValue( 'ExtraNamespaces', [
+				NS_DATA => 'Data',
+				NS_DATA_TALK => 'Data_talk',
+			] );
+		}
 	}
 
 	protected function tearDown(): void {
@@ -112,6 +119,20 @@ class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 			[
 				'Definition page.chart',
 				[ 'Definition page.chart', 'data=Data page.tab' ],
+				// Definition page
+				'Definition_page.chart',
+				// data page
+				'Data_page.tab',
+				// options
+				[],
+				// transform args
+				[],
+				// errors
+				[]
+			],
+			[
+				'Definition page.chart',
+				[ 'Definition page.chart', 'data=Data:Data page.tab' ],
 				// Definition page
 				'Definition_page.chart',
 				// data page
