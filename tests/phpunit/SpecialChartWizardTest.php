@@ -3,11 +3,16 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Chart\Tests;
 
+use MediaWiki\Extension\Chart\ChartRenderer;
+use MediaWiki\Extension\Chart\JCChartContent;
 use MediaWiki\Extension\Chart\SpecialChartWizard;
+use MediaWiki\Extension\JsonConfig\JCContentHandler;
 use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\Status\Status;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Title\Title;
+use stdclass;
 
 /**
  * @covers \MediaWiki\Extension\Chart\SpecialChartWizard
@@ -46,6 +51,30 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 			],
 		] );
 		JCSingleton::init( true );
+		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
+		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
+			$this->overrideConfigValue( 'ExtraNamespaces', [
+				NS_DATA => 'Data',
+				NS_DATA_TALK => 'Data_talk',
+			] );
+		}
+		$this->overrideConfigValue(
+			'ContentHandlers',
+			$this->getServiceContainer()->getMainConfig()->get( 'ContentHandlers' ) + [
+				'Chart.JsonConfig' => JCContentHandler::class,
+				'Tabular.JsonConfig' => JCContentHandler::class,
+			]
+		);
+		$mock = $this->createMock( ChartRenderer::class );
+		$mock->method( 'renderSVG' )
+			->willReturnCallback( static function (
+				stdclass $chartDef,
+				stdclass $tabularData,
+				array $options = []
+			): Status {
+				return Status::newGood( '<svg></svg>' );
+			} );
+		$this->setService( 'Chart.ChartRenderer', $mock );
 	}
 
 	/** @inheritDoc */
@@ -97,12 +126,32 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 	 * @return array [ Chart definition page content, Title object ]
 	 */
 	private function insertChart(): array {
-		$this->insertPage(
+		$this->insertJsonConfigPage(
 			'Data:Chart input.tab',
-			file_get_contents( __DIR__ . '/chart-integration/Chart_input.tab.json' )
+			file_get_contents( __DIR__ . '/chart-integration/Chart_input.tab.json' ),
+			'Tabular.JsonConfig'
 		);
 		$chartDefinition = file_get_contents( __DIR__ . '/chart-integration/No_transform_example.chart.json' );
-		$title = $this->insertPage( 'Data:No transform example.chart', $chartDefinition )['title'];
+		$title = $this->insertJsonConfigPage(
+			'Data:No transform example.chart',
+			$chartDefinition,
+			JCChartContent::CONTENT_MODEL
+		);
 		return [ $chartDefinition, $title ];
+	}
+
+	private function insertJsonConfigPage( string $pageName, string $text, string $contentModel ): Title {
+		$title = Title::newFromText( $pageName );
+		$status = $this->editPage(
+			$title,
+			( new JCContentHandler( $contentModel ) )->unserializeContent( $text ),
+			'',
+			NS_MAIN,
+			$this->getTestSysop()->getAuthority()
+		);
+		if ( !$status->isOK() ) {
+			$this->fail( $status->getWikiText() );
+		}
+		return $title;
 	}
 }
