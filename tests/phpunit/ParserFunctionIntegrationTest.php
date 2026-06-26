@@ -23,7 +23,20 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+		$this->configureChartIntegrationTest();
+	}
 
+	public function addDBDataOnce() {
+		parent::addDBDataOnce();
+		$this->configureChartIntegrationTest();
+		$this->editChartIntegrationPage( 'Temperature_conversion', 'lua', NS_MODULE );
+		$this->editChartIntegrationPage( 'Chart_input.tab', 'json', NS_DATA );
+		$this->editChartIntegrationPage( 'No_transform_example.chart', 'json', NS_DATA );
+		$this->editChartIntegrationPage( 'Transform_example.chart', 'json', NS_DATA );
+		$this->editChartIntegrationPage( 'No_args_example.chart', 'json', NS_DATA );
+	}
+
+	private function configureChartIntegrationTest(): void {
 		// Enable but turn off renderer.
 		// This should let us validate other things about
 		// the setup and error handling behavior.
@@ -55,35 +68,12 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 			],
 		] );
 		JCSingleton::init( true );
+	}
 
-		$tableName = 'Temperature_conversion';
-		$fileName = __DIR__ . "/chart-integration/$tableName.lua";
+	private function editChartIntegrationPage( string $pageName, string $extension, int $namespace ): void {
+		$fileName = __DIR__ . "/chart-integration/$pageName.$extension";
 		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( NS_MODULE, $tableName );
-		$this->editPage( $title, $content );
-
-		$tableName = 'Chart_input.tab';
-		$fileName = __DIR__ . "/chart-integration/$tableName.json";
-		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( NS_DATA, $tableName );
-		$this->editPage( $title, $content );
-
-		$tableName = 'No_transform_example.chart';
-		$fileName = __DIR__ . "/chart-integration/$tableName.json";
-		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( NS_DATA, $tableName );
-		$this->editPage( $title, $content );
-
-		$tableName = 'Transform_example.chart';
-		$fileName = __DIR__ . "/chart-integration/$tableName.json";
-		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( NS_DATA, $tableName );
-		$this->editPage( $title, $content );
-
-		$tableName = 'No_args_example.chart';
-		$fileName = __DIR__ . "/chart-integration/$tableName.json";
-		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( NS_DATA, $tableName );
+		$title = Title::makeTitle( $namespace, $pageName );
 		$this->editPage( $title, $content );
 	}
 
