@@ -140,6 +140,8 @@
 				"chart-wizard-form-source-placeholder",
 				"chart-wizard-preview-error",
 				"chart-wizard-preview-error-retry",
+				"chart-wizard-preview-chart-view",
+				"chart-wizard-preview-data-view",
 				"chart-wizard-preview-placeholder-title",
 				"chart-wizard-preview-placeholder-description",
 				"chart-wizard-publish",

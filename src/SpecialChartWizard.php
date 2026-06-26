@@ -50,13 +50,14 @@ class SpecialChartWizard extends FormSpecialPage {
 		parent::execute( $par );
 
 		$this->getOutput()->setPageTitleMsg(
-			$this->msg( $this->isNew ? 'editing' : 'creating' )
+			$this->msg( $this->isNew ? 'creating' : 'editing' )
 				->rawParams( $this->title->getPrefixedText() )
 		);
 
 		$this->getOutput()->addJsConfigVars( [
 			'chartDefinition' => $chartDefinition,
 			'chartIsNew' => $this->isNew,
+			'chartPageName'   => $this->title->getPrefixedText(),
 		] );
 		$this->getOutput()->addModules( 'ext.chart.wizard' );
 		$this->getOutput()->addModuleStyles( 'ext.chart.wizard.styles' );

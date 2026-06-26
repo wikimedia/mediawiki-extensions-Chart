@@ -39,6 +39,8 @@
 	"chart-wizard-preview-placeholder-description": "Your data will appear here to preview before creating a chart",
 	"chart-wizard-preview-error": "Something went wrong while previewing.",
 	"chart-wizard-preview-error-retry": "Try again",
+	"chart-wizard-preview-chart-view": "Chart",
+	"chart-wizard-preview-data-view": "Data",
 	"chart-wizard-publish": "Publish chart",
 	"chartjson-error-version": "$1 must be an integer between $2 and $3 inclusive.",
 	"chartjson-error-enum": "$1 must be one of the following values: $2",

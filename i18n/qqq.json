@@ -39,6 +39,8 @@
 	"chart-wizard-preview-placeholder-description": "Description shown in the chart wizard preview area as a placeholder",
 	"chart-wizard-preview-error": "Message displayed in the chart wizard preview area when an error occurs.",
 	"chart-wizard-preview-error-retry": "Label for the button to retry previewing a chart in the chart wizard.",
+	"chart-wizard-preview-chart-view": "Label for the chart preview view switch button.",
+	"chart-wizard-preview-data-view": "Label for the tabular data preview view switch button.",
 	"chart-wizard-publish": "Label for the button to publish a chart in the chart wizard",
 	"chartjson-error-version": "Error message displayed when validating a chart JSON page if the version key ($1) is invalid; parameters $2 and $3 are the valid integer range.",
 	"chartjson-error-enum": "Error message displayed when a chart JSON value $1 needs to be one of a specific list of values and isn't; parameter $2 is the command-separated list of acceptable values.",

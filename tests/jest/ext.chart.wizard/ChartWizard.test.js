@@ -12,6 +12,31 @@ describe( 'ChartWizard', () => {
 		mw.Title.newFromText = jest.fn().mockImplementation(
 			( title ) => ( { getPrefixedText: () => title } )
 		);
+		mw.Api.prototype.post = jest.fn().mockResolvedValue( {
+			parse: {
+				text: '<wiki-chart></wiki-chart>'
+			}
+		} );
+		mw.loader.load = jest.fn();
+		mw.hook = jest.fn().mockReturnValue( { fire: jest.fn() } );
+		window.jQuery = jest.fn( ( element ) => {
+			const collection = {
+				empty: jest.fn( () => {
+					element.innerHTML = '';
+					return collection;
+				} ),
+				append: jest.fn( ( content ) => {
+					content.forEach( ( node ) => element.appendChild( node ) );
+					return collection;
+				} )
+			};
+			return collection;
+		} );
+		window.jQuery.parseHTML = jest.fn( ( html ) => {
+			const template = document.createElement( 'template' );
+			template.innerHTML = html;
+			return Array.from( template.content.childNodes );
+		} );
 	} );
 
 	afterEach( () => jest.clearAllMocks() );
@@ -37,7 +62,7 @@ describe( 'ChartWizard', () => {
 		expect( store.chartDefinition.yAxis.format ).toBe( 'none' );
 	} );
 
-	it( 'should bubble constraint validations to the <form> element', async () => {
+	it( 'should keep preview errors out of form constraints', async () => {
 		const form = document.createElement( 'form' );
 		form.id = 'ext-chart-wizard';
 		mount( ChartWizard, {
@@ -54,9 +79,9 @@ describe( 'ChartWizard', () => {
 		expect( form.checkValidity() ).toBeTruthy();
 		store.source = 'Data:Nonexistent data.tab';
 		await flushPromises();
-		expect( form.checkValidity() ).toBeFalsy();
-		expect( form.reportValidity() ).toBeFalsy();
-		expect( store.sourceStatus ).toBe( 'chart-error-data-source-page-not-found' );
+		expect( form.checkValidity() ).toBeTruthy();
+		expect( form.reportValidity() ).toBeTruthy();
+		expect( store.sourceStatus ).toBeNull();
 		document.body.removeChild( form );
 	} );
 } );

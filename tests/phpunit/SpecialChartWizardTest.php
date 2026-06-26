@@ -99,6 +99,7 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$jsVars = json_decode( json_encode( $sp->getOutput()->getJsConfigVars() ), true );
 		$this->assertSame( $chartDefinition, $jsVars['chartDefinition'] );
 		$this->assertFalse( $jsVars['chartIsNew'] );
+		$this->assertSame( 'Editing Data:No transform example.chart', $sp->getOutput()->getPageTitle() );
 		$this->assertContains( 'ext.chart.wizard', $sp->getOutput()->getModules() );
 		$this->assertContains( 'ext.chart.wizard.styles', $sp->getOutput()->getModuleStyles() );
 	}

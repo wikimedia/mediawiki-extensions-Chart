@@ -1,7 +1,28 @@
 <template>
 	<div class="ext-chart-wizard__preview">
 		<div
-			v-if="sourcePreview === null"
+			v-if="chartDefinition.source"
+			class="ext-chart-wizard__preview-switch"
+		>
+			<cdx-button
+				weight="quiet"
+				:action="selectedPreview === 'chart' ? 'progressive' : 'default'"
+				:aria-pressed="selectedPreview === 'chart'"
+				@click.prevent="selectPreview( 'chart' )"
+			>
+				{{ $i18n( 'chart-wizard-preview-chart-view' ).text() }}
+			</cdx-button>
+			<cdx-button
+				weight="quiet"
+				:action="selectedPreview === 'data' ? 'progressive' : 'default'"
+				:aria-pressed="selectedPreview === 'data'"
+				@click.prevent="selectPreview( 'data' )"
+			>
+				{{ $i18n( 'chart-wizard-preview-data-view' ).text() }}
+			</cdx-button>
+		</div>
+		<div
+			v-if="activePreviewError"
 			class="ext-chart-wizard__preview--error"
 		>
 			<cdx-message
@@ -12,13 +33,25 @@
 			</cdx-message>
 			<cdx-button
 				weight="primary"
-				@click.prevent="doPreviewSource"
+				@click.prevent="renderSelectedPreview"
 			>
 				{{ $i18n( 'chart-wizard-preview-error-retry' ) }}
 			</cdx-button>
 		</div>
-		<div v-else-if="sourcePreview.length">
-			<pre class="ext-chart-wizard__preview--source">{{ sourcePreview }}</pre>
+		<div
+			v-else-if="chartDefinition.source && selectedPreview === 'chart'"
+			ref="previewContainer"
+			class="ext-chart-wizard__preview--chart"
+		>
+		</div>
+		<div
+			v-else-if="chartDefinition.source && selectedPreview === 'data'"
+			class="ext-chart-wizard__preview--data"
+		>
+			<pre
+				v-if="sourcePreview.length"
+				class="ext-chart-wizard__preview--source"
+			>{{ sourcePreview }}</pre>
 		</div>
 		<div v-else class="ext-chart-wizard__preview-placeholder">
 			<div class="ext-chart-wizard__preview-placeholder-image-wrapper skin-invert">
@@ -41,7 +74,7 @@
 </template>
 
 <script>
-const { defineComponent, ref, watch, Ref } = require( 'vue' );
+const { computed, defineComponent, nextTick, ref, useTemplateRef, watch, ComputedRef, Ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxMessage } = require( '../../../codex.js' );
 const useChartStore = require( '../stores/chart.js' );
@@ -52,7 +85,28 @@ module.exports = exports = defineComponent( {
 	components: { CdxButton, CdxMessage },
 	setup() {
 		const store = useChartStore();
-		const { initialLoad, source, sourceStatus } = storeToRefs( store );
+		const { chartDefinition, initialLoad } = storeToRefs( store );
+
+		/**
+		 * The selected preview mode.
+		 *
+		 * @type {Ref<'chart'|'data'>}
+		 */
+		const selectedPreview = ref( 'chart' );
+
+		/**
+		 * Whether the rendered chart preview request failed.
+		 *
+		 * @type {Ref<boolean>}
+		 */
+		const chartPreviewError = ref( false );
+
+		/**
+		 * Whether the source data preview request failed.
+		 *
+		 * @type {Ref<boolean>}
+		 */
+		const sourcePreviewError = ref( false );
 
 		/**
 		 * Preview of the source content.
@@ -62,60 +116,154 @@ module.exports = exports = defineComponent( {
 		const sourcePreview = ref( '' );
 
 		/**
-		 * Fetches the content of the page specified in the source field
-		 * and sets it as the source preview.
+		 * Container for rendered chart preview HTML.
+		 *
+		 * @type {Ref<HTMLElement|null>}
 		 */
-		async function doPreviewSource() {
+		const previewContainer = useTemplateRef( 'previewContainer' );
+
+		function prepareChartPreviewContent( content ) {
+			content.forEach( ( node ) => {
+				if ( node.nodeType !== Node.ELEMENT_NODE ) {
+					return;
+				}
+				const charts = node.matches( 'wiki-chart' ) ?
+					[ node ] :
+					Array.from( node.querySelectorAll( 'wiki-chart' ) );
+				charts.forEach( ( chart ) => {
+					const svg = chart.querySelector( 'svg' );
+					const height = svg && svg.getAttribute( 'height' );
+					if ( height ) {
+						chart.style.minHeight = `${ height }px`;
+					}
+				} );
+			} );
+			return content;
+		}
+
+		function injectPreview( response ) {
+			const parse = response.parse;
+			if ( parse.jsconfigvars ) {
+				mw.config.set( parse.jsconfigvars );
+			}
+			mw.loader.load( ( parse.modules || [] ).concat( parse.modulestyles || [] ) );
+			chartPreviewError.value = false;
+			const $previewContainer = window.jQuery( previewContainer.value );
+			$previewContainer.empty().append(
+				prepareChartPreviewContent( window.jQuery.parseHTML( parse.text ) )
+			);
+			mw.hook( 'wikipage.content' ).fire( $previewContainer );
+		}
+
+		async function renderChartPreview() {
+			if ( !chartDefinition.value.source ) {
+				chartPreviewError.value = false;
+				initialLoad.value = false;
+				return;
+			}
+			chartPreviewError.value = false;
+			await nextTick();
 			let response;
 			try {
-				response = await store.pushPromise(
-					api.get( {
-						action: 'query',
-						format: 'json',
-						prop: 'revisions',
-						rvprop: 'content',
-						titles: source.value,
-						formatversion: 2
-					} )
-				);
+				response = await api.post( {
+					action: 'parse',
+					formatversion: 2,
+					title: mw.config.get( 'chartPageName' ),
+					text: JSON.stringify( chartDefinition.value ),
+					contentmodel: 'Chart.JsonConfig',
+					prop: 'text|modules|modulestyles|jsconfigvars',
+					preview: true,
+					disableeditsection: true,
+					disablelimitreport: 1,
+					useskin: mw.config.get( 'skin' ),
+					uselang: mw.config.get( 'wgUserLanguage' )
+				}, {
+					headers: { 'Promise-Non-Write-API-Action': 'true' }
+				} );
 			} catch ( e ) {
-				sourcePreview.value = null;
+				chartPreviewError.value = true;
 				return;
 			} finally {
 				initialLoad.value = false;
 			}
-			const page = response.query.pages[ 0 ];
-			if ( page.missing ) {
-				sourceStatus.value = mw.msg( 'chart-error-data-source-page-not-found' );
+			injectPreview( response );
+		}
+
+		async function renderSourcePreview() {
+			if ( !chartDefinition.value.source ) {
 				sourcePreview.value = '';
+				sourcePreviewError.value = false;
+				initialLoad.value = false;
 				return;
-			} else if ( response.error ) {
-				sourcePreview.value = null;
-				return;
-			} else {
-				sourceStatus.value = null;
 			}
-			sourcePreview.value = JSON.stringify( JSON.parse(
-				page.revisions[ 0 ].content
-			), null, '    ' );
+			try {
+				const response = await api.get( {
+					action: 'query',
+					format: 'json',
+					prop: 'revisions',
+					rvprop: 'content',
+					titles: chartDefinition.value.source,
+					formatversion: 2
+				} );
+				const page = response.query.pages[ 0 ];
+				if ( page.missing || response.error ) {
+					sourcePreview.value = '';
+					sourcePreviewError.value = true;
+					return;
+				}
+				sourcePreview.value = JSON.stringify( JSON.parse(
+					page.revisions[ 0 ].content
+				), null, '    ' );
+				sourcePreviewError.value = false;
+			} catch ( e ) {
+				sourcePreview.value = '';
+				sourcePreviewError.value = true;
+			} finally {
+				initialLoad.value = false;
+			}
+		}
+
+		function renderSelectedPreview() {
+			if ( selectedPreview.value === 'data' ) {
+				return renderSourcePreview();
+			}
+			return renderChartPreview();
+		}
+
+		function selectPreview( preview ) {
+			selectedPreview.value = preview;
+			return renderSelectedPreview();
 		}
 
 		/**
-		 * Watch for changes to the source field and update the preview accordingly.
-		 * If the source field is empty, clear the preview.
+		 * Whether the currently visible preview request failed.
+		 *
+		 * @type {ComputedRef<boolean>}
 		 */
-		watch( source, ( newValue ) => {
-			if ( newValue ) {
-				doPreviewSource();
-			} else {
-				sourcePreview.value = '';
-				initialLoad.value = false;
+		const activePreviewError = computed( () => selectedPreview.value === 'data' ?
+			sourcePreviewError.value :
+			chartPreviewError.value
+		);
+
+		watch( chartDefinition, () => {
+			if ( selectedPreview.value === 'chart' ) {
+				renderChartPreview();
 			}
-		}, { immediate: true } );
+		}, { deep: true, immediate: true } );
+		watch( () => chartDefinition.value.source, () => {
+			if ( selectedPreview.value === 'data' ) {
+				renderSourcePreview();
+			}
+		} );
 
 		return {
-			sourcePreview,
-			doPreviewSource
+			activePreviewError,
+			chartDefinition,
+			previewContainer,
+			renderSelectedPreview,
+			selectPreview,
+			selectedPreview,
+			sourcePreview
 		};
 	}
 } );
@@ -126,6 +274,10 @@ module.exports = exports = defineComponent( {
 
 .ext-chart-wizard__preview {
 	position: relative;
+
+	&-switch {
+		margin-bottom: @spacing-100;
+	}
 
 	&--error {
 		left: @size-half;
