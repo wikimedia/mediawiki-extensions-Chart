@@ -276,10 +276,19 @@ const render = ( wikiChartElement, chartData ) => {
 
 	chart.setOption( spec );
 	originalSVG.parentNode.removeChild( originalSVG );
-	window.addEventListener( 'resize', () => {
+	const onResize = () => {
+		if ( !wikiChartElement.isConnected ) {
+			window.removeEventListener( 'resize', onResize );
+			chart.dispose();
+			return;
+		}
+		if ( !wikiChartElement.clientWidth || !wikiChartElement.clientHeight ) {
+			return;
+		}
 		chart.resize();
 		adjustTitleWidth( chart );
-	} );
+	};
+	window.addEventListener( 'resize', onResize );
 };
 
 module.exports = {
