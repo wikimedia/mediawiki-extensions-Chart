@@ -4,11 +4,15 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
+use MediaWiki\RecentChanges\Hook\RecentChange_saveHook;
+use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Skin\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -18,13 +22,22 @@ class Hooks implements
 	ParserFirstCallInitHook,
 	PageSaveCompleteHook,
 	LinksUpdateCompleteHook,
-	SkinTemplateNavigation__UniversalHook
+	SkinTemplateNavigation__UniversalHook,
+	RecentChange_saveHook
 {
+	public const string SESSION_KEY = 'ext-chart';
+	public const string CHANGE_TAG = 'chart-wizard';
 	protected bool $isChartWizardEnabled;
 
+	/**
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param Config $config
+	 * @param ?FauxRequest $request Ignore; For unit testing only.
+	 */
 	public function __construct(
 		private readonly SpecialPageFactory $specialPageFactory,
-		Config $config
+		Config $config,
+		private readonly ?FauxRequest $request = null,
 	) {
 		$this->isChartWizardEnabled = $config->get( 'ChartWizardEnabled' );
 	}
@@ -114,5 +127,27 @@ class Hooks implements
 		}
 
 		$links['views'] = $newTabs;
+	}
+
+	/**
+	 * Registers self::CHANGE_TAG as an active change tag.
+	 */
+	public static function onRegisterTags( array &$tags ): true {
+		$tags[] = self::CHANGE_TAG;
+		return true;
+	}
+
+	/**
+	 * Adds the self::CHANGE_TAG tag to recent changes
+	 * if the request was made using Special:ChartWizard.
+	 *
+	 * @param RecentChange $recentChange
+	 */
+	public function onRecentChange_save( $recentChange ): void {
+		$request = $this->request ?? RequestContext::getMain()->getRequest();
+		if ( $request->getSession()->get( self::SESSION_KEY ) ) {
+			$recentChange->addTags( self::CHANGE_TAG );
+			$request->getSession()->remove( self::SESSION_KEY );
+		}
 	}
 }

@@ -42,6 +42,8 @@
 	"chart-wizard-preview-chart-view": "Label for the chart preview view switch button.",
 	"chart-wizard-preview-data-view": "Label for the tabular data preview view switch button.",
 	"chart-wizard-publish": "Label for the button to publish a chart in the chart wizard",
+	"tag-chart-wizard": "Short description of the chart-wizard tag.\n\nShown on lists of changes (history, recentchanges, etc.) for each edit made using Chart Wizard software.",
+	"tag-chart-wizard-description": "Description of the {{msg-mw|tag-chart-wizard}} change tag, shown at [[Special:Tags]].",
 	"chartjson-error-version": "Error message displayed when validating a chart JSON page if the version key ($1) is invalid; parameters $2 and $3 are the valid integer range.",
 	"chartjson-error-enum": "Error message displayed when a chart JSON value $1 needs to be one of a specific list of values and isn't; parameter $2 is the command-separated list of acceptable values.",
 	"chart-error-source-not-found": "Error message when the chart tabular data source page is not found.",

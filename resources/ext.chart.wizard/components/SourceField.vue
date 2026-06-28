@@ -1,6 +1,7 @@
 <template>
 	<cdx-field
 		class="ext-chart-wizard__source"
+		:is-fieldset="true"
 		:status="sourceStatus ? 'error' : 'default'"
 		:messages="sourceStatus ? { error: sourceStatus } : {}"
 	>

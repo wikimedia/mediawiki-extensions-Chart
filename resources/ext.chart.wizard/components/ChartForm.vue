@@ -10,6 +10,17 @@
 			name="chartDefinition"
 			:value="JSON.stringify( chartDefinition )"
 		>
+		<input
+			type="hidden"
+			name="wpEditToken"
+			id="wpEditToken"
+			:value="editToken"
+		>
+		<input
+			type="hidden"
+			name="baseRevId"
+			:value="baseRevId"
+		>
 		<div class="mw-htmlform-submit-buttons">
 			<cdx-button
 				action="progressive"
@@ -38,7 +49,8 @@ module.exports = exports = defineComponent( {
 		SourceField
 	},
 	props: {
-		chartIsNew: { type: Boolean, required: true }
+		chartIsNew: { type: Boolean, required: true },
+		baseRevId: { type: Number, default: 0 }
 	},
 	setup( { chartIsNew } ) {
 		const { formDisabled, chartDefinition } = storeToRefs( useChartStore() );
@@ -47,6 +59,7 @@ module.exports = exports = defineComponent( {
 				'chart-wizard-publish' :
 				'publishchanges'
 		) );
+		const editToken = mw.config.get( 'chartEditToken' );
 
 		/**
 		 * Handle form submission. If the form is invalid, scroll to the
@@ -74,6 +87,7 @@ module.exports = exports = defineComponent( {
 			formDisabled,
 			submitText,
 			chartDefinition,
+			editToken,
 			onFormSubmission
 		};
 	}
@@ -88,6 +102,11 @@ module.exports = exports = defineComponent( {
 
 	> legend {
 		display: none;
+	}
+
+	// Codex bug; See T430881.
+	.cdx-field__help-text:empty {
+		margin: 0;
 	}
 }
 </style>

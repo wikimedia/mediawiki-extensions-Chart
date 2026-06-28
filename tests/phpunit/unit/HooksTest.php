@@ -4,6 +4,9 @@ declare( strict_types = 1 );
 namespace MediaWiki\Extension\Chart;
 
 use MediaWiki\Config\HashConfig;
+use MediaWiki\RecentChanges\RecentChange;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Session\Session;
 use MediaWiki\Skin\SkinTemplate;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -162,7 +165,36 @@ class HooksTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	private function getHandler( bool $chartWizardEnabled, Title $relevantTitle ): Hooks {
+	public function testChangeTags(): void {
+		$session = $this->createNoOpMock( Session::class, [ 'get', 'remove' ] );
+		$session->expects( $this->once() )
+			->method( 'get' )
+			->with( Hooks::SESSION_KEY )
+			->willReturn( true );
+		$session->expects( $this->once() )
+			->method( 'remove' )
+			->with( Hooks::SESSION_KEY );
+		$request = $this->createConfiguredMock( FauxRequest::class, [ 'getSession' => $session ] );
+		$handler = $this->getHandler(
+			chartWizardEnabled: true,
+			relevantTitle: $this->makeMockTitle( 'Data:Example.Line.chart' ),
+			request: $request,
+		);
+		$tags = [];
+		$this->assertTrue( $handler::onRegisterTags( $tags ) );
+		$this->assertContains( Hooks::CHANGE_TAG, $tags );
+		$recentChange = $this->createNoOpMock( RecentChange::class, [ 'addTags' ] );
+		$recentChange->expects( $this->once() )
+			->method( 'addTags' )
+			->with( Hooks::CHANGE_TAG );
+		$handler->onRecentChange_save( $recentChange );
+	}
+
+	private function getHandler(
+		bool $chartWizardEnabled,
+		Title $relevantTitle,
+		?FauxRequest $request = null
+	): Hooks {
 		$specialPageFactory = $this->createNoOpMock( SpecialPageFactory::class, [ 'getPage' ] );
 		$specialPageFactory->expects( $this->atMost( 1 ) )
 			->method( 'getPage' )
@@ -176,6 +208,6 @@ class HooksTest extends MediaWikiUnitTestCase {
 				return $specialPage;
 			} );
 		$config = new HashConfig( [ 'ChartWizardEnabled' => $chartWizardEnabled ] );
-		return new Hooks( $specialPageFactory, $config );
+		return new Hooks( $specialPageFactory, $config, $request );
 	}
 }

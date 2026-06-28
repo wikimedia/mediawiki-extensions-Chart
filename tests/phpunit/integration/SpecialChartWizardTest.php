@@ -6,13 +6,16 @@ namespace MediaWiki\Extension\Chart\Tests;
 use MediaWiki\Extension\Chart\ChartRenderer;
 use MediaWiki\Extension\Chart\JCChartContent;
 use MediaWiki\Extension\Chart\SpecialChartWizard;
+use MediaWiki\Extension\Chart\Tests\Integration\ChartIntegrationTestTrait;
 use MediaWiki\Extension\JsonConfig\JCContentHandler;
-use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Title\Title;
 use stdclass;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\Extension\Chart\SpecialChartWizard
@@ -20,45 +23,11 @@ use stdclass;
  */
 class SpecialChartWizardTest extends SpecialPageTestBase {
 
+	use ChartIntegrationTestTrait;
+
 	protected function setUp(): void {
 		parent::setUp();
-		// TODO: Make this use ChartIntegrationTestTrait.
-		$this->overrideConfigValues( [
-			'ChartWizardEnabled' => true,
-			'LanguageCode' => 'en',
-			'JsonConfigEnableLuaSupport' => true,
-			'JsonConfigTransformsEnabled' => true,
-			'JsonConfigs' => [
-				'Tabular.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.tab$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				],
-				'Chart.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.chart$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				]
-			],
-			'JsonConfigModels' => [
-				'Chart.JsonConfig' => 'MediaWiki\Extension\Chart\JCChartContent',
-				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent'
-			],
-		] );
-		JCSingleton::init( true );
-		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
-		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
-			$this->overrideConfigValue( 'ExtraNamespaces', [
-				NS_DATA => 'Data',
-				NS_DATA_TALK => 'Data_talk',
-			] );
-		}
+		$this->configureChartIntegrationTest();
 		$this->overrideConfigValue(
 			'ContentHandlers',
 			$this->getServiceContainer()->getMainConfig()->get( 'ContentHandlers' ) + [
@@ -76,6 +45,10 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 				return Status::newGood( '<svg></svg>' );
 			} );
 		$this->setService( 'Chart.ChartRenderer', $mock );
+	}
+
+	protected function tearDown(): void {
+		parent::tearDown();
 	}
 
 	/** @inheritDoc */
@@ -120,8 +93,57 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 			);
 		$performer = $this->getTestUser()->getAuthority();
 		/** @var WebResponse $response */
-		[ , $response ] = $this->executeSpecialPage( 'No transform example.chart', null, null, $performer );
+		[ , $response ] = $this->executeSpecialPage( subPage: 'No transform example.chart', performer:  $performer );
 		$this->assertSame( $response->getHeader( 'LOCATION' ), $title->getEditURL() );
+	}
+
+	public function testEditExisting() {
+		/** @var Title $definitionTitle */
+		[ $definitionContents, $definitionTitle ] = $this->insertChart();
+		$definitionData = json_decode( $definitionContents, true );
+		// Add a @documentation property (not used by ChartWizard.vue).
+		$definitionData[ '@documentation' ] = 'https://example.org';
+		// Add categories, which didn't originally exist.
+		$definitionData[ 'mediaWikiCategories' ] = [
+			[ 'name' => 'Example charts' ],
+			[ 'name' => 'Bar charts', 'sort' => 'Example' ],
+		];
+		// Change source dataset to Data:Chart_input.tab (tests normalization).
+		$definitionData[ 'source' ] = 'Data:Chart input.tab';
+		$request = new FauxRequest( [
+			'chartDefinition' => json_encode( $definitionData ),
+			'baseRevId' => $definitionTitle->getLatestRevID(),
+		], wasPosted: true );
+		$this->executeSpecialPage(
+			subPage: 'No transform example.chart',
+			request: $request,
+		);
+		// Re-fetch contents.
+		$revision = $this->getServiceContainer()->getRevisionLookup()
+			->getRevisionByTitle( $definitionTitle, 0, IDBAccessObject::READ_LATEST );
+		$content = $revision->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( JCChartContent::class, $content );
+		$newDefinition = json_decode( $content->getText(), associative: true );
+		$this->assertSame(
+			[
+				'license' => 'CC0-1.0',
+				'mediawikiCategories' => [
+					[ 'name' => 'Example charts' ],
+					[ 'name' => 'Bar charts', 'sort' => 'Example' ],
+				],
+				'version' => 1,
+				'type' => 'bar',
+				'xAxis' => [
+					'title' => [ 'en' => 'Day' ],
+				],
+				'yAxis' => [
+					'title' => [ 'en' => 'Temperature (C)' ],
+				],
+				'source' => 'Chart input.tab',
+				'@documentation' => 'https://example.org',
+			],
+			$newDefinition
+		);
 	}
 
 	/**
@@ -129,15 +151,15 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 	 */
 	private function insertChart(): array {
 		$this->insertJsonConfigPage(
-			'Data:Chart input.tab',
-			file_get_contents( __DIR__ . '/../chart-integration/Chart_input.tab.json' ),
-			'Tabular.JsonConfig'
+			pageName: 'Data:Chart input.tab',
+			text: file_get_contents( __DIR__ . '/../chart-integration/Chart_input.tab.json' ),
+			contentModel: 'Tabular.JsonConfig'
 		);
 		$chartDefinition = file_get_contents( __DIR__ . '/../chart-integration/No_transform_example.chart.json' );
 		$title = $this->insertJsonConfigPage(
-			'Data:No transform example.chart',
-			$chartDefinition,
-			JCChartContent::CONTENT_MODEL
+			pageName: 'Data:No transform example.chart',
+			text: $chartDefinition,
+			contentModel: JCChartContent::CONTENT_MODEL,
 		);
 		return [ $chartDefinition, $title ];
 	}

@@ -3,16 +3,21 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Extension\Chart;
 
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\EditPage\EditPage;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
-use stdClass;
+use StatusValue;
 
 /**
  * JS-only Special page for creating and modifying Chart definition pages.
@@ -22,6 +27,7 @@ class SpecialChartWizard extends FormSpecialPage {
 	protected bool $isChartWizardEnabled;
 	private ?Title $title = null;
 	private bool $isNew;
+	private ?array $chartDefinition;
 
 	/**
 	 * The prefixed (including ns) page title supplied in the 'source' field
@@ -42,8 +48,8 @@ class SpecialChartWizard extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $par ) {
-		$chartDefinition = $this->preExecute( $par );
-		if ( $chartDefinition === null ) {
+		$this->chartDefinition = $this->preExecute( $par );
+		if ( $this->chartDefinition === null ) {
 			return;
 		}
 
@@ -55,9 +61,11 @@ class SpecialChartWizard extends FormSpecialPage {
 		);
 
 		$this->getOutput()->addJsConfigVars( [
-			'chartDefinition' => $chartDefinition,
+			'chartDefinition' => $this->chartDefinition,
 			'chartIsNew' => $this->isNew,
 			'chartPageName'   => $this->title->getPrefixedText(),
+			'chartEditToken' => $this->getContext()->getCsrfTokenSet()->getToken()->toString(),
+			'chartBaseRevId' => $this->title->getLatestRevID(),
 		] );
 		$this->getOutput()->addModules( 'ext.chart.wizard' );
 		$this->getOutput()->addModuleStyles( 'ext.chart.wizard.styles' );
@@ -67,9 +75,9 @@ class SpecialChartWizard extends FormSpecialPage {
 	 * Validations and setup to run to before calling parent::execute().
 	 *
 	 * @param ?string $par The subpage parameter, which should be the name of the Chart definition page to edit.
-	 * @return ?stdClass Chart definition object, or null if we should error out.
+	 * @return ?array Chart definition, or null if we should error out.
 	 */
-	private function preExecute( ?string $par ): ?stdClass {
+	private function preExecute( ?string $par ): ?array {
 		// Check feature flag.
 		if ( !$this->isChartWizardEnabled ) {
 			$this->setHeaders();
@@ -103,15 +111,15 @@ class SpecialChartWizard extends FormSpecialPage {
 		/** @var JCChartContent $content */
 		$content = $wikiPage->getContent();
 		'@phan-var JCChartContent $content';
-		$chartDefinition = json_decode( $content?->getText() ?? '{}' );
+		$chartDefinition = json_decode( $content?->getText() ?? '{}', associative: true );
 
 		// Keep track of the page title of the 'source' dataset.
-		if ( isset( $chartDefinition->source ) ) {
-			$this->sourcePrefixedText = Title::makeTitle( NS_DATA, $chartDefinition->source )
+		if ( isset( $chartDefinition['source'] ) ) {
+			$this->sourcePrefixedText = Title::makeTitle( ns: NS_DATA, title: $chartDefinition['source'] )
 				->getPrefixedText();
 		}
 
-		$action = $this->title->exists() ? 'Editing' : 'Creating';
+		$action = $this->isNew ? 'Creating' : 'Editing';
 		$this->logger->debug(
 			__METHOD__ . ": $action chart definition page: {0}, source: {1}",
 			[ $this->title->__toString(), $this->sourcePrefixedText ]
@@ -139,10 +147,13 @@ class SpecialChartWizard extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setId( 'ext-chart-wizard' )
 			->setTitle( $this->getPageTitle( $this->title->getPrefixedDBkey() ) )
-			->setHeaderHtml( Html::openElement( 'fieldset', [
-				'class' => 'cdx-field cdx-field--is-fieldset ext-chart-wizard__form',
-				'disabled' => true,
-			] ) )
+			->setHeaderHtml(
+				Html::openElement( 'div', [ 'class' => 'ext-chart-wizard-container' ] ) .
+				Html::openElement( 'fieldset', [
+					'class' => 'cdx-field cdx-field--is-fieldset ext-chart-wizard__form',
+					'disabled' => true,
+				] )
+			)
 			->setMessagePrefix( 'chart-wizard-form' )
 			->setSections( [
 				'source-label' => [
@@ -151,7 +162,8 @@ class SpecialChartWizard extends FormSpecialPage {
 			] )
 			->setSubmitTextMsg( $this->isNew ? 'chart-wizard-publish' : 'publishchanges' )
 			->setFooterHtml(
-				Html::closeElement( 'fieldset' ) . $this->getPreviewHtml()
+				Html::closeElement( 'fieldset' ) . $this->getPreviewHtml() .
+				Html::closeElement( 'div' )
 			);
 	}
 
@@ -195,9 +207,63 @@ class SpecialChartWizard extends FormSpecialPage {
 	}
 
 	/** @inheritDoc */
-	public function onSubmit( array $data, ?HTMLForm $form = null ): Status {
-		// TODO: implement; Be sure to merge fields with the preexisting chart definition as applicable
-		return Status::newGood();
+	public function onSubmit( array $data, ?HTMLForm $form = null ): Status|StatusValue {
+		// Grab data directly from POST request, until ::getFormFields() encompasses the whole form.
+		$data = $form->getRequest()->getPostValues();
+
+		$this->logger->debug( __METHOD__ . ': submitting data {0}', [ json_encode( $data ) ] );
+
+		// Merge new definition into the existing one, to preserve any fields not exposed in the form.
+		$newDefinition = array_merge(
+			(array)$this->chartDefinition,
+			json_decode( $data['chartDefinition'], true ),
+		);
+
+		// Save using the API (the only safe way to edit server-side,
+		// since PageUpdater does not run edit filters, etc.).
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setRequest( new DerivativeRequest( $this->getRequest(), [
+			'action' => 'edit',
+			'title' => $this->title->getPrefixedText(),
+			'text' => json_encode( $newDefinition ),
+			'contentmodel' => JCChartContent::CONTENT_MODEL,
+			'baserevid' => $data['baseRevId'],
+			'errorformat' => 'html',
+			'token' => $context->getCsrfTokenSet()->getToken(),
+		] ) );
+		$api = new ApiMain( $context, true );
+
+		try {
+			$api->execute();
+		} catch ( ApiUsageException $e ) {
+			$this->logger->debug(
+				__METHOD__ . ': API edit failed for {0}: {1}',
+				[ $this->title->__toString(), $e->getMessage() ]
+			);
+			return $e->getStatusValue();
+		}
+
+		$apiData = $api->getResult()->getResultData()['edit'];
+		if ( $apiData['newrevid'] ?? false ) {
+			// Show post-edit message.
+			$revId = $apiData['newrevid'];
+			$postEditKey = EditPage::POST_EDIT_COOKIE_KEY_PREFIX . $revId;
+			$this->getRequest()->response()->setCookie(
+				name: $postEditKey,
+				value: $this->isNew ? 'created' : 'saved',
+				expire: time() + EditPage::POST_EDIT_COOKIE_DURATION
+			);
+
+			// Set session var to be read by Hooks::onRecentChanges_save(),
+			// which will add the 'Chart Wizard' change tag to the revision.
+			$this->getRequest()->getSession()->set( Hooks::SESSION_KEY, true );
+		}
+
+		$this->getOutput()->redirect(
+			$apiData['tempusercreatedredirect'] ?? $this->title->getLocalURL()
+		);
+
+		return Status::newGood( $api->getResult() );
 	}
 
 	/** @inheritDoc */
@@ -206,7 +272,7 @@ class SpecialChartWizard extends FormSpecialPage {
 	}
 
 	/** @inheritDoc */
-	protected function getDisplayFormat() {
+	protected function getDisplayFormat(): string {
 		return 'codex';
 	}
 }

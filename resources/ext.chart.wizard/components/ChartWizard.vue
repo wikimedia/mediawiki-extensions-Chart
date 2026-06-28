@@ -1,5 +1,8 @@
 <template>
-	<chart-form :chart-is-new="chartIsNew"></chart-form>
+	<chart-form
+		:chart-is-new="chartIsNew"
+		:base-rev-id="chartBaseRevId"
+	></chart-form>
 	<chart-preview></chart-preview>
 </template>
 
@@ -18,7 +21,8 @@ module.exports = exports = defineComponent( {
 	},
 	props: {
 		chartDefinition: { type: Object, required: true },
-		chartIsNew: { type: Boolean, required: true }
+		chartIsNew: { type: Boolean, required: true },
+		chartBaseRevId: { type: Number, default: 0 }
 	},
 	setup( { chartDefinition } ) {
 		// Set refs in the store for each field based on what was passed in from the server.
