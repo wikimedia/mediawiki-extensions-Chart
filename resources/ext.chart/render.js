@@ -176,6 +176,7 @@ const addTooltip = ( spec, xFormatter, yFormatter, language ) => {
 		return;
 	}
 	const tooltipSpec = {
+		renderMode: 'richText',
 		valueFormatter: yFormatter
 	};
 
