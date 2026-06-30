@@ -22,6 +22,7 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		// TODO: Make this use ChartIntegrationTestTrait.
 		$this->overrideConfigValues( [
 			'ChartWizardEnabled' => true,
 			'LanguageCode' => 'en',
@@ -129,10 +130,10 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 	private function insertChart(): array {
 		$this->insertJsonConfigPage(
 			'Data:Chart input.tab',
-			file_get_contents( __DIR__ . '/chart-integration/Chart_input.tab.json' ),
+			file_get_contents( __DIR__ . '/../chart-integration/Chart_input.tab.json' ),
 			'Tabular.JsonConfig'
 		);
-		$chartDefinition = file_get_contents( __DIR__ . '/chart-integration/No_transform_example.chart.json' );
+		$chartDefinition = file_get_contents( __DIR__ . '/../chart-integration/No_transform_example.chart.json' );
 		$title = $this->insertJsonConfigPage(
 			'Data:No transform example.chart',
 			$chartDefinition,

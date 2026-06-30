@@ -1,6 +1,7 @@
 <?php
+declare( strict_types = 1 );
 
-namespace MediaWiki\Extension\Chart\Tests;
+namespace MediaWiki\Extension\Chart\Tests\Integration;
 
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;

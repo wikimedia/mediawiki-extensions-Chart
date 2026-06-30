@@ -1,9 +1,11 @@
 <?php
+declare( strict_types = 1 );
 
-namespace MediaWiki\Extension\Chart;
+namespace MediaWiki\Extension\Chart\Tests\Integration;
 
+use MediaWiki\Extension\Chart\ChartSourceValidator;
+use MediaWiki\Extension\Chart\JCChartContent;
 use MediaWiki\Extension\JsonConfig\JCContentHandler;
-use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Json\FormatJson;
 use MediaWikiIntegrationTestCase;
 
@@ -12,49 +14,18 @@ use MediaWikiIntegrationTestCase;
  */
 class JCChartContentTest extends MediaWikiIntegrationTestCase {
 
+	use ChartIntegrationTestTrait;
+
 	public function setUp(): void {
 		parent::setUp();
-
-		$this->overrideConfigValues( [
-			'LanguageCode' => 'en',
-			'JsonConfigEnableLuaSupport' => true,
-			'JsonConfigTransformsEnabled' => true,
-			'JsonConfigs' => [
-				'Tabular.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.tab$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				]
-			],
-			'JsonConfigModels' => [
-				'Chart.JsonConfig' => 'MediaWiki\Extension\Chart\JCChartContent',
-				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent'
-			],
-		] );
-		JCSingleton::init( true );
-		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
-		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
-			$this->overrideConfigValue( 'ExtraNamespaces', [
-				NS_DATA => 'Data',
-				NS_DATA_TALK => 'Data_talk',
-			] );
-		}
-
+		$this->configureChartIntegrationTest();
 		$chartSourceValidator = $this->createPartialMock( ChartSourceValidator::class, [ 'validateSourcePage' ] );
 		$chartSourceValidator->method( 'validateSourcePage' )->willReturn( true );
 		$this->setService( 'Chart.ChartSourceValidator', $chartSourceValidator );
 	}
 
-	protected function tearDown(): void {
-		parent::tearDown();
-		JCSingleton::init( true );
-	}
-
 	public function testUnserializeContent() {
-		$file = __DIR__ . '/chart-integration/1993 Canadian federal election-chart.json';
+		$file = __DIR__ . '/../chart-integration/1993 Canadian federal election-chart.json';
 		$content = $this->getRawJCChartContentFromFile( $file );
 
 		$data = $content->getData();
@@ -84,7 +55,7 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetLocalizedData() {
-		$file = __DIR__ . '/chart-integration/1993 Canadian federal election-chart.json';
+		$file = __DIR__ . '/../chart-integration/1993 Canadian federal election-chart.json';
 		$content = $this->getRawJCChartContentFromFile( $file );
 
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( code: 'en' );
@@ -178,7 +149,7 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideTestCases() {
-		foreach ( glob( __DIR__ . "/chart-good/*.json" ) as $file ) {
+		foreach ( glob( __DIR__ . "/../chart-good/*.json" ) as $file ) {
 			yield [ $file, false ];
 			yield [ $file, true ];
 		}
@@ -199,7 +170,7 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideBadTestCases() {
-		foreach ( glob( __DIR__ . "/chart-bad/*.json" ) as $file ) {
+		foreach ( glob( __DIR__ . "/../chart-bad/*.json" ) as $file ) {
 			yield [ $file ];
 		}
 	}

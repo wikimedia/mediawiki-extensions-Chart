@@ -49,6 +49,12 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Chart\\": "src/"
 	},
+	"TestAutoloadNamespaces": {
+		"MediaWiki\\Extension\\Chart\\Tests\\": "tests/phpunit/"
+	},
+	"TestAutoloadClasses": {
+		"MediaWiki\\Extension\\Chart\\Tests\\Integration\\ChartIntegrationTestTrait": "tests/phpunit/integration/ChartIntegrationTestTrait.php"
+	},
 	"ForeignResourcesDir": "lib",
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"

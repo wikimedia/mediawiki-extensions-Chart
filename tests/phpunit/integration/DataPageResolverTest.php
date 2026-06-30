@@ -1,8 +1,9 @@
 <?php
+declare( strict_types = 1 );
 
-namespace MediaWiki\Extension\Chart;
+namespace MediaWiki\Extension\Chart\Tests\Integration;
 
-use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\Chart\DataPageResolver;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -10,38 +11,7 @@ use MediaWikiIntegrationTestCase;
  */
 class DataPageResolverTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->overrideConfigValues( [
-			'JsonConfigs' => [
-				'Tabular.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.tab$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				],
-			],
-			'JsonConfigModels' => [
-				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent',
-			],
-		] );
-		JCSingleton::init( true );
-		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
-		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
-			$this->overrideConfigValue( 'ExtraNamespaces', [
-				NS_DATA => 'Data',
-				NS_DATA_TALK => 'Data_talk',
-			] );
-		}
-	}
-
-	protected function tearDown(): void {
-		parent::tearDown();
-		JCSingleton::init( true );
-	}
+	use ChartIntegrationTestTrait;
 
 	/**
 	 * @dataProvider providePageNames
@@ -70,7 +40,7 @@ class DataPageResolverTest extends MediaWikiIntegrationTestCase {
 		$resolver = new DataPageResolver();
 		$title = $resolver->resolvePageInDataNamespace( $pageName );
 
-		$this->assertSame( $expectedResolved, $title ? $title->getDBkey() : null );
+		$this->assertSame( $expectedResolved, $title?->getDBkey() );
 	}
 
 	public static function providePageNames(): array {

@@ -1,7 +1,10 @@
 <?php
+declare( strict_types = 1 );
 
-namespace MediaWiki\Extension\Chart;
+namespace MediaWiki\Extension\Chart\Tests\Integration;
 
+use MediaWiki\Extension\Chart\ChartArgumentsParser;
+use MediaWiki\Extension\Chart\DataPageResolver;
 use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
@@ -9,51 +12,7 @@ use MediaWikiIntegrationTestCase;
 
 class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * Load up the sample filter lua state
-	 */
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->overrideConfigValues( [
-			'LanguageCode' => 'en',
-			'JsonConfigs' => [
-				'Tabular.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.tab$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				],
-				'Chart.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.chart$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				]
-			],
-			'JsonConfigModels' => [
-				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent',
-				'Chart.JsonConfig' => 'MediaWiki\Extension\Chart\JCChartContent',
-			],
-		] );
-		JCSingleton::init( true );
-		$namespaces = $this->getServiceContainer()->getContentLanguage()->getNamespaces();
-		if ( !array_key_exists( NS_DATA, $namespaces ) ) {
-			$this->overrideConfigValue( 'ExtraNamespaces', [
-				NS_DATA => 'Data',
-				NS_DATA_TALK => 'Data_talk',
-			] );
-		}
-	}
-
-	protected function tearDown(): void {
-		parent::tearDown();
-		JCSingleton::init( true );
-	}
+	use ChartIntegrationTestTrait;
 
 	/**
 	 * @covers MediaWiki\Extension\Chart\ChartArgumentsParser
@@ -73,11 +32,9 @@ class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 		$argumentsParser = new ChartArgumentsParser( $pageResolver );
 		$parsed = $argumentsParser->parseArguments( $parser, $args );
 
-		$this->assertSame( $expectedDefinition, $parsed->getDefinitionPageTitle()
-			? $parsed->getDefinitionPageTitle()->getDBKey() : null, 'definition page' );
+		$this->assertSame( $expectedDefinition, $parsed->getDefinitionPageTitle()?->getDBKey(), 'definition page' );
 
-		$this->assertSame( $expectedData, $parsed->getDataPageTitle()
-			? $parsed->getDataPageTitle()->getDBKey() : null, 'data page' );
+		$this->assertSame( $expectedData, $parsed->getDataPageTitle()?->getDBKey(), 'data page' );
 
 		$this->assertSame( $expectedOptions, $parsed->getOptions(), 'options' );
 		$this->assertSame( $expectedArgs, $parsed->getTransformArgs(), 'transform args' );

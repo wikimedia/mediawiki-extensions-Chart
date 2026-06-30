@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extension\Chart;
+namespace MediaWiki\Extension\Chart\Tests\Integration;
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\JsonConfig\JCSingleton;
+use MediaWiki\Extension\Chart\ChartRenderer;
 use MediaWiki\Extension\JsonConfig\Tests\JCTransformTestCase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -21,60 +21,20 @@ use stdclass;
  */
 class ParserFunctionIntegrationTest extends JCTransformTestCase {
 
-	public function setUp(): void {
-		parent::setUp();
-		$this->configureChartIntegrationTest();
-	}
+	use ChartIntegrationTestTrait;
 
 	public function addDBDataOnce() {
 		parent::addDBDataOnce();
 		$this->configureChartIntegrationTest();
-		$this->editChartIntegrationPage( 'Temperature_conversion', 'lua', NS_MODULE );
-		$this->editChartIntegrationPage( 'Chart_input.tab', 'json', NS_DATA );
-		$this->editChartIntegrationPage( 'No_transform_example.chart', 'json', NS_DATA );
-		$this->editChartIntegrationPage( 'Transform_example.chart', 'json', NS_DATA );
-		$this->editChartIntegrationPage( 'No_args_example.chart', 'json', NS_DATA );
-	}
-
-	private function configureChartIntegrationTest(): void {
-		// Enable but turn off renderer.
-		// This should let us validate other things about
-		// the setup and error handling behavior.
-		$this->overrideConfigValues( [
-			'ChartTransformsEnabled' => true,
-			'ChartServiceUrl' => null,
-			'ChartCliPath' => null,
-			'JsonConfigs' => [
-				'Tabular.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.tab$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				],
-				'Chart.JsonConfig' => [
-					'namespace' => 486,
-					'nsName' => 'Data',
-					'pattern' => '/.\.chart$/',
-					'license' => 'CC0-1.0',
-					'isLocal' => true,
-					'store' => true,
-				]
-			],
-			'JsonConfigModels' => [
-				'Tabular.JsonConfig' => 'JsonConfig\JCTabularContent',
-				'Chart.JsonConfig' => 'MediaWiki\Extension\Chart\JCChartContent'
-			],
-		] );
-		JCSingleton::init( true );
-	}
-
-	private function editChartIntegrationPage( string $pageName, string $extension, int $namespace ): void {
-		$fileName = __DIR__ . "/chart-integration/$pageName.$extension";
-		$content = file_get_contents( $fileName );
-		$title = Title::makeTitle( $namespace, $pageName );
-		$this->editPage( $title, $content );
+		$this->editChartIntegrationPage(
+			pageName: 'Temperature_conversion',
+			extension: 'lua',
+			namespace: NS_MODULE,
+		);
+		$this->editChartIntegrationPage( 'Chart_input.tab' );
+		$this->editChartIntegrationPage( 'No_transform_example.chart' );
+		$this->editChartIntegrationPage( 'Transform_example.chart' );
+		$this->editChartIntegrationPage( 'No_args_example.chart' );
 	}
 
 	/**
@@ -114,7 +74,7 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 	 * @param string $contentCode
 	 * @param string $langCode
 	 */
-	public function testLanguageVariant( $contentCode, $langCode ) {
+	public function testLanguageVariant( string $contentCode, string $langCode ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, $contentCode );
 		$this->setUserLang( $langCode );
 
