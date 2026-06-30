@@ -4,6 +4,7 @@
 		:is-fieldset="true"
 	>
 		<chart-type-field></chart-type-field>
+		<categories-field></categories-field>
 		<template #label>
 			{{ $i18n( 'chart-wizard-form-configure-label' ).text() }}
 		</template>
@@ -17,9 +18,10 @@
 const { defineComponent } = require( 'vue' );
 const { CdxField } = require( '../../../codex.js' );
 const ChartTypeField = require( './ChartTypeField.vue' );
+const CategoriesField = require( './CategoriesField.vue' );
 
 module.exports = exports = defineComponent( {
 	name: 'ChartConfigure',
-	components: { CdxField, ChartTypeField }
+	components: { CdxField, ChartTypeField, CategoriesField }
 } );
 </script>

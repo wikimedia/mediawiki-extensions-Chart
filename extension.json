@@ -134,6 +134,7 @@
 				"resources/ext.chart.wizard/components/SourceField.vue",
 				"resources/ext.chart.wizard/components/ChartConfigure.vue",
 				"resources/ext.chart.wizard/components/ChartTypeField.vue",
+				"resources/ext.chart.wizard/components/CategoriesField.vue",
 				{
 					"name": "resources/ext.chart.wizard/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
@@ -150,6 +151,7 @@
 				"CdxField",
 				"CdxLookup",
 				"CdxMessage",
+				"CdxMultiselectLookup",
 				"CdxSelect"
 			],
 			"messages": [
@@ -159,6 +161,9 @@
 				"chart-wizard-form-source-description",
 				"chart-wizard-form-source-label",
 				"chart-wizard-form-source-placeholder",
+				"chart-wizard-form-categories",
+				"chart-wizard-form-categories-no-results",
+				"chart-wizard-form-categories-placeholder",
 				"chart-wizard-form-type-area",
 				"chart-wizard-form-type-area-description",
 				"chart-wizard-form-type-bar",

@@ -53,17 +53,11 @@ module.exports = exports = defineComponent( {
 		const currentSearchTerm = ref( source.value );
 		// Menu items to show. On input, results will be fetched and provided as menu items. When
 		// the input is cleared, the menu items will be reset to an empty array.
-		// On selection, since the input updates to match the selected item, the
-		// `onUpdateInputValue` method runs and fetches new results based on the selected item.
 		const menuItems = ref( [] );
 		// Limit the height of the menu and enable scrolling.
 		const menuConfig = {
 			visibleItemLimit: 6
 		};
-
-		// Set a flag to keep track of pending API requests, so we can abort if
-		// the target string changes
-		let pending = false;
 
 		// Sync validity to the HTMLInputElement so it bubbles up to the <form>.
 		watch( sourceStatus, ( newStatus ) => {
@@ -97,12 +91,9 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 * @return {Promise}
 		 */
-		function onInput( value ) {
-			// Abort any existing request if one is still pending
-			if ( pending ) {
-				pending = false;
-				api.abort();
-			}
+		async function onInput( value ) {
+			// Abort any existing requests.
+			api.abort();
 
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
@@ -110,34 +101,34 @@ module.exports = exports = defineComponent( {
 			// Do nothing if we have no input.
 			if ( !value ) {
 				menuItems.value = [];
-				return Promise.resolve();
+				return;
 			}
 
-			return fetchSourcePages( value )
-				.then( ( data ) => {
-					pending = false;
+			try {
+				const data = await fetchSourcePages( value );
 
-					// Make sure this data is still relevant first.
-					if ( currentSearchTerm.value !== value ) {
-						return;
-					}
+				// Make sure this data is still relevant first.
+				if ( currentSearchTerm.value !== value ) {
+					return;
+				}
 
-					// Reset the menu items if there are no results.
-					if ( !data || data.length === 0 ) {
-						menuItems.value = [];
-						return;
-					}
-
-					// Build an array of menu items.
-					menuItems.value = data.map( ( result ) => ( {
-						label: result.title,
-						value: result.title
-					} ) );
-				} )
-				.catch( () => {
-					// On error, set results to empty.
+				// Reset the menu items if there are no results.
+				if ( !data || data.length === 0 ) {
 					menuItems.value = [];
-				} );
+					return;
+				}
+
+				// Build an array of menu items.
+				menuItems.value = data.map( ( result ) => ( {
+					label: result.title,
+					value: result.title
+				} ) );
+			} catch ( e ) {
+				// On error, set results to empty.
+				if ( currentSearchTerm.value === value ) {
+					menuItems.value = [];
+				}
+			}
 		}
 
 		/**

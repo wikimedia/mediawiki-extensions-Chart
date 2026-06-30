@@ -10,5 +10,14 @@
 	},
 	"parserOptions": {
 		"sourceType": "module"
+	},
+	"settings": {
+		"jsdoc": {
+			"preferredTypes": {
+				"ChipInputItem": "ChipInputItem",
+				"MenuItemData": "MenuItemData",
+				"MenuItemValue": "MenuItemValue"
+			}
+		}
 	}
 }

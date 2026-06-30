@@ -44,7 +44,7 @@ module.exports = exports = defineComponent( {
 			).getPrefixedText();
 		}
 		license.value = chartDefinition.license;
-		mediawikiCategories.value = chartDefinition.mediawikiCategories;
+		mediawikiCategories.value = chartDefinition.mediawikiCategories || [];
 		subtitle.value = chartDefinition.subtitle;
 		title.value = chartDefinition.title;
 		type.value = ( chartDefinition.type === 'rect' ? 'bar' : chartDefinition.type ) || 'line';
