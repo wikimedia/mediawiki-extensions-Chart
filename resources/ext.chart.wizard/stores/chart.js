@@ -108,7 +108,7 @@ module.exports = exports = defineStore( 'chart', () => {
 	/**
 	 * The chart type. Possible values are hard-coded in the TypeField component.
 	 *
-	 * @type {Ref<string>}
+	 * @type {Ref<'line'|'pie'|'bar'|'area'>}
 	 */
 	const type = ref( '' );
 	/**

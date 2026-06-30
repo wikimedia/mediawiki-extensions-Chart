@@ -131,25 +131,50 @@
 				"resources/ext.chart.wizard/components/ChartForm.vue",
 				"resources/ext.chart.wizard/components/ChartPreview.vue",
 				"resources/ext.chart.wizard/components/ChartWizard.vue",
-				"resources/ext.chart.wizard/components/SourceField.vue"
+				"resources/ext.chart.wizard/components/SourceField.vue",
+				"resources/ext.chart.wizard/components/ChartConfigure.vue",
+				"resources/ext.chart.wizard/components/ChartTypeField.vue",
+				{
+					"name": "resources/ext.chart.wizard/icons.json",
+					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
+					"callbackParam": [
+						"cdxIconChart",
+						"cdxIconChartBar",
+						"cdxIconChartLine",
+						"cdxIconChartPie"
+					]
+				}
 			],
 			"codexComponents": [
 				"CdxButton",
 				"CdxField",
 				"CdxLookup",
-				"CdxMessage"
+				"CdxMessage",
+				"CdxSelect"
 			],
 			"messages": [
 				"chart-error-data-source-page-not-found",
-				"chart-wizard-form-source-label",
+				"chart-wizard-form-configure-description",
+				"chart-wizard-form-configure-label",
 				"chart-wizard-form-source-description",
+				"chart-wizard-form-source-label",
 				"chart-wizard-form-source-placeholder",
+				"chart-wizard-form-type-area",
+				"chart-wizard-form-type-area-description",
+				"chart-wizard-form-type-bar",
+				"chart-wizard-form-type-bar-description",
+				"chart-wizard-form-type-label",
+				"chart-wizard-form-type-line",
+				"chart-wizard-form-type-line-description",
+				"chart-wizard-form-type-pie",
+				"chart-wizard-form-type-pie-description",
+				"chart-wizard-form-type-placeholder",
+				"chart-wizard-preview-data-view",
 				"chart-wizard-preview-error",
 				"chart-wizard-preview-error-retry",
 				"chart-wizard-preview-chart-view",
-				"chart-wizard-preview-data-view",
-				"chart-wizard-preview-placeholder-title",
 				"chart-wizard-preview-placeholder-description",
+				"chart-wizard-preview-placeholder-title",
 				"chart-wizard-publish",
 				"publishchanges"
 			]

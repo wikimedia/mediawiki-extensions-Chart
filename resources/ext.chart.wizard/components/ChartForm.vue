@@ -5,15 +5,16 @@
 		class="ext-chart-wizard__form"
 	>
 		<source-field></source-field>
+		<chart-configure></chart-configure>
 		<input
 			type="hidden"
 			name="chartDefinition"
 			:value="JSON.stringify( chartDefinition )"
 		>
 		<input
+			id="wpEditToken"
 			type="hidden"
 			name="wpEditToken"
-			id="wpEditToken"
 			:value="editToken"
 		>
 		<input
@@ -39,6 +40,7 @@ const { computed, defineComponent, nextTick } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxField } = require( '../../../codex.js' );
 const SourceField = require( './SourceField.vue' );
+const ChartConfigure = require( './ChartConfigure.vue' );
 const useChartStore = require( '../stores/chart.js' );
 
 module.exports = exports = defineComponent( {
@@ -46,6 +48,7 @@ module.exports = exports = defineComponent( {
 	components: {
 		CdxButton,
 		CdxField,
+		ChartConfigure,
 		SourceField
 	},
 	props: {

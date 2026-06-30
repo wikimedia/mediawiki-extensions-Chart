@@ -47,7 +47,7 @@ module.exports = exports = defineComponent( {
 		mediawikiCategories.value = chartDefinition.mediawikiCategories;
 		subtitle.value = chartDefinition.subtitle;
 		title.value = chartDefinition.title;
-		type.value = chartDefinition.type;
+		type.value = chartDefinition.type || 'line';
 		xAxis.value = chartDefinition.xAxis;
 		yAxis.value = chartDefinition.yAxis;
 		transform.value = chartDefinition.transform;
