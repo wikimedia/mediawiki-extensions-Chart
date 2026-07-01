@@ -106,7 +106,21 @@ function mockMwApiGet( additionalMocks = [] ) {
 	} );
 }
 
+/**
+ * Mock calls to mw.config.get().
+ * The default implementation correlates to the SpecialBlock::codexFormData property in PHP.
+ *
+ * @param {Object} [config] Will be merged with the defaults.
+ */
+function mockMwConfigGet( config = {} ) {
+	const mockConfig = Object.assign( {
+		wgUserLanguage: 'en'
+	}, config );
+	mw.config.get = jest.fn().mockImplementation( ( key ) => mockConfig[ key ] );
+}
+
 module.exports = {
 	fixtures,
+	mockMwConfigGet,
 	mockMwApiGet
 };

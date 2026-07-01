@@ -1,6 +1,7 @@
 <template>
 	<cdx-field
 		class="ext-chart-wizard__categories"
+		:optional="true"
 	>
 		<cdx-multiselect-lookup
 			v-model:input-chips="inputChips"

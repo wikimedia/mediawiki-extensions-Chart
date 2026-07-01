@@ -10,6 +10,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\EditPage\EditPage;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -40,6 +41,7 @@ class SpecialChartWizard extends FormSpecialPage {
 	public function __construct(
 		private readonly WikiPageFactory $wikiPageFactory,
 		Config $config,
+		private readonly LanguageNameUtils $languageNameUtils,
 		private readonly LoggerInterface $logger,
 	) {
 		parent::__construct( 'ChartWizard' );
@@ -66,6 +68,8 @@ class SpecialChartWizard extends FormSpecialPage {
 			'chartPageName'   => $this->title->getPrefixedText(),
 			'chartEditToken' => $this->getContext()->getCsrfTokenSet()->getToken()->toString(),
 			'chartBaseRevId' => $this->title->getLatestRevID(),
+			'chartLanguages' => $this->languageNameUtils
+				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ),
 		] );
 		$this->getOutput()->addModules( 'ext.chart.wizard' );
 		$this->getOutput()->addModuleStyles( 'ext.chart.wizard.styles' );

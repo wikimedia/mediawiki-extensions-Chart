@@ -135,6 +135,7 @@
 				"resources/ext.chart.wizard/components/ChartConfigure.vue",
 				"resources/ext.chart.wizard/components/ChartTypeField.vue",
 				"resources/ext.chart.wizard/components/CategoriesField.vue",
+				"resources/ext.chart.wizard/components/TranslatableFields.vue",
 				{
 					"name": "resources/ext.chart.wizard/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
@@ -148,22 +149,32 @@
 			],
 			"codexComponents": [
 				"CdxButton",
+				"CdxCheckbox",
 				"CdxField",
 				"CdxLookup",
 				"CdxMessage",
 				"CdxMultiselectLookup",
-				"CdxSelect"
+				"CdxSelect",
+				"CdxTextInput"
 			],
 			"messages": [
 				"chart-error-data-source-page-not-found",
-				"chart-wizard-form-configure-description",
-				"chart-wizard-form-configure-label",
-				"chart-wizard-form-source-description",
-				"chart-wizard-form-source-label",
-				"chart-wizard-form-source-placeholder",
+				"chart-wizard-form-axis-format-label",
 				"chart-wizard-form-categories",
 				"chart-wizard-form-categories-no-results",
 				"chart-wizard-form-categories-placeholder",
+				"chart-wizard-form-configure-description",
+				"chart-wizard-form-configure-label",
+				"chart-wizard-form-language-description",
+				"chart-wizard-form-language-label",
+				"chart-wizard-form-language-translated",
+				"chart-wizard-form-language-untranslated",
+				"chart-wizard-form-source-description",
+				"chart-wizard-form-source-label",
+				"chart-wizard-form-source-placeholder",
+				"chart-wizard-form-subtitle-description",
+				"chart-wizard-form-subtitle-label",
+				"chart-wizard-form-title-label",
 				"chart-wizard-form-type-area",
 				"chart-wizard-form-type-area-description",
 				"chart-wizard-form-type-bar",
@@ -174,10 +185,12 @@
 				"chart-wizard-form-type-pie",
 				"chart-wizard-form-type-pie-description",
 				"chart-wizard-form-type-placeholder",
+				"chart-wizard-form-x-axis-label",
+				"chart-wizard-form-y-axis-label",
+				"chart-wizard-preview-chart-view",
 				"chart-wizard-preview-data-view",
 				"chart-wizard-preview-error",
 				"chart-wizard-preview-error-retry",
-				"chart-wizard-preview-chart-view",
 				"chart-wizard-preview-placeholder-description",
 				"chart-wizard-preview-placeholder-title",
 				"chart-wizard-publish",
@@ -218,6 +231,7 @@
 			"services": [
 				"WikiPageFactory",
 				"MainConfig",
+				"LanguageNameUtils",
 				"Chart.Logger"
 			]
 		}

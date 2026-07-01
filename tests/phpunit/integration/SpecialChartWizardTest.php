@@ -56,6 +56,7 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		return new SpecialChartWizard(
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getMainConfig(),
+			$this->getServiceContainer()->getLanguageNameUtils(),
 			$this->getServiceContainer()->get( 'Chart.Logger' ),
 		);
 	}

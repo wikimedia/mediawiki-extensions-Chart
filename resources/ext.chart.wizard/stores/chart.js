@@ -116,19 +116,13 @@ module.exports = exports = defineStore( 'chart', () => {
 	 *
 	 * @type {Ref<Axis>}
 	 */
-	const xAxis = ref( {
-		title: '',
-		format: 'none'
-	} );
+	const xAxis = ref( {} );
 	/**
 	 * Y-axis configuration.
 	 *
 	 * @type {Ref<Axis>}
 	 */
-	const yAxis = ref( {
-		title: '',
-		format: 'none'
-	} );
+	const yAxis = ref( {} );
 	/**
 	 * The transform configuration for the chart.
 	 *
@@ -139,6 +133,12 @@ module.exports = exports = defineStore( 'chart', () => {
 		function: '',
 		args: {}
 	} );
+	/**
+	 * The language code of the translatable fields we're currently editing and previewing.
+	 *
+	 * @type {Ref<string>}
+	 */
+	const currentLanguage = ref( mw.config.get( 'wgUserLanguage' ) );
 
 	// ** Getters (computed properties) **
 
@@ -147,18 +147,34 @@ module.exports = exports = defineStore( 'chart', () => {
 	 *
 	 * @type {ComputedRef<Object>}
 	 */
-	const chartDefinition = computed( () => ( {
-		version: 1,
-		license: license.value,
-		source: source.value,
-		mediawikiCategories: mediawikiCategories.value,
-		title: title.value,
-		subtitle: subtitle.value,
-		type: type.value,
-		xAxis: xAxis.value,
-		yAxis: yAxis.value,
-		transform: transform.value
-	} ) );
+	const chartDefinition = computed( () => {
+		const def = {
+			license: license.value,
+			version: 1,
+			type: type.value,
+			source: source.value
+		};
+		/**
+		 * Optional fields that should only be included in the definition
+		 * if they have a non-empty value.
+		 *
+		 * @type {Object<string, Ref<Object|Array|string>>}
+		 */
+		const optionalRefs = {
+			mediawikiCategories,
+			title,
+			subtitle,
+			xAxis,
+			yAxis,
+			transform
+		};
+		for ( const [ refName, refValue ] of Object.entries( optionalRefs ) ) {
+			if ( refValue.value && Object.keys( refValue.value ).length > 0 ) {
+				def[ refName ] = refValue.value;
+			}
+		}
+		return def;
+	} );
 	/**
 	 * Whether the form is disabled due to an in-flight API request.
 	 *
@@ -200,6 +216,7 @@ module.exports = exports = defineStore( 'chart', () => {
 		yAxis,
 		transform,
 		sourceStatus,
+		currentLanguage,
 		chartDefinition,
 		formDisabled,
 		pushPromise

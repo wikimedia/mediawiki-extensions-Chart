@@ -45,11 +45,11 @@ module.exports = exports = defineComponent( {
 		}
 		license.value = chartDefinition.license;
 		mediawikiCategories.value = chartDefinition.mediawikiCategories || [];
-		subtitle.value = chartDefinition.subtitle;
-		title.value = chartDefinition.title;
+		title.value = chartDefinition.title || {};
+		subtitle.value = chartDefinition.subtitle || {};
 		type.value = ( chartDefinition.type === 'rect' ? 'bar' : chartDefinition.type ) || 'line';
-		xAxis.value = chartDefinition.xAxis;
-		yAxis.value = chartDefinition.yAxis;
+		xAxis.value = chartDefinition.xAxis || {};
+		yAxis.value = chartDefinition.yAxis || {};
 		transform.value = chartDefinition.transform;
 	}
 } );

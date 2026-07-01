@@ -4,7 +4,6 @@
 	>
 		<cdx-select
 			v-model:selected="type"
-			class="ext-chart-wizard__type"
 			:menu-items="menuItems"
 			:default-label="$i18n( 'chart-wizard-form-type-placeholder' ).text()"
 		>
@@ -67,9 +66,3 @@ module.exports = exports = defineComponent( {
 	}
 } );
 </script>
-
-<style lang="less">
-.ext-chart-wizard__type {
-	width: 100%;
-}
-</style>

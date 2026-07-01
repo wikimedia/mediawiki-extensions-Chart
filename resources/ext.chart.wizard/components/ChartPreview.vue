@@ -85,7 +85,7 @@ module.exports = exports = defineComponent( {
 	components: { CdxButton, CdxMessage },
 	setup() {
 		const store = useChartStore();
-		const { chartDefinition, initialLoad } = storeToRefs( store );
+		const { chartDefinition, initialLoad, currentLanguage } = storeToRefs( store );
 
 		/**
 		 * The selected preview mode.
@@ -178,7 +178,7 @@ module.exports = exports = defineComponent( {
 					disableeditsection: true,
 					disablelimitreport: 1,
 					useskin: mw.config.get( 'skin' ),
-					uselang: mw.config.get( 'wgUserLanguage' )
+					uselang: currentLanguage.value
 				}, {
 					headers: { 'Promise-Non-Write-API-Action': 'true' }
 				} );
@@ -254,6 +254,11 @@ module.exports = exports = defineComponent( {
 		watch( () => chartDefinition.value.source, () => {
 			if ( selectedPreview.value === 'data' ) {
 				renderSourcePreview();
+			}
+		} );
+		watch( currentLanguage, () => {
+			if ( selectedPreview.value === 'chart' ) {
+				renderChartPreview();
 			}
 		} );
 

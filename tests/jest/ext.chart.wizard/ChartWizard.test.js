@@ -1,6 +1,6 @@
 'use strict';
 
-const { mount, shallowMount, flushPromises } = require( '@vue/test-utils' );
+const { shallowMount, flushPromises } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
 const ChartWizard = require( '../../../resources/ext.chart.wizard/components/ChartWizard.vue' );
 const { fixtures, mockMwApiGet } = require( './ChartWizard.setup.js' );
@@ -74,18 +74,10 @@ describe( 'ChartWizard', () => {
 		expect( store.chartDefinition.type ).toBe( 'bar' );
 	} );
 
-	it( 'should use schema format values for default axes', () => {
-		createTestingPinia( { stubActions: false } );
-		const store = useChartStore();
-
-		expect( store.chartDefinition.xAxis.format ).toBe( 'none' );
-		expect( store.chartDefinition.yAxis.format ).toBe( 'none' );
-	} );
-
 	it( 'should keep preview errors out of form constraints', async () => {
 		const form = document.createElement( 'form' );
 		form.id = 'ext-chart-wizard';
-		mount( ChartWizard, {
+		shallowMount( ChartWizard, {
 			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] },
 			props: {
 				chartDefinition: fixtures[ 'Data:Example.Line.chart' ],

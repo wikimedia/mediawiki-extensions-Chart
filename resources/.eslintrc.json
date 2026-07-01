@@ -15,6 +15,7 @@
 		"jsdoc": {
 			"preferredTypes": {
 				"ChipInputItem": "ChipInputItem",
+				"MenuGroupData": "MenuGroupData",
 				"MenuItemData": "MenuItemData",
 				"MenuItemValue": "MenuItemValue"
 			}
