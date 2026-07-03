@@ -17,7 +17,7 @@ describe( 'ChartWizard', () => {
 				text: '<wiki-chart></wiki-chart>'
 			}
 		} );
-		mw.loader.load = jest.fn();
+		mw.loader.using = jest.fn().mockResolvedValue();
 		mw.hook = jest.fn().mockReturnValue( { fire: jest.fn() } );
 		window.jQuery = jest.fn( ( element ) => {
 			const collection = {

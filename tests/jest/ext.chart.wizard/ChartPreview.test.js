@@ -31,7 +31,7 @@ describe( 'ChartPreview', () => {
 				}
 			}
 		} );
-		mw.loader.load = jest.fn();
+		mw.loader.using = jest.fn().mockResolvedValue();
 		hookFire = jest.fn();
 		mw.hook = jest.fn().mockReturnValue( { fire: hookFire } );
 		$previewContainer = null;
@@ -96,11 +96,34 @@ describe( 'ChartPreview', () => {
 		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '[data-testid="chart-preview"]' ).element.style.minHeight ).toBe( '320px' );
 		expect( mw.config.get( 'chartPreviewToken' ) ).toBe( 'test' );
-		expect( mw.loader.load ).toHaveBeenCalledWith( [
+		expect( mw.loader.using ).toHaveBeenCalledWith( [
 			'ext.chart.bootstrap',
 			'ext.chart.styles'
 		] );
 		expect( mw.hook ).toHaveBeenCalledWith( 'wikipage.content' );
+		expect( hookFire ).toHaveBeenCalledWith( $previewContainer );
+	} );
+
+	it( 'should wait for parsed chart modules before injecting the preview', async () => {
+		let resolveModules;
+		mw.loader.using.mockReturnValue( new Promise( ( resolve ) => {
+			resolveModules = resolve;
+		} ) );
+
+		store.source = 'Data:Chart Example Data.tab';
+		await flushPromises();
+
+		expect( mw.loader.using ).toHaveBeenCalledWith( [
+			'ext.chart.bootstrap',
+			'ext.chart.styles'
+		] );
+		expect( hookFire ).not.toHaveBeenCalled();
+		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeFalsy();
+
+		resolveModules();
+		await flushPromises();
+
+		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeTruthy();
 		expect( hookFire ).toHaveBeenCalledWith( $previewContainer );
 	} );
 

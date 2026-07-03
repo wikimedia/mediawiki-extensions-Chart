@@ -141,12 +141,15 @@ module.exports = exports = defineComponent( {
 			return content;
 		}
 
-		function injectPreview( response ) {
+		async function injectPreview( response ) {
 			const parse = response.parse;
 			if ( parse.jsconfigvars ) {
 				mw.config.set( parse.jsconfigvars );
 			}
-			mw.loader.load( ( parse.modules || [] ).concat( parse.modulestyles || [] ) );
+			const modules = ( parse.modules || [] ).concat( parse.modulestyles || [] );
+			if ( modules.length ) {
+				await mw.loader.using( modules );
+			}
 			chartPreviewError.value = false;
 			const $previewContainer = window.jQuery( previewContainer.value );
 			$previewContainer.empty().append(
@@ -163,9 +166,8 @@ module.exports = exports = defineComponent( {
 			}
 			chartPreviewError.value = false;
 			await nextTick();
-			let response;
 			try {
-				response = await api.post( {
+				const response = await api.post( {
 					action: 'parse',
 					formatversion: 2,
 					title: mw.config.get( 'chartPageName' ),
@@ -180,13 +182,12 @@ module.exports = exports = defineComponent( {
 				}, {
 					headers: { 'Promise-Non-Write-API-Action': 'true' }
 				} );
+				await injectPreview( response );
 			} catch ( e ) {
 				chartPreviewError.value = true;
-				return;
 			} finally {
 				initialLoad.value = false;
 			}
-			injectPreview( response );
 		}
 
 		async function renderSourcePreview() {
