@@ -54,6 +54,26 @@ describe( 'ChartWizard', () => {
 		expect( store.chartDefinition ).toStrictEqual( fixtures[ 'Data:Example.Line.chart' ] );
 	} );
 
+	it( 'should normalize rect chart type to bar', () => {
+		shallowMount( ChartWizard, {
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] },
+			props: {
+				chartDefinition: Object.assign(
+					{},
+					fixtures[ 'Data:Example.Line.chart' ],
+					{
+						type: 'rect'
+					}
+				),
+				chartIsNew: false
+			}
+		} );
+		mockMwApiGet();
+		const store = useChartStore();
+		expect( store.type ).toBe( 'bar' );
+		expect( store.chartDefinition.type ).toBe( 'bar' );
+	} );
+
 	it( 'should use schema format values for default axes', () => {
 		createTestingPinia( { stubActions: false } );
 		const store = useChartStore();
