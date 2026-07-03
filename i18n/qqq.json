@@ -45,7 +45,7 @@
 	"chart-wizard-form-type-bar-description": "Description for the bar chart type option in the chart wizard form",
 	"chart-wizard-form-type-area": "Label for the area chart type option in the chart wizard form",
 	"chart-wizard-form-type-area-description": "Description for the area chart type option in the chart wizard form",
-	"chart-wizard-form-type-pie": "Pie chart",
+	"chart-wizard-form-type-pie": "Label for the pie chart type option in the chart wizard form",
 	"chart-wizard-form-type-pie-description": "Description for the pie chart type option in the chart wizard form",
 	"chart-wizard-preview-placeholder-title": "Title shown in the chart wizard preview area as a placeholder",
 	"chart-wizard-preview-placeholder-description": "Description shown in the chart wizard preview area as a placeholder",
