@@ -43,7 +43,7 @@ module.exports = exports = defineComponent( {
 				mw.config.get( 'wgNamespaceIds' ).data
 			).getPrefixedText();
 		}
-		license.value = chartDefinition.license;
+		license.value = chartDefinition.license || mw.config.get( 'chartAllowedLicenses' )[ 0 ];
 		mediawikiCategories.value = chartDefinition.mediawikiCategories || [];
 		title.value = chartDefinition.title || {};
 		subtitle.value = chartDefinition.subtitle || {};

@@ -6,6 +6,9 @@
 	>
 		<source-field></source-field>
 		<chart-configure></chart-configure>
+		<license-field></license-field>
+		<!-- eslint-disable-next-line vue/no-v-html -->
+		<div v-html="copyrightWarning"></div>
 		<input
 			type="hidden"
 			name="chartDefinition"
@@ -41,6 +44,7 @@ const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxField } = require( '../../../codex.js' );
 const SourceField = require( './SourceField.vue' );
 const ChartConfigure = require( './ChartConfigure.vue' );
+const LicenseField = require( './LicenseField.vue' );
 const useChartStore = require( '../stores/chart.js' );
 
 module.exports = exports = defineComponent( {
@@ -49,7 +53,8 @@ module.exports = exports = defineComponent( {
 		CdxButton,
 		CdxField,
 		ChartConfigure,
-		SourceField
+		SourceField,
+		LicenseField
 	},
 	props: {
 		chartIsNew: { type: Boolean, required: true },
@@ -63,6 +68,7 @@ module.exports = exports = defineComponent( {
 				'publishchanges'
 		) );
 		const editToken = mw.config.get( 'chartEditToken' );
+		const copyrightWarning = computed( () => mw.config.get( 'copyrightWarning' ) );
 
 		/**
 		 * Handle form submission. If the form is invalid, scroll to the
@@ -90,6 +96,7 @@ module.exports = exports = defineComponent( {
 			formDisabled,
 			submitText,
 			chartDefinition,
+			copyrightWarning,
 			editToken,
 			onFormSubmission
 		};
@@ -107,9 +114,17 @@ module.exports = exports = defineComponent( {
 		display: none;
 	}
 
+	.cdx-select-vue {
+		width: 100%;
+	}
+
 	// Codex bug; See T430881.
 	.cdx-field__help-text:empty {
 		margin: 0;
+	}
+
+	#editpage-copywarn {
+		margin: @spacing-75 0;
 	}
 }
 </style>

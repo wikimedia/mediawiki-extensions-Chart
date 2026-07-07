@@ -27,9 +27,3 @@ module.exports = exports = defineComponent( {
 	components: { CdxField, ChartTypeField, CategoriesField, TranslatableFields }
 } );
 </script>
-
-<style lang="less">
-.ext-chart-wizard__configure .cdx-select-vue {
-	width: 100%;
-}
-</style>

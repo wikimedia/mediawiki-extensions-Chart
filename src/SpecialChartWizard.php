@@ -26,6 +26,7 @@ use StatusValue;
 class SpecialChartWizard extends FormSpecialPage {
 
 	protected bool $isChartWizardEnabled;
+	protected array $allowedLicenses;
 	private ?Title $title = null;
 	private bool $isNew;
 	private ?array $chartDefinition;
@@ -46,6 +47,7 @@ class SpecialChartWizard extends FormSpecialPage {
 	) {
 		parent::__construct( 'ChartWizard' );
 		$this->isChartWizardEnabled = $config->get( 'ChartWizardEnabled' );
+		$this->allowedLicenses = $config->get( 'JsonConfigAllowedLicenses' );
 	}
 
 	/** @inheritDoc */
@@ -70,6 +72,8 @@ class SpecialChartWizard extends FormSpecialPage {
 			'chartBaseRevId' => $this->title->getLatestRevID(),
 			'chartLanguages' => $this->languageNameUtils
 				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ),
+			'chartAllowedLicenses' => $this->allowedLicenses,
+			'copyrightWarning' => EditPage::getCopyrightWarning( $this->getFullTitle(), 'parse', $this->getContext() ),
 		] );
 		$this->getOutput()->addModules( 'ext.chart.wizard' );
 		$this->getOutput()->addModuleStyles( 'ext.chart.wizard.styles' );

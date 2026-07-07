@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 namespace MediaWiki\Extension\Chart\Tests;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Chart\ChartRenderer;
 use MediaWiki\Extension\Chart\JCChartContent;
 use MediaWiki\Extension\Chart\SpecialChartWizard;
@@ -67,9 +68,12 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 	}
 
 	public function testJsAndStylesOutput(): void {
-		[ $chartDefinition ] = $this->insertChart();
+		[ $chartDefinition, $title ] = $this->insertChart();
 		$chartDefinition = json_decode( $chartDefinition, true );
 		$sp = $this->newSpecialPage();
+		$context = new RequestContext();
+		$context->setTitle( $title );
+		$sp->setContext( $context );
 		$sp->execute( 'No transform example.chart' );
 		$jsVars = json_decode( json_encode( $sp->getOutput()->getJsConfigVars() ), true );
 		$this->assertSame( $chartDefinition, $jsVars['chartDefinition'] );

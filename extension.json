@@ -136,6 +136,7 @@
 				"resources/ext.chart.wizard/components/ChartTypeField.vue",
 				"resources/ext.chart.wizard/components/CategoriesField.vue",
 				"resources/ext.chart.wizard/components/TranslatableFields.vue",
+				"resources/ext.chart.wizard/components/LicenseField.vue",
 				{
 					"name": "resources/ext.chart.wizard/icons.json",
 					"callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
@@ -169,6 +170,9 @@
 				"chart-wizard-form-language-label",
 				"chart-wizard-form-language-translated",
 				"chart-wizard-form-language-untranslated",
+				"chart-wizard-form-license-label",
+				"chart-wizard-form-publish-description",
+				"chart-wizard-form-publish-label",
 				"chart-wizard-form-source-description",
 				"chart-wizard-form-source-label",
 				"chart-wizard-form-source-placeholder",
