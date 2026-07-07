@@ -93,11 +93,15 @@ class JCChartContent extends JCDataContent {
 	public function validateContent() {
 		parent::validateContent();
 
-		foreach ( self::VALIDATION_SCHEMA as [ $path, $presence, $validator ] ) {
+		foreach ( self::VALIDATION_SCHEMA as [ $path, $presence, $validator, $format ] ) {
 			if ( $presence === 'required' ) {
 				$this->test( $path, $validator() );
 			} else {
-				$this->testOptionalAlt( $path, $validator() );
+				$v = $validator();
+				if ( $format === 'localized' ) {
+					$v = self::allowEmptyObjectAsMissing( $v );
+				}
+				$this->testOptionalAlt( $path, $v );
 			}
 		}
 
@@ -161,6 +165,25 @@ class JCChartContent extends JCDataContent {
 		if ( $field ) {
 			$this->test( $path, $validators );
 		}
+	}
+
+	/**
+	 * Wrapper for validators of optional localized fields to treat empty objects as missing.
+	 * @param callable $validator
+	 * @return callable
+	 */
+	private static function allowEmptyObjectAsMissing( callable $validator ): callable {
+		return static function ( JCValue $jcv, array $path ) use ( $validator ) {
+			if ( !$jcv->isMissing() ) {
+				$val = $jcv->getValue();
+				if ( is_object( $val ) && count( get_object_vars( $val ) ) === 0 ) {
+					// Mark as missing. When testRecursive returns, JCObjContent will delete the field.
+					$jcv->status( JCValue::MISSING );
+					return true;
+				}
+			}
+			return $validator( $jcv, $path );
+		};
 	}
 
 	/**
