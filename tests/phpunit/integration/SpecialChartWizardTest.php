@@ -64,7 +64,93 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 
 	public function testChartDefinitionNotFound(): void {
 		[ $html ] = $this->executeSpecialPage( 'NonExistentChart' );
-		$this->assertStringContainsString( 'chart-error-chart-definition-not-found', $html );
+		$this->assertStringContainsString( 'chart-wizard-create', $html );
+		$this->assertStringContainsString( 'chart-wizard-create-invalid-subpage', $html );
+		$this->assertStringContainsString( 'NonExistentChart', $html );
+	}
+
+	/**
+	 * @dataProvider provideCreateFormRedirect
+	 */
+	public function testCreateFormRedirect(
+		string $pageName,
+		string $expectedSpecialPage
+	): void {
+		$request = new FauxRequest( [
+			'wpFormIdentifier' => 'chart-wizard-create',
+			'wppagename' => $pageName,
+		] );
+
+		/** @var WebResponse $response */
+		[ , $response ] = $this->executeSpecialPage( request: $request );
+
+		$this->assertStringContainsString(
+			$expectedSpecialPage,
+			$response->getHeader( 'LOCATION' )
+		);
+	}
+
+	public static function provideCreateFormRedirect(): array {
+		return [
+			'appends chart suffix' => [
+				'My new chart',
+				'Special:ChartWizard/Data:My_new_chart.chart',
+			],
+			'strips typed Data prefix' => [
+				'Data:My new chart',
+				'Special:ChartWizard/Data:My_new_chart.chart',
+			],
+			'does not double chart suffix' => [
+				'My new chart.chart',
+				'Special:ChartWizard/Data:My_new_chart.chart',
+			],
+		];
+	}
+
+	public function testCreateFormExistingName(): void {
+		[ , $title ] = $this->insertChart();
+		$request = new FauxRequest( [
+			'wpFormIdentifier' => 'chart-wizard-create',
+			'wppagename' => $title->getText(),
+		] );
+
+		[ $html ] = $this->executeSpecialPage( request: $request );
+
+		$this->assertStringContainsString( 'chart-wizard-create-exists', $html );
+		$this->assertStringContainsString( 'Special:ChartWizard/Data:No transform example.chart', $html );
+		$this->assertStringContainsString( 'cdx-message--error', $html );
+		$this->assertStringContainsString( 'chart-wizard-create-text', $html );
+		$this->assertStringContainsString( 'chart-wizard-create-name-label', $html );
+		$this->assertStringContainsString( 'chart-wizard-create-name-help', $html );
+		$this->assertStringContainsString( 'No transform example.chart', $html );
+		// No form-level validation summary and no field error state.
+		$this->assertStringNotContainsString( 'htmlform-invalid-input', $html );
+		$this->assertStringNotContainsString( 'cdx-text-input--status-error', $html );
+	}
+
+	public function testCreateFormCreateProtectedName(): void {
+		$title = Title::newFromText( 'Data:Protected chart.chart' );
+		$cascade = false;
+		$this->getServiceContainer()->getWikiPageFactory()
+			->newFromTitle( $title )
+			->doUpdateRestrictions(
+				[ 'create' => 'sysop' ],
+				[],
+				$cascade,
+				'',
+				$this->getTestSysop()->getUserIdentity()
+			);
+		$request = new FauxRequest( [
+			'wpFormIdentifier' => 'chart-wizard-create',
+			'wppagename' => $title->getText(),
+		] );
+
+		[ $html ] = $this->executeSpecialPage(
+			request: $request,
+			performer: $this->getTestUser()->getAuthority()
+		);
+
+		$this->assertStringContainsString( 'chart-wizard-create-not-allowed', $html );
 	}
 
 	public function testJsAndStylesOutput(): void {

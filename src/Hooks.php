@@ -90,14 +90,21 @@ class Hooks implements
 	 * @param array &$links
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
+		if ( !$this->isChartWizardEnabled ) {
+			return;
+		}
+
 		$title = $sktemplate->getTitle();
-		$isSpecial = $title->isSpecial( 'ChartWizard' );
-		if ( !$this->isChartWizardEnabled ||
-			(
-				!$isSpecial && (
-					$title->getContentModel() !== JCChartContent::CONTENT_MODEL ||
-					!$sktemplate->getUser()->probablyCan( 'edit', $title )
-				)
+		$isChartWizardSpecialPage = $title->isSpecial( 'ChartWizard' );
+
+		// Do not show "Edit with form" on the create chart page.
+		if ( $isChartWizardSpecialPage && $sktemplate->getRelevantTitle()->isSpecialPage() ) {
+			return;
+		}
+
+		if ( !$isChartWizardSpecialPage && (
+				$title->getContentModel() !== JCChartContent::CONTENT_MODEL ||
+				!$sktemplate->getUser()->probablyCan( 'edit', $title )
 			)
 		) {
 			return;
@@ -106,7 +113,7 @@ class Hooks implements
 		$chartWizardTab = [
 			'text' => $sktemplate->msg( 'chart-wizard-tab-label' )->text(),
 			'icon' => 'edit',
-			'class' => $isSpecial ? 'selected' : '',
+			'class' => $isChartWizardSpecialPage ? 'selected' : '',
 			'href' => $this->specialPageFactory->getPage( 'ChartWizard' )
 				->getPageTitle( $sktemplate->getRelevantTitle() )
 				->getLocalURL()

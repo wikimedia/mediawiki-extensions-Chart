@@ -8,9 +8,11 @@ use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\EditPage\EditPage;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\LanguageNameUtils;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -24,6 +26,8 @@ use StatusValue;
  * JS-only Special page for creating and modifying Chart definition pages.
  */
 class SpecialChartWizard extends FormSpecialPage {
+
+	private const string CREATE_FORM_IDENTIFIER = 'chart-wizard-create';
 
 	protected bool $isChartWizardEnabled;
 	protected array $allowedLicenses;
@@ -52,7 +56,21 @@ class SpecialChartWizard extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $par ) {
-		$this->chartDefinition = $this->preExecute( $par );
+		// Check feature flag.
+		if ( !$this->isChartWizardEnabled ) {
+			$this->setHeaders();
+			$this->getOutput()->addWikiMsg( 'chart-wizard-disabled' );
+			return;
+		}
+
+		// Check that the subpage parameter refers to a valid chart definition page.
+		$this->title = Title::newFromText( (string)$par, NS_DATA );
+		if ( !$this->hasValidChartDefinitionTarget( $this->title ) ) {
+			$this->showCreateForm( $par );
+			return;
+		}
+
+		$this->chartDefinition = $this->preExecute();
 		if ( $this->chartDefinition === null ) {
 			return;
 		}
@@ -112,33 +130,9 @@ class SpecialChartWizard extends FormSpecialPage {
 	/**
 	 * Validations and setup to run to before calling parent::execute().
 	 *
-	 * @param ?string $par The subpage parameter, which should be the name of the Chart definition page to edit.
 	 * @return ?array Chart definition, or null if we should error out.
 	 */
-	private function preExecute( ?string $par ): ?array {
-		// Check feature flag.
-		if ( !$this->isChartWizardEnabled ) {
-			$this->setHeaders();
-			$this->getOutput()->addWikiMsg( 'chart-wizard-disabled' );
-			return null;
-		}
-		// Check that the subpage parameter refers to a valid chart definition page.
-		$this->title = Title::newFromText( (string)$par, NS_DATA );
-		// TODO: Add input to create a new chart definition JSON page when one wasn't provided.
-		if ( $this->title?->getContentModel() !== JCChartContent::CONTENT_MODEL ) {
-			$this->getOutput()->showErrorPage(
-				'chart-wizard-error',
-				'chart-error-chart-definition-not-found',
-				[ $this->title?->getPrefixedText(), $this->title?->getSubpageText() ],
-				$this->sourcePrefixedText
-			);
-			$this->logger->debug(
-				__METHOD__ . ': Chart definition page not found or invalid content model: {0}',
-				[ $this->title?->__toString() ]
-			);
-			return null;
-		}
-
+	private function preExecute(): ?array {
 		$this->isNew = !$this->title->exists();
 
 		// This adds all the navigation tabs in the skin as if this were a proper `action` page.
@@ -164,6 +158,149 @@ class SpecialChartWizard extends FormSpecialPage {
 		);
 
 		return $chartDefinition;
+	}
+
+	private function showCreateForm( ?string $par ): void {
+		$this->setHeaders();
+		$this->checkPermissions();
+		$this->getOutput()->setPageTitleMsg( $this->msg( 'chart-wizard-create-title' ) );
+
+		$this->logger->debug(
+			__METHOD__ . ': Chart definition page not found or invalid content model: {0}',
+			[ $this->title?->__toString() ]
+		);
+
+		if ( trim( (string)$par ) !== '' ) {
+			$this->getOutput()->addHTML(
+				Html::warningBox( $this->msg( 'chart-wizard-create-invalid-subpage' )->parse() )
+			);
+		}
+
+		$form = HTMLForm::factory( 'codex', [
+			'pagename' => [
+				'type' => 'title',
+				'label-message' => 'chart-wizard-create-name-label',
+				'help-message' => 'chart-wizard-create-name-help',
+				'namespace' => NS_DATA,
+				'relative' => true,
+				'creatable' => true,
+				'required' => true,
+				'default' => trim( (string)$par ),
+				'filter-callback' => $this->normalizeNewChartName( ... ),
+				'validation-callback' => $this->validateNewChartName( ... ),
+			],
+		], $this->getContext() );
+
+		$form->setMethod( 'get' )
+			->setFormIdentifier( self::CREATE_FORM_IDENTIFIER )
+			->setSubmitTextMsg( 'chart-wizard-create-submit' )
+			->setHeaderHtml( Html::rawElement(
+				'p',
+				[],
+				$this->msg( 'chart-wizard-create-text' )->parse()
+			) )
+			->setSubmitCallback( function ( array $data ): bool {
+				$title = Title::newFromText( $data['pagename'], NS_DATA );
+				if ( !$title ) {
+					return false;
+				}
+				$this->getOutput()->redirect(
+					$this->getPageTitle( $title->getPrefixedText() )->getLocalURL()
+				);
+				return true;
+			} );
+
+		// When the submitted name refers to an existing chart, show a single
+		// error box above the form instead of letting the form attempt
+		// submission, which would decorate the page with a form-level error
+		// summary and a field-level error state on top of the message.
+		$existingTitle = $this->getSubmittedNewChartTitle();
+		if ( $existingTitle?->exists() ) {
+			$form->addHeaderHtml( Html::errorBox(
+				$this->msg(
+					'chart-wizard-create-exists',
+					$existingTitle->getPrefixedText(),
+					$this->getPageTitle( $existingTitle->getPrefixedText() )->getPrefixedText()
+				)->parse()
+			) );
+			$form->prepareForm();
+			$form->displayForm( false );
+			return;
+		}
+
+		$form->show();
+	}
+
+	/**
+	 * The normalized title submitted through the create form,
+	 * or null if the create form wasn't submitted.
+	 */
+	private function getSubmittedNewChartTitle(): ?Title {
+		$request = $this->getRequest();
+		if ( $request->getVal( 'wpFormIdentifier' ) !== self::CREATE_FORM_IDENTIFIER ) {
+			return null;
+		}
+
+		$name = $this->normalizeNewChartName( $request->getText( 'wppagename' ) );
+		return Title::newFromText( $name, NS_DATA );
+	}
+
+	/**
+	 * JsonConfig resolves nonexistent Data pages to content models by filename pattern.
+	 */
+	private function hasValidChartDefinitionTarget( ?Title $title ): bool {
+		$jcTitle = $title ? JCSingleton::parseTitle( $title ) : null;
+		return $jcTitle && $jcTitle->getConfig()->model === JCChartContent::CONTENT_MODEL;
+	}
+
+	private function normalizeNewChartName( ?string $value ): string {
+		$title = Title::newFromText( $value ?? '', NS_DATA );
+		if ( !$title ) {
+			return $value ?? '';
+		}
+
+		$name = $title->getText();
+		$suffix = $this->getConfiguredChartNameSuffix();
+		if ( $suffix !== null && !str_ends_with( $name, $suffix ) ) {
+			$name .= $suffix;
+		}
+		return $name;
+	}
+
+	private function getConfiguredChartNameSuffix(): ?string {
+		$patternPrefix = '/.\\.';
+		$patternSuffix = '$/';
+
+		foreach ( JCSingleton::getTitleMap()[NS_DATA] ?? [] as $conf ) {
+			if ( $conf->model !== JCChartContent::CONTENT_MODEL ) {
+				continue;
+			}
+
+			$pattern = $conf->pattern ?? '';
+			if ( !str_starts_with( $pattern, $patternPrefix ) || !str_ends_with( $pattern, $patternSuffix ) ) {
+				return null;
+			}
+
+			$suffix = substr( $pattern, strlen( $patternPrefix ), -strlen( $patternSuffix ) );
+			return $suffix === '' ? null : ".$suffix";
+		}
+
+		return null;
+	}
+
+	private function validateNewChartName( ?string $value ): bool|Message {
+		$title = Title::newFromText( $value ?? '', NS_DATA );
+		if ( !$this->hasValidChartDefinitionTarget( $title ) ) {
+			return $this->msg( 'chart-wizard-create-invalid-name' );
+		}
+
+		if ( !$this->getAuthority()->definitelyCan( 'create', $title ) ||
+			!$this->getAuthority()->definitelyCan( 'edit', $title )
+		) {
+			return $this->msg( 'chart-wizard-create-not-allowed' );
+		}
+
+		return true;
 	}
 
 	/** @inheritDoc */

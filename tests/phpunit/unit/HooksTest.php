@@ -64,17 +64,18 @@ class HooksTest extends MediaWikiUnitTestCase {
 		$skinTemplate->expects( $this->atMost( 1 ) )
 			->method( 'getUser' )
 			->willReturn( $user );
-		$skinTemplate->expects( $this->once() )
+		$skinTemplate->expects( $opts['chartWizardEnabled'] ? $this->once() : $this->never() )
 			->method( 'getTitle' )
 			->willReturn( $title( $this ) );
+		$relevantTitle = ( $opts['relevantTitle'] ?? $title )( $this );
 		$skinTemplate->expects( $this->atMost( 2 ) )
 			->method( 'getRelevantTitle' )
-			->willReturn( ( $opts['relevantTitle'] ?? $title )( $this ) );
+			->willReturn( $relevantTitle );
 		$skinTemplate->expects( $this->atMost( 1 ) )
 			->method( 'msg' )
 			->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
 
-		$handler = $this->getHandler( $opts['chartWizardEnabled'], $skinTemplate->getRelevantTitle() );
+		$handler = $this->getHandler( $opts['chartWizardEnabled'], $relevantTitle );
 		$links = [ 'views' => $opts['tabs'] ];
 		$handler->onSkinTemplateNavigation__Universal( $skinTemplate, $links );
 
