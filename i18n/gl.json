@@ -25,8 +25,8 @@
 	"chart-visualeditor-mwchartdialog-title": "Gráfico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabulares do gráfico",
-	"chartjson-error-version": "\"$1\" debe ser un número enteiro entre $2 e $3, incluídos.",
-	"chartjson-error-enum": "\"$1\" debe ser un dos seguintes valores: $2",
+	"chartjson-error-version": "«$1» debe ser un número enteiro entre $2 e $3, incluídos.",
+	"chartjson-error-enum": "«$1» debe ser un dos seguintes valores: $2",
 	"chart-error-source-not-found": "Non se atopou a páxina de orixe de datos tabulares.",
 	"chart-error-invalid-source-type": "A páxina de orixe de datos tabulares non é dun tipo válido.",
 	"chart-error-invalid-source-content": "O contido da páxina de orixe de datos tabulares non é válido.",
@@ -34,7 +34,7 @@
 	"chart-error-request-too-large": "Os datos dos gráficos e das táboas superan o tamaño máximo permitido de $1 bytes. Emprega un conxunto de datos máis pequeno ou considera as [https://www.mediawiki.org/wiki/Extension:Chart/Transforms opcións de transformación de datos] para filtrar ou agregar os teus datos.",
 	"chart-error-switchable-string": "O parámetro \"$1\" debe ser unha cadea de texto que asigne códigos de lingua válidos a unha liña de texto non máis longa de $2 caracteres sen tabulacións nin espazos ao final; por exemplo, <kbd>{ \"gl\":\"Cadea de texto en galego\", ... }</kbd>",
 	"apihelp-chartinfo-summary": "Recuperar a conta actual dos usos únicos de páxinas con gráficos. Os usos múltiples do mesmo gráfico na mesma páxina considéranse un único uso.",
-	"apihelp-chartinfo-param-global": "Establecer como \"true\" para incluír todos os wikis conectados en lugar de só o wiki local.",
+	"apihelp-chartinfo-param-global": "Establecer como «true» para incluír todos os wikis conectados en lugar de só o wiki local.",
 	"apihelp-chartinfo-example-1": "Obter o número de gráficos do wiki local.",
 	"apihelp-chartinfo-example-2": "Obter o número de gráficos de todos os wikis."
 }
