@@ -59,6 +59,12 @@ class SpecialChartWizard extends FormSpecialPage {
 
 		parent::execute( $par );
 
+		// Successful form submissions redirect after saving and
+		// do not need to add anything additional to the output.
+		if ( $this->getOutput()->getRedirect() !== '' ) {
+			return;
+		}
+
 		$this->getOutput()->setPageTitleMsg(
 			$this->msg( $this->isNew ? 'creating' : 'editing' )
 				->rawParams( $this->title->getPrefixedText() )
@@ -73,10 +79,34 @@ class SpecialChartWizard extends FormSpecialPage {
 			'chartLanguages' => $this->languageNameUtils
 				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ),
 			'chartAllowedLicenses' => $this->allowedLicenses,
-			'copyrightWarning' => EditPage::getCopyrightWarning( $this->getFullTitle(), 'parse', $this->getContext() ),
+			'chartLicenseNames' => $this->getLicenseNames(),
+			'chartCopyrightWarnings' => $this->getCopyrightWarnings(),
 		] );
 		$this->getOutput()->addModules( 'ext.chart.wizard' );
 		$this->getOutput()->addModuleStyles( 'ext.chart.wizard.styles' );
+	}
+
+	private function getLicenseNames(): array {
+		$names = [];
+		foreach ( $this->allowedLicenses as $license ) {
+			$message = $this->msg( "jsonconfig-license-name-$license" );
+			if ( !$message->exists() ) {
+				// Custom licenses without name messages fall back to their license code in the client.
+				continue;
+			}
+			$names[$license] = $message->text();
+		}
+		return $names;
+	}
+
+	private function getCopyrightWarnings(): array {
+		$warnings = [];
+		foreach ( $this->allowedLicenses as $license ) {
+			$warnings[$license] = $this->msg( 'jsonconfig-license-copyrightwarning' )
+				->params( $license )
+				->parse();
+		}
+		return $warnings;
 	}
 
 	/**

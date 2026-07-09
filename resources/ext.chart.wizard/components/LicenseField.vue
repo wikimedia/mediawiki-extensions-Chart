@@ -34,8 +34,12 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const store = useChartStore();
 		const { license } = storeToRefs( store );
+		const licenseNames = mw.config.get( 'chartLicenseNames', {} );
 		const allowedLicenses = mw.config.get( 'chartAllowedLicenses', [] )
-			.map( ( val ) => ( { value: val, label: val } ) );
+			.map( ( val ) => ( {
+				value: val,
+				label: licenseNames[ val ] ? `${ licenseNames[ val ] } (${ val })` : val
+			} ) );
 
 		return {
 			license,

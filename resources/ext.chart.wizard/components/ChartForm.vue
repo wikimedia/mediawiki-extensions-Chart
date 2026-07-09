@@ -8,7 +8,10 @@
 		<chart-configure></chart-configure>
 		<license-field></license-field>
 		<!-- eslint-disable-next-line vue/no-v-html -->
-		<div v-html="copyrightWarning"></div>
+		<div
+			class="ext-chart-wizard__copywarn"
+			v-html="copyrightWarning"
+		></div>
 		<input
 			type="hidden"
 			name="chartDefinition"
@@ -61,14 +64,15 @@ module.exports = exports = defineComponent( {
 		baseRevId: { type: Number, default: 0 }
 	},
 	setup( { chartIsNew } ) {
-		const { formDisabled, chartDefinition } = storeToRefs( useChartStore() );
+		const { formDisabled, chartDefinition, license } = storeToRefs( useChartStore() );
 		const submitText = computed( () => mw.msg(
 			chartIsNew ?
 				'chart-wizard-publish' :
 				'publishchanges'
 		) );
 		const editToken = mw.config.get( 'chartEditToken' );
-		const copyrightWarning = computed( () => mw.config.get( 'copyrightWarning' ) );
+		const copyrightWarnings = mw.config.get( 'chartCopyrightWarnings' );
+		const copyrightWarning = computed( () => copyrightWarnings[ license.value ] || '' );
 
 		/**
 		 * Handle form submission. If the form is invalid, scroll to the
@@ -123,7 +127,7 @@ module.exports = exports = defineComponent( {
 		margin: 0;
 	}
 
-	#editpage-copywarn {
+	.ext-chart-wizard__copywarn {
 		margin: @spacing-75 0;
 	}
 }

@@ -77,6 +77,12 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$sp->execute( 'No transform example.chart' );
 		$jsVars = json_decode( json_encode( $sp->getOutput()->getJsConfigVars() ), true );
 		$this->assertSame( $chartDefinition, $jsVars['chartDefinition'] );
+		$this->assertSame( 'Creative Commons Zero', $jsVars['chartLicenseNames']['CC0-1.0'] );
+		$this->assertArrayHasKey( 'CC0-1.0', $jsVars['chartCopyrightWarnings'] );
+		$this->assertStringContainsString(
+			'Creative Commons Zero',
+			$jsVars['chartCopyrightWarnings']['CC0-1.0']
+		);
 		$this->assertFalse( $jsVars['chartIsNew'] );
 		$this->assertSame( 'Editing Data:No transform example.chart', $sp->getOutput()->getPageTitle() );
 		$this->assertContains( 'ext.chart.wizard', $sp->getOutput()->getModules() );
