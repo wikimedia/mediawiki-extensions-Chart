@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"PanWor",
 			"Rail",
 			"Woytecr"
 		]
@@ -27,6 +28,9 @@
 	"chart-visualeditor-mwchartdialog-title": "Wykres",
 	"chart-visualeditor-mwchartdialog-chart-label": "Strona definicji wykresu",
 	"chart-visualeditor-mwchartdialog-data-label": "Źródło danych wykresu w formie tabelarycznej",
+	"chart-wizard-form-categories": "Kategorie",
+	"chart-wizard-form-categories-placeholder": "Dodaj kategorię…",
+	"chart-wizard-form-categories-no-results": "Brak wyników",
 	"chartjson-error-version": "$1 musi być liczbą całkowitą w zakresie $2-$3 włącznie.",
 	"chartjson-error-enum": "$1 musi stanowić jedną z następujących wartości: $2",
 	"chart-error-source-not-found": "Nie znaleziono strony ze źródłem danych w formie tabelarycznej.",

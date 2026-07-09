@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"HyoerFlint",
 			"Stjn",
 			"Yurina Tatiana"
 		]
@@ -23,6 +24,9 @@
 	"chart-visualeditor-mwchartdialog-title": "Диаграмма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница определения диаграммы",
 	"chart-visualeditor-mwchartdialog-data-label": "Источник табличных данных диаграммы",
+	"chart-wizard-form-categories": "Категории",
+	"chart-wizard-form-categories-placeholder": "Добавить категорию...",
+	"chart-wizard-form-categories-no-results": "Ничего не найдено",
 	"chartjson-error-version": "$1 должно быть целым числом от $2 до $3 включительно.",
 	"chart-error-source-not-found": "Страница источника табличных данных диаграммы не найдена."
 }
