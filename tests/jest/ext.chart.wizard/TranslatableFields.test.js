@@ -138,4 +138,17 @@ describe( 'TranslatableFields', () => {
 		// And assert emptiness.
 		expect( store.chartDefinition.title ).toBeUndefined();
 	} );
+
+	it( 'should not include fields in the definition if they are empty (subtitles)', () => {
+		store.currentLanguage = 'en';
+
+		expect( wrapper.vm.titleModel ).toBe( 'Example chart' );
+		expect( wrapper.vm.subtitleModel ).toBe( 'Example subtitle' );
+
+		wrapper.vm.subtitleModel = '';
+
+		expect( store.chartDefinition.subtitle ).toBeUndefined();
+		expect( store.chartDefinition.title.en ).toBe( 'Example chart' );
+		expect( wrapper.find( '.ext-chart-wizard__subtitle' ).exists() ).toBeTruthy();
+	} );
 } );

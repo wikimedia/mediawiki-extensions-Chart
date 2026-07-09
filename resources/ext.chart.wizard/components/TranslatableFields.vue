@@ -115,7 +115,7 @@ module.exports = exports = defineComponent( {
 				if ( value ) {
 					subtitle.value[ currentLanguage.value ] = value;
 				} else {
-					delete title.value[ currentLanguage.value ];
+					delete subtitle.value[ currentLanguage.value ];
 				}
 			}
 		} );
