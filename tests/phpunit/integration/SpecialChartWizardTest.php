@@ -122,6 +122,7 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$this->executeSpecialPage(
 			subPage: 'No transform example.chart',
 			request: $request,
+			performer: $this->getTestSysop()->getAuthority(),
 		);
 		// Re-fetch contents.
 		$revision = $this->getServiceContainer()->getRevisionLookup()
