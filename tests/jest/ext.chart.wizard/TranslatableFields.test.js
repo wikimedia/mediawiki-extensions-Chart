@@ -97,6 +97,28 @@ describe( 'TranslatableFields', () => {
 		expect( store.yAxis.format ).toBe( 'auto' );
 	} );
 
+	it( 'should not include axis titles in the definition if they are empty', () => {
+		store.currentLanguage = 'en';
+
+		expect( wrapper.vm.xAxisTitleModel ).toBe( 'Example x-axis title' );
+
+		wrapper.vm.xAxisTitleModel = '';
+
+		expect( store.chartDefinition.xAxis ).toStrictEqual( {
+			title: {
+				de: 'Beispiel x-Achsentitel'
+			},
+			format: 'auto'
+		} );
+
+		store.currentLanguage = 'de';
+		wrapper.vm.xAxisTitleModel = '';
+
+		expect( store.chartDefinition.xAxis ).toStrictEqual( {
+			format: 'auto'
+		} );
+	} );
+
 	it( 'should not include fields in the definition if they are empty (titles)', () => {
 		// Change language to English.
 		store.currentLanguage = 'en';
@@ -105,6 +127,7 @@ describe( 'TranslatableFields', () => {
 		expect( wrapper.vm.titleModel ).toBe( 'Example chart' );
 		// Blank the title.
 		wrapper.vm.titleModel = '';
+		expect( wrapper.find( '.ext-chart-wizard__subtitle' ).exists() ).toBeTruthy();
 		// Should now only include German in the store.
 		expect( store.chartDefinition.title ).toStrictEqual( {
 			de: 'Beispiel-Diagramm'

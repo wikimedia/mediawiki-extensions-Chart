@@ -16,17 +16,22 @@
 		class="ext-chart-wizard__title"
 		:optional="true"
 	>
-		<cdx-text-input v-model="titleModel"></cdx-text-input>
+		<cdx-text-input
+			v-model="titleModel"
+			:clearable="true"
+		></cdx-text-input>
 		<template #label>
 			{{ $i18n( 'chart-wizard-form-title-label' ).text() }}
 		</template>
 	</cdx-field>
 	<cdx-field
-		v-if="titleModel"
 		class="ext-chart-wizard__subtitle"
 		:optional="true"
 	>
-		<cdx-text-input v-model="subtitleModel"></cdx-text-input>
+		<cdx-text-input
+			v-model="subtitleModel"
+			:clearable="true"
+		></cdx-text-input>
 		<template #label>
 			{{ $i18n( 'chart-wizard-form-subtitle-label' ).text() }}
 		</template>
@@ -38,7 +43,10 @@
 		class="ext-chart-wizard__x-axis"
 		:optional="true"
 	>
-		<cdx-text-input v-model="xAxisTitleModel"></cdx-text-input>
+		<cdx-text-input
+			v-model="xAxisTitleModel"
+			:clearable="true"
+		></cdx-text-input>
 		<template #label>
 			{{ $i18n( 'chart-wizard-form-x-axis-label' ) }}
 		</template>
@@ -50,7 +58,10 @@
 		class="ext-chart-wizard__y-axis"
 		:optional="true"
 	>
-		<cdx-text-input v-model="yAxisTitleModel"></cdx-text-input>
+		<cdx-text-input
+			v-model="yAxisTitleModel"
+			:clearable="true"
+		></cdx-text-input>
 		<template #label>
 			{{ $i18n( 'chart-wizard-form-y-axis-label' ) }}
 		</template>
