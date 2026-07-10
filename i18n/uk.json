@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Movses",
 			"Repakr",
 			"Serhio Magpie"
 		]
@@ -28,7 +29,7 @@
 	"chart-visualeditor-mwchartdialog-data-label": "Джерело табличних даних діаграми",
 	"chart-wizard-tab-label": "Редагувати через форму",
 	"chart-wizard-form-source-label": "1. Виберіть набір даних",
-	"chart-wizard-form-source-description": "Виберіть набір табличних даних, який Ви хочете зобразити",
+	"chart-wizard-form-source-description": "Виберіть набір табличних даних, який Ви хочете візуалізувати.",
 	"chart-wizard-form-source-placeholder": "Пошук набору даних...",
 	"chart-wizard-preview-placeholder-title": "Виберіть набір даних",
 	"chart-wizard-preview-placeholder-description": "Ваші дані з'являться тут для попереднього перегляду перед створенням діаграми",
