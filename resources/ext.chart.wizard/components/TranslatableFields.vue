@@ -40,6 +40,7 @@
 		</template>
 	</cdx-field>
 	<cdx-field
+		v-if="type !== 'pie'"
 		class="ext-chart-wizard__x-axis"
 		:optional="true"
 	>
@@ -55,6 +56,7 @@
 		</cdx-checkbox>
 	</cdx-field>
 	<cdx-field
+		v-if="type !== 'pie'"
 		class="ext-chart-wizard__y-axis"
 		:optional="true"
 	>
@@ -72,7 +74,7 @@
 </template>
 
 <script>
-const { computed, defineComponent, ComputedRef, WritableComputedRef } = require( 'vue' );
+const { computed, defineComponent, watch, ComputedRef, WritableComputedRef } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxCheckbox, CdxField, CdxSelect, CdxTextInput } = require( '../../../codex.js' );
 const useChartStore = require( '../stores/chart.js' );
@@ -81,7 +83,14 @@ module.exports = exports = defineComponent( {
 	name: 'TranslatableFields',
 	components: { CdxCheckbox, CdxField, CdxSelect, CdxTextInput },
 	setup() {
-		const { currentLanguage, title, subtitle, xAxis, yAxis } = storeToRefs( useChartStore() );
+		const {
+			currentLanguage,
+			type,
+			title,
+			subtitle,
+			xAxis,
+			yAxis
+		} = storeToRefs( useChartStore() );
 		const availableLanguages = mw.config.get( 'chartLanguages' );
 
 		/**
@@ -248,8 +257,27 @@ module.exports = exports = defineComponent( {
 			currentLanguage.value = language;
 		}
 
+		// Blank the axes fields if we're using a pie chart.
+		// If we change back, try to restore any preexisting axes data.
+		let cachedXAxis = {},
+			cachedYAxis = {};
+		watch( type, ( newType, oldType ) => {
+			if ( newType === 'pie' && oldType !== 'pie' ) {
+				cachedXAxis = xAxis.value;
+				cachedYAxis = yAxis.value;
+				xAxis.value = {};
+				yAxis.value = {};
+			} else if ( newType !== 'pie' && oldType === 'pie' ) {
+				xAxis.value = cachedXAxis;
+				yAxis.value = cachedYAxis;
+				cachedXAxis = {};
+				cachedYAxis = {};
+			}
+		} );
+
 		return {
 			currentLanguage,
+			type,
 			languageItems,
 			titleModel,
 			subtitleModel,

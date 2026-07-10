@@ -1,5 +1,6 @@
 'use strict';
 
+const { nextTick } = require( 'vue' );
 const { mount } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
 const TranslatableFields = require( '../../../resources/ext.chart.wizard/components/TranslatableFields.vue' );
@@ -24,6 +25,7 @@ describe( 'TranslatableFields', () => {
 				stubActions: false,
 				initialState: {
 					chart: {
+						type: 'line',
 						title: {
 							en: 'Example chart',
 							de: 'Beispiel-Diagramm'
@@ -150,5 +152,37 @@ describe( 'TranslatableFields', () => {
 		expect( store.chartDefinition.subtitle ).toBeUndefined();
 		expect( store.chartDefinition.title.en ).toBe( 'Example chart' );
 		expect( wrapper.find( '.ext-chart-wizard__subtitle' ).exists() ).toBeTruthy();
+	} );
+
+	it( 'should exclude axes data for pie charts, and restore it if changed to non-pie', async () => {
+		store.currentLanguage = 'en';
+		// Sanity checks.
+		expect( store.type ).toStrictEqual( 'line' );
+		expect( wrapper.vm.type ).toStrictEqual( 'line' );
+		expect( wrapper.vm.xAxisTitleModel ).toStrictEqual( 'Example x-axis title' );
+		expect( wrapper.vm.yAxisTitleModel ).toStrictEqual( 'Example y-axis title' );
+		expect( wrapper.vm.xAxisFormatModel ).toBe( true );
+		expect( wrapper.vm.yAxisFormatModel ).toBe( false );
+		expect( wrapper.find( '.ext-chart-wizard__x-axis' ).exists() ).toBe( true );
+		expect( wrapper.find( '.ext-chart-wizard__y-axis' ).exists() ).toBe( true );
+		// Change to pie chart.
+		store.type = 'pie';
+		await nextTick();
+		// Store's axes data should be empty.
+		expect( store.xAxis ).toStrictEqual( {} );
+		expect( store.yAxis ).toStrictEqual( {} );
+		// Form elements should be hidden.
+		expect( wrapper.find( '.ext-chart-wizard__x-axis' ).exists() ).toBe( false );
+		expect( wrapper.find( '.ext-chart-wizard__y-axis' ).exists() ).toBe( false );
+		// Change to bar chart.
+		store.type = 'bar';
+		await nextTick();
+		// Assert data has been restored and form elements visible again.
+		expect( wrapper.vm.xAxisTitleModel ).toStrictEqual( 'Example x-axis title' );
+		expect( wrapper.vm.yAxisTitleModel ).toStrictEqual( 'Example y-axis title' );
+		expect( wrapper.vm.xAxisFormatModel ).toBe( true );
+		expect( wrapper.vm.yAxisFormatModel ).toBe( false );
+		expect( wrapper.find( '.ext-chart-wizard__x-axis' ).exists() ).toBe( true );
+		expect( wrapper.find( '.ext-chart-wizard__y-axis' ).exists() ).toBe( true );
 	} );
 } );
