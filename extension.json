@@ -150,6 +150,7 @@
 				}
 			],
 			"codexComponents": [
+				"CdxAccordion",
 				"CdxButton",
 				"CdxCheckbox",
 				"CdxField",
@@ -192,6 +193,7 @@
 				"chart-wizard-form-type-placeholder",
 				"chart-wizard-form-x-axis-label",
 				"chart-wizard-form-y-axis-label",
+				"chart-wizard-preview-accordion",
 				"chart-wizard-preview-chart-view",
 				"chart-wizard-preview-data-view",
 				"chart-wizard-preview-error",

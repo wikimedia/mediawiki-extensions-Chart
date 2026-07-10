@@ -48,6 +48,19 @@
 		}
 	}
 
+	.ext-chart-wizard__preview-accordion {
+		border: @border-subtle;
+		flex-basis: initial;
+
+		.cdx-accordion__content {
+			padding: 0;
+		}
+
+		.ext-chart-wizard__preview {
+			border: 0;
+		}
+	}
+
 	.ext-chart-wizard__preview-placeholder {
 		text-align: center;
 		padding: @spacing-200 0;
@@ -76,5 +89,14 @@
 			transform: translate( -50%, -50% );
 			width: @size-200;
 		}
+	}
+}
+
+// Preview comes first on mobile/responsive view.
+// This hard-coded in ChartWizard.vue, so we hard-code it here too.
+// This should be kept in sync with the @max-width-breakpoint-tablet token.
+@media ( max-width: 1119px ) {
+	.ext-chart-wizard-container {
+		flex-direction: column-reverse;
 	}
 }

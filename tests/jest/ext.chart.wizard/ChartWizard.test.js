@@ -1,14 +1,27 @@
 'use strict';
 
+const { nextTick } = require( 'vue' );
 const { shallowMount, flushPromises } = require( '@vue/test-utils' );
 const { createTestingPinia } = require( '@pinia/testing' );
+const { CdxAccordion } = require( '@wikimedia/codex' );
 const ChartWizard = require( '../../../resources/ext.chart.wizard/components/ChartWizard.vue' );
 const { fixtures, mockMwApiGet } = require( './ChartWizard.setup.js' );
 const useChartStore = require( '../../../resources/ext.chart.wizard/stores/chart.js' );
 
 describe( 'ChartWizard', () => {
+	let matchMediaChangeListener = null;
 
 	beforeEach( () => {
+		const matchMediaMock = {
+			matches: false,
+			addEventListener: jest.fn( ( event, callback ) => {
+				if ( event === 'change' ) {
+					matchMediaChangeListener = callback;
+				}
+			} ),
+			removeEventListener: jest.fn()
+		};
+		window.matchMedia = jest.fn().mockReturnValue( matchMediaMock );
 		mw.Title.newFromText = jest.fn().mockImplementation(
 			( title ) => ( { getPrefixedText: () => title } )
 		);
@@ -95,5 +108,19 @@ describe( 'ChartWizard', () => {
 		expect( form.reportValidity() ).toBeTruthy();
 		expect( store.sourceStatus ).toBeNull();
 		document.body.removeChild( form );
+	} );
+
+	it( 'should wrap the preview area in an accordion on small viewports', async () => {
+		const wrapper = shallowMount( ChartWizard, {
+			global: { plugins: [ createTestingPinia() ] },
+			props: {
+				chartDefinition: fixtures[ 'Data:Example.Line.chart' ],
+				chartIsNew: false
+			}
+		} );
+		expect( wrapper.findComponent( CdxAccordion ).exists() ).toBe( false );
+		matchMediaChangeListener( { matches: true } );
+		await nextTick();
+		expect( wrapper.findComponent( CdxAccordion ).exists() ).toBe( true );
 	} );
 } );

@@ -79,6 +79,7 @@
 	"chart-wizard-preview-error-retry": "Try again",
 	"chart-wizard-preview-chart-view": "Chart",
 	"chart-wizard-preview-data-view": "Data",
+	"chart-wizard-preview-accordion": "View preview",
 	"chart-wizard-publish": "Publish chart",
 	"tag-chart-wizard": "[[mw:Special:MyLanguage/Extension:Chart/Wizard|Chart Wizard]]",
 	"tag-chart-wizard-description": "Edits made using the Chart Wizard",
