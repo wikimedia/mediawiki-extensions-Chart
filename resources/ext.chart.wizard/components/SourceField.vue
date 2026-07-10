@@ -9,6 +9,7 @@
 			ref="sourceLookup"
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
+			name="source"
 			required
 			:menu-items="menuItems"
 			:menu-config="menuConfig"
