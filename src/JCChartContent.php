@@ -46,13 +46,20 @@ class JCChartContent extends JCDataContent {
 		[ [ 'transform', 'args' ], 'optional', [ JCValidators::class, 'isDictionary' ], 'raw' ],
 	];
 
+	private const DEPRECATED_STRING_PATHS = [
+		[ 'title' ],
+		[ 'xAxis', 'title' ],
+		[ 'yAxis', 'title' ],
+	];
+
 	/** @inheritDoc */
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
 		$chartRenderer = $services->getService( 'Chart.ChartRenderer' );
 		$languageFactory = $services->getLanguageFactory();
+		$trackingCategories = $services->getTrackingCategories();
 
-		return new JCChartContentView( $chartRenderer, $languageFactory );
+		return new JCChartContentView( $chartRenderer, $languageFactory, $trackingCategories );
 	}
 
 	/**
@@ -64,6 +71,17 @@ class JCChartContent extends JCDataContent {
 		// @todo consider wrapping {{Data:Foo.chart}} into
 		// {{#chart:Foo.chart}}, or a pretty source rep for copy-paste?
 		return parent::getWikitextForTransclusion();
+	}
+
+	public function usesDeprecatedFormat(): bool {
+		foreach ( self::DEPRECATED_STRING_PATHS as $path ) {
+			$field = $this->getField( $path );
+			if ( $field && is_string( $field->getValue() ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

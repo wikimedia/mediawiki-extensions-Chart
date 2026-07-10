@@ -43,8 +43,9 @@
 	},
 	"callback": "MediaWiki\\Extension\\Chart\\Hooks::onRegistration",
 	"TrackingCategories": [
-		"chart-render-category",
-		"chart-error-category"
+		"chart-error-category",
+		"chart-deprecated-category",
+		"chart-render-category"
 	],
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Chart\\": "src/"

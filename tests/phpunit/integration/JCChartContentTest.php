@@ -93,6 +93,31 @@ class JCChartContentTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '2022 US energy consumption.tab', $serialized->getValue()->source );
 	}
 
+	/**
+	 * @dataProvider provideDeprecatedFormatCases
+	 */
+	public function testUsesDeprecatedFormat( array $fields, bool $expected ) {
+		$contentHandler = new JCContentHandler( JCChartContent::CONTENT_MODEL );
+		$content = $contentHandler->unserializeContent( FormatJson::encode( array_merge( [
+			'license' => 'CC0-1.0',
+			'version' => 1,
+			'type' => 'line',
+			'source' => 'Tracking.tab',
+		], $fields ), false, FormatJson::ALL_OK ) );
+
+		$this->assertInstanceOf( JCChartContent::class, $content );
+		$this->assertTrue( $content->isValid() );
+		$this->assertSame( $expected, $content->usesDeprecatedFormat() );
+	}
+
+	public static function provideDeprecatedFormatCases(): iterable {
+		yield 'no localizable fields' => [ [], false ];
+		yield 'localized title' => [ [ 'title' => [ 'en' => 'Title' ] ], false ];
+		yield 'plain title' => [ [ 'title' => 'Title' ], true ];
+		yield 'plain x-axis title' => [ [ 'xAxis' => [ 'title' => 'X axis' ] ], true ];
+		yield 'plain y-axis title' => [ [ 'yAxis' => [ 'title' => 'Y axis' ] ], true ];
+	}
+
 	private function getRawJCChartContentFromFile( $filePath ): JCChartContent {
 		$rawData = file_get_contents( $filePath );
 		if ( $rawData === false ) {

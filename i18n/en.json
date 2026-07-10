@@ -23,6 +23,8 @@
 	"chart-error-unexpected": "Unexpected error occurred when rendering the chart.",
 	"chart-error-category": "Pages using the Chart extension with rendering errors",
 	"chart-error-category-desc": "The page contains a chart with rendering errors.",
+	"chart-deprecated-category": "Chart definitions using deprecated formats",
+	"chart-deprecated-category-desc": "The chart definition page uses a deprecated format. See [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Chart#Deprecated_formats deprecated chart formats] for migration guidance.",
 	"chart-render-category": "Pages using the Chart extension",
 	"chart-render-category-desc": "The page uses the <code><nowiki>{{#chart}}</nowiki></code> parser function.",
 	"chart-render-tooltip-nodata": "No data",

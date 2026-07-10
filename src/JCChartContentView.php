@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Chart;
 
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\JsonConfig\JCContent;
 use MediaWiki\Extension\JsonConfig\JCContentView;
@@ -17,6 +18,7 @@ class JCChartContentView extends JCContentView {
 	public function __construct(
 		private readonly ChartRenderer $chartRenderer,
 		private readonly LanguageFactory $languageFactory,
+		private readonly TrackingCategories $trackingCategories,
 	) {
 	}
 
@@ -41,7 +43,14 @@ class JCChartContentView extends JCContentView {
 		$chartArgumentsParser = MediaWikiServices::getInstance()->getService( 'Chart.ChartArgumentsParser' );
 		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
 
-		'@phan-var JCChartContent $content';
+		if ( $content instanceof JCChartContent && $content->usesDeprecatedFormat() ) {
+			$this->trackingCategories->addTrackingCategory(
+				$output,
+				'chart-deprecated-category',
+				$page
+			);
+		}
+
 		$lang = $options->getUserLangObj();
 		$context = new RequestContext();
 		$context->setLanguage( $lang );

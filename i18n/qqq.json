@@ -23,6 +23,8 @@
 	"chart-error-unexpected": "Error message when an unexpected technical error happened when rendering a chart. Shown to the user in a Codex message box.",
 	"chart-error-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart fails to render.",
 	"chart-error-category-desc": "Description of the chart error tracking category.",
+	"chart-deprecated-category": "{{Tracking category name}}\nName of tracking category that chart definition pages are placed into when they use deprecated parts of the chart definition JSON format.",
+	"chart-deprecated-category-desc": "Description of the tracking category for chart definition pages that use deprecated parts of the chart definition JSON format. Includes a link to documentation about migrating deprecated chart formats.",
 	"chart-render-category": "{{Tracking category name}}\nName of tracking category that pages are placed into when a chart is used on them.",
 	"chart-render-category-desc": "Description of the chart render tracking category.",
 	"chart-render-tooltip-nodata": "Message displayed in the chart's tooltip when there's no data.",
