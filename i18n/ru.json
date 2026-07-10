@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Stjn",
-			"Yurina Tatiana"
+			"Yurina Tatiana",
+			"HyoerFlint"
 		]
 	},
 	"chart-desc": "Добавляет функцию парсера <code><nowiki>{{#chart:}}</nowiki></code> для отображения диаграмм.",

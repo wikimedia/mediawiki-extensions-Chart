@@ -21,6 +21,7 @@
 	"chart-error-unexpected": "রেখাচিত্র রেন্ডার করার সময় অপ্রত্যাশিত ত্রুটি ঘটেছে।",
 	"chart-error-category": "প্রদর্শনের ত্রুটিসহ রেখাচিত্র এক্সটেনশন ব্যবহার করা পাতা",
 	"chart-render-category": "রেখাচিত্র এক্সটেনশন ব্যবহার করা পাতা",
+	"chart-render-tooltip-nodata": "কোনও উপাত্ত নেই",
 	"chart-visualeditor-mwchartdialog-title": "রেখাচিত্র",
 	"chart-visualeditor-mwchartdialog-chart-label": "রেখাচিত্রের সংজ্ঞা পাতা",
 	"chart-visualeditor-mwchartdialog-data-label": "রেখাচিত্রের সারণিভিত্তিক উপাত্তের উৎস",
