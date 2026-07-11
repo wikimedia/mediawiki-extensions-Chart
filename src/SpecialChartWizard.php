@@ -150,6 +150,10 @@ class SpecialChartWizard extends FormSpecialPage {
 		/** @var JCChartContent $content */
 		$content = $wikiPage->getContent();
 		'@phan-var JCChartContent $content';
+		if ( $content instanceof JCChartContent && $content->usesDeprecatedFormat() ) {
+			$this->showDeprecatedFormatWarning();
+			return null;
+		}
 		$chartDefinition = json_decode( $content?->getText() ?? '{}', associative: true );
 
 		// Keep track of the page title of the 'source' dataset.
@@ -165,6 +169,22 @@ class SpecialChartWizard extends FormSpecialPage {
 		);
 
 		return $chartDefinition;
+	}
+
+	private function showDeprecatedFormatWarning(): void {
+		$this->setHeaders();
+		$this->checkPermissions();
+		$this->getOutput()->setPageTitleMsg(
+			$this->msg( 'editing' )->rawParams( $this->title->getPrefixedText() )
+		);
+		$this->getOutput()->addHTML( Html::warningBox(
+			$this->msg( 'chart-wizard-deprecated-format' )
+				->params(
+					$this->title->getFullURL( [ 'action' => 'edit' ] ),
+					'https://www.mediawiki.org/wiki/Extension:Chart#Deprecated_formats'
+				)
+				->parse()
+		) );
 	}
 
 	private function showCreateForm( ?string $par ): void {

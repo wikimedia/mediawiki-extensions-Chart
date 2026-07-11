@@ -175,6 +175,50 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$this->assertContains( 'ext.chart.wizard.styles', $sp->getOutput()->getModuleStyles() );
 	}
 
+	public function testDeprecatedChartFormatShowsSourceEditorWarning(): void {
+		[ , $title ] = $this->insertLegacyChart();
+		$sp = $this->newSpecialPage();
+		$context = new RequestContext();
+		$context->setTitle( $title );
+		$context->setAuthority( $this->getTestSysop()->getAuthority() );
+		$sp->setContext( $context );
+
+		$sp->execute( $title->getText() );
+
+		$output = $sp->getOutput();
+		$this->assertStringContainsString( 'legacy format', $output->getHTML() );
+		$this->assertStringContainsString( '>source editor</a>', $output->getHTML() );
+		$this->assertStringContainsString( 'action=edit', $output->getHTML() );
+		$this->assertStringContainsString(
+			'https://www.mediawiki.org/wiki/Extension:Chart#Deprecated_formats',
+			$output->getHTML()
+		);
+		$this->assertNotContains( 'ext.chart.wizard', $output->getModules() );
+		$this->assertArrayNotHasKey( 'chartDefinition', $output->getJsConfigVars() );
+	}
+
+	public function testDeprecatedChartFormatCannotBeSavedThroughPost(): void {
+		[ $chartDefinition, $title ] = $this->insertLegacyChart();
+		$chartDefinition['title'] = [ 'en' => 'Changed title' ];
+		$originalRevisionId = $title->getLatestRevID();
+		$request = new FauxRequest( [
+			'chartDefinition' => json_encode( $chartDefinition ),
+			'baseRevId' => $originalRevisionId,
+		], wasPosted: true );
+
+		[ $html ] = $this->executeSpecialPage(
+			subPage: $title->getText(),
+			request: $request,
+			performer: $this->getTestSysop()->getAuthority(),
+		);
+
+		$currentPage = $this->getServiceContainer()
+			->getWikiPageFactory()
+			->newFromTitle( $title );
+		$this->assertSame( $originalRevisionId, $currentPage->getLatest() );
+		$this->assertStringContainsString( 'chart-wizard-deprecated-format', $html );
+	}
+
 	public function testExecuteOnProtectedChart(): void {
 		/** @var Title $title */
 		[ , $title ] = $this->insertChart();
@@ -313,6 +357,25 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$title = $this->insertJsonConfigPage(
 			pageName: 'Data:No transform example.chart',
 			text: $chartDefinition,
+			contentModel: JCChartContent::CONTENT_MODEL,
+		);
+		return [ $chartDefinition, $title ];
+	}
+
+	/**
+	 * @return array [ Chart definition, Title object ]
+	 */
+	private function insertLegacyChart(): array {
+		$this->insertJsonConfigPage(
+			pageName: 'Data:Chart input.tab',
+			text: file_get_contents( __DIR__ . '/../chart-integration/Chart_input.tab.json' ),
+			contentModel: 'Tabular.JsonConfig'
+		);
+		$chartText = file_get_contents( __DIR__ . '/../chart-integration/Legacy_format.chart.json' );
+		$chartDefinition = json_decode( $chartText, associative: true );
+		$title = $this->insertJsonConfigPage(
+			pageName: 'Data:Legacy chart.chart',
+			text: $chartText,
 			contentModel: JCChartContent::CONTENT_MODEL,
 		);
 		return [ $chartDefinition, $title ];

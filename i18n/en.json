@@ -32,6 +32,7 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Chart definition page",
 	"chart-visualeditor-mwchartdialog-data-label": "Chart tabular data source",
 	"chart-wizard-disabled": "Chart wizard is disabled.",
+	"chart-wizard-deprecated-format": "This chart uses a legacy format that is not supported by the chart wizard. Edit the chart definition using the [$1 source editor]. [$2 Learn more] about deprecated formats.",
 	"chart-wizard-tab-label": "Edit with form",
 	"chart-wizard-create-title": "Create a new chart",
 	"chart-wizard-create-text": "Choose a name for the new chart definition page.",

@@ -32,6 +32,7 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Label in the VisualEditor chart dialog for the chart definition input",
 	"chart-visualeditor-mwchartdialog-data-label": "Label in the VisualEditor chart dialog for the tabular data source input",
 	"chart-wizard-disabled": "Message displayed at Special:ChartWizard when the feature flag is disabled.",
+	"chart-wizard-deprecated-format": "Warning displayed at Special:ChartWizard when a chart definition uses the deprecated plain-string format for a title or axis title. Parameters:\n* $1 - URL for editing the chart source\n* $2 - URL for documentation about deprecated chart formats",
 	"chart-wizard-tab-label": "Label for the chart wizard tab",
 	"chart-wizard-create-title": "Title for the create form shown at Special:ChartWizard when no chart definition page was specified.",
 	"chart-wizard-create-text": "Introductory text for the form to create a new chart definition page.",
