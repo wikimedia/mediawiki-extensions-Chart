@@ -198,8 +198,6 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		/** @var Title $definitionTitle */
 		[ $definitionContents, $definitionTitle ] = $this->insertChart();
 		$definitionData = json_decode( $definitionContents, true );
-		// Add a @documentation property (not used by ChartWizard.vue).
-		$definitionData[ '@documentation' ] = 'https://example.org';
 		// Add categories, which didn't originally exist.
 		$definitionData[ 'mediaWikiCategories' ] = [
 			[ 'name' => 'Example charts' ],
@@ -238,22 +236,80 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 					'title' => [ 'en' => 'Temperature (C)' ],
 				],
 				'source' => 'Chart input.tab',
-				'@documentation' => 'https://example.org',
 			],
 			$newDefinition
+		);
+	}
+
+	public function testEditExistingClearsOptionalFields(): void {
+		[ , $definitionTitle ] = $this->insertChart( [
+			'license' => 'CC0-1.0',
+			'version' => 1,
+			'type' => 'bar',
+			'source' => 'Chart input.tab',
+			'title' => [ 'en' => 'Example chart' ],
+			'subtitle' => [ 'en' => 'Example subtitle' ],
+			'xAxis' => [
+				'title' => [ 'en' => 'Day' ],
+			],
+			'yAxis' => [
+				'title' => [ 'en' => 'Temperature (C)' ],
+			],
+			'mediawikiCategories' => [
+				[ 'name' => 'Example charts' ],
+			],
+		] );
+
+		// remove optional fields except title
+		$request = new FauxRequest( [
+			'chartDefinition' => json_encode( [
+				'license' => 'CC0-1.0',
+				'version' => 1,
+				'type' => 'bar',
+				'source' => 'Data:Chart input.tab',
+				'title' => [ 'en' => 'Updated example chart' ],
+			] ),
+			'baseRevId' => $definitionTitle->getLatestRevID(),
+		], wasPosted: true );
+
+		$this->executeSpecialPage(
+			subPage: 'No transform example.chart',
+			request: $request,
+			performer: $this->getTestSysop()->getAuthority(),
+		);
+
+		$revision = $this->getServiceContainer()->getRevisionLookup()
+			->getRevisionByTitle( $definitionTitle, 0, IDBAccessObject::READ_LATEST );
+		$content = $revision->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( JCChartContent::class, $content );
+		$this->assertSame(
+			[
+				'license' => 'CC0-1.0',
+				'version' => 1,
+				'type' => 'bar',
+				'title' => [ 'en' => 'Updated example chart' ],
+				'source' => 'Chart input.tab',
+			],
+			json_decode( $content->getText(), associative: true )
 		);
 	}
 
 	/**
 	 * @return array [ Chart definition page content, Title object ]
 	 */
-	private function insertChart(): array {
+	private function insertChart( array $definitionOverrides = [] ): array {
 		$this->insertJsonConfigPage(
 			pageName: 'Data:Chart input.tab',
 			text: file_get_contents( __DIR__ . '/../chart-integration/Chart_input.tab.json' ),
 			contentModel: 'Tabular.JsonConfig'
 		);
-		$chartDefinition = file_get_contents( __DIR__ . '/../chart-integration/No_transform_example.chart.json' );
+		$chartDefinition = json_encode( array_merge(
+			json_decode(
+				file_get_contents( __DIR__ . '/../chart-integration/No_transform_example.chart.json' ),
+				associative: true
+			),
+			$definitionOverrides
+		) );
 		$title = $this->insertJsonConfigPage(
 			pageName: 'Data:No transform example.chart',
 			text: $chartDefinition,

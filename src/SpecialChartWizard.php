@@ -28,6 +28,13 @@ use StatusValue;
 class SpecialChartWizard extends FormSpecialPage {
 
 	private const string CREATE_FORM_IDENTIFIER = 'chart-wizard-create';
+	private const array EDITABLE_OPTIONAL_FIELDS = [
+		'mediawikiCategories' => true,
+		'title' => true,
+		'subtitle' => true,
+		'xAxis' => true,
+		'yAxis' => true,
+	];
 
 	protected bool $isChartWizardEnabled;
 	protected array $allowedLicenses;
@@ -390,7 +397,7 @@ class SpecialChartWizard extends FormSpecialPage {
 
 		// Merge new definition into the existing one, to preserve any fields not exposed in the form.
 		$newDefinition = array_merge(
-			(array)$this->chartDefinition,
+			array_diff_key( (array)$this->chartDefinition, self::EDITABLE_OPTIONAL_FIELDS ),
 			json_decode( $data['chartDefinition'], true ),
 		);
 
