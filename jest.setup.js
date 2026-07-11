@@ -33,3 +33,4 @@ vueConfig.global.directives = {
 };
 
 global.mw.Api.prototype.get = jest.fn().mockReturnValue( Promise.resolve( {} ) );
+global.mw.Api.prototype.abort = jest.fn();

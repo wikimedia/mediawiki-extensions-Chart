@@ -22,7 +22,7 @@
 			</cdx-button>
 		</div>
 		<div
-			v-if="activePreviewError"
+			v-if="chartDefinition.source && activePreviewError"
 			class="ext-chart-wizard__preview--error"
 		>
 			<cdx-message
@@ -74,16 +74,58 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick, ref, useTemplateRef, watch, ComputedRef, Ref } = require( 'vue' );
+const {
+	computed,
+	defineComponent,
+	nextTick,
+	onBeforeUnmount,
+	ref,
+	useTemplateRef,
+	watch,
+	ComputedRef,
+	Ref
+} = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxMessage } = require( '../../../codex.js' );
 const useChartStore = require( '../stores/chart.js' );
-const api = new mw.Api();
+const previewDebounceDelay = 300;
+
+function createCancelableDebounce( callback, delay ) {
+	let timeout;
+	const debounced = ( ...args ) => {
+		clearTimeout( timeout );
+		timeout = setTimeout( () => {
+			timeout = undefined;
+			callback( ...args );
+		}, delay );
+	};
+	debounced.cancel = () => {
+		clearTimeout( timeout );
+		timeout = undefined;
+	};
+	return debounced;
+}
+
+function createRequestController( api, cancelPending = () => {} ) {
+	let latestRequestId = 0;
+	return {
+		supersede() {
+			cancelPending();
+			api.abort();
+			return ++latestRequestId;
+		},
+		isLatest( requestId ) {
+			return requestId === latestRequestId;
+		}
+	};
+}
 
 module.exports = exports = defineComponent( {
 	name: 'ChartPreview',
 	components: { CdxButton, CdxMessage },
 	setup() {
+		const chartPreviewApi = new mw.Api();
+		const sourcePreviewApi = new mw.Api();
 		const store = useChartStore();
 		const { chartDefinition, initialLoad, currentLanguage } = storeToRefs( store );
 
@@ -122,6 +164,16 @@ module.exports = exports = defineComponent( {
 		 */
 		const previewContainer = useTemplateRef( 'previewContainer' );
 
+		const debouncedRenderChartPreview = createCancelableDebounce(
+			( requestId ) => renderChartPreview( requestId ),
+			previewDebounceDelay
+		);
+		const chartPreviewRequests = createRequestController(
+			chartPreviewApi,
+			debouncedRenderChartPreview.cancel
+		);
+		const sourcePreviewRequests = createRequestController( sourcePreviewApi );
+
 		function prepareChartPreviewContent( content ) {
 			content.forEach( ( node ) => {
 				if ( node.nodeType !== Node.ELEMENT_NODE ) {
@@ -141,7 +193,11 @@ module.exports = exports = defineComponent( {
 			return content;
 		}
 
-		async function injectPreview( response ) {
+		async function injectPreview( response, requestId ) {
+			// ignore responses superseded before resource loading begins.
+			if ( !chartPreviewRequests.isLatest( requestId ) ) {
+				return;
+			}
 			const parse = response.parse;
 			if ( parse.jsconfigvars ) {
 				mw.config.set( parse.jsconfigvars );
@@ -149,6 +205,10 @@ module.exports = exports = defineComponent( {
 			const modules = ( parse.modules || [] ).concat( parse.modulestyles || [] );
 			if ( modules.length ) {
 				await mw.loader.using( modules );
+			}
+			// the request may become stale while modules are loading.
+			if ( !chartPreviewRequests.isLatest( requestId ) ) {
+				return;
 			}
 			chartPreviewError.value = false;
 			const $previewContainer = window.jQuery( previewContainer.value );
@@ -158,7 +218,7 @@ module.exports = exports = defineComponent( {
 			mw.hook( 'wikipage.content' ).fire( $previewContainer );
 		}
 
-		async function renderChartPreview() {
+		async function renderChartPreview( requestId ) {
 			if ( !chartDefinition.value.source ) {
 				chartPreviewError.value = false;
 				initialLoad.value = false;
@@ -167,7 +227,7 @@ module.exports = exports = defineComponent( {
 			chartPreviewError.value = false;
 			await nextTick();
 			try {
-				const response = await api.post( {
+				const response = await chartPreviewApi.post( {
 					action: 'parse',
 					formatversion: 2,
 					title: mw.config.get( 'chartPageName' ),
@@ -182,23 +242,42 @@ module.exports = exports = defineComponent( {
 				}, {
 					headers: { 'Promise-Non-Write-API-Action': 'true' }
 				} );
-				await injectPreview( response );
+				await injectPreview( response, requestId );
 			} catch ( e ) {
-				chartPreviewError.value = true;
+				if ( chartPreviewRequests.isLatest( requestId ) ) {
+					chartPreviewError.value = true;
+				}
 			} finally {
-				initialLoad.value = false;
+				if ( chartPreviewRequests.isLatest( requestId ) ) {
+					initialLoad.value = false;
+				}
 			}
 		}
 
-		async function renderSourcePreview() {
+		function renderChartPreviewImmediately() {
+			return renderChartPreview( chartPreviewRequests.supersede() );
+		}
+
+		function scheduleChartPreview() {
+			const requestId = chartPreviewRequests.supersede();
+			chartPreviewError.value = false;
 			if ( !chartDefinition.value.source ) {
-				sourcePreview.value = '';
-				sourcePreviewError.value = false;
+				renderChartPreview( requestId );
+				return;
+			}
+			debouncedRenderChartPreview( requestId );
+		}
+
+		async function renderSourcePreview() {
+			const requestId = sourcePreviewRequests.supersede();
+			sourcePreview.value = '';
+			sourcePreviewError.value = false;
+			if ( !chartDefinition.value.source ) {
 				initialLoad.value = false;
 				return;
 			}
 			try {
-				const response = await api.get( {
+				const response = await sourcePreviewApi.get( {
 					action: 'query',
 					format: 'json',
 					prop: 'revisions',
@@ -206,6 +285,9 @@ module.exports = exports = defineComponent( {
 					titles: chartDefinition.value.source,
 					formatversion: 2
 				} );
+				if ( !sourcePreviewRequests.isLatest( requestId ) ) {
+					return;
+				}
 				const page = response.query.pages[ 0 ];
 				if ( page.missing || response.error ) {
 					sourcePreview.value = '';
@@ -217,10 +299,14 @@ module.exports = exports = defineComponent( {
 				), null, '    ' );
 				sourcePreviewError.value = false;
 			} catch ( e ) {
-				sourcePreview.value = '';
-				sourcePreviewError.value = true;
+				if ( sourcePreviewRequests.isLatest( requestId ) ) {
+					sourcePreview.value = '';
+					sourcePreviewError.value = true;
+				}
 			} finally {
-				initialLoad.value = false;
+				if ( sourcePreviewRequests.isLatest( requestId ) ) {
+					initialLoad.value = false;
+				}
 			}
 		}
 
@@ -228,11 +314,19 @@ module.exports = exports = defineComponent( {
 			if ( selectedPreview.value === 'data' ) {
 				return renderSourcePreview();
 			}
-			return renderChartPreview();
+			return renderChartPreviewImmediately();
 		}
 
 		function selectPreview( preview ) {
+			if ( preview === selectedPreview.value ) {
+				return;
+			}
 			selectedPreview.value = preview;
+			if ( preview === 'data' ) {
+				chartPreviewRequests.supersede();
+			} else {
+				sourcePreviewRequests.supersede();
+			}
 			return renderSelectedPreview();
 		}
 
@@ -246,9 +340,13 @@ module.exports = exports = defineComponent( {
 			chartPreviewError.value
 		);
 
-		watch( chartDefinition, () => {
+		watch( chartDefinition, ( definition, previousDefinition ) => {
 			if ( selectedPreview.value === 'chart' ) {
-				renderChartPreview();
+				if ( previousDefinition === undefined ) {
+					renderChartPreviewImmediately();
+				} else {
+					scheduleChartPreview();
+				}
 			}
 		}, { deep: true, immediate: true } );
 		watch( () => chartDefinition.value.source, () => {
@@ -258,8 +356,12 @@ module.exports = exports = defineComponent( {
 		} );
 		watch( currentLanguage, () => {
 			if ( selectedPreview.value === 'chart' ) {
-				renderChartPreview();
+				renderChartPreviewImmediately();
 			}
+		} );
+		onBeforeUnmount( () => {
+			chartPreviewRequests.supersede();
+			sourcePreviewRequests.supersede();
 		} );
 
 		return {
