@@ -1,8 +1,4 @@
 <template>
-	<chart-form
-		:chart-is-new="chartIsNew"
-		:base-rev-id="chartBaseRevId"
-	></chart-form>
 	<cdx-accordion
 		v-if="isMobile"
 		class="ext-chart-wizard__preview-accordion"
@@ -12,7 +8,11 @@
 		</template>
 		<chart-preview></chart-preview>
 	</cdx-accordion>
-	<chart-preview v-else></chart-preview>
+	<chart-form
+		:chart-is-new="chartIsNew"
+		:base-rev-id="chartBaseRevId"
+	></chart-form>
+	<chart-preview v-if="!isMobile"></chart-preview>
 </template>
 
 <script>
