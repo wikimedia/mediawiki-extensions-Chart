@@ -15,6 +15,7 @@ use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Skin\Hook\SkinTemplateNavigation__UniversalHook;
 use MediaWiki\Skin\SkinTemplate;
+use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;
 
@@ -23,11 +24,11 @@ class Hooks implements
 	PageSaveCompleteHook,
 	LinksUpdateCompleteHook,
 	SkinTemplateNavigation__UniversalHook,
+	SpecialPage_initListHook,
 	RecentChange_saveHook
 {
 	public const string SESSION_KEY = 'ext-chart';
 	public const string CHANGE_TAG = 'chart-wizard';
-	protected bool $isChartWizardEnabled;
 
 	/**
 	 * @param SpecialPageFactory $specialPageFactory
@@ -36,10 +37,9 @@ class Hooks implements
 	 */
 	public function __construct(
 		private readonly SpecialPageFactory $specialPageFactory,
-		Config $config,
+		private readonly Config $config,
 		private readonly ?FauxRequest $request = null,
 	) {
-		$this->isChartWizardEnabled = $config->get( 'ChartWizardEnabled' );
 	}
 
 	public static function onRegistration() {
@@ -90,7 +90,12 @@ class Hooks implements
 	 * @param array &$links
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
-		if ( !$this->isChartWizardEnabled ) {
+		if ( !$this->config->get( 'ChartWizardEnabled' ) ) {
+			return;
+		}
+
+		$chartWizard = $this->specialPageFactory->getPage( 'ChartWizard' );
+		if ( !$chartWizard ) {
 			return;
 		}
 
@@ -114,8 +119,7 @@ class Hooks implements
 			'text' => $sktemplate->msg( 'chart-wizard-tab-label' )->text(),
 			'icon' => 'edit',
 			'class' => $isChartWizardSpecialPage ? 'selected' : '',
-			'href' => $this->specialPageFactory->getPage( 'ChartWizard' )
-				->getPageTitle( $sktemplate->getRelevantTitle() )
+			'href' => $chartWizard->getPageTitle( $sktemplate->getRelevantTitle() )
 				->getLocalURL()
 		];
 
@@ -134,6 +138,22 @@ class Hooks implements
 		}
 
 		$links['views'] = $newTabs;
+	}
+
+	/** @inheritDoc */
+	public function onSpecialPage_initList( &$list ): void {
+		if ( !$this->config->get( 'ChartWizardEnabled' ) ) {
+			unset( $list['ChartWizard'] );
+			return;
+		}
+
+		$jsonConfigs = $this->config->get( 'JsonConfigs' );
+		$chartConfig = $jsonConfigs[JCChartContent::CONTENT_MODEL] ?? null;
+		$storesChartDefinitionsLocally = is_array( $chartConfig ) &&
+			( ( $chartConfig['isLocal'] ?? true ) || array_key_exists( 'store', $chartConfig ) );
+		if ( !$storesChartDefinitionsLocally ) {
+			unset( $list['ChartWizard'] );
+		}
 	}
 
 	/**

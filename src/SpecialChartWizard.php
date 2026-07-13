@@ -69,7 +69,6 @@ class SpecialChartWizard extends FormSpecialPage {
 			$this->getOutput()->addWikiMsg( 'chart-wizard-disabled' );
 			return;
 		}
-
 		// Check that the subpage parameter refers to a valid chart definition page.
 		$this->title = Title::newFromText( (string)$par, NS_DATA );
 		if ( !$this->hasValidChartDefinitionTarget( $this->title ) ) {
@@ -410,6 +409,9 @@ class SpecialChartWizard extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function onSubmit( array $data, ?HTMLForm $form = null ): Status|StatusValue {
+		if ( !$this->isChartWizardEnabled ) {
+			return Status::newFatal( 'chart-wizard-disabled' );
+		}
 		// Grab data directly from POST request, until ::getFormFields() encompasses the whole form.
 		$data = $form->getRequest()->getPostValues();
 

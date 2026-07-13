@@ -228,6 +228,7 @@
 		"ParserFirstCallInit": "main",
 		"PageSaveComplete": "main",
 		"SkinTemplateNavigation::Universal": "main",
+		"SpecialPage_initList": "main",
 		"RecentChange_save": "main",
 		"ListDefinedTags": "MediaWiki\\Extension\\Chart\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\Chart\\Hooks::onRegisterTags"

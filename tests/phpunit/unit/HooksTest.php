@@ -33,6 +33,7 @@ class HooksTest extends MediaWikiUnitTestCase {
 		$opts = array_merge(
 			[
 				'chartWizardEnabled' => true,
+				'storesChartsLocally' => true,
 				'canEdit' => true,
 				'contentModel' => JCChartContent::CONTENT_MODEL,
 				'tabs' => [
@@ -64,7 +65,8 @@ class HooksTest extends MediaWikiUnitTestCase {
 		$skinTemplate->expects( $this->atMost( 1 ) )
 			->method( 'getUser' )
 			->willReturn( $user );
-		$skinTemplate->expects( $opts['chartWizardEnabled'] ? $this->once() : $this->never() )
+		$wizardAvailable = $opts['chartWizardEnabled'] && $opts['storesChartsLocally'];
+		$skinTemplate->expects( $wizardAvailable ? $this->once() : $this->never() )
 			->method( 'getTitle' )
 			->willReturn( $title( $this ) );
 		$relevantTitle = ( $opts['relevantTitle'] ?? $title )( $this );
@@ -75,7 +77,11 @@ class HooksTest extends MediaWikiUnitTestCase {
 			->method( 'msg' )
 			->willReturnCallback( [ new FakeQqxMessageLocalizer(), 'msg' ] );
 
-		$handler = $this->getHandler( $opts['chartWizardEnabled'], $relevantTitle );
+		$handler = $this->getHandler(
+			$opts['chartWizardEnabled'],
+			$relevantTitle,
+			storesChartsLocally: $opts['storesChartsLocally']
+		);
 		$links = [ 'views' => $opts['tabs'] ];
 		$handler->onSkinTemplateNavigation__Universal( $skinTemplate, $links );
 
@@ -155,6 +161,12 @@ class HooksTest extends MediaWikiUnitTestCase {
 				],
 				'expectedTabs' => [ 'view', 'edit', 'history' ],
 			],
+			'chart definition page, remote storage' => [
+				'opts' => [
+					'storesChartsLocally' => false,
+				],
+				'expectedTabs' => [ 'view', 'edit', 'history' ],
+			],
 			'only view tab beforehand' => [
 				[ 'tabs' => [ 'view' => [] ] ],
 				[ 'view', 'chart-wizard' ],
@@ -163,6 +175,38 @@ class HooksTest extends MediaWikiUnitTestCase {
 				[ 'tabs' => [ 'foo' => [], 'bar' => [] ] ],
 				[ 'foo', 'bar', 'chart-wizard' ],
 			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideOnSpecialPage_initList
+	 */
+	public function testOnSpecialPage_initList(
+		bool $chartWizardEnabled,
+		bool $storesChartsLocally,
+		bool $expectedRegistration
+	): void {
+		$handler = $this->getHandler(
+			$chartWizardEnabled,
+			$this->makeMockTitle( 'Data:Example.Line.chart' ),
+			storesChartsLocally: $storesChartsLocally
+		);
+		$list = [
+			'ChartWizard' => SpecialPage::class,
+			'OtherPage' => SpecialPage::class,
+		];
+
+		$handler->onSpecialPage_initList( $list );
+
+		$this->assertSame( $expectedRegistration, isset( $list['ChartWizard'] ) );
+		$this->assertArrayHasKey( 'OtherPage', $list );
+	}
+
+	public static function provideOnSpecialPage_initList(): array {
+		return [
+			'enabled with local storage' => [ true, true, true ],
+			'disabled with local storage' => [ false, true, false ],
+			'enabled with remote storage' => [ true, false, false ],
 		];
 	}
 
@@ -194,13 +238,17 @@ class HooksTest extends MediaWikiUnitTestCase {
 	private function getHandler(
 		bool $chartWizardEnabled,
 		Title $relevantTitle,
-		?FauxRequest $request = null
+		?FauxRequest $request = null,
+		bool $storesChartsLocally = true
 	): Hooks {
 		$specialPageFactory = $this->createNoOpMock( SpecialPageFactory::class, [ 'getPage' ] );
 		$specialPageFactory->expects( $this->atMost( 1 ) )
 			->method( 'getPage' )
 			->with( 'ChartWizard' )
-			->willReturnCallback( function ( $name ) use ( $relevantTitle ) {
+			->willReturnCallback( function ( $name ) use ( $relevantTitle, $storesChartsLocally ) {
+				if ( !$storesChartsLocally ) {
+					return null;
+				}
 				$specialPage = $this->createNoOpMock( SpecialPage::class, [ 'getPageTitle' ] );
 				$specialPage->expects( $this->atMost( 1 ) )
 					->method( 'getPageTitle' )
@@ -208,7 +256,18 @@ class HooksTest extends MediaWikiUnitTestCase {
 					->willReturn( $relevantTitle );
 				return $specialPage;
 			} );
-		$config = new HashConfig( [ 'ChartWizardEnabled' => $chartWizardEnabled ] );
+		$chartJsonConfig = [
+			'isLocal' => $storesChartsLocally,
+		];
+		if ( $storesChartsLocally ) {
+			$chartJsonConfig['store'] = true;
+		}
+		$config = new HashConfig( [
+			'ChartWizardEnabled' => $chartWizardEnabled,
+			'JsonConfigs' => [
+				JCChartContent::CONTENT_MODEL => $chartJsonConfig,
+			],
+		] );
 		return new Hooks( $specialPageFactory, $config, $request );
 	}
 }
