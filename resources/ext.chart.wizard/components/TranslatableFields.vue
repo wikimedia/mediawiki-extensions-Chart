@@ -17,7 +17,7 @@
 		:optional="true"
 	>
 		<cdx-text-input
-			v-model="titleModel"
+			v-model.trim="titleModel"
 			:clearable="true"
 		></cdx-text-input>
 		<template #label>
@@ -29,7 +29,7 @@
 		:optional="true"
 	>
 		<cdx-text-input
-			v-model="subtitleModel"
+			v-model.trim="subtitleModel"
 			:clearable="true"
 		></cdx-text-input>
 		<template #label>
@@ -45,7 +45,7 @@
 		:optional="true"
 	>
 		<cdx-text-input
-			v-model="xAxisTitleModel"
+			v-model.trim="xAxisTitleModel"
 			:clearable="true"
 		></cdx-text-input>
 		<template #label>
@@ -61,7 +61,7 @@
 		:optional="true"
 	>
 		<cdx-text-input
-			v-model="yAxisTitleModel"
+			v-model.trim="yAxisTitleModel"
 			:clearable="true"
 		></cdx-text-input>
 		<template #label>

@@ -88,6 +88,18 @@ describe( 'TranslatableFields', () => {
 		expect( wrapper.vm.currentLanguage ).toBe( 'ar' );
 	} );
 
+	it( 'should trim translatable fields', async () => {
+		await wrapper.find( '.ext-chart-wizard__title input' ).setValue( '  Example title  ' );
+		await wrapper.find( '.ext-chart-wizard__subtitle input' ).setValue( '  Example subtitle  ' );
+		await wrapper.find( '.ext-chart-wizard__x-axis input' ).setValue( '  Example x-axis title  ' );
+		await wrapper.find( '.ext-chart-wizard__y-axis input' ).setValue( '  Example y-axis title  ' );
+
+		expect( store.title.ar ).toBe( 'Example title' );
+		expect( store.subtitle.ar ).toBe( 'Example subtitle' );
+		expect( store.xAxis.title.ar ).toBe( 'Example x-axis title' );
+		expect( store.yAxis.title.ar ).toBe( 'Example y-axis title' );
+	} );
+
 	it( 'should set the format option on the axis unless it matches the default', () => {
 		expect( store.xAxis.format ).toBe( 'auto' );
 		expect( store.yAxis.format ).toBe( 'none' );
