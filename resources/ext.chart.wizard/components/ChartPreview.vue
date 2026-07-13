@@ -21,39 +21,16 @@
 				{{ $i18n( 'chart-wizard-preview-data-view' ).text() }}
 			</cdx-button>
 		</div>
+		<rendered-chart-preview
+			v-if="chartDefinition.source && selectedPreview === 'chart'"
+		></rendered-chart-preview>
+		<source-data-preview
+			v-else-if="chartDefinition.source"
+		></source-data-preview>
 		<div
-			v-if="chartDefinition.source && activePreviewError"
-			class="ext-chart-wizard__preview--error"
+			v-else
+			class="ext-chart-wizard__preview-placeholder"
 		>
-			<cdx-message
-				type="error"
-				inline
-			>
-				{{ $i18n( 'chart-wizard-preview-error' ) }}
-			</cdx-message>
-			<cdx-button
-				weight="primary"
-				@click.prevent="renderSelectedPreview"
-			>
-				{{ $i18n( 'chart-wizard-preview-error-retry' ) }}
-			</cdx-button>
-		</div>
-		<div
-			v-else-if="chartDefinition.source && selectedPreview === 'chart'"
-			ref="previewContainer"
-			class="ext-chart-wizard__preview--chart"
-		>
-		</div>
-		<div
-			v-else-if="chartDefinition.source && selectedPreview === 'data'"
-			class="ext-chart-wizard__preview--data"
-		>
-			<pre
-				v-if="sourcePreview.length"
-				class="ext-chart-wizard__preview--source"
-			>{{ sourcePreview }}</pre>
-		</div>
-		<div v-else class="ext-chart-wizard__preview-placeholder">
 			<div class="ext-chart-wizard__preview-placeholder-image-wrapper skin-invert">
 				<!-- eslint-disable-next-line vue/max-attributes-per-line -->
 				<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="none" viewBox="0 0 34 34">
@@ -74,60 +51,22 @@
 </template>
 
 <script>
-const {
-	computed,
-	defineComponent,
-	nextTick,
-	onBeforeUnmount,
-	ref,
-	useTemplateRef,
-	watch,
-	ComputedRef,
-	Ref
-} = require( 'vue' );
+const { defineComponent, ref, Ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
-const { CdxButton, CdxMessage } = require( '../../../codex.js' );
+const { CdxButton } = require( '../../../codex.js' );
+const RenderedChartPreview = require( './RenderedChartPreview.vue' );
+const SourceDataPreview = require( './SourceDataPreview.vue' );
 const useChartStore = require( '../stores/chart.js' );
-const previewDebounceDelay = 300;
-
-function createCancelableDebounce( callback, delay ) {
-	let timeout;
-	const debounced = ( ...args ) => {
-		clearTimeout( timeout );
-		timeout = setTimeout( () => {
-			timeout = undefined;
-			callback( ...args );
-		}, delay );
-	};
-	debounced.cancel = () => {
-		clearTimeout( timeout );
-		timeout = undefined;
-	};
-	return debounced;
-}
-
-function createRequestController( api, cancelPending = () => {} ) {
-	let latestRequestId = 0;
-	return {
-		supersede() {
-			cancelPending();
-			api.abort();
-			return ++latestRequestId;
-		},
-		isLatest( requestId ) {
-			return requestId === latestRequestId;
-		}
-	};
-}
 
 module.exports = exports = defineComponent( {
 	name: 'ChartPreview',
-	components: { CdxButton, CdxMessage },
+	components: {
+		CdxButton,
+		RenderedChartPreview,
+		SourceDataPreview
+	},
 	setup() {
-		const chartPreviewApi = new mw.Api();
-		const sourcePreviewApi = new mw.Api();
-		const store = useChartStore();
-		const { chartDefinition, initialLoad, currentLanguage } = storeToRefs( store );
+		const { chartDefinition, initialLoad } = storeToRefs( useChartStore() );
 
 		/**
 		 * The selected preview mode.
@@ -136,242 +75,21 @@ module.exports = exports = defineComponent( {
 		 */
 		const selectedPreview = ref( 'chart' );
 
-		/**
-		 * Whether the rendered chart preview request failed.
-		 *
-		 * @type {Ref<boolean>}
-		 */
-		const chartPreviewError = ref( false );
-
-		/**
-		 * Whether the source data preview request failed.
-		 *
-		 * @type {Ref<boolean>}
-		 */
-		const sourcePreviewError = ref( false );
-
-		/**
-		 * Preview of the source content.
-		 *
-		 * @type {Ref<string>}
-		 */
-		const sourcePreview = ref( '' );
-
-		/**
-		 * Container for rendered chart preview HTML.
-		 *
-		 * @type {Ref<HTMLElement|null>}
-		 */
-		const previewContainer = useTemplateRef( 'previewContainer' );
-
-		const debouncedRenderChartPreview = createCancelableDebounce(
-			( requestId ) => renderChartPreview( requestId ),
-			previewDebounceDelay
-		);
-		const chartPreviewRequests = createRequestController(
-			chartPreviewApi,
-			debouncedRenderChartPreview.cancel
-		);
-		const sourcePreviewRequests = createRequestController( sourcePreviewApi );
-
-		function prepareChartPreviewContent( content ) {
-			content.forEach( ( node ) => {
-				if ( node.nodeType !== Node.ELEMENT_NODE ) {
-					return;
-				}
-				const charts = node.matches( 'wiki-chart' ) ?
-					[ node ] :
-					Array.from( node.querySelectorAll( 'wiki-chart' ) );
-				charts.forEach( ( chart ) => {
-					const svg = chart.querySelector( 'svg' );
-					const height = svg && svg.getAttribute( 'height' );
-					if ( height ) {
-						chart.style.minHeight = `${ height }px`;
-					}
-				} );
-			} );
-			return content;
-		}
-
-		async function injectPreview( response, requestId ) {
-			// ignore responses superseded before resource loading begins.
-			if ( !chartPreviewRequests.isLatest( requestId ) ) {
-				return;
-			}
-			const parse = response.parse;
-			if ( parse.jsconfigvars ) {
-				mw.config.set( parse.jsconfigvars );
-			}
-			const modules = ( parse.modules || [] ).concat( parse.modulestyles || [] );
-			if ( modules.length ) {
-				await mw.loader.using( modules );
-			}
-			// the request may become stale while modules are loading.
-			if ( !chartPreviewRequests.isLatest( requestId ) ) {
-				return;
-			}
-			chartPreviewError.value = false;
-			const $previewContainer = window.jQuery( previewContainer.value );
-			$previewContainer.empty().append(
-				prepareChartPreviewContent( window.jQuery.parseHTML( parse.text ) )
-			);
-			mw.hook( 'wikipage.content' ).fire( $previewContainer );
-		}
-
-		async function renderChartPreview( requestId ) {
-			if ( !chartDefinition.value.source ) {
-				chartPreviewError.value = false;
-				initialLoad.value = false;
-				return;
-			}
-			chartPreviewError.value = false;
-			await nextTick();
-			try {
-				const response = await chartPreviewApi.post( {
-					action: 'parse',
-					formatversion: 2,
-					title: mw.config.get( 'chartPageName' ),
-					text: JSON.stringify( chartDefinition.value ),
-					contentmodel: 'Chart.JsonConfig',
-					prop: 'text|modules|modulestyles|jsconfigvars',
-					preview: true,
-					disableeditsection: true,
-					disablelimitreport: 1,
-					useskin: mw.config.get( 'skin' ),
-					uselang: currentLanguage.value
-				}, {
-					headers: { 'Promise-Non-Write-API-Action': 'true' }
-				} );
-				await injectPreview( response, requestId );
-			} catch ( e ) {
-				if ( chartPreviewRequests.isLatest( requestId ) ) {
-					chartPreviewError.value = true;
-				}
-			} finally {
-				if ( chartPreviewRequests.isLatest( requestId ) ) {
-					initialLoad.value = false;
-				}
-			}
-		}
-
-		function renderChartPreviewImmediately() {
-			return renderChartPreview( chartPreviewRequests.supersede() );
-		}
-
-		function scheduleChartPreview() {
-			const requestId = chartPreviewRequests.supersede();
-			chartPreviewError.value = false;
-			if ( !chartDefinition.value.source ) {
-				renderChartPreview( requestId );
-				return;
-			}
-			debouncedRenderChartPreview( requestId );
-		}
-
-		async function renderSourcePreview() {
-			const requestId = sourcePreviewRequests.supersede();
-			sourcePreview.value = '';
-			sourcePreviewError.value = false;
-			if ( !chartDefinition.value.source ) {
-				initialLoad.value = false;
-				return;
-			}
-			try {
-				const response = await sourcePreviewApi.get( {
-					action: 'query',
-					format: 'json',
-					prop: 'revisions',
-					rvprop: 'content',
-					titles: chartDefinition.value.source,
-					formatversion: 2
-				} );
-				if ( !sourcePreviewRequests.isLatest( requestId ) ) {
-					return;
-				}
-				const page = response.query.pages[ 0 ];
-				if ( page.missing || response.error ) {
-					sourcePreview.value = '';
-					sourcePreviewError.value = true;
-					return;
-				}
-				sourcePreview.value = JSON.stringify( JSON.parse(
-					page.revisions[ 0 ].content
-				), null, '    ' );
-				sourcePreviewError.value = false;
-			} catch ( e ) {
-				if ( sourcePreviewRequests.isLatest( requestId ) ) {
-					sourcePreview.value = '';
-					sourcePreviewError.value = true;
-				}
-			} finally {
-				if ( sourcePreviewRequests.isLatest( requestId ) ) {
-					initialLoad.value = false;
-				}
-			}
-		}
-
-		function renderSelectedPreview() {
-			if ( selectedPreview.value === 'data' ) {
-				return renderSourcePreview();
-			}
-			return renderChartPreviewImmediately();
-		}
-
 		function selectPreview( preview ) {
 			if ( preview === selectedPreview.value ) {
 				return;
 			}
 			selectedPreview.value = preview;
-			if ( preview === 'data' ) {
-				chartPreviewRequests.supersede();
-			} else {
-				sourcePreviewRequests.supersede();
-			}
-			return renderSelectedPreview();
 		}
 
-		/**
-		 * Whether the currently visible preview request failed.
-		 *
-		 * @type {ComputedRef<boolean>}
-		 */
-		const activePreviewError = computed( () => selectedPreview.value === 'data' ?
-			sourcePreviewError.value :
-			chartPreviewError.value
-		);
-
-		watch( chartDefinition, ( definition, previousDefinition ) => {
-			if ( selectedPreview.value === 'chart' ) {
-				if ( previousDefinition === undefined ) {
-					renderChartPreviewImmediately();
-				} else {
-					scheduleChartPreview();
-				}
-			}
-		}, { deep: true, immediate: true } );
-		watch( () => chartDefinition.value.source, () => {
-			if ( selectedPreview.value === 'data' ) {
-				renderSourcePreview();
-			}
-		} );
-		watch( currentLanguage, () => {
-			if ( selectedPreview.value === 'chart' ) {
-				renderChartPreviewImmediately();
-			}
-		} );
-		onBeforeUnmount( () => {
-			chartPreviewRequests.supersede();
-			sourcePreviewRequests.supersede();
-		} );
+		if ( !chartDefinition.value.source ) {
+			initialLoad.value = false;
+		}
 
 		return {
-			activePreviewError,
 			chartDefinition,
-			previewContainer,
-			renderSelectedPreview,
 			selectPreview,
-			selectedPreview,
-			sourcePreview
+			selectedPreview
 		};
 	}
 } );

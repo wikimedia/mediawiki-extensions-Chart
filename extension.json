@@ -129,8 +129,11 @@
 			"packageFiles": [
 				"resources/ext.chart.wizard/init.js",
 				"resources/ext.chart.wizard/stores/chart.js",
+				"resources/ext.chart.wizard/requestUtils.js",
 				"resources/ext.chart.wizard/components/ChartForm.vue",
 				"resources/ext.chart.wizard/components/ChartPreview.vue",
+				"resources/ext.chart.wizard/components/RenderedChartPreview.vue",
+				"resources/ext.chart.wizard/components/SourceDataPreview.vue",
 				"resources/ext.chart.wizard/components/ChartWizard.vue",
 				"resources/ext.chart.wizard/components/SourceField.vue",
 				"resources/ext.chart.wizard/components/ChartConfigure.vue",

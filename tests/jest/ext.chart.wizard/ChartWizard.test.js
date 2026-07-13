@@ -31,25 +31,6 @@ describe( 'ChartWizard', () => {
 			}
 		} );
 		mw.loader.using = jest.fn().mockResolvedValue();
-		mw.hook = jest.fn().mockReturnValue( { fire: jest.fn() } );
-		window.jQuery = jest.fn( ( element ) => {
-			const collection = {
-				empty: jest.fn( () => {
-					element.innerHTML = '';
-					return collection;
-				} ),
-				append: jest.fn( ( content ) => {
-					content.forEach( ( node ) => element.appendChild( node ) );
-					return collection;
-				} )
-			};
-			return collection;
-		} );
-		window.jQuery.parseHTML = jest.fn( ( html ) => {
-			const template = document.createElement( 'template' );
-			template.innerHTML = html;
-			return Array.from( template.content.childNodes );
-		} );
 	} );
 
 	afterEach( () => jest.clearAllMocks() );
