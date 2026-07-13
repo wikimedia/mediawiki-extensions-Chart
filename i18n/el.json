@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geraki"
+			"Geraki",
+			"Jimkats"
 		]
 	},
 	"chart-desc": "Προσθέτει τη λειτουργία ανάλυσης <code><nowiki>{{#chart:}}</nowiki></code> για την εμφάνιση γραφημάτων",
@@ -30,6 +31,8 @@
 	"chart-wizard-form-source-label": "1. Επιλέξτε σύνολο δεδομένων",
 	"chart-wizard-form-source-description": "Επιλέξτε το σύνολο δεδομένων σε μορφή πίνακα που θέλετε να απεικονίσετε",
 	"chart-wizard-form-source-placeholder": "Αναζήτηση για σύνολο δεδομένων...",
+	"chart-wizard-form-language-label": "Γλώσσα",
+	"chart-wizard-form-subtitle-label": "Υπότιτλος",
 	"chart-wizard-preview-placeholder-title": "Επιλογή συνόλου δεδομένων",
 	"chart-wizard-preview-placeholder-description": "Τα δεδομένα σας θα εμφανιστούν εδώ για προεπισκόπηση πριν δημιουργήσετε ένα διάγραμμα",
 	"chartjson-error-version": "Το $1 πρέπει να είναι ένας ακέραιος αριθμός μεταξύ $2 και $3 συμπεριλαμβανομένων αυτών.",

@@ -32,7 +32,6 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Grafiekdefinitiepagina",
 	"chart-visualeditor-mwchartdialog-data-label": "Bron tabelgegevens grafiek",
 	"chart-wizard-disabled": "De grafiekwizard is uitgeschakeld.",
-	"chart-wizard-error": "Fout in de grafiekwizard",
 	"chart-wizard-tab-label": "Bewerken met formulier",
 	"chart-wizard-form-source-label": "1. Kies een gegevensset",
 	"chart-wizard-form-source-description": "Selecteer de tabelgegevensset die u wilt visualiseren.",
