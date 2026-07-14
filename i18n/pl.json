@@ -2,18 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Woytecr",
-			"Rail"
+			"Rail",
+			"PanWor"
 		]
 	},
 	"chart-desc": "Dodaje funkcję prasera <code><nowiki>{{#chart:}}</nowiki></code> do wyświetlania wykresów",
 	"chart-error-chart-definition-not-found": "Nie znaleziono strony z definicją wykresu.",
-	"chart-error-data-source-page-not-found": "Nie znaleziono strony ze źródłem danych w formie tabelarycznej dla wykresu.",
+	"chart-error-data-source-page-not-found": "Nie znaleziono strony źródła danych tabelarycznych wykresu.",
 	"chart-error-default-source-not-specified": "Strona definicji wykresu nie określa domyślnego źródła danych.",
 	"chart-error-incompatible-chart-definition": "Strona definicji jest niezgodna z mechanizmem wykresów.",
-	"chart-error-incompatible-data-source": "Strona źródła danych w formie tabelarycznej jest niekompatybilna z wykresami.",
+	"chart-error-incompatible-data-source": "Strona źródła danych tabelarycznych jest niekompatybilna z mechanizmem wykresów.",
 	"chart-error-invalid-height": "Wysokość musi być liczbą całkowitą większą lub równą 100.",
 	"chart-error-invalid-width": "Szerokość musi być liczbą całkowitą większą lub równą 100.",
-	"chart-error-shell-disabled": "Wykresy nie mogą zostać wyrenderowane, ponieważ wykonywanie w warstwie shell jest wyłączone.",
+	"chart-error-shell-disabled": "Wykresy nie mogą zostać wyrenderowane, ponieważ wykonanie poleceń powłoki jest wyłączone.",
 	"chart-error-rendering-error": "Wystąpił błąd podczas renderowania wykresu.",
 	"chart-error-unexpected": "Podczas renderowania wykresu wystąpił nieoczekiwany błąd."
 }
