@@ -206,6 +206,7 @@
 				"chart-wizard-preview-data-view",
 				"chart-wizard-preview-error",
 				"chart-wizard-preview-error-retry",
+				"chart-wizard-preview-language-fallback",
 				"chart-wizard-preview-placeholder-description",
 				"chart-wizard-preview-placeholder-title",
 				"chart-wizard-publish",

@@ -105,6 +105,10 @@ module.exports = exports = defineComponent( {
 		margin-bottom: @spacing-100;
 	}
 
+	&-language-fallback {
+		margin: @spacing-100;
+	}
+
 	&--error {
 		left: @size-half;
 		position: absolute;

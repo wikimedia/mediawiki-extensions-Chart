@@ -1,4 +1,15 @@
 <template>
+	<cdx-message
+		v-if="chartDefinition.source && previewUsesLanguageFallback"
+		class="ext-chart-wizard__preview-language-fallback"
+		type="notice"
+		inline
+	>
+		{{ $i18n(
+			'chart-wizard-preview-language-fallback',
+			currentLanguageName
+		).text() }}
+	</cdx-message>
 	<div
 		v-if="previewError"
 		class="ext-chart-wizard__preview--error"
@@ -26,6 +37,7 @@
 
 <script>
 const {
+	computed,
 	defineComponent,
 	nextTick,
 	onBeforeUnmount,
@@ -49,6 +61,22 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const api = new mw.Api();
 		const { chartDefinition, initialLoad, currentLanguage } = storeToRefs( useChartStore() );
+		const currentLanguageName = computed( () => {
+			const languageNames = mw.config.get( 'chartLanguages' ) || {};
+			return languageNames[ currentLanguage.value ] || currentLanguage.value;
+		} );
+		const previewUsesLanguageFallback = computed( () => {
+			const definition = chartDefinition.value;
+			return [
+				definition.title,
+				definition.subtitle,
+				definition.xAxis && definition.xAxis.title,
+				definition.yAxis && definition.yAxis.title
+			].some( ( translations ) => translations &&
+				Object.keys( translations ).length &&
+				!Object.prototype.hasOwnProperty.call( translations, currentLanguage.value )
+			);
+		} );
 
 		/**
 		 * Whether the rendered chart preview request failed.
@@ -163,8 +191,11 @@ module.exports = exports = defineComponent( {
 		onBeforeUnmount( () => previewRequests.supersede() );
 
 		return {
+			chartDefinition,
+			currentLanguageName,
 			previewContainer,
 			previewError,
+			previewUsesLanguageFallback,
 			renderPreviewImmediately
 		};
 	}

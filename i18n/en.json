@@ -80,6 +80,7 @@
 	"chart-wizard-preview-placeholder-description": "Your data will appear here to preview before creating a chart",
 	"chart-wizard-preview-error": "Something went wrong while previewing.",
 	"chart-wizard-preview-error-retry": "Try again",
+	"chart-wizard-preview-language-fallback": "Some chart text is not available in $1. The preview uses fallback translations where available.",
 	"chart-wizard-preview-chart-view": "Chart",
 	"chart-wizard-preview-data-view": "Data",
 	"chart-wizard-preview-accordion": "View preview",

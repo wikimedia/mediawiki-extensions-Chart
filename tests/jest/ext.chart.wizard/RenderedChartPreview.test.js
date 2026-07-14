@@ -34,6 +34,10 @@ describe( 'RenderedChartPreview', () => {
 			set: jest.fn( ( values ) => Object.assign( configValues, values ) )
 		};
 		mw.config.set( {
+			chartLanguages: {
+				en: 'English',
+				es: 'español'
+			},
 			chartPageName: 'Data:Example.Line.chart',
 			skin: 'vector-2022',
 			wgUserLanguage: 'en'
@@ -134,6 +138,29 @@ describe( 'RenderedChartPreview', () => {
 		expect( mw.Api.prototype.post ).toHaveBeenCalledTimes( 2 );
 		expect( mw.Api.prototype.post.mock.calls[ 1 ][ 0 ].uselang ).toBe( 'fr' );
 	} );
+
+	it( 'should explain when the chart preview uses language fallback', async () => {
+		mountPreview( 'Data:Chart Example Data.tab' );
+		store.title.en = 'English title';
+		store.currentLanguage = 'es';
+		await flushPromises();
+
+		expect( wrapper.find( '.ext-chart-wizard__preview-language-fallback' ).text() ).toBe(
+			'chart-wizard-preview-language-fallback:[español]'
+		);
+	} );
+
+	it( 'should not show a fallback notice when chart text exists in the selected language',
+		async () => {
+			mountPreview( 'Data:Chart Example Data.tab' );
+			store.title.en = 'English title';
+			store.title.es = 'Título en español';
+			store.currentLanguage = 'es';
+			await flushPromises();
+
+			expect( wrapper.find( '.ext-chart-wizard__preview-language-fallback' ).exists() )
+				.toBeFalsy();
+		} );
 
 	it( 'should abort a superseded parsed chart preview request', async () => {
 		mw.Api.prototype.post.mockReturnValue( new Promise( () => {} ) );
