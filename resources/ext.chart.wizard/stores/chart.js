@@ -128,11 +128,7 @@ module.exports = exports = defineStore( 'chart', () => {
 	 *
 	 * @type {Ref<LuaTransform>}
 	 */
-	const transform = ref( {
-		module: '',
-		function: '',
-		args: {}
-	} );
+	const transform = ref( {} );
 	/**
 	 * The language code of the translatable fields we're currently editing and previewing.
 	 *

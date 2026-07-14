@@ -68,6 +68,21 @@ describe( 'ChartWizard', () => {
 		expect( store.chartDefinition.type ).toBe( 'bar' );
 	} );
 
+	it( 'should omit transform when the chart definition has none', () => {
+		const chartDefinition = Object.assign( {}, fixtures[ 'Data:Example.Line.chart' ] );
+		delete chartDefinition.transform;
+		shallowMount( ChartWizard, {
+			global: { plugins: [ createTestingPinia( { stubActions: false } ) ] },
+			props: {
+				chartDefinition,
+				chartIsNew: false
+			}
+		} );
+		const store = useChartStore();
+		expect( store.transform ).toStrictEqual( {} );
+		expect( store.chartDefinition ).not.toHaveProperty( 'transform' );
+	} );
+
 	it( 'should keep preview errors out of form constraints', async () => {
 		const form = document.createElement( 'form' );
 		form.id = 'ext-chart-wizard';

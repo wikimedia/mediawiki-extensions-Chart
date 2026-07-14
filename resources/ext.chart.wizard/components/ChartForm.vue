@@ -5,6 +5,7 @@
 		class="ext-chart-wizard__form"
 	>
 		<source-field></source-field>
+		<transform-notice></transform-notice>
 		<chart-configure></chart-configure>
 		<license-field></license-field>
 		<!-- eslint-disable-next-line vue/no-v-html -->
@@ -46,6 +47,7 @@ const { computed, defineComponent, nextTick } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
 const { CdxButton, CdxField } = require( '../../../codex.js' );
 const SourceField = require( './SourceField.vue' );
+const TransformNotice = require( './TransformNotice.vue' );
 const ChartConfigure = require( './ChartConfigure.vue' );
 const LicenseField = require( './LicenseField.vue' );
 const useChartStore = require( '../stores/chart.js' );
@@ -57,6 +59,7 @@ module.exports = exports = defineComponent( {
 		CdxField,
 		ChartConfigure,
 		SourceField,
+		TransformNotice,
 		LicenseField
 	},
 	props: {

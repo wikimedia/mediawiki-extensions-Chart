@@ -71,6 +71,8 @@
 	"chart-wizard-form-x-axis-label": "X-axis label",
 	"chart-wizard-form-y-axis-label": "Y-axis label",
 	"chart-wizard-form-axis-format-label": "Shorten large numbers (e.g. 1M instead of 1,000,000)",
+	"chart-wizard-form-transform-description": "Data is transformed by [[$1]], function $2.",
+	"chart-wizard-form-transform-arguments": "Arguments:",
 	"chart-wizard-form-publish-label": "3. Publish chart",
 	"chart-wizard-form-publish-description": "Confirm your chart details and publish.",
 	"chart-wizard-form-license-label": "License",

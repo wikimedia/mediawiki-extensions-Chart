@@ -124,7 +124,8 @@
 			"dependencies": [
 				"vue",
 				"pinia",
-				"mediawiki.Title"
+				"mediawiki.Title",
+				"mediawiki.jqueryMsg"
 			],
 			"packageFiles": [
 				"resources/ext.chart.wizard/init.js",
@@ -136,6 +137,7 @@
 				"resources/ext.chart.wizard/components/SourceDataPreview.vue",
 				"resources/ext.chart.wizard/components/ChartWizard.vue",
 				"resources/ext.chart.wizard/components/SourceField.vue",
+				"resources/ext.chart.wizard/components/TransformNotice.vue",
 				"resources/ext.chart.wizard/components/ChartConfigure.vue",
 				"resources/ext.chart.wizard/components/ChartTypeField.vue",
 				"resources/ext.chart.wizard/components/CategoriesField.vue",
@@ -157,6 +159,7 @@
 				"CdxButton",
 				"CdxCheckbox",
 				"CdxField",
+				"CdxInfoChip",
 				"CdxLookup",
 				"CdxMessage",
 				"CdxMultiselectLookup",
@@ -184,6 +187,8 @@
 				"chart-wizard-form-subtitle-description",
 				"chart-wizard-form-subtitle-label",
 				"chart-wizard-form-title-label",
+				"chart-wizard-form-transform-arguments",
+				"chart-wizard-form-transform-description",
 				"chart-wizard-form-type-area",
 				"chart-wizard-form-type-area-description",
 				"chart-wizard-form-type-bar",

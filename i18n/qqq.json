@@ -71,6 +71,8 @@
 	"chart-wizard-form-x-axis-label": "Label for the X-axis field in the chart wizard form",
 	"chart-wizard-form-y-axis-label": "Label for the Y-axis field in the chart wizard form",
 	"chart-wizard-form-axis-format-label": "Label for the axis format field in the chart wizard form",
+	"chart-wizard-form-transform-description": "Notice shown when a chart uses a read-only data transform. Parameters:\n* $1 - the linked Lua module page title\n* $2 - the Lua function name, displayed as code",
+	"chart-wizard-form-transform-arguments": "Label before the list of arguments passed to a chart transform.",
 	"chart-wizard-form-publish-label": "Label of the publish chart fieldset in the chart wizard form",
 	"chart-wizard-form-publish-description": "Description of the publish chart fieldset in the chart wizard form",
 	"chart-wizard-form-license-label": "Label for the license field in the chart wizard form",

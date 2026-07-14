@@ -81,7 +81,7 @@ module.exports = exports = defineComponent( {
 			type.value = ( chartDefinition.type === 'rect' ? 'bar' : chartDefinition.type ) || 'line';
 			xAxis.value = chartDefinition.xAxis || {};
 			yAxis.value = chartDefinition.yAxis || {};
-			transform.value = chartDefinition.transform;
+			transform.value = chartDefinition.transform || {};
 		} );
 
 		onMounted( () => mediaQuery.addEventListener( 'change', onMatchMediaChange ) );
