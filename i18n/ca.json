@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"AlbertRA"
+		]
+	},
+	"chart-wizard-create-submit": "Continua",
+	"chart-wizard-form-categories": "Categories",
+	"chart-wizard-form-categories-placeholder": "Afegeix una categoria...",
+	"chart-wizard-form-categories-no-results": "No s’ha trobat cap resultat",
+	"chart-wizard-form-language-untranslated": "Sense traduir",
+	"chart-wizard-form-license-label": "Llicència",
+	"chart-wizard-preview-accordion": "Mostra previsualització"
+}

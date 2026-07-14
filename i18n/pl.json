@@ -78,6 +78,7 @@
 	"chart-wizard-preview-error-retry": "Spróbuj ponownie",
 	"chart-wizard-preview-chart-view": "Wykres",
 	"chart-wizard-preview-data-view": "Dane",
+	"chart-wizard-preview-accordion": "Pokaż podgląd",
 	"chart-wizard-publish": "Opublikuj wykres",
 	"tag-chart-wizard": "[[mw:Special:MyLanguage/Extension:Chart/Wizard|Kreator wykresów]]",
 	"tag-chart-wizard-description": "Edycja wykorzystująca kreator wykresów",
