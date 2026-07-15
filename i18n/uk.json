@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Serhio Magpie",
-			"Repakr"
+			"Repakr",
+			"Movses"
 		]
 	},
 	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> ждя відображення діаграм",
