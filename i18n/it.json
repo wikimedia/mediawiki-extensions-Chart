@@ -42,6 +42,7 @@
 	"chart-wizard-form-axis-format-label": "Abbrevia i numeri grandi (ad esempio 1M invece di 1.000.000)",
 	"chart-wizard-form-publish-label": "3. Pubblica il grafico",
 	"chart-wizard-form-license-label": "Licenza",
+	"chart-wizard-preview-accordion": "Visualizza anteprima",
 	"chartjson-error-version": "$1 deve essere un numero intero tra $2 e $3 inclusi.",
 	"chartjson-error-enum": "$1 deve essere uno dei seguenti valori: $2",
 	"chart-error-source-not-found": "Pagina di origine dei dati tabellari del grafico non è stata trovata.",

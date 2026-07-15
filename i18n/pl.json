@@ -31,6 +31,7 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Strona definicji wykresu",
 	"chart-visualeditor-mwchartdialog-data-label": "Źródło danych tabelarycznych wykresu",
 	"chart-wizard-disabled": "Kreator wykresów jest wyłączony.",
+	"chart-wizard-deprecated-format": "Ten wykres korzysta z przestarzałego formatu, który nie jest obsługiwany przez kreatora wykresów. Edytuj definicję wykresu za pomocą [$1 edytora kodu źródłowego]. [$2 Dowiedz się więcej] o przestarzałych formatach.",
 	"chart-wizard-tab-label": "Edytuj formularzem",
 	"chart-wizard-create-title": "Utwórz nowy wykres",
 	"chart-wizard-create-text": "Wybierz nazwę nowej strony definicji wykresu.",

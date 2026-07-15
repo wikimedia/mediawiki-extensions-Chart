@@ -29,6 +29,7 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Páxina de definición do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de datos tabulares do gráfico",
 	"chart-wizard-disabled": "O asistente de gráficos está desactivado.",
+	"chart-wizard-deprecated-format": "Este gráfico usa un formato antigo que non é compatible co asistente de gráficos. Edita a definición do gráfico usando o [$1 editor de código fonte]. [$2 Máis información] sobre os formatos obsoletos.",
 	"chart-wizard-tab-label": "Editar con formulario",
 	"chart-wizard-create-title": "Crear un gráfico novo",
 	"chart-wizard-create-text": "Escolle un nome para a nova páxina de definición do gráfico.",

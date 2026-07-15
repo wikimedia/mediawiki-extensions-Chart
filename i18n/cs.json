@@ -1,9 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mormegil",
 			"Nesuprachy"
 		]
 	},
+	"chart-desc": "Přidává funkci parseru <code><nowiki>{{#chart:}}</nowiki></code> pro zobrazování grafů",
+	"chart-error-category": "Stránky používající rozšíření Chart s chybami vykreslování",
+	"chart-error-category-desc": "Stránka obsahuje graf s chybami vykreslování.",
+	"chart-deprecated-category": "Definice grafů používající zastaralé formáty",
+	"chart-deprecated-category-desc": "Definice grafu používá zastaralý formát. Pokyny pro migraci najdete [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Chart#Deprecated_formats v dokumentaci].",
+	"chart-render-category": "Stránky používající rozšíření Chart",
+	"chart-render-category-desc": "Stránka používá funkci parseru <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-tooltip-nodata": "Žádná data",
+	"chart-visualeditor-mwchartdialog-title": "Graf",
 	"chartjson-error-version": "$1 musí být celé číslo mezi $2 a $3 včetně.",
 	"chartjson-error-enum": "$1 musí být jedna z následujících hodnot: $2"
 }

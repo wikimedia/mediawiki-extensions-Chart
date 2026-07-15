@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Soued031",
 			"Volvox"
 		]
 	},
@@ -21,6 +22,7 @@
 	"chart-visualeditor-mwchartdialog-title": "Diagramm",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitiounssäit",
 	"chart-wizard-create-title": "En neien Diagramm uleeën",
+	"chart-wizard-form-source-label": "1. Datesaz auswielen",
 	"chart-wizard-form-type-label": "Diagrammtyp",
 	"chart-wizard-form-type-placeholder": "Diagrammtyp auswielen...",
 	"chart-wizard-form-type-line": "Linnendiagramm",
