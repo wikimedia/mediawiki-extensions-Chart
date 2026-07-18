@@ -1,8 +1,8 @@
 'use strict';
 
 const fixtures = {
-	'Data:Example.Line.chart': require( './fixtures/Data:Example.Line.chart.json' ),
-	'Data:Chart Example Data.tab': require( './fixtures/Data:Chart Example Data.tab.json' )
+	'Data:Example.Line.chart': require( './fixtures/Example.Line.chart.json' ),
+	'Data:Chart Example Data.tab': require( './fixtures/Chart Example Data.tab.json' )
 };
 
 /**
