@@ -20,6 +20,7 @@
 	"chart-error-unexpected": "Се јави неочекувана грешка при исцртувањето на графиконот.",
 	"chart-error-category": "Страници што го користат додатокот Графикон со грешки во исписот",
 	"chart-error-category-desc": "Страницата содржи графикот со грешки при испис.",
+	"chart-deprecated-category": "Дефиниции на графикони во застарен формат",
 	"chart-render-category": "Страници што го користат додатокот Графикон",
 	"chart-render-category-desc": "Страницата ја користи расчленувачката функција <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-render-tooltip-nodata": "Нема податоци",
