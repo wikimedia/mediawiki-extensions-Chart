@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nesuprachy"
+			"Nesuprachy",
+			"Mormegil"
 		]
-	}
+	},
+	"chart-desc": "Přidává funkci parseru <code><nowiki>{{#chart:}}</nowiki></code> pro zobrazování grafů"
 }

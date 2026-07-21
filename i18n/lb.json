@@ -1,13 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Volvox"
+			"Volvox",
+			"Soued031"
 		]
 	},
-	"chart-desc": "Mécht d'Parserfunktioun <code><nowiki>{{#chart:}}</nowiki></code> disponibel fir Diagrammen duerzestellen",
-	"chart-error-chart-definition-not-found": "Säit mat der Diagrammdefinitioun net fonnt.",
+	"chart-desc": "Mécht d'Parserfunktioun <code><nowiki>{{#chart:}}</nowiki></code> disponibel, fir Diagrammen duerzestellen",
+	"chart-error-chart-definition-not-found": "Diagrammdefinitiounssäit net fonnt.",
+	"chart-error-default-source-not-specified": "D'Diagrammdefinitiounssäit gëtt keng Standardsource fir Donnéeën un.",
 	"chart-error-incompatible-chart-definition": "D'Definitiounssäit ass inkompatibel mat Diagrammen.",
-	"chart-error-incompatible-data-source": "D'Säit mat der Quell vun tabellareschen Donnéeën ass inkompatibel mat Diagrammen.",
+	"chart-error-incompatible-data-source": "D'Säit mat der Source vun tabellareschen Donnéeën ass inkompatibel mat Diagrammen.",
 	"chart-error-invalid-height": "D'Héicht muss eng ganz Zuel méi grouss oder gläich 100 sinn.",
 	"chart-error-invalid-width": "D'Breet muss eng ganz Zuel méi grouss oder gläich 100 sinn.",
 	"chart-error-shell-disabled": "Diagramme kënnen net gerendert ginn, well d'Shell-Exekutioun desaktivéiert ass.",
