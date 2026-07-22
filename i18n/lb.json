@@ -1,26 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
-			"Volvox"
+			"Volvox",
+			"Soued031"
 		]
 	},
-	"chart-desc": "Mécht d'Parserfunktioun <code><nowiki>{{#chart:}}</nowiki></code> disponibel fir Diagrammen duerzestellen",
-	"chart-error-chart-definition-not-found": "Säit mat der Diagrammdefinitioun net fonnt.",
-	"chart-error-chart-definition-invalid": "D'Säit mat der Diagrammdefinitioun ass ongülteg.",
-	"chart-error-data-source-invalid": "Ongülteg Quell vun tabellareschen Donnéeën uginn.",
+	"chart-desc": "Mécht d'Parserfunktioun <code><nowiki>{{#chart:}}</nowiki></code> disponibel, fir Diagrammen duerzestellen",
+	"chart-error-chart-definition-not-found": "Diagrammdefinitiounssäit net fonnt.",
+	"chart-error-chart-definition-invalid": "D'Diagrammdefinitiounssäit ass ongülteg.",
+	"chart-error-data-source-invalid": "Ongülteg Source vun tabellareschen Donnéeën uginn.",
+	"chart-error-default-source-not-specified": "D'Diagrammdefinitiounssäit gëtt keng Standardsource fir Donnéeën un.",
 	"chart-error-incompatible-chart-definition": "D'Definitiounssäit ass inkompatibel mat Diagrammen.",
-	"chart-error-incompatible-data-source": "D'Säit mat der Quell vun tabellareschen Donnéeën ass inkompatibel mat Diagrammen.",
-	"chart-error-invalid-data-source": "D'Säit mat der Quell vun tabellareschen Donnéeën ass ongülteg.",
+	"chart-error-incompatible-data-source": "D'Säit mat der Source vun tabellareschen Donnéeën ass inkompatibel mat Diagrammen.",
+	"chart-error-invalid-data-source": "D'Säit mat der Source vun tabellareschen Donnéeën ass ongülteg.",
 	"chart-error-invalid-height": "D'Héicht muss eng ganz Zuel méi grouss oder gläich 100 sinn.",
 	"chart-error-invalid-width": "D'Breet muss eng ganz Zuel méi grouss oder gläich 100 sinn.",
 	"chart-error-shell-disabled": "Diagramme kënnen net gerendert ginn, well d'Shell-Exekutioun desaktivéiert ass.",
 	"chart-error-rendering-error": "Beim Rendere vum Diagramm ass e Feeler geschitt.",
 	"chart-error-unexpected": "Beim Rendere vum Diagramm ass en onerwaarte Feeler geschitt.",
+	"chart-render-category": "Säiten, déi d'Chart-Erweiderung benotzen",
 	"chart-visualeditor-mwchartdialog-title": "Diagramm",
 	"chart-visualeditor-mwchartdialog-chart-label": "Diagrammdefinitiounssäit",
 	"chartjson-error-version": "$1 muss eng ganz Zuel tëscht $2 a(n) $3 inklusiv sinn.",
 	"chartjson-error-enum": "$1 muss ee vun de follgende Wäerter hunn: $2",
-	"chart-error-source-not-found": "D'Säit mat der Quell vun tabellareschen Donnéeë gouf net fonnt.",
-	"chart-error-invalid-source-type": "D'Säit mat der Quell vun tabellareschen Donnéeën huet en ongültegen Typ.",
-	"chart-error-invalid-source-content": "D'Säit mat der Quell vun tabellareschen Donnéeën huet en ongültegen Inhalt."
+	"chart-error-source-not-found": "D'Säit mat der Source vun tabellareschen Donnéeë gouf net fonnt.",
+	"chart-error-invalid-source-type": "D'Säit mat der Source vun tabellareschen Donnéeën huet en ongültegen Typ.",
+	"chart-error-invalid-source-content": "D'Säit mat der Source vun tabellareschen Donnéeën huet en ongültegen Inhalt."
 }

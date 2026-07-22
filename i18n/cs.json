@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nesuprachy"
+			"Nesuprachy",
+			"Mormegil"
 		]
 	},
+	"chart-desc": "Přidává funkci parseru <code><nowiki>{{#chart:}}</nowiki></code> pro zobrazování grafů",
+	"chart-error-category": "Stránky používající rozšíření Chart s chybami vykreslování",
+	"chart-render-category": "Stránky používající rozšíření Chart",
+	"chart-visualeditor-mwchartdialog-title": "Graf",
 	"chartjson-error-version": "$1 musí být celé číslo mezi $2 a $3 včetně.",
 	"chartjson-error-enum": "$1 musí být jedna z následujících hodnot: $2"
 }
