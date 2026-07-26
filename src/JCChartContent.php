@@ -204,7 +204,8 @@ class JCChartContent extends JCDataContent {
 				if ( is_object( $v ) ) {
 					$v = (array)$v;
 				}
-				if ( JCUtils::isLocalizedArray( $v, $maxlength ) ) {
+				$utils = MediaWikiServices::getInstance()->getService( 'JsonConfig.Utils' );
+				if ( $utils->isLocalizedArray( $v, $maxlength ) ) {
 					// Sort array so that the values are sorted alphabetically
 					ksort( $v );
 					$jcv->setValue( (object)$v );
