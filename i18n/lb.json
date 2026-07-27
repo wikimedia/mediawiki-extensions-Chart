@@ -60,6 +60,7 @@
 	"chart-wizard-form-x-axis-label": "Beschrëftung vun der X-Achs",
 	"chart-wizard-form-y-axis-label": "Beschrëftung vun der Y-Achs",
 	"chart-wizard-form-axis-format-label": "Grouss Zuelen ofkierzen (z.&nbsp;B. 1 Mio. amplaz vun 1.000.000)",
+	"chart-wizard-form-transform-arguments": "Argumenter:",
 	"chart-wizard-form-publish-label": "3. Diagramm verëffentlechen",
 	"chart-wizard-form-publish-description": "Confirméiert d'Detailer vun Ärem Diagramm a verëffentlecht en.",
 	"chart-wizard-form-license-label": "Lizenz",

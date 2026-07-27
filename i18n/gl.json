@@ -68,6 +68,8 @@
 	"chart-wizard-form-x-axis-label": "Etiqueta do eixo X",
 	"chart-wizard-form-y-axis-label": "Etiqueta do eixo Y",
 	"chart-wizard-form-axis-format-label": "Acurtar os números grandes (por exemplo, «1 M» no canto de «1 000 000»)",
+	"chart-wizard-form-transform-description": "Os datos están transformados por «[[$1]]», función «$2».",
+	"chart-wizard-form-transform-arguments": "Argumentos:",
 	"chart-wizard-form-publish-label": "3. Publica o gráfico",
 	"chart-wizard-form-publish-description": "Confirma os detalles do teu gráfico e publícao.",
 	"chart-wizard-form-license-label": "Licenza",

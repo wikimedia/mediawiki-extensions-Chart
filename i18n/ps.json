@@ -4,5 +4,15 @@
 			"شاه زمان پټان"
 		]
 	},
-	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي"
+	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي",
+	"chart-error-chart-definition-not-found": "د چارت پېژندون مخ ونه موندل شوه.",
+	"chart-error-chart-definition-invalid": "د چارت پېژندون مخ ناسم دی.",
+	"chart-error-category": "هغه مخونه چې چارت شاتاړی د وړاندې کولو تېروتنو سره کاروي",
+	"chart-error-category-desc": "دا مخ داسې يو چارت لري چې د وړاندې کولو تېروتنې لري.",
+	"chart-deprecated-category": "چارت پېژندونونه چې له‌منځه‌وړل‌شوې بڼې کاروي",
+	"chart-deprecated-category-desc": "چارت پېژندون مخونه چې له‌منځه‌وړل‌شوې بڼې کاروي. د کډوالۍ لارښوونو په اړه يې [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Chart#Deprecated_formats له منځه‌وړل‌شوې چارت بڼې] وگورئ.",
+	"chart-render-category": "هغه مخونه چې د چارت شاتاړی کاروي",
+	"chart-render-category-desc": "مخ د <code><nowiki>{{#chart}}</nowiki></code> ټوټه‌کوونکې کړنچار کاروي.",
+	"chart-wizard-deprecated-format": "دا چارت ورېشون بڼه کاروي چې د چارت کوډگر له‌خوا نه ملاتړ کېږي. د [$1 سرچينې سمونگر] کارولو سره د چارت پېژندون سم کړئ. د له‌منځه‌وړل‌شويو بڼو په اړه [$2 نور مالومات زده کړئ].",
+	"tag-chart-wizard-description": "د چارت کوډگر کارولو سره ترسره شوي سمونونه"
 }
