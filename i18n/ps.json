@@ -4,5 +4,6 @@
 			"شاه زمان پټان"
 		]
 	},
-	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي"
+	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي",
+	"chart-error-chart-definition-not-found": "د چارت پېژندون مخ ونه موندل شوه."
 }
