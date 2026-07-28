@@ -77,6 +77,7 @@
 	"chart-wizard-preview-placeholder-description": "Os teus datos aparecerán aquí para previsualizalos antes de crear un gráfico",
 	"chart-wizard-preview-error": "Produciuse un erro durante a previsualización.",
 	"chart-wizard-preview-error-retry": "Intentar de novo",
+	"chart-wizard-preview-language-fallback": "Algúns textos do gráfico non están dispoñible en $1. A vista previa emprega traducións nunha lingua de respaldo cando estean dispoñibles.",
 	"chart-wizard-preview-chart-view": "Gráfico",
 	"chart-wizard-preview-data-view": "Datos",
 	"chart-wizard-preview-accordion": "Ver a vista previa",
