@@ -4,5 +4,9 @@
 			"شاه زمان پټان"
 		]
 	},
-	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي"
+	"chart-desc": "د چارتونو ښودلو لپاره <code><nowiki>{{#chart:}}</nowiki></code> ټوټه‌کوونکې کړنچار ورگډوي",
+	"chart-error-chart-definition-not-found": "د چارت پېژندون مخ ونه موندل شوه.",
+	"chart-error-chart-definition-invalid": "د چارت پېژندون مخ ناسم دی.",
+	"chart-error-category": "هغه مخونه چې چارت شاتاړی د وړاندې کولو تېروتنو سره کاروي",
+	"chart-render-category": "هغه مخونه چې د چارت شاتاړی کاروي"
 }
