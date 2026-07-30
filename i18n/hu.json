@@ -1,9 +1,40 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bean49"
+			"Bean49",
+			"Dj"
 		]
 	},
-	"chart-error-category": "A Chart kiterjesztést használó lapok megjelenítési hibákkal",
-	"chart-render-category": "A Chart kiterjesztést használó lapok"
+	"chart-desc": "Hozzáadja a diagramok megjelenítésére szolgáló <code><nowiki>{{#chart:}}</nowiki></code> elemzőfüggvényt.",
+	"chart-error-chart-definition-not-found": "A diagramdefiníciós lap nem található.",
+	"chart-error-chart-definition-invalid": "A diagramdefiníciós lap érvénytelen.",
+	"chart-error-data-source-invalid": "A megadott táblázatos adatforrás érvénytelen.",
+	"chart-error-data-source-page-not-found": "A diagram táblázatos adatforrásának lapja nem található.",
+	"chart-error-default-source-not-specified": "A diagramdefiníciós lap nem határoz meg alapértelmezett adatforrást.",
+	"chart-error-incompatible-chart-definition": "A definíciós lap nem kompatibilis a diagramokkal.",
+	"chart-error-incompatible-data-source": "A táblázatos adatforrás lapja nem kompatibilis a diagramokkal.",
+	"chart-error-invalid-data-source": "A táblázatos adatforrás lapja érvénytelen.",
+	"chart-error-invalid-height": "A magasságnak 100-nál nagyobb vagy azzal egyenlő egész számnak kell lennie.",
+	"chart-error-invalid-width": "A szélességnek 100-nál nagyobb vagy azzal egyenlő egész számnak kell lennie.",
+	"chart-error-shell-disabled": "A diagramok nem jeleníthetők meg, mert a parancsértelmező futtatása le van tiltva.",
+	"chart-error-rendering-error": "Hiba történt a diagram megjelenítése közben.",
+	"chart-error-unexpected": "Váratlan hiba történt a diagram megjelenítése közben.",
+	"chart-error-category": "A Diagram kiterjesztést megjelenítési hibákkal használó lapok",
+	"chart-error-category-desc": "A Diagram bővítményt megjelenítési hibákkal használó lapok",
+	"chart-render-category": "A Diagram kiterjesztést használó lapok",
+	"chart-render-category-desc": "A lap használja a <code><nowiki>{{#chart}}</nowiki></code> elemzőfüggvényt.",
+	"chart-visualeditor-mwchartdialog-title": "Diagram",
+	"chart-visualeditor-mwchartdialog-chart-label": "Diagramdefiníciós lap",
+	"chart-visualeditor-mwchartdialog-data-label": "A diagram táblázatos adatforrása",
+	"chartjson-error-version": "A(z) $1 értékének $2 és $3 közötti egész számnak kell lennie, a határértékeket is beleértve.",
+	"chartjson-error-enum": "A(z) $1 értékének a következők egyikének kell lennie: $2",
+	"chart-error-source-not-found": "A táblázatos adatforrás lapja nem található.",
+	"chart-error-invalid-source-type": "A táblázatos adatforrás lapjának típusa érvénytelen.",
+	"chart-error-invalid-source-content": "A táblázatos adatforrás lapjának tartalma érvénytelen.",
+	"chart-error-transforms-disabled": "A táblázatos adatok átalakítása le van tiltva.",
+	"chart-error-request-too-large": "A diagram és a táblázatos adatok mérete meghaladja a megengedett legnagyobb, $1 bájtos méretet. Használj kisebb adatkészletet, vagy az adatok szűréséhez, illetve összesítéséhez fontold meg az [https://www.mediawiki.org/wiki/Extension:Chart/Transforms adatátalakítási lehetőségek] használatát.",
+	"apihelp-chartinfo-summary": "A Diagram lapjainak egyedi használatainak aktuális számának lekérése. Ugyanazon diagram ugyanazon a lapon történő többszöri használata egyetlen használatnak számít.",
+	"apihelp-chartinfo-param-global": "Állítsd igazra, ha csak a helyi wiki helyett az összes kapcsolódó wikit szeretnéd figyelembe venni.",
+	"apihelp-chartinfo-example-1": "A helyi wikin használt diagramok számának lekérése.",
+	"apihelp-chartinfo-example-2": "Az összes wikin használt diagramok számának lekérése."
 }
