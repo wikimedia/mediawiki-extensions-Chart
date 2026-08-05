@@ -41,6 +41,7 @@
 	"chart-wizard-create-name-help": "تتم إضافة مساحة الاسم ولاحقة الصفحة للرسوم البيانية تلقائيًا.",
 	"chart-wizard-create-submit": "استمرار",
 	"chart-wizard-create-invalid-name": "أدخل اسم صفحة تعريف مخطط بياني صحيح.",
+	"chart-wizard-create-exists": "$1 موجود بالفعل. يمكنك [[$2|تعديله باستخدام النموذج]] بدلاً من ذلك، أو إدخال اسم مختلف أدناه.",
 	"chart-wizard-create-not-allowed": "ليس لديك إذن لإنشاء مخطط بهذا الاسم.",
 	"chart-wizard-create-invalid-subpage": "يحتاج معالج المخططات إلى اسم صفحة تعريف مخطط صالح.",
 	"chart-wizard-form-source-label": "1. اختر مجموعة البيانات",
