@@ -3,6 +3,7 @@
 		"authors": [
 			"Huji",
 			"Jeeputer",
+			"LordProfo",
 			"Mohammad ebz"
 		]
 	},
@@ -62,7 +63,7 @@
 	"chart-wizard-preview-placeholder-title": "مجموعهٔ داده را انتخاب کنید",
 	"chart-wizard-preview-placeholder-description": "داده‌های شما قبل از ایجاد نمودار، برای پیش‌نمایش در اینجا نمایش داده می‌شوند.",
 	"chart-wizard-preview-error": "هنگام پیش‌نمایش مشکلی پیش آمد.",
-	"chart-wizard-preview-error-retry": "تلاش مجدد",
+	"chart-wizard-preview-error-retry": "تلاش دوباره",
 	"chart-wizard-preview-chart-view": "نمودار",
 	"chart-wizard-preview-data-view": "داده‌ها",
 	"chart-wizard-preview-accordion": "مشاهدهٔ پیش‌نمایش",
