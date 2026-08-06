@@ -6,7 +6,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\Chart\ChartRenderer;
 use MediaWiki\Extension\JsonConfig\Tests\JCTransformTestCase;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Article;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
@@ -48,7 +47,7 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 		$article = new Article( $rawtitle );
 		$article->setContext( $context );
 		$options = ParserOptions::newFromContext( $context );
-		$parser = MediaWikiServices::getInstance()->getParserFactory()->getInstance();
+		$parser = $this->getServiceContainer()->getParserFactory()->getInstance();
 		$parser->startExternalParse( $rawtitle, $options, Parser::OT_HTML );
 		$linestart = true;
 		$revId = 0;
@@ -89,7 +88,7 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 			} );
 		$this->setService( 'Chart.ChartRenderer', $mock );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$context = RequestContext::getMain();
 		$context->setRequest( new FauxRequest( [

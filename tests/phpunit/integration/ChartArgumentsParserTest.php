@@ -6,7 +6,6 @@ namespace MediaWiki\Extension\Chart\Tests\Integration;
 use MediaWiki\Extension\Chart\ChartArgumentsParser;
 use MediaWiki\Extension\Chart\DataPageResolver;
 use MediaWiki\Extension\JsonConfig\JCSingleton;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWikiIntegrationTestCase;
 
@@ -25,7 +24,7 @@ class ChartArgumentsParserTest extends MediaWikiIntegrationTestCase {
 		$source = $source ? JCSingleton::parseTitle( $source, NS_DATA ) : null;
 		$pageResolver = new DataPageResolver();
 
-		$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+		$magicWordFactory = $this->getServiceContainer()->getMagicWordFactory();
 		$parser = $this->createPartialMock( Parser::class, [ 'getMagicWordFactory' ] );
 		$parser->method( 'getMagicWordFactory' )->willReturn( $magicWordFactory );
 
