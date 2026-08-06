@@ -227,6 +227,7 @@
 		"main": {
 			"class": "MediaWiki\\Extension\\Chart\\Hooks",
 			"services": [
+				"Chart.ChartMetrics",
 				"SpecialPageFactory",
 				"MainConfig"
 			]

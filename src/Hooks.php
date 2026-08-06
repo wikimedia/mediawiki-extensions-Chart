@@ -7,7 +7,6 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\Hook\LinksUpdateCompleteHook;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
 use MediaWiki\RecentChanges\Hook\RecentChange_saveHook;
@@ -31,11 +30,13 @@ class Hooks implements
 	public const string CHANGE_TAG = 'chart-wizard';
 
 	/**
+	 * @param ChartMetrics $chartMetrics
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param Config $config
 	 * @param ?FauxRequest $request Ignore; For unit testing only.
 	 */
 	public function __construct(
+		private readonly ChartMetrics $chartMetrics,
 		private readonly SpecialPageFactory $specialPageFactory,
 		private readonly Config $config,
 		private readonly ?FauxRequest $request = null,
@@ -61,9 +62,7 @@ class Hooks implements
 		$revisionRecord,
 		$editResult
 	) {
-		/** @var ChartMetrics $chartMetrics */
-		$chartMetrics = MediaWikiServices::getInstance()->getService( 'Chart.ChartMetrics' );
-		$chartMetrics->trackChartDefinitionCreated( $wikiPage, $flags );
+		$this->chartMetrics->trackChartDefinitionCreated( $wikiPage, $flags );
 	}
 
 	/**
@@ -78,9 +77,7 @@ class Hooks implements
 	 * @param mixed $ticket Token returned by {@see IConnectionProvider::getEmptyTransactionTicket()}
 	 */
 	public function onLinksUpdateComplete( $linksUpdate, $ticket ) {
-		/** @var ChartMetrics $chartMetrics */
-		$chartMetrics = MediaWikiServices::getInstance()->getService( 'Chart.ChartMetrics' );
-		$chartMetrics->trackChartAddedToPage( $linksUpdate );
+		$this->chartMetrics->trackChartAddedToPage( $linksUpdate );
 	}
 
 	/**

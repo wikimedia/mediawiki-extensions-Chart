@@ -241,6 +241,7 @@ class HooksTest extends MediaWikiUnitTestCase {
 		?FauxRequest $request = null,
 		bool $storesChartsLocally = true
 	): Hooks {
+		$chartMetrics = $this->createNoOpMock( ChartMetrics::class, [] );
 		$specialPageFactory = $this->createNoOpMock( SpecialPageFactory::class, [ 'getPage' ] );
 		$specialPageFactory->expects( $this->atMost( 1 ) )
 			->method( 'getPage' )
@@ -268,6 +269,6 @@ class HooksTest extends MediaWikiUnitTestCase {
 				JCChartContent::CONTENT_MODEL => $chartJsonConfig,
 			],
 		] );
-		return new Hooks( $specialPageFactory, $config, $request );
+		return new Hooks( $chartMetrics, $specialPageFactory, $config, $request );
 	}
 }
