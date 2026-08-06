@@ -20,7 +20,7 @@
 	"chart-error-shell-disabled": "ناتوان در تولید نمودار به دلیل غیرفعال بودن اجرای پوسته.",
 	"chart-error-rendering-error": "در زمان ارائهٔ نمودار خطایی رخ داد.",
 	"chart-error-unexpected": "در زمان ارائهٔ نمودار خطای غیرمنتظره‌ای رخ داد.",
-	"chart-error-category": "صفحه‌هایی که از افزونه نمودار با خطای تولید اسستفاده می‌کنند",
+	"chart-error-category": "صفحه‌هایی که از افزونه نمودار با خطای تولید استفاده می‌کنند",
 	"chart-error-category-desc": "صفحه حاوی نموداری با خطاهای رندرینگ است.",
 	"chart-render-category": "صفحه‌هایی که از افزونه نمودار استفاده می‌کنند",
 	"chart-visualeditor-mwchartdialog-title": "نمودار",
