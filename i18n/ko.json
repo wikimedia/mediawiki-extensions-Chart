@@ -71,6 +71,7 @@
 	"chart-wizard-form-x-axis-label": "X축 레이블",
 	"chart-wizard-form-y-axis-label": "Y축 레이블",
 	"chart-wizard-form-axis-format-label": "큰 숫자를 축약 (예: 1,000,000 대신 1M)",
+	"chart-wizard-form-transform-description": "데이터가 [[$1]], 함수 $2에 의해 변환됩니다.",
 	"chart-wizard-form-transform-arguments": "인수:",
 	"chart-wizard-form-publish-label": "3. 차트 게시",
 	"chart-wizard-form-publish-description": "차트 세부 사항을 확인하고 게시하세요.",
