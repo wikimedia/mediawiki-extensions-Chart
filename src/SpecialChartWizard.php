@@ -432,6 +432,7 @@ class SpecialChartWizard extends FormSpecialPage {
 			'text' => json_encode( $newDefinition ),
 			'contentmodel' => JCChartContent::CONTENT_MODEL,
 			'baserevid' => $data['baseRevId'],
+			'summary' => $data['summary'] ?? '',
 			'errorformat' => 'html',
 			'token' => $context->getCsrfTokenSet()->getToken(),
 		] ) );

@@ -76,6 +76,8 @@
 	"chart-wizard-form-publish-label": "Label of the publish chart fieldset in the chart wizard form",
 	"chart-wizard-form-publish-description": "Description of the publish chart fieldset in the chart wizard form",
 	"chart-wizard-form-license-label": "Label for the license field in the chart wizard form",
+	"chart-wizard-form-summary-label": "Label for the edit summary field in the chart wizard form. Same meaning as {{msg-mw|Summary}}",
+	"chart-wizard-form-summary-description": "Description for the edit summary field in the chart wizard form, encouraging the user to provide a summary.\n\nSimilar messages:\n* {{msg-mw|visualeditor-editsummary}}",
 	"chart-wizard-preview-placeholder-title": "Title shown in the chart wizard preview area as a placeholder",
 	"chart-wizard-preview-placeholder-description": "Description shown in the chart wizard preview area as a placeholder",
 	"chart-wizard-preview-error": "Message displayed in the chart wizard preview area when an error occurs.",

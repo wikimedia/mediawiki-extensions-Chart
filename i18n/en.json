@@ -76,6 +76,8 @@
 	"chart-wizard-form-publish-label": "3. Publish chart",
 	"chart-wizard-form-publish-description": "Confirm your chart details and publish.",
 	"chart-wizard-form-license-label": "License",
+	"chart-wizard-form-summary-label": "Edit summary",
+	"chart-wizard-form-summary-description": "Describe what you changed",
 	"chart-wizard-preview-placeholder-title": "Choose dataset",
 	"chart-wizard-preview-placeholder-description": "Your data will appear here to preview before creating a chart",
 	"chart-wizard-preview-error": "Something went wrong while previewing.",

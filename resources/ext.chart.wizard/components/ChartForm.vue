@@ -8,6 +8,19 @@
 		<transform-notice></transform-notice>
 		<chart-configure></chart-configure>
 		<license-field></license-field>
+		<cdx-field :optional="true">
+			<cdx-text-input
+				v-model="summary"
+				name="summary"
+				maxlength="500"
+			></cdx-text-input>
+			<template #label>
+				{{ $i18n( 'chart-wizard-form-summary-label' ).text() }}
+			</template>
+			<template #description>
+				{{ $i18n( 'chart-wizard-form-summary-description' ).text() }}
+			</template>
+		</cdx-field>
 		<!-- eslint-disable-next-line vue/no-v-html -->
 		<div
 			class="ext-chart-wizard__copywarn"
@@ -43,9 +56,9 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick } = require( 'vue' );
+const { computed, defineComponent, nextTick, ref } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
-const { CdxButton, CdxField } = require( '../../../codex.js' );
+const { CdxButton, CdxField, CdxTextInput } = require( '../../../codex.js' );
 const SourceField = require( './SourceField.vue' );
 const TransformNotice = require( './TransformNotice.vue' );
 const ChartConfigure = require( './ChartConfigure.vue' );
@@ -57,6 +70,7 @@ module.exports = exports = defineComponent( {
 	components: {
 		CdxButton,
 		CdxField,
+		CdxTextInput,
 		ChartConfigure,
 		SourceField,
 		TransformNotice,
@@ -74,6 +88,7 @@ module.exports = exports = defineComponent( {
 				'publishchanges'
 		) );
 		const editToken = mw.config.get( 'chartEditToken' );
+		const summary = ref( '' );
 		const copyrightWarnings = mw.config.get( 'chartCopyrightWarnings' );
 		const copyrightWarning = computed( () => copyrightWarnings[ license.value ] || '' );
 
@@ -105,6 +120,7 @@ module.exports = exports = defineComponent( {
 			chartDefinition,
 			copyrightWarning,
 			editToken,
+			summary,
 			onFormSubmission
 		};
 	}
