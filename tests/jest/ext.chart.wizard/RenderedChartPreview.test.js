@@ -52,7 +52,7 @@ describe( 'RenderedChartPreview', () => {
 				}
 			}
 		} );
-		mw.loader.using = jest.fn().mockResolvedValue();
+		mw.loader.load = jest.fn().mockResolvedValue();
 	} );
 
 	afterEach( () => {
@@ -93,26 +93,10 @@ describe( 'RenderedChartPreview', () => {
 		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeTruthy();
 		expect( wrapper.find( '[data-testid="chart-preview"]' ).element.style.minHeight ).toBe( '320px' );
 		expect( mw.config.get( 'chartPreviewToken' ) ).toBe( 'test' );
-		expect( mw.loader.using ).toHaveBeenCalledWith( [
+		expect( mw.loader.load ).toHaveBeenCalledWith( [
 			'ext.chart.bootstrap',
 			'ext.chart.styles'
 		] );
-	} );
-
-	it( 'should wait for parsed chart modules before injecting the preview', async () => {
-		let resolveModules;
-		mw.loader.using.mockReturnValue( new Promise( ( resolve ) => {
-			resolveModules = resolve;
-		} ) );
-		mountPreview( 'Data:Chart Example Data.tab' );
-		await flushPromises();
-
-		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeFalsy();
-
-		resolveModules();
-		await flushPromises();
-
-		expect( wrapper.find( '[data-testid="chart-preview"]' ).exists() ).toBeTruthy();
 	} );
 
 	it( 'should request a new parsed chart preview when the definition changes', async () => {

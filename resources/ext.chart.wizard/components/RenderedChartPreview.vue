@@ -119,7 +119,9 @@ module.exports = exports = defineComponent( {
 			}
 			const modules = ( parse.modules || [] ).concat( parse.modulestyles || [] );
 			if ( modules.length ) {
-				await mw.loader.using( modules );
+				// Use this instead of .using(), because it doesn't fail when
+				// some modules are unavailable due to safe mode (T434457).
+				mw.loader.load( modules );
 			}
 			// The request may become stale while modules are loading.
 			if ( !previewRequests.isLatest( requestId ) ) {
