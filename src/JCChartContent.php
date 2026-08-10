@@ -55,11 +55,15 @@ class JCChartContent extends JCDataContent {
 	/** @inheritDoc */
 	protected function createDefaultView() {
 		$services = MediaWikiServices::getInstance();
-		$chartRenderer = $services->getService( 'Chart.ChartRenderer' );
-		$languageFactory = $services->getLanguageFactory();
-		$trackingCategories = $services->getTrackingCategories();
 
-		return new JCChartContentView( $chartRenderer, $languageFactory, $trackingCategories );
+		return new JCChartContentView(
+			$services->getService( 'Chart.ChartArgumentsParser' ),
+			$services->getService( 'Chart.ChartRenderer' ),
+			$services->getService( 'Chart.DataPageResolver' ),
+			$services->getFormatterFactory(),
+			$services->getLanguageFactory(),
+			$services->getTrackingCategories()
+		);
 	}
 
 	/**

@@ -6,9 +6,9 @@ use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\JsonConfig\JCContent;
 use MediaWiki\Extension\JsonConfig\JCContentView;
+use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
@@ -16,7 +16,10 @@ use MediaWiki\Parser\ParserOutput;
 class JCChartContentView extends JCContentView {
 
 	public function __construct(
+		private readonly ChartArgumentsParser $chartArgumentsParser,
 		private readonly ChartRenderer $chartRenderer,
+		private readonly DataPageResolver $dataPageResolver,
+		private readonly FormatterFactory $formatterFactory,
 		private readonly LanguageFactory $languageFactory,
 		private readonly TrackingCategories $trackingCategories,
 	) {
@@ -40,8 +43,6 @@ class JCChartContentView extends JCContentView {
 		ParserOutput &$output
 	): string {
 		$logger = LoggerFactory::getInstance( 'Chart' );
-		$chartArgumentsParser = MediaWikiServices::getInstance()->getService( 'Chart.ChartArgumentsParser' );
-		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
 
 		if ( $content instanceof JCChartContent && $content->usesDeprecatedFormat() ) {
 			$this->trackingCategories->addTrackingCategory(
@@ -54,16 +55,14 @@ class JCChartContentView extends JCContentView {
 		$lang = $options->getUserLangObj();
 		$context = new RequestContext();
 		$context->setLanguage( $lang );
-		$statusFormatter = MediaWikiServices::getInstance()->getFormatterFactory()
-			->getStatusFormatter( $context );
 
 		$parserFunction = new ParserFunction(
 			$this->chartRenderer,
 			$lang,
-			$chartArgumentsParser,
-			$dataPageResolver,
+			$this->chartArgumentsParser,
+			$this->dataPageResolver,
 			$logger,
-			$statusFormatter,
+			$this->formatterFactory->getStatusFormatter( $context ),
 			$page
 		);
 
