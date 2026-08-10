@@ -5,12 +5,16 @@ namespace MediaWiki\Extension\Chart;
 use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Extension\JsonConfig\JCTabularContent;
 use MediaWiki\Extension\JsonConfig\JCValue;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Service class for validating chart data sources
  */
 class ChartSourceValidator {
+
+	public function __construct(
+		private readonly DataPageResolver $dataPageResolver,
+	) {
+	}
 
 	/**
 	 * Validates that a chart's data source exists and is valid
@@ -37,11 +41,7 @@ class ChartSourceValidator {
 	 * @return bool
 	 */
 	public function validateSourcePage( JCValue $jcv, string $source ): bool {
-		/**
-		 * @var DataPageResolver $dataPageResolver
-		 */
-		$dataPageResolver = MediaWikiServices::getInstance()->getService( 'Chart.DataPageResolver' );
-		$sourceTitle = $dataPageResolver->resolvePageInDataNamespace( $source );
+		$sourceTitle = $this->dataPageResolver->resolvePageInDataNamespace( $source );
 
 		if ( !$sourceTitle ) {
 			$jcv->error( 'chart-error-source-not-found', [ $source ] );

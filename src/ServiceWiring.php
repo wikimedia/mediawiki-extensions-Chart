@@ -46,7 +46,9 @@ return [
 		);
 	},
 	'Chart.ChartSourceValidator' => static function ( MediaWikiServices $services ): ChartSourceValidator {
-		return new ChartSourceValidator();
+		return new ChartSourceValidator(
+			$services->getService( 'Chart.DataPageResolver' )
+		);
 	},
 	'Chart.DataPageResolver' => static function ( MediaWikiServices $services ): DataPageResolver {
 		return new DataPageResolver();
