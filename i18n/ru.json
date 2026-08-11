@@ -3,7 +3,8 @@
 		"authors": [
 			"Yurina Tatiana",
 			"Stjn",
-			"HyoerFlint"
+			"HyoerFlint",
+			"Well very well"
 		]
 	},
 	"chart-desc": "Добавляет функцию парсера <code><nowiki>{{#chart:}}</nowiki></code> для отображения диаграмм.",

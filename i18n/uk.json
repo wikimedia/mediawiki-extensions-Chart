@@ -3,10 +3,11 @@
 		"authors": [
 			"Serhio Magpie",
 			"Repakr",
-			"Movses"
+			"Movses",
+			"Ата"
 		]
 	},
-	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> ждя відображення діаграм",
+	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> для відображення діаграм",
 	"chart-error-chart-definition-not-found": "Сторінку визначення діаграми не знайдено.",
 	"chart-error-data-source-page-not-found": "Не знайдено сторінку джерела табличних даних діаграми.",
 	"chart-error-default-source-not-specified": "Сторінка визначення діаграми не зазначає стандартне джерело даних.",
@@ -14,6 +15,7 @@
 	"chart-error-incompatible-data-source": "Сторінка джерела табличних даних несумісна з діаграмами.",
 	"chart-error-invalid-height": "Висота має бути цілим числом, більшим або рівним 100.",
 	"chart-error-invalid-width": "Ширина має бути цілим числом, більшим або рівним 100.",
+	"chart-error-shell-disabled": "Неможливо відобразити діаграми, оскільки виконання оболонки вимкнено.",
 	"chart-error-rendering-error": "Сталася помилка під час відображення діаграми.",
 	"chart-error-unexpected": "Сталася неочікувана помилка під час відображення діаграми."
 }
