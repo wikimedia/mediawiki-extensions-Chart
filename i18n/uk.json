@@ -3,10 +3,11 @@
 		"authors": [
 			"Serhio Magpie",
 			"Repakr",
-			"Movses"
+			"Movses",
+			"Ата"
 		]
 	},
-	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> ждя відображення діаграм",
+	"chart-desc": "Додає парсерну функцію <code><nowiki>{{#chart:}}</nowiki></code> для відображення діаграм",
 	"chart-error-chart-definition-not-found": "Сторінку визначення діаграми не знайдено.",
 	"chart-error-chart-definition-invalid": "Сторінка визначення діаграми є недійсною.",
 	"chart-error-data-source-invalid": "Вказано недійсне джерело табличних даних.",
@@ -17,6 +18,7 @@
 	"chart-error-invalid-data-source": "Недійсна сторінка джерела табличних даних.",
 	"chart-error-invalid-height": "Висота має бути цілим числом, більшим або рівним 100.",
 	"chart-error-invalid-width": "Ширина має бути цілим числом, більшим або рівним 100.",
+	"chart-error-shell-disabled": "Неможливо відобразити діаграми, оскільки виконання оболонки вимкнено.",
 	"chart-error-rendering-error": "Сталася помилка під час відображення діаграми.",
 	"chart-error-unexpected": "Сталася неочікувана помилка під час відображення діаграми.",
 	"chart-error-category": "Сторінки з помилками відображення розширення Chart",
@@ -33,5 +35,8 @@
 	"chart-error-invalid-source-content": "Недійсний вміст сторінки джерела табличних даних.",
 	"chart-error-transforms-disabled": "Перетворення табличних даних вимкнено.",
 	"chart-error-request-too-large": "Діаграма і табличні дані вийшли за межі максимально дозволеного розміру в {{PLURAL:$1|байт|байти|байтів}}. Будь ласка, використайте набір даних меншого розміру або розгляньте [https://www.mediawiki.org/wiki/Extension:Chart/Transforms варіант перетворення даних] для фільтрації або агрегації Ваших даних.",
-	"apihelp-chartinfo-param-global": "Встановіть true, щоб включити усі прив'язані вікі замість лише локальної вікі."
+	"apihelp-chartinfo-summary": "Отримати поточну кількість унікальних використань сторінки діаграми. Кілька використань однієї й тієї ж діаграми на одній сторінці вважаються одноразовим використанням.",
+	"apihelp-chartinfo-param-global": "Встановіть true, щоб включити усі прив'язані вікі замість лише локальної вікі.",
+	"apihelp-chartinfo-example-1": "Отримання кількості діаграм локальної вікі.",
+	"apihelp-chartinfo-example-2": "Отримання кількості діаграм усіх вікі."
 }
