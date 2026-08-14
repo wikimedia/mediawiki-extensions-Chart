@@ -75,6 +75,8 @@
 	"chart-wizard-form-publish-label": "3. Opublikuj wykres",
 	"chart-wizard-form-publish-description": "Sprawdź podane dane i opublikuj wykres.",
 	"chart-wizard-form-license-label": "Licencja",
+	"chart-wizard-form-summary-label": "Edytuj opis zmian",
+	"chart-wizard-form-summary-description": "Opisz swoje zmiany",
 	"chart-wizard-preview-placeholder-title": "Wybierz zbiór danych",
 	"chart-wizard-preview-placeholder-description": "W tym miejscu wyświetlą się Twoje dane do podglądu przed utworzeniem wykresu",
 	"chart-wizard-preview-error": "Podczas wyświetlania podglądu wystąpił błąd.",

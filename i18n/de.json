@@ -74,6 +74,8 @@
 	"chart-wizard-form-publish-label": "3. Diagramm veröffentlichen",
 	"chart-wizard-form-publish-description": "Bestätige die Diagrammdetails und veröffentliche sie.",
 	"chart-wizard-form-license-label": "Lizenz",
+	"chart-wizard-form-summary-label": "Bearbeitungszusammenfassung",
+	"chart-wizard-form-summary-description": "Bitte erläutere kurz deine Änderungen",
 	"chart-wizard-preview-placeholder-title": "Datensatz auswählen",
 	"chart-wizard-preview-placeholder-description": "Deine Daten werden hier zur Vorschau angezeigt, bevor ein Diagramm erstellt wird.",
 	"chart-wizard-preview-error": "Beim Anzeigen der Vorschau ist ein Fehler aufgetreten.",

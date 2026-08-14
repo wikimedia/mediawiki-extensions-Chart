@@ -77,6 +77,8 @@
 	"chart-wizard-form-publish-label": "3. 发布图表",
 	"chart-wizard-form-publish-description": "确认图表细节并发布。",
 	"chart-wizard-form-license-label": "许可协议",
+	"chart-wizard-form-summary-label": "编辑摘要",
+	"chart-wizard-form-summary-description": "描述您的更改",
 	"chart-wizard-preview-placeholder-title": "选择数据集",
 	"chart-wizard-preview-placeholder-description": "您的数据会出现在此处以便在创建图表前预览",
 	"chart-wizard-preview-error": "预览时发生错误。",

@@ -73,6 +73,8 @@
 	"chart-wizard-form-publish-label": "3. Publica o gráfico",
 	"chart-wizard-form-publish-description": "Confirma os detalles do teu gráfico e publícao.",
 	"chart-wizard-form-license-label": "Licenza",
+	"chart-wizard-form-summary-label": "Resumo de edición",
+	"chart-wizard-form-summary-description": "Describe os teus cambios",
 	"chart-wizard-preview-placeholder-title": "Escolle o conxunto de datos",
 	"chart-wizard-preview-placeholder-description": "Os teus datos aparecerán aquí para previsualizalos antes de crear un gráfico",
 	"chart-wizard-preview-error": "Produciuse un erro durante a previsualización.",

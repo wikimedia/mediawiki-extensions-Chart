@@ -73,6 +73,8 @@
 	"chart-wizard-form-publish-label": "3. Terbitkan carta",
 	"chart-wizard-form-publish-description": "Sahkan butiran carta anda dan terbitkan.",
 	"chart-wizard-form-license-label": "Lesen",
+	"chart-wizard-form-summary-label": "Ringkasan suntingan",
+	"chart-wizard-form-summary-description": "Huraikan perubahan anda",
 	"chart-wizard-preview-placeholder-title": "Pilih set data",
 	"chart-wizard-preview-placeholder-description": "Data anda akan dipaparkan di sini untuk dipralihat sebelum mencipta sebuah carta",
 	"chart-wizard-preview-error": "Ada sesuatu yang tidak kena semasa pralihat.",
