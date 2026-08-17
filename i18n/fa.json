@@ -32,6 +32,8 @@
 	"chart-wizard-disabled": "جادوگر نمودار غیرفعال است.",
 	"chart-wizard-create-title": "ایجاد نمودار جدید",
 	"chart-wizard-create-name-label": "نام نمودار",
+	"chart-wizard-create-submit": "ادامه",
+	"chart-wizard-create-invalid-name": "یک نام صفحهٔ تعریف نمودار معتبر وارد کنید.",
 	"chart-wizard-form-source-label": "۱. مجموعهٔ داده را انتخاب کنید",
 	"chart-wizard-form-source-description": "دادگان جدولی مورد نظر برای نمایش را انتخاب کنید.",
 	"chart-wizard-form-source-placeholder": "جستجوی دادگان...",

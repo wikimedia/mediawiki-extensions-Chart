@@ -59,6 +59,8 @@
 	"chart-wizard-form-publish-label": "3. Julkaise kaavio",
 	"chart-wizard-form-publish-description": "Vahvista kaavion tiedot ja julkaise se.",
 	"chart-wizard-form-license-label": "Lisenssi",
+	"chart-wizard-form-summary-label": "Muokkausyhteenveto",
+	"chart-wizard-form-summary-description": "Kuvaile tekemiäsi muutoksia",
 	"chart-wizard-preview-placeholder-title": "Valitse tietoaineisto",
 	"chart-wizard-preview-placeholder-description": "Tietojen esikatselu näytetään täällä ennen kaavion luomista",
 	"chart-wizard-preview-error": "Jokin meni pieleen esikatselun aikana.",

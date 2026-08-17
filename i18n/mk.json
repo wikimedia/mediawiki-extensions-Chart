@@ -73,6 +73,8 @@
 	"chart-wizard-form-publish-label": "3. Објавете го графиконот",
 	"chart-wizard-form-publish-description": "Потврдете ги поединостите на графиконот и објавете.",
 	"chart-wizard-form-license-label": "Лиценца",
+	"chart-wizard-form-summary-label": "Опис на уредувањето",
+	"chart-wizard-form-summary-description": "Опишете ги направените измени",
 	"chart-wizard-preview-placeholder-title": "Изберете податочен збир",
 	"chart-wizard-preview-placeholder-description": "Податоците ќе ви се прикажат тука за да ги прегледате пред да создадете графикон",
 	"chart-wizard-preview-error": "Нешто не е во ред со прегледот.",

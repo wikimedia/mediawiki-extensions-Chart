@@ -64,6 +64,8 @@
 	"chart-wizard-form-publish-label": "3. Diagramm verëffentlechen",
 	"chart-wizard-form-publish-description": "Confirméiert d'Detailer vun Ärem Diagramm a verëffentlecht en.",
 	"chart-wizard-form-license-label": "Lizenz",
+	"chart-wizard-form-summary-label": "Resümmee vun der Ännerung",
+	"chart-wizard-form-summary-description": "Beschreift, wat Dir geännert hutt",
 	"chart-wizard-preview-placeholder-title": "Datesaz wielen",
 	"chart-wizard-preview-placeholder-description": "Är Donnéeë ginn hei als Virschau ugewisen, ier en Diagramm ugeluecht gëtt",
 	"chart-wizard-preview-error": "Bei der Virschau ass eppes schifgaangen.",

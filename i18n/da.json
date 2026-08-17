@@ -73,6 +73,8 @@
 	"chart-wizard-form-publish-label": "3. Udgiv diagram",
 	"chart-wizard-form-publish-description": "Bekræft dine diagramoplysninger, og udgiv dem.",
 	"chart-wizard-form-license-label": "Licens",
+	"chart-wizard-form-summary-label": "Rediger oversigt",
+	"chart-wizard-form-summary-description": "Beskriv hvad du har ændret",
 	"chart-wizard-preview-placeholder-title": "Vælg datasæt",
 	"chart-wizard-preview-placeholder-description": "Dine data vises her, så du kan forhåndsvise dem, før du opretter et diagram",
 	"chart-wizard-preview-error": "Noget gik galt under forhåndsvisningen.",
