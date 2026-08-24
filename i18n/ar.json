@@ -77,6 +77,8 @@
 	"chart-wizard-form-publish-label": "3. نشر الرسم البياني",
 	"chart-wizard-form-publish-description": "قم بتأكيد تفاصيل الرسم البياني الخاص بك وانشره.",
 	"chart-wizard-form-license-label": "رخصة",
+	"chart-wizard-form-summary-label": "ملخص التحرير",
+	"chart-wizard-form-summary-description": "صف ما قمت بتغييره",
 	"chart-wizard-preview-placeholder-title": "اختر مجموعة البيانات",
 	"chart-wizard-preview-placeholder-description": "ستظهر بياناتك هنا لمعاينتها قبل إنشاء الرسم البياني",
 	"chart-wizard-preview-error": "حدث خطأ ما أثناء المعاينة.",

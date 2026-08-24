@@ -18,6 +18,8 @@
 	"chart-error-shell-disabled": "Diagramme kënnen net gerendert ginn, well d'Shell-Exekutioun desaktivéiert ass.",
 	"chart-error-rendering-error": "Beim Rendere vum Diagramm ass e Feeler geschitt.",
 	"chart-error-unexpected": "Beim Rendere vum Diagramm ass en onerwaarte Feeler geschitt.",
+	"chart-error-category": "Säiten, déi d'Chart-Erweiderung benotzen, mat Duerstellungsfeeler",
+	"chart-error-category-desc": "Op der Säit kënnt en Diagramm mat engem Duerstellungsfeeler vir.",
 	"chart-render-category": "Säiten, déi d'Chart-Erweiderung benotzen",
 	"chart-render-category-desc": "D'Säit benotzt d'Parserfunktioun<code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-render-tooltip-nodata": "Keng Donnéeën",
