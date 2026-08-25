@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Juwan~backup",
-			"Sixaxis"
+			"Sixaxis",
+			"User3412"
 		]
 	},
 	"chart-desc": "Adiciona a função de análise <code><nowiki>{{#chart:}}</nowiki></code> para mostrar gráficos",
@@ -25,6 +26,17 @@
 	"chart-visualeditor-mwchartdialog-title": "Gráfico",
 	"chart-visualeditor-mwchartdialog-chart-label": "Página de definição do gráfico",
 	"chart-visualeditor-mwchartdialog-data-label": "Fonte de dados tabulares do gráfico",
+	"chart-wizard-tab-label": "Editar com formulário",
+	"chart-wizard-create-title": "Criar um novo formulário",
+	"chart-wizard-create-submit": "Continuar",
+	"chart-wizard-form-categories-placeholder": "Adicionar uma categoria...",
+	"chart-wizard-form-categories-no-results": "Nenhum resultado encontrado",
+	"chart-wizard-form-language-label": "Idioma",
+	"chart-wizard-form-language-translated": "Traduzido",
+	"chart-wizard-form-language-untranslated": "Não traduzido",
+	"chart-wizard-form-subtitle-label": "Subtítulo",
+	"chart-wizard-form-license-label": "Licença",
+	"chart-wizard-preview-error-retry": "Tente novamente",
 	"chartjson-error-version": "$1 deve ser um número de inteiro entre $2 e $3 inclusive.",
 	"chartjson-error-enum": "$1 deve ser um dos seguintes valores: $2",
 	"chart-error-source-not-found": "Página de origem dos dados tabulares não encontrada.",
