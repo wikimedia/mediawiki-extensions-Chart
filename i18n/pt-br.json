@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Juwan~backup",
-			"Sixaxis"
+			"Sixaxis",
+			"User3412"
 		]
 	},
 	"chart-desc": "Adiciona a função de análise <code><nowiki>{{#chart:}}</nowiki></code> para mostrar gráficos",
