@@ -29,7 +29,7 @@
 	"chart-visualeditor-mwchartdialog-data-label": "圖表表格資料來源",
 	"chart-wizard-tab-label": "使用表單編輯",
 	"chart-wizard-form-source-label": "1. 選擇資料集",
-	"chart-wizard-form-source-description": "選擇您要視覺化的表格資料集",
+	"chart-wizard-form-source-description": "選擇您要視覺化的表格資料集。",
 	"chart-wizard-form-source-placeholder": "搜尋資料集...",
 	"chart-wizard-preview-placeholder-title": "選擇資料集",
 	"chart-wizard-preview-placeholder-description": "在建立圖表之前，您的資料將在此處顯示以供預覽",
