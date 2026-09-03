@@ -4,5 +4,10 @@
 			"Song GK"
 		]
 	},
-	"chart-visualeditor-mwchartdialog-title": "Charta"
+	"chart-visualeditor-mwchartdialog-title": "Charta",
+	"chart-wizard-form-language-label": "Jaku",
+	"chart-wizard-form-language-translated": "Disalin",
+	"chart-wizard-form-language-untranslated": "Bedau disalin",
+	"chart-wizard-preview-chart-view": "Charta",
+	"chart-wizard-preview-data-view": "Data"
 }
