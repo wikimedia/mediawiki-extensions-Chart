@@ -26,7 +26,7 @@
 	"chart-deprecated-category": "Визначення діаграм з використанням застарілих форматів",
 	"chart-deprecated-category-desc": "Сторінка визначення діаграми використовує застарілий формат. Див. [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Chart#Deprecated_formats застарілі формати діаграм] для отримання інструкцій з міграції.",
 	"chart-render-category": "Сторінки, що використовують розширення Chart",
-	"chart-render-category-desc": "Сторінка використовує пврсерну функцію <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-category-desc": "Сторінка використовує парсерну функцію <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-render-tooltip-nodata": "Немає даних",
 	"chart-visualeditor-mwchartdialog-title": "Діаграма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Сторінка визначення діаграми",
