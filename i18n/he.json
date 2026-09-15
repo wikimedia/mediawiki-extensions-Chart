@@ -3,7 +3,9 @@
 		"authors": [
 			"Amire80",
 			"IKhitron",
-			"Neriah"
+			"Neriah",
+			"המקיסט",
+			"ערן"
 		]
 	},
 	"chart-desc": "הוספת פונקציית המפענח <code><nowiki>{{#chart:}}</nowiki></code> להצגת תרשימים.",
@@ -30,9 +32,15 @@
 	"chart-visualeditor-mwchartdialog-data-label": "מקור נתונים טבלאי בתרשים",
 	"chart-wizard-disabled": "אשף התרשימים כבוי",
 	"chart-wizard-tab-label": "עריכה בטופס",
+	"chart-wizard-create-title": "ליצור צירוף חדש",
+	"chart-wizard-create-text": "בחירת שם לדף הגדרת התרשים החדש.",
+	"chart-wizard-create-name-label": "שם התרשים",
+	"chart-wizard-create-submit": "המשך",
 	"chart-wizard-form-source-label": "1. נא לבחור ערכת נתונים",
 	"chart-wizard-form-source-description": "נא לבחור את ערכת הנתונים הטבלאית שברצונך להציג.",
 	"chart-wizard-form-source-placeholder": "חיפוש ערכת נתונים...",
+	"chart-wizard-form-type-label": "סוג תרשים",
+	"chart-wizard-form-type-line": "תרשים קו",
 	"chart-wizard-form-categories": "קטגוריות",
 	"chart-wizard-form-categories-placeholder": "הוספת קטגוריה...",
 	"chart-wizard-form-categories-no-results": "לא נמצאו תוצאות",
