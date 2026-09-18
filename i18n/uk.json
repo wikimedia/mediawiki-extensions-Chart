@@ -24,7 +24,7 @@
 	"chart-error-category": "Сторінки з помилками відображення розширення Chart",
 	"chart-error-category-desc": "Сторінка містить діаграму з помилками відображення.",
 	"chart-render-category": "Сторінки, що використовують розширення Chart",
-	"chart-render-category-desc": "Сторінка використовує пврсерну функцію <code><nowiki>{{#chart}}</nowiki></code>.",
+	"chart-render-category-desc": "Сторінка використовує парсерну функцію <code><nowiki>{{#chart}}</nowiki></code>.",
 	"chart-render-tooltip-nodata": "Немає даних",
 	"chart-visualeditor-mwchartdialog-title": "Діаграма",
 	"chart-visualeditor-mwchartdialog-chart-label": "Сторінка визначення діаграми",
