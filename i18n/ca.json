@@ -1,14 +1,34 @@
 {
 	"@metadata": {
 		"authors": [
-			"AlbertRA"
+			"AlbertRA",
+			"Paucabot"
 		]
 	},
+	"chart-error-chart-definition-not-found": "No s'ha trobat la pàgina de definició del diagrama.",
+	"chart-render-tooltip-nodata": "Sense dades",
+	"chart-visualeditor-mwchartdialog-title": "Gràfic",
+	"chart-wizard-create-title": "Crea un gràfic nou",
+	"chart-wizard-create-name-label": "Nom del gràfic",
 	"chart-wizard-create-submit": "Continua",
+	"chart-wizard-form-source-label": "1. Triau el conjunt de dades",
+	"chart-wizard-form-type-line": "Gràfic de línies",
+	"chart-wizard-form-type-line-description": "Ideal per mostrar tendències al llarg del temps.",
+	"chart-wizard-form-type-bar": "Gràfic de barres",
+	"chart-wizard-form-type-bar-description": "Útil per comparar quantitats entre categories.",
+	"chart-wizard-form-type-area": "Gràfic d'àrees",
+	"chart-wizard-form-type-area-description": "Ideal per visualitzar volums generals i dades acumulades.",
+	"chart-wizard-form-type-pie": "Diagrama de sectors",
+	"chart-wizard-form-type-pie-description": "Ideal per mostrar percentatges en conjunt.",
 	"chart-wizard-form-categories": "Categories",
 	"chart-wizard-form-categories-placeholder": "Afegeix una categoria...",
 	"chart-wizard-form-categories-no-results": "No s’ha trobat cap resultat",
+	"chart-wizard-form-language-translated": "Traduït",
 	"chart-wizard-form-language-untranslated": "Sense traduir",
+	"chart-wizard-form-title-label": "Títol del gràfic",
+	"chart-wizard-form-subtitle-label": "Subtítol",
+	"chart-wizard-form-x-axis-label": "Etiqueta de l'eix X",
+	"chart-wizard-form-y-axis-label": "Etiqueta de l'eix Y",
 	"chart-wizard-form-license-label": "Llicència",
 	"chart-wizard-preview-accordion": "Mostra previsualització"
 }
