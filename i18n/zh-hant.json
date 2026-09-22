@@ -1,18 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"LowensteinYang"
 		]
 	},
 	"chart-desc": "對顯示的圖表添加 <code><nowiki>{{#chart:}}</nowiki></code> 解析函式",
-	"chart-error-chart-definition-not-found": "找不到圖表定義頁面。",
-	"chart-error-data-source-page-not-found": "找不到圖表的表格資料來源。",
-	"chart-error-default-source-not-specified": "圖表定義頁面未指定預設資料來源。",
-	"chart-error-incompatible-chart-definition": "定義頁面與圖表不相容",
-	"chart-error-incompatible-data-source": "表格資料來源頁面與圖表不相容。",
+	"chart-error-chart-definition-not-found": "找不到圖表定義的頁面。",
+	"chart-error-data-source-page-not-found": "找不到圖表的表格資料來源的頁面。",
+	"chart-error-default-source-not-specified": "圖表定義的頁面未指定預設資料來源。",
+	"chart-error-incompatible-chart-definition": "定義的頁面與圖表不相容",
+	"chart-error-incompatible-data-source": "表格資料來源的頁面與圖表不相容。",
 	"chart-error-invalid-height": "高度必須是大於或等於 100 的整數。",
 	"chart-error-invalid-width": "寬度必須是大於或等於 100 的整數。",
-	"chart-error-shell-disabled": "因為未啟用 shell 擴充功能，無法呈現圖表。",
+	"chart-error-shell-disabled": "圖表無法呈現，因為未啟用shell擴充功能。",
 	"chart-error-rendering-error": "呈現圖表時發生錯誤。",
 	"chart-error-unexpected": "呈現圖表時發生意外錯誤。"
 }
