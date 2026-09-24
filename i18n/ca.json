@@ -1,7 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"AlbertRA"
+			"AlbertRA",
+			"Paucabot"
 		]
-	}
+	},
+	"chart-error-chart-definition-not-found": "No s'ha trobat la pàgina de definició del diagrama.",
+	"chart-visualeditor-mwchartdialog-title": "Gràfic"
 }
