@@ -9,9 +9,9 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Status\Status;
-use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use stdclass;
+use Wikimedia\MWCryptHash;
 
 class ChartRenderer {
 
