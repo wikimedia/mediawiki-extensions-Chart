@@ -69,7 +69,7 @@ class Hooks implements
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setFunctionHook( 'chart', [ ParserFunction::class, 'funcHook' ] );
+		$parser->setFunctionHook( 'chart', ParserFunction::funcHook( ... ) );
 	}
 
 	/**
