@@ -82,7 +82,7 @@
 	"chart-wizard-preview-placeholder-title": "اختر مجموعة البيانات",
 	"chart-wizard-preview-placeholder-description": "ستظهر بياناتك هنا لمعاينتها قبل إنشاء الرسم البياني",
 	"chart-wizard-preview-error": "حدث خطأ ما أثناء المعاينة.",
-	"chart-wizard-preview-error-retry": "حاول ثانية",
+	"chart-wizard-preview-error-retry": "حاول مرة أخرى",
 	"chart-wizard-preview-language-fallback": "بعض نصوص الرسوم البيانية غير متوفرة $1 . تستخدم المعاينة ترجمات بديلة عند توفرها.",
 	"chart-wizard-preview-chart-view": "جدول",
 	"chart-wizard-preview-data-view": "بيانات",
