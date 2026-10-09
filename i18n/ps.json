@@ -10,5 +10,6 @@
 	"chart-error-category": "هغه مخونه چې چارت شاتاړی د وړاندې کولو تېروتنو سره کاروي",
 	"chart-error-category-desc": "دا مخ داسې يو چارت لري چې د وړاندې کولو تېروتنې لري.",
 	"chart-render-category": "هغه مخونه چې د چارت شاتاړی کاروي",
-	"chart-render-category-desc": "مخ د <code><nowiki>{{#chart}}</nowiki></code> ټوټه‌کوونکې کړنچار کاروي."
+	"chart-render-category-desc": "مخ د <code><nowiki>{{#chart}}</nowiki></code> ټوټه‌کوونکې کړنچار کاروي.",
+	"chart-render-tooltip-nodata": "هېڅ اومتوک نشته"
 }
