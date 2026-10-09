@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yupik"
+		]
+	},
+	"chart-visualeditor-mwchartdialog-title": "Kävvõk",
+	"chart-wizard-create-title": "Raaj ođđ kävvõõǥǥ",
+	"chart-wizard-create-name-label": "Kävvõõǥǥ nõmm",
+	"chart-wizard-create-submit": "Jueʹtǩ",
+	"chart-wizard-form-type-bar": "Ståʹlppkävvõk",
+	"chart-wizard-form-type-pie": "Kruuggkävvõk",
+	"chart-wizard-form-categories": "Kategoria",
+	"chart-wizard-form-categories-placeholder": "Lââʹzzet kategoria...",
+	"chart-wizard-form-categories-no-results": "Ij käunnʼjam ni mii",
+	"chart-wizard-form-language-label": "Ǩiõll",
+	"chart-wizard-form-language-translated": "Jåårǥlõttum",
+	"chart-wizard-form-language-untranslated": "Jåårǥlââʹttǩani",
+	"chart-wizard-form-title-label": "Kävvõõǥǥ nõmm",
+	"chart-wizard-form-publish-label": "3. Õlmstââʹtt kävvõõǥǥ",
+	"chart-wizard-form-license-label": "Liseʹnss",
+	"chart-wizard-form-summary-label": "Muuʹtt õʹhtteǩeässmõõžž",
+	"chart-wizard-preview-chart-view": "Kävvõk",
+	"chart-wizard-publish": "Õlmstââʹtt kävvõõǥǥ"
+}
