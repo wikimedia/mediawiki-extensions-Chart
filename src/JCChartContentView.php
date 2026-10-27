@@ -7,7 +7,6 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\JsonConfig\JCContent;
 use MediaWiki\Extension\JsonConfig\JCContentView;
 use MediaWiki\Language\FormatterFactory;
-use MediaWiki\Language\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOptions;
@@ -20,7 +19,6 @@ class JCChartContentView extends JCContentView {
 		private readonly ChartRenderer $chartRenderer,
 		private readonly DataPageResolver $dataPageResolver,
 		private readonly FormatterFactory $formatterFactory,
-		private readonly LanguageFactory $languageFactory,
 		private readonly TrackingCategories $trackingCategories,
 	) {
 	}

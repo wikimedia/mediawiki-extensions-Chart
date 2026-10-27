@@ -61,7 +61,6 @@ class JCChartContent extends JCDataContent {
 			$services->getService( 'Chart.ChartRenderer' ),
 			$services->getService( 'Chart.DataPageResolver' ),
 			$services->getFormatterFactory(),
-			$services->getLanguageFactory(),
 			$services->getTrackingCategories()
 		);
 	}
