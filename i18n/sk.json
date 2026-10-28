@@ -2,8 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"KormiSK",
-			"Luky001"
+			"Luky001",
+			"Teslaton"
 		]
 	},
+	"chart-error-category": "Stránky používajúce rozšírenie Chart s chybami vykresľovania",
+	"chart-render-category": "Stránky používajúce rozšírenie Chart",
 	"chart-visualeditor-mwchartdialog-title": "Graf"
 }
