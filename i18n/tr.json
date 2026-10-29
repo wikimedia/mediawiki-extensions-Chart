@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Joseph",
+			"Leo",
 			"Pedian4169"
 		]
 	},
@@ -27,6 +28,8 @@
 	"chart-visualeditor-mwchartdialog-title": "Çizelge",
 	"chart-visualeditor-mwchartdialog-chart-label": "Çizelge tanım sayfası",
 	"chart-visualeditor-mwchartdialog-data-label": "Çizelge tablo biçimli veri kaynağı",
+	"tag-chart-wizard": "[[mw:Special:MyLanguage/Extension:Chart/Wizard|Grafik Sihirbazı]]",
+	"tag-chart-wizard-description": "Grafik Sihirbazı kullanılarak yapılan düzenlemeler",
 	"chartjson-error-version": "$1, $2 ile $3 (dahil) arasında bir tam sayı olmalıdır.",
 	"chartjson-error-enum": "$1 aşağıdaki değerlerden biri olmalıdır: $2",
 	"chart-error-source-not-found": "Tablo biçimli veri kaynağı sayfası bulunamadı.",
