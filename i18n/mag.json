@@ -4,6 +4,11 @@
 			"ऐक्टिवेटेड्"
 		]
 	},
+	"chart-visualeditor-mwchartdialog-title": "रेखाचित्र",
+	"chart-visualeditor-mwchartdialog-chart-label": "रेखाचित्र परिभाषा पन्ना",
+	"chart-wizard-create-title": "नया रेखाचित्र बनैथिन",
+	"chart-wizard-create-name-label": "रेखाचित्र नाम",
+	"chart-wizard-create-submit": "जारी रखथिन",
 	"chart-wizard-form-categories": "श्रेणी",
 	"chart-wizard-form-categories-placeholder": "श्रेणी जोड़थिन...",
 	"chart-wizard-form-categories-no-results": "कौनो परिणाम नै भेटलै",
