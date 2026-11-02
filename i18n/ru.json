@@ -26,9 +26,18 @@
 	"chart-visualeditor-mwchartdialog-chart-label": "Страница определения диаграммы",
 	"chart-visualeditor-mwchartdialog-data-label": "Источник табличных данных диаграммы",
 	"chart-wizard-tab-label": "Редактировать через мастер",
+	"chart-wizard-create-submit": "Продолжить",
 	"chart-wizard-form-categories": "Категории",
 	"chart-wizard-form-categories-placeholder": "Добавить категорию...",
 	"chart-wizard-form-categories-no-results": "Ничего не найдено",
+	"chart-wizard-form-language-label": "Язык",
+	"chart-wizard-form-subtitle-label": "Подзаголовок",
+	"chart-wizard-form-license-label": "Лицензия",
+	"chart-wizard-form-summary-label": "Описание изменений",
+	"chart-wizard-form-summary-description": "Опишите внесённые изменения",
+	"chart-wizard-preview-placeholder-title": "Выберите набор данных",
+	"chart-wizard-preview-error-retry": "Повторить попытку",
+	"chart-wizard-preview-data-view": "Данные",
 	"chartjson-error-version": "$1 должно быть целым числом от $2 до $3 включительно.",
 	"chart-error-source-not-found": "Страница источника табличных данных диаграммы не найдена."
 }
