@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Huñvreüs"
+			"Huñvreüs",
+			"Ar choler"
 		]
 	},
 	"chart-desc": "Ouzhpennañ a ra ar fonksion dielfenner <code><nowiki>{{#chart:}}</nowiki></code> da ziskwel grafikoù",
@@ -9,8 +10,29 @@
 	"chart-error-chart-definition-invalid": "Diwiriek eo pajenn termenadur ar gartenn.",
 	"chart-error-data-source-invalid": "Mammenn roadennoù taolenn diwiriek pourvezet.",
 	"chart-error-data-source-page-not-found": "N'eo ket bet kavet pajenn mammenn roadennoù taolenn ar grafik.",
+	"chart-error-default-source-not-specified": "N'eus bet spisaet mammenn roadennoù dre ziouer ebet e pajenn dermeniñ ar grafik.",
+	"chart-error-incompatible-chart-definition": "Digenglotus gant grafikoù eo ar bajenn dermeniñ.",
+	"chart-error-incompatible-data-source": "Digenglotus gant grafikoù eo pajenn dermeniñ mammenn roadennoù an daolenn.",
+	"chart-error-invalid-data-source": "Diwiriek eo pajenn dermeniñ roadennoù an daolenn.",
+	"chart-error-invalid-height": "Ret eo d'an uhelder bezañ un niver anterin kevatal da pe brasoc'h eget 100.",
+	"chart-error-invalid-width": "Ret eo d'al ledander bezañ un niver anterin kevatal da pe brasoc'h eget 100.",
+	"chart-error-shell-disabled": "Ne c'heller ket kinnig ar grafikoù rak diweredekaet eo sevenidigezh ar c'haser urzhiadoù.",
+	"chart-error-rendering-error": "Ur fazi zo bet en ur ginnig ar grafik.",
+	"chart-error-unexpected": "Ur fazi dic'hortoz zo bet en ur ginnig ar grafik.",
+	"chart-error-category": "Pajennoù a implij an astenn Grafik gant fazioù kinnig",
+	"chart-error-category-desc": "Ur grafik gant fazioù kinnig zo er bajenn.",
+	"chart-deprecated-category": "Termenadurioù grafikoù a implij furmadoù dispredet",
+	"chart-deprecated-category-desc": "Ur furmad dispredet zo implijet gant pajenn dermeniñ ar grafik. Gwelit [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:Chart#Deprecated_formats furmadoù grafikoù dispredet] evit kuzulioù a-fet adlec'hiañ.",
+	"chart-render-category": "Pajennoù a implij an astenn Grafik",
+	"chart-render-category-desc": "An arc'hwel dielfenniñ <code><nowiki>{{#chart}}</nowiki></code> zo implijet gant ar bajenn.",
 	"chart-render-tooltip-nodata": "Roadenn ebet",
 	"chart-visualeditor-mwchartdialog-title": "Grafik",
 	"chart-visualeditor-mwchartdialog-chart-label": "Pajenn termenadur ar grafik",
-	"chart-visualeditor-mwchartdialog-data-label": "Mammenn roadennoù taolenn ar grafik"
+	"chart-visualeditor-mwchartdialog-data-label": "Mammenn roadennoù taolenn ar grafik",
+	"chart-wizard-disabled": "Diweredekaet emañ an ameiler krouiñ grafikoù",
+	"chart-wizard-deprecated-format": "Ar grafik-mañ a implij ur furmad kozh na vez ket embreget gant an ameiler krouiñ. Kemmit termenadur ar grafik gant [$1 an aozer kod mammenn]. [$2 Gouzout hiroc'h] a-zivout ar furmadoù dispredet.",
+	"chart-wizard-tab-label": "Kemmañ dre ar furmskrid",
+	"chart-wizard-create-title": "Krouiñ ur grafik nevez",
+	"chart-wizard-create-text": "Dibabit un anv evit pajenn dermeniñ ar grafik nevez.",
+	"chart-wizard-create-name-label": "Anv ar grafik"
 }
