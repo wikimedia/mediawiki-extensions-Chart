@@ -12,7 +12,7 @@ use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use stdclass;
+use stdClass;
 
 /**
  * @covers \MediaWiki\Extension\Chart\ParserFunction
@@ -80,8 +80,8 @@ class ParserFunctionIntegrationTest extends JCTransformTestCase {
 		$mock = $this->createMock( ChartRenderer::class );
 		$mock->method( 'renderSVG' )
 			->willReturnCallback( static function (
-				stdclass $chartDef,
-				stdclass $tabularData,
+				stdClass $chartDef,
+				stdClass $tabularData,
 				array $options = []
 			): Status {
 				return Status::newGood( '<chart-lang>' . $options['locale'] . '</chart-lang>' );

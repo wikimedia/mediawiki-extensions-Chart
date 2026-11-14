@@ -15,7 +15,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\Title\Title;
-use stdclass;
+use stdClass;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -39,8 +39,8 @@ class SpecialChartWizardTest extends SpecialPageTestBase {
 		$mock = $this->createMock( ChartRenderer::class );
 		$mock->method( 'renderSVG' )
 			->willReturnCallback( static function (
-				stdclass $chartDef,
-				stdclass $tabularData,
+				stdClass $chartDef,
+				stdClass $tabularData,
 				array $options = []
 			): Status {
 				return Status::newGood( '<svg></svg>' );

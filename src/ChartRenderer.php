@@ -10,7 +10,7 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
-use stdclass;
+use stdClass;
 use Wikimedia\MWCryptHash;
 
 class ChartRenderer {
@@ -36,14 +36,14 @@ class ChartRenderer {
 	/**
 	 * Render a chart from a definition object and a tabular data object.
 	 *
-	 * @param stdclass $chartDef Chart definition, obtained from JCChartContent::getContent()
-	 * @param stdclass $tabularData Tabular data, obtained from JCTabularContent::getContent()
+	 * @param stdClass $chartDef Chart definition, obtained from JCChartContent::getContent()
+	 * @param stdClass $tabularData Tabular data, obtained from JCTabularContent::getContent()
 	 * @param array{width?:string,height?:string} $options Additional rendering options:
 	 *   'width': Width of the chart, in pixels. Overrides width specified in the chart definition
 	 *   'height': Height of the chart, in pixels. Overrides height specified in the chart definition.
 	 * @return Status A Status object wrapping an SVG string or an error
 	 */
-	public function renderSVG( stdclass $chartDef, stdclass $tabularData, array $options = [] ): Status {
+	public function renderSVG( stdClass $chartDef, stdClass $tabularData, array $options = [] ): Status {
 		// Prefix for IDs in the SVG. This has to be unique between charts on the same page, to
 		// prevent ID collisions (T371558). If the same chart with the same data is displayed twice
 		// on the same page, this gives them the same ID prefixes and causes their IDs to collide,
@@ -59,7 +59,7 @@ class ChartRenderer {
 		return $this->renderWithCli( $chartDef, $tabularData, $options );
 	}
 
-	private function renderWithService( stdclass $chartDef, stdclass $tabularData, array $options ): Status {
+	private function renderWithService( stdClass $chartDef, stdClass $tabularData, array $options ): Status {
 		$requestJson = $this->encodeRequestData( $chartDef, $tabularData, $options );
 
 		$status = $this->requestValidator->validateRequestSize( $requestJson );
@@ -96,7 +96,7 @@ class ChartRenderer {
 		return Status::newGood( $response );
 	}
 
-	private function renderWithCli( stdclass $chartDef, stdclass $tabularData, array $options ): Status {
+	private function renderWithCli( stdClass $chartDef, stdClass $tabularData, array $options ): Status {
 		if ( Shell::isDisabled() ) {
 			return Status::newFatal( 'chart-error-shell-disabled' );
 		}
@@ -136,7 +136,7 @@ class ChartRenderer {
 		return $status;
 	}
 
-	private function encodeRequestData( stdclass $chartDef, stdclass $tabularData, array $options ): string {
+	private function encodeRequestData( stdClass $chartDef, stdClass $tabularData, array $options ): string {
 		// JSON_UNESCAPED_UNICODE prevents non-ASCII characters from being escaped as \uXXXX,
 		// reducing payload size when chart definitions or data when non-ASCII characters are present.
 		return json_encode( [
