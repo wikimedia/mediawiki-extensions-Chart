@@ -25,5 +25,16 @@
 	"chart-render-category-desc": "An arc'hwel dielfenniñ <code><nowiki>{{#chart}}</nowiki></code> zo implijet gant ar bajenn.",
 	"chart-visualeditor-mwchartdialog-title": "Grafik",
 	"chart-visualeditor-mwchartdialog-chart-label": "Pajenn termenadur ar grafik",
-	"chart-visualeditor-mwchartdialog-data-label": "Mammenn roadennoù taolenn ar grafik"
+	"chart-visualeditor-mwchartdialog-data-label": "Mammenn roadennoù taolenn ar grafik",
+	"chartjson-error-version": "$1 a rank bezañ un niver anterin etre $2 ha $3 e-barzh.",
+	"chartjson-error-enum": "$1 a rank bezaén unan eus an talvoudoù da-heul : $2",
+	"chart-error-source-not-found": "N'eo ket bet kavet pajenn vammenn roadennoù an daolenn.",
+	"chart-error-invalid-source-type": "Diwiriek eo doare pajenn vammenn roadennoù an daolenn.",
+	"chart-error-invalid-source-content": "Diwiriek eo endalc'hadoù pajenn vammenn roadennoù an daolenn.",
+	"chart-error-transforms-disabled": "Diweredekaet emañ treuzfurmadurioù roadennoù an daolenn.",
+	"chart-error-request-too-large": "Dreist ar vent vrasañ aotreet a $1 eizhbit eo roadennoù ar grafik hag an daolenn. Implijit un teskad roadennoù bihanoc'h pe sellit ouzh [https://www.mediawiki.org/wiki/Extension:Chart/Transforms dibarzhioù an treuzfurmiñ roadennoù] evit silañ pe kenstrollañ ho roadennoù.",
+	"apihelp-chartinfo-summary": "Adkavout an niver red a wechoù ma 'z eo bet implijet ur bajenn Grafik ur wech hepken. Da un implij hepken e vo lakaet meur a implij eus ur grafik war an hevelep pajenn.",
+	"apihelp-chartinfo-param-global": "Lakaat da wir evit enklozañ an holl wikioù kevreet e-lec'h ar wiki lec'hel hepken.",
+	"apihelp-chartinfo-example-1": "Adtapout renabl grafikoù ar wiki lec'hel.",
+	"apihelp-chartinfo-example-2": "Adtapout renabl grafikoù an holl wikioù."
 }
